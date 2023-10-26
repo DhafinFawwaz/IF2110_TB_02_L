@@ -6,16 +6,16 @@ OBJ_MAIN = $(SRC_MAIN:.c=.o)
 
 .PHONY: all clean test
 
-all: main_program mfoo
+all: bin/main bin/mfoo
 
-main_program: $(OBJ_MAIN) $(OBJ_FOO)
+bin/main: $(OBJ_MAIN) $(OBJ_FOO)
 	$(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f main_program mfoo $(OBJ_MAIN) $(OBJ_FOO) $(OBJ_TEST) $(TEST_RESULTS)
+	rm -f bin/main bin/mfoo $(OBJ_MAIN) $(OBJ_FOO) $(OBJ_TEST) $(TEST_RESULTS)
 
 # UNIT TESTS
 
@@ -29,16 +29,15 @@ TEST_CASES = $(wildcard $(TESTS_DIR)/*.in)
 TEST_OUTPUTS = $(TEST_CASES:.in=.out)
 TEST_RESULTS = $(TEST_CASES:.in=.result)
 
-mfoo: $(OBJ_FOO) $(OBJ_TEST)
+bin/mfoo: $(OBJ_FOO) $(OBJ_TEST)
 	$(CC) $(CFLAGS) -o $@ $^
 
-test_foo: mfoo $(TEST_RESULTS)
+test_foo: bin/mfoo $(TEST_RESULTS)
 	@cat $(TEST_RESULTS)
 
-$(TEST_RESULTS): $(TESTS_DIR)/%.result: $(TESTS_DIR)/%.in $(TESTS_DIR)/%.out mfoo
-	@if ./mfoo < $< | diff - $(word 2,$^) > /dev/null; then \
+$(TEST_RESULTS): $(TESTS_DIR)/%.result: $(TESTS_DIR)/%.in $(TESTS_DIR)/%.out bin/mfoo
+	@if ./bin/mfoo < $< | diff - $(word 2,$^) > /dev/null; then \
 		echo "$< $(word 2,$^): TRUE"; \
 	else \
 		echo "$< $(word 2,$^): WRONG"; \
 	fi > $@
-
