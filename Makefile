@@ -6,16 +6,16 @@ OBJ_MAIN = $(SRC_MAIN:.c=.o)
 
 .PHONY: all clean test
 
-all: bin/main bin/mfoo
+all: main bin/mfoo
 
-bin/main: $(OBJ_MAIN) $(OBJ_FOO)
+main: $(OBJ_MAIN) $(OBJ_FOO)
 	$(CC) $(CFLAGS) -o $@ $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f bin/main bin/mfoo $(OBJ_MAIN) $(OBJ_FOO) $(OBJ_TEST) $(TEST_RESULTS)
+	rm -f main bin/mfoo $(OBJ_MAIN) $(OBJ_FOO) $(OBJ_TEST) $(TEST_RESULTS)
 
 # UNIT TESTS
 
