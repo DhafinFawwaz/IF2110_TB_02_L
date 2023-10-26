@@ -1,4 +1,4 @@
-#include "wordmachine.h"
+#include "../../ADT/MesinKata/wordmachine.h"
 
 void readWord(Word *input);
 /* Akuisisi Word dari input user.
