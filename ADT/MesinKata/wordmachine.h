@@ -9,6 +9,8 @@
 
 #define NMax 50
 #define BLANK ' '
+#define NEWLINE '\n'
+#define CARRIAGE '\r'
 
 typedef struct
 {
@@ -45,5 +47,10 @@ void CopyWord();
           currentChar = BLANK atau currentChar = MARK;
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+
+void ADVLINE();
+void CopyLine();
+Word cleanWord(Word w);
+int wordToInt(Word w);
 
 #endif
