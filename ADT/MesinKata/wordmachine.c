@@ -15,7 +15,7 @@ void IgnoreBlanks()
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 {
-    while (currentChar == BLANK){
+    while (currentChar == BLANK || currentChar == '\n'){
         ADV();
     }
 }
@@ -63,15 +63,15 @@ void CopyWord()
 {
     int i;
     i = 0;
-    while((currentChar != MARK) && (currentChar != BLANK)){
+    while((currentChar != MARK) && (currentChar != BLANK) && (currentChar != '\n')){
         currentWord.TabWord[i] = currentChar;
         ADV();
         i++;
     }
 
     if (i > NMax){
-        return currentWord.Length = NMax;
+        currentWord.Length = NMax;
     } else {
-        return currentWord.Length = i;
+        currentWord.Length = i;
     }
 }

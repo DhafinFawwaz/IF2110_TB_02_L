@@ -3,13 +3,13 @@
 #include "listdin.h"
 #include "boolean.h"
 
-void CreateListDin(ListDin *l, int capacity){
+void listdin_CreateListDin(ListDin *l, int capacity){
     BUFFER(*l) = (ElType*) malloc(capacity*sizeof(ElType));
     NEFF(*l) = 0;
     CAPACITY(*l) = capacity;
 }
 
-void dealocateList(ListDin *l){
+void listdin_dealocateList(ListDin *l){
     free(BUFFER(*l));
     // printf("X");
     NEFF(*l) = 0;
@@ -18,35 +18,35 @@ void dealocateList(ListDin *l){
     // printf("Z");
 }
 
-int listLength(ListDin l){
+int listdin_listLength(ListDin l){
     return (NEFF(l));
 }
 
-IdxType getFirstIdx(ListDin l){
+IdxType listdin_getFirstIdx(ListDin l){
     return IDX_MIN;
 }
 
-IdxType getLastIdx(ListDin l){
-    return (listLength(l)-1);
+IdxType listdin_getLastIdx(ListDin l){
+    return (listdin_listLength(l)-1);
 }
 
-boolean isIdxValid(ListDin l, IdxType i){
+boolean listdin_isIdxValid(ListDin l, IdxType i){
     return (i>=IDX_MIN && i < CAPACITY(l));
 }
 
-boolean isIdxEff(ListDin l, IdxType i){
+boolean listdin_isIdxEff(ListDin l, IdxType i){
     return (i>=IDX_MIN && i < NEFF(l));
 }
 
-boolean isEmpty(ListDin l){
-    return (listLength(l)==0);
+boolean listdin_isEmpty(ListDin l){
+    return (listdin_listLength(l)==0);
 }
 
-boolean isFull(ListDin l){
-    return (listLength(l)==CAPACITY(l));
+boolean listdin_isFull(ListDin l){
+    return (listdin_listLength(l)==CAPACITY(l));
 }
 
-void readList(ListDin *l){
+void listdin_readList(ListDin *l){
     int N;
     IdxType i;
     do {
@@ -60,13 +60,13 @@ void readList(ListDin *l){
     NEFF(*l) = N;
 }
 
-void printList(ListDin l){
+void listdin_printList(ListDin l){
     IdxType i;
     printf("[");
-    if(listLength(l)>0){
-        for(i = getFirstIdx(l);i<listLength(l);i++){
+    if(listdin_listLength(l)>0){
+        for(i = listdin_getFirstIdx(l);i<listdin_listLength(l);i++){
             printf("%d", ELMT(l,i));
-            if(i+1<listLength(l)){
+            if(i+1<listdin_listLength(l)){
                 printf(",");
             }
         }
@@ -74,14 +74,14 @@ void printList(ListDin l){
     printf("]");
 }
 
-ListDin plusMinusList(ListDin l1, ListDin l2, boolean plus){
+ListDin listdin_plusMinusList(ListDin l1, ListDin l2, boolean plus){
     IdxType i;
     if(plus){
-        for(i = IDX_MIN; i<listLength(l1);i++){
+        for(i = IDX_MIN; i<listdin_listLength(l1);i++){
             ELMT(l1,i) += ELMT(l2,i);
         }
     } else {
-        for(i = IDX_MIN; i<listLength(l1);i++){
+        for(i = IDX_MIN; i<listdin_listLength(l1);i++){
             ELMT(l1,i) -= ELMT(l2,i);
         }
     }
@@ -102,12 +102,12 @@ ListDin plusMinusList(ListDin l1, ListDin l2, boolean plus){
 //    return l3;
 }
 
-boolean isListEqual(ListDin l1, ListDin l2){
+boolean listdin_isListEqual(ListDin l1, ListDin l2){
     IdxType i;
-    if(listLength(l1)!=listLength(l2)){
+    if(listdin_listLength(l1)!=listdin_listLength(l2)){
         return false;
     }
-    for(i=IDX_MIN;i<listLength(l1);i++){
+    for(i=IDX_MIN;i<listdin_listLength(l1);i++){
         if(ELMT(l1,i)!=ELMT(l2,i)){
             return false;
         }
@@ -115,12 +115,12 @@ boolean isListEqual(ListDin l1, ListDin l2){
     return true; 
 }
 
-IdxType indexOf(ListDin l, ElType val){
+IdxType listdin_indexOf(ListDin l, ElType val){
     IdxType i;
-    if(isEmpty(l)){
+    if(listdin_isEmpty(l)){
         return IDX_UNDEF;
     }
-    for(i=IDX_MIN;i<listLength(l);i++){
+    for(i=IDX_MIN;i<listdin_listLength(l);i++){
         if(ELMT(l,i)==val){
             return i;
         }
@@ -128,11 +128,11 @@ IdxType indexOf(ListDin l, ElType val){
     return IDX_UNDEF;
 }
 
-void extremeValues(ListDin l, ElType *max, ElType *min){
+void listdin_extremeValues(ListDin l, ElType *max, ElType *min){
     IdxType i;
-    *max = ELMT(l, getFirstIdx(l));
-    *min = ELMT(l, getFirstIdx(l));
-    for(i=IDX_MIN;i<listLength(l);i++){
+    *max = ELMT(l, listdin_getFirstIdx(l));
+    *min = ELMT(l, listdin_getFirstIdx(l));
+    for(i=IDX_MIN;i<listdin_listLength(l);i++){
         if(ELMT(l,i)>*max){
             *max = ELMT(l,i);
         }
@@ -142,7 +142,7 @@ void extremeValues(ListDin l, ElType *max, ElType *min){
     }
 }
 
-void copyList(ListDin lIn, ListDin *lOut){
+void listdin_copyList(ListDin lIn, ListDin *lOut){
     ListDin temp;
     temp = lIn;
     printf("Address Copy BUFFER lIn:%p\n", BUFFER(lIn));
@@ -150,7 +150,7 @@ void copyList(ListDin lIn, ListDin *lOut){
     printf("Address Copy lIn:%p\n", &lIn);
     printf("Address Copy temp:%p\n", &temp);
     
-    dealocateList(lOut);
+    listdin_dealocateList(lOut);
     NEFF(*lOut) = NEFF(lIn);
     CAPACITY(*lOut) = CAPACITY(lIn);
     BUFFER(*lOut) = (ElType*) realloc(BUFFER(temp), CAPACITY(*lOut)*sizeof(ElType));
@@ -166,27 +166,27 @@ void copyList(ListDin lIn, ListDin *lOut){
 //    NEFF(*lOut) = NEFF(lIn);
 // //    printf("D");
 //    for (i=0;i<listLength(lIn);i++){
-//         // printf("%d",i);
+//         // printf("%d",i);void 
 //       ELMT(*lOut,i) = ELMT(lIn,i);
 //    }
 // //    printf("E");
 }
 
-ElType sumList(ListDin l){
+ElType listdin_sumList(ListDin l){
     ElType sum;
     IdxType i;
     sum = 0;
-    for(i=IDX_MIN;i<listLength(l);i++){
+    for(i=IDX_MIN;i<listdin_listLength(l);i++){
         sum += ELMT(l,i);
     }
     return sum;
 }
 
-int countVal(ListDin l, ElType val){
+int listdin_countVal(ListDin l, ElType val){
     int count;
     IdxType i;
     count = 0;
-    for(i=IDX_MIN;i<listLength(l);i++){
+    for(i=IDX_MIN;i<listdin_listLength(l);i++){
         if(val==ELMT(l,i)){
             count += 1;
         }
@@ -194,14 +194,14 @@ int countVal(ListDin l, ElType val){
     return count;
 }
 
-void sort(ListDin *l, boolean asc){
+void listdin_sort(ListDin *l, boolean asc){
     IdxType i;
     ElType temp;
     boolean isSorted = false;
     if(asc){
         while(!isSorted){
             isSorted = true;
-            for(i=IDX_MIN;i<listLength(*l)-1;i++){
+            for(i=IDX_MIN;i<listdin_listLength(*l)-1;i++){
                 if(ELMT(*l,i)>ELMT(*l,i+1)){
                     temp = ELMT(*l,i);
                     ELMT(*l,i) = ELMT(*l,i+1);
@@ -213,7 +213,7 @@ void sort(ListDin *l, boolean asc){
     } else {
         while(!isSorted){
             isSorted = true;
-            for(i=IDX_MIN;i<listLength(*l)-1;i++){
+            for(i=IDX_MIN;i<listdin_listLength(*l)-1;i++){
                 if(ELMT(*l,i)<ELMT(*l,i+1)){
                     temp = ELMT(*l,i);
                     ELMT(*l,i) = ELMT(*l,i+1);
@@ -225,75 +225,27 @@ void sort(ListDin *l, boolean asc){
     }
 }
 
-void insertLast(ListDin *l, ElType val){
-    ELMT(*l, listLength(*l)) = val;
+void listdin_insertLast(ListDin *l, ElType val){
+    ELMT(*l, listdin_listLength(*l)) = val;
     NEFF(*l) += 1;
 }
 
-void deleteLast(ListDin *l, ElType *val){
-    *val = ELMT(*l, getLastIdx(*l));
+void listdin_deleteLast(ListDin *l, ElType *val){
+    *val = ELMT(*l, listdin_getLastIdx(*l));
     NEFF(*l) -= 1;
 }
 
-void expandList(ListDin *l, int num){
+void listdin_expandList(ListDin *l, int num){
     BUFFER(*l) = (ElType*) realloc(BUFFER(*l), (CAPACITY(*l)+num)*sizeof(ElType));
     CAPACITY(*l) += num;
 }
 
-void shrinkList(ListDin *l, int num){
+void listdin_shrinkList(ListDin *l, int num){
     BUFFER(*l) = (ElType*) realloc(BUFFER(*l), (CAPACITY(*l)-num)*sizeof(ElType));
     CAPACITY(*l) -= num;
 }
 
-void compressList(ListDin *l){
+void listdin_compressList(ListDin *l){
     BUFFER(*l) = (ElType*) realloc(BUFFER(*l), NEFF(*l)*sizeof(ElType));
     CAPACITY(*l) = NEFF(*l);
-}
-
-int main(){
-    ListDin l1,l2;
-    printf("Address lIn:%p\n", &l1);
-    printf("Address lOut:%p\n", &l2);
-
-    CreateListDin(&l1, 10);
-    CreateListDin(&l2, 10);
- 
-    readList(&l1);
-   
-    printList(l1);
-    printf("%p\n", BUFFER(l1));
-    printf("%p\n", BUFFER(l2));
-    copyList(l1, &l2);
-    printList(l1);
-    printf("\n");
-    printList(l2);
-    printf("\n");
-    printf("%p\n", BUFFER(l1));
-    printf("%p\n", BUFFER(l2));
-    ELMT(l2,1) = 999;
-    printf("%d\n", ELMT(l1,1));
-    printf("%d\n", ELMT(l2,1));
-    printf("%d\n", NEFF(l1));
-    printf("%d\n", NEFF(l2));
-    printf("%d\n", CAPACITY(l1));
-    printf("%d\n", CAPACITY(l2));
-    printf("%d\n", sumList(l1));
-    sort(&l1, true);
-    printList(l1);
-    sort(&l1, false);
-    printList(l1);
-    printf("%u\n", isListEqual(l1,l2));
-    // printf("DEALO");
-    // dealocateList(&l1);
-    printList(l1);
-    printf("%d\n", NEFF(l1));
-    printf("%d\n", CAPACITY(l1));
-
-    printList(l1);
-    printList(l2);
-    l2=plusMinusList(l1, l2, false);
-    printList(l2);
-    printList(l1);
-    printf("Address lIn:%p\n", &l1);
-    printf("Address lOut:%p\n", &l2);
 }

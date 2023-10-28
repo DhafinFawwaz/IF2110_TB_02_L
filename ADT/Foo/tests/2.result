@@ -1,1 +1,7 @@
-ADT/Foo/tests/2.in ADT/Foo/tests/2.out: WRONG
+ADT/Foo/tests/2.in ADT/Foo/tests/2.out: [31mWRONG[0m
+Expected:
+Number:
+19
+Actual:
+Number:
+19

@@ -14,8 +14,7 @@ int main()
         // Test CreateFoo
         scanf("%d", &bar);
         CreateFoo(&foo, bar);
-
-        printf("%d\n", Bar(foo));
+        printf("Number: %d", Bar(foo));
         break;
 
     case 2:
@@ -26,7 +25,7 @@ int main()
         scanf("%d", &bar);
         TambahBar(&foo, bar);
 
-        printf("%d\n", Bar(foo));
+        printf("Number:\n%d", Bar(foo));
         break;
 
     case 3:
