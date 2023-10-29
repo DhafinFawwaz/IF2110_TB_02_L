@@ -5,6 +5,7 @@
 #include "../../ADT/DrafKicauan/drafkicauan.h"
 #include "../../ADT/DateTime/datetime.h"
 #include "../../ADT/Kicauan/kicauan.h"
+#include "../../ADT/Balasan/balasan.h"
 
 void tripleConcat(char *s1, char *s2, char *s3, char *result){
     int i = 0, j = 0;
@@ -42,49 +43,42 @@ void inisialisasi(){
     tripleConcat(dataPath, currentWord.TabWord, "/utas.config", utasPath);
     int i = 0;
 
-/*
     // Inisialisasi balasan
     printf("\n[Balasan]\n");
     freopen(balasanPath, "r", stdin);
     STARTWORD();
-    int banyakKicauanBerbalasan = wordToInt(currentWord); // banyak kicauan yang memiliki balasan
+    banyakKicauanBerbalasan = wordToInt(currentWord); // banyak kicauan yang memiliki balasan
     printf("banyakKicauanBerbalasan: %d\n", banyakKicauanBerbalasan);
     
     for(i = 0; i < banyakKicauanBerbalasan; i++){
         ADVWORD();
-        int idKicauan = wordToInt(currentWord); // ID kicauan = 5
-        printf("id kicauan: %d\n", idKicauan);
+        listBalasan[i].idParent = wordToInt(currentWord); // ID parent = 5
 
         ADVWORD();
-        int banyakBalasan = wordToInt(currentWord); // Memiliki 4 balasan
-        printf("banyak balasan: %d\n", banyakBalasan);
+        listBalasan[i].banyakBalasan = wordToInt(currentWord); // Memiliki 4 balasan
 
         int j = 0;
-        for(j = 0; j < banyakBalasan; j++){
+        for(j = 0; j < listBalasan[i].banyakBalasan; j++){
             ADVWORD();
-            int idParentBalasan = wordToInt(currentWord);
-            printf("id parent balasan: %d\n", idParentBalasan);
+            listBalasan[j].idParent = wordToInt(currentWord); // ID balasan = 1
 
             ADVWORD();
-            int idBalasan = wordToInt(currentWord);
-            printf("id balasan: %d\n", idBalasan);
+            listBalasan[j].id = wordToInt(currentWord); // ID balasan = 1
 
             ADVLINE();// Ini Balasan dari Node Utama, yaitu Kicauan ke-5
-            Word text = cleanWord(currentWord);
-            printf("text: %s\n", text.TabWord);
+            listBalasan[j].text = cleanWord(currentWord);
 
             ADVLINE();
-            printf("nama: %s\n", cleanWord(currentWord).TabWord);
+            listBalasan[j].nama = cleanWord(currentWord);
             
             ADVWORD();
-            printf("date: %s\n", cleanWord(currentWord).TabWord);
+            SetDateFromWord(&listBalasan[i].dateTime, cleanWord(currentWord));
 
             ADVWORD();
-            printf("time: %s\n", cleanWord(currentWord).TabWord);
+            SetTimeFromWord(&listBalasan[i].dateTime, cleanWord(currentWord));
         }
     }
 
-*/
 
     // Inisialisasi draf
     // printf("\n[Draf]\n");
