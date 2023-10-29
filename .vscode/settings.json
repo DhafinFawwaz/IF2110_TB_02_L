@@ -1,6 +1,17 @@
 {
     "files.associations": {
         "wordmachine.h": "c",
-        "inisialisasi.h": "c"
+        "inisialisasi.h": "c",
+        "profile.h": "c",
+        "matrix.h": "c",
+        "boolean.h": "c",
+        "pixel.h": "c",
+        "foto.h": "c",
+        "listdin.h": "c",
+        "prioqueue.h": "c",
+        "charmachine.h": "c",
+        "akun.h": "c",
+        "pcolor.h": "c",
+        "stdio.h": "c"
     }
 }

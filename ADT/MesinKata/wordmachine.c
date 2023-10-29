@@ -10,14 +10,26 @@
 boolean EndWord;
 Word currentWord;
 
+void IgnorePossibleNewLine(){
+    if(currentChar == CARRIAGE){
+        // printf("|r|");
+        ADV();
+    }
+    if(currentChar == NEWLINE){
+        // printf("|n|");
+        ADV();
+    }
+}
+
 void IgnoreBlanks()
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 {
-    while (currentChar == BLANK || currentChar == NEWLINE || currentChar == CARRIAGE) {
+    while (currentChar == BLANK) {
         ADV();
     }
+    IgnorePossibleNewLine();
 }
 
 void STARTWORD()
@@ -27,13 +39,13 @@ void STARTWORD()
           currentChar karakter pertama sesudah karakter terakhir kata */
 {
     START();
-    currentWord.Length = 0;
     IgnoreBlanks();
-    if (currentChar == MARK || currentChar == NEWLINE || currentChar == CARRIAGE) {
+    if (currentChar == MARK) {
         EndWord = true;
     } else {
         EndWord = false;
         CopyWord();
+        IgnorePossibleNewLine();
     }
 }
 
@@ -45,12 +57,14 @@ void ADVWORD()
    Proses : Akuisisi kata menggunakan procedure SalinWord */
 {
     IgnoreBlanks();
-    if(currentChar == MARK || currentChar == NEWLINE || currentChar == CARRIAGE){
+    if(currentChar == MARK){
         EndWord = true;
     } else {
         CopyWord();
-        if(currentChar == MARK || currentChar == NEWLINE || currentChar == CARRIAGE){
+        if(currentChar == MARK){
             EndWord = true;
+        } else if(currentChar == NEWLINE || currentChar == CARRIAGE) {
+            IgnorePossibleNewLine();
         } else {
             IgnoreBlanks();
         }
@@ -69,7 +83,6 @@ void CopyWord()
     int i;
     i = 0;
     while((currentChar != MARK) && (currentChar != BLANK) && (currentChar != NEWLINE) && (currentChar != CARRIAGE)){
-        // printf("%c", currentChar);
         currentWord.TabWord[i] = currentChar;
         ADV();
         i++;
@@ -82,14 +95,18 @@ void CopyWord()
     }
 }
 
+
 void ADVLINE()
 {
-    IgnoreBlanks();
     if(currentChar == MARK){
         EndWord = true;
     } else {
         CopyLine();
-        IgnoreBlanks();
+        if(currentChar == MARK){
+            EndWord = true;
+        } else if(currentChar == NEWLINE || currentChar == CARRIAGE) {
+            IgnorePossibleNewLine();
+        }
     }
 }
 void CopyLine()
@@ -125,14 +142,37 @@ Word cleanWord(Word w){
 }
 
 int wordToInt(Word w){
-    int negativeMultiplier = 1;
     if(w.TabWord[0] == '-'){
-        negativeMultiplier = -1;
+        int i = 1, result = 0;
+        for(i = 1; i < w.Length; i++){
+            result = result * 10 + (w.TabWord[i] - '0');
+        }
+        return -result;
     }
     int i = 0, result = 0;
     for(i = 0; i < w.Length; i++){
         result = result * 10 + (w.TabWord[i] - '0');
     }
+    return result;
+}
 
-    return result * negativeMultiplier;
+void setWord(Word* w, char s[]){
+    int i = 0;
+    while(s[i] != '\0'){
+        (*w).TabWord[i] = s[i];
+        i++;
+    }
+    (*w).Length = i;
+}
+
+boolean CompareWord(Word w1, Word w2){
+    if(w1.Length != w2.Length) return false;
+    else{
+        int i = 0;
+        while(i < w1.Length){
+            if(w1.TabWord[i] != w2.TabWord[i]) return false;
+            i++;
+        }
+        return true;
+    }
 }

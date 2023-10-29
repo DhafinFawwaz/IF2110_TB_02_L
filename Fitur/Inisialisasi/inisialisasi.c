@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "inisialisasi.h"
 #include "../../ADT/MesinKata/wordmachine.h"
+#include "../../ADT/Akun/akun.h"
 
 void tripleConcat(char *s1, char *s2, char *s3, char *result){
     int i = 0, j = 0;
@@ -36,15 +37,16 @@ void inisialisasi(){
     tripleConcat(dataPath, currentWord.TabWord, "/kicauan.config", kicauanPath);
     tripleConcat(dataPath, currentWord.TabWord, "/pengguna.config", penggunaPath);
     tripleConcat(dataPath, currentWord.TabWord, "/utas.config", utasPath);
+    int i = 0;
 
+/*
     // Inisialisasi balasan
-    printf("\nBalasan]\n");
+    printf("\n[Balasan]\n");
     freopen(balasanPath, "r", stdin);
     STARTWORD();
-
     int banyakKicauan = wordToInt(currentWord); // banyak kicauan yang memiliki balasan
     printf("banyakKicauan: %d\n", banyakKicauan);
-    int i = 0;
+    
     for(i = 0; i < banyakKicauan; i++){
         ADVWORD();
         int idKicauan = wordToInt(currentWord); // ID kicauan = 5
@@ -102,7 +104,7 @@ void inisialisasi(){
     }
     
 
-    
+   
     // Inisialisasi kicauan
     printf("\n[Kicauan]\n");
     freopen(kicauanPath, "r", stdin);
@@ -127,42 +129,49 @@ void inisialisasi(){
         ADVWORD();
         printf("time: %s\n", cleanWord(currentWord).TabWord); // 11:09:18
     }
-
+*/
 
     // Inisialisasi pengguna
     printf("\n[Pengguna]\n");
-    freopen(kicauanPath, "r", stdin);
+    freopen(penggunaPath, "r", stdin);
     STARTWORD();
-    int banyakPengguna = wordToInt(currentWord); // 2 # Banyak pengguna
-    for(i = 0; i < banyakPengguna; i++){
-        ADVWORD();
-        printf("nama: %s\n", cleanWord(currentWord).TabWord); // Tuan Hak
-
-        ADVWORD();
-        printf("pass: %s\n", cleanWord(currentWord).TabWord); // passTuanHak
-        
-        ADVLINE();
-        printf("bio: %s\n", cleanWord(currentWord).TabWord); // Ini bio lho
-        
-        ADVWORD();
-        printf("no hp: %s\n", cleanWord(currentWord).TabWord); // 081 # No HP
+    banyakAkun = wordToInt(currentWord); // 2 # Banyak pengguna
+    for(i = 0; i < banyakAkun; i++){
+        CreateAkun(&listAkun[i]);
 
         ADVLINE();
-        printf("weton: %s\n", cleanWord(currentWord).TabWord); // Pahing
+        listAkun[i].profil.nama = cleanWord(currentWord);
 
-        ADVWORD();
-        printf("Jenis akun: %s\n", cleanWord(currentWord).TabWord); // Privat
+        ADVLINE();
+        listAkun[i].password = cleanWord(currentWord);
+        
+        ADVLINE();
+        listAkun[i].profil.bio = cleanWord(currentWord);
+        
+        ADVLINE();
+        listAkun[i].profil.noHp = cleanWord(currentWord);
 
-        // Simpan matrix
-        // R * R * R * R * R *
-        // R * G @ B * G @ R *
-        // R * G @ G @ G @ R *
-        // R * G @ B * G @ R *
-        // R * R * R * R * R *
+        ADVLINE();
+        listAkun[i].profil.weton = cleanWord(currentWord);
+
+        ADVLINE();
+        listAkun[i].isPublic = jenisAkunToBoolean(cleanWord(currentWord));
+
+        int j = 0;
+        for(j = 0; j < FOTO_ROW_CAP; j++){
+            int k = 0;
+            for(k = 0; k < FOTO_COL_CAP; k++){
+                ADVWORD();
+                setColor(&(listAkun[i].profil.foto), j, k, currentWord.TabWord[0]);
+                ADVWORD();
+                setVal(&(listAkun[i].profil.foto), j, k, currentWord.TabWord[0]);
+            }
+        }
     }
     // Matriks Pertemanan
+    DebugListAkun(listAkun);
 
-
+/*
     // Inisialisasi pengguna
     printf("\n[Utas]\n");
     freopen(utasPath, "r", stdin);
@@ -195,6 +204,8 @@ void inisialisasi(){
         }
     }
 
+*/
+    // DebugListAkun(listAkun);
 
     printf("File konfigurasi berhasil dimuat! Selamat berkicau!\n");
 }

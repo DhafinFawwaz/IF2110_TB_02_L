@@ -7,12 +7,12 @@
 #include "boolean.h"
 #include "charmachine.h"
 
-#define NMax 50
+#define NMax 200
 #define BLANK ' '
 #define NEWLINE '\n'
 #define CARRIAGE '\r'
 
-typedef struct
+typedef struct word
 {
    char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
    int Length;
@@ -52,5 +52,8 @@ void ADVLINE();
 void CopyLine();
 Word cleanWord(Word w);
 int wordToInt(Word w);
+void setWord(Word* w, char s[]);
+boolean CompareWord(Word w1, Word w2);
+
 
 #endif
