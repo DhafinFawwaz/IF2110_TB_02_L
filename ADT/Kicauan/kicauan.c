@@ -1,29 +1,8 @@
-#ifndef KICAUAN_H
-#define KICAUAN_H
+#include "kicauan.h"
 
-#include <stdio.h>
-// #include "boolean.h";
-#include "../ListDinKicauan/listdinkicauan.h"
-#include "../Akun/akun.h"
-
-typedef struct kicauan
-{
-    int IDKicau;
-    // Word text_kicau;
-    int jml_like;
-    // Word pembuat;
-    // Datetime waktu;
-    // Word tagar;
-    // boolean isUtas;
-} Kicauan;
-
-#define IDKICAU(k) (k).IDKicau
-#define TEXT_KICAU(k) (k).text_kicau
-#define JUMLAH_LIKE(k) (k).jml_like
-#define PEMBUAT(k) (k).pembuat
-#define WAKTU(k) (k).waktu
-#define TAGAR(k) (k).tagar
-#define isUTAS(k) (k).isUtas
+int banyakKicauan;
+Kicauan currentKicauan;
+Kicauan listKicauan[100]; // sementara array dulu
 
 void createKicauan();
 
@@ -55,11 +34,11 @@ void KICAU(Word currPengguna){
 
     // Cetak pesan
     printf("Selamat! kicauan telah diterbitkan!\nDetil kicauan:\n");
-    printKicauan(getKicauan(l_kicauan,getLastIdx(l_kicauan)));
+    // printKicauan(getKicauan(l_kicauan,getLastIdx(l_kicauan)));
 }
-
+/*
 void KICAUAN(ListDinKicauan l_kicauan, Word currPengguna);
-void KICAUAN(ListDinKicauan l_kicauan, word currPengguna){
+void KICAUAN(ListDinKicauan l_kicauan, Word currPengguna){
     int i;
     if(isEmpty(l_kicauan)){
         printf("Belum ada kicauan nihh\n");
@@ -70,21 +49,25 @@ void KICAUAN(ListDinKicauan l_kicauan, word currPengguna){
     }
 }
 
+boolean isAkunPublicByPengguna(Word pengguna){}
+boolean isBerteman(ListDinKicauan l, int id){}
+
 void SUKA_KICAUAN(int id_kicau, Word currPengguna,ListDinKicauan l_kicauan);
 void SUKA_KICAUAN(int id_kicau, Word currPengguna,ListDinKicauan l_kicauan){
-    printf("\n");
-    if(!isIn(id_kicau,l_kicauan)){
-        printf("Tidak ditemukan kicauan dengan ID = %d", id_kicau);
-    }else if(!isAkunPublicByPengguna(getPembuatById(l_kicauan,id_kicau)) && !isBerteman(currPengguna,getPembuatById(l_kicauan,id_kicau))){
-        printf("Wah, kicauan tersebut dibuat oleh akun privat! Ikuti akun itu dulu ya!")
-    }else{
-        setLike(id_kicau, l_kicauan, 1+getLike(id_kicau, l_kicauan));
-        printf("Selamat! kicauan telah disukai!\nDetil kicauan:\n");
-        printKicauan(getKicauan(l_kicauan,id_kicau));
-    }
-    printf("\n\n");
+    // printf("\n");
+    // if(!isIn(id_kicau,l_kicauan)){
+    //     printf("Tidak ditemukan kicauan dengan ID = %d", id_kicau);
+    // }else if(!isAkunPublicByPengguna(getPembuatById(l_kicauan,id_kicau)) && !isBerteman(currPengguna,getPembuatById(l_kicauan,id_kicau))){
+    //     printf("Wah, kicauan tersebut dibuat oleh akun privat! Ikuti akun itu dulu ya!")
+    // }else{
+    //     setLike(id_kicau, l_kicauan, 1+getLike(id_kicau, l_kicauan));
+    //     printf("Selamat! kicauan telah disukai!\nDetil kicauan:\n");
+    //     printKicauan(getKicauan(l_kicauan,id_kicau));
+    // }
+    // printf("\n\n");
 }
 
+boolean isSama(Word w1, Word w2){}
 
 void UBAH_KICAUAN(int id_kicau, Word currPengguna, ListDinKicauan l_kicauan);
 void UBAH_KICAUAN(int id_kicau, Word currPengguna, ListDinKicauan l_kicauan){
@@ -111,4 +94,22 @@ void UBAH_KICAUAN(int id_kicau, Word currPengguna, ListDinKicauan l_kicauan){
     } 
 }
 
-#endif
+
+*/
+void DebugListKicauan(){
+    printf("======== [Debug listKicauan] ========\n");
+    int i;
+    for(i=0;i<banyakKicauan;i++){
+        printf("[Kicauan ke-%d]\n",i+1);
+        displayKicauan(listKicauan[i]);
+        printf("\n");
+    }
+    printf("======== [Debug listKicauan End] ========\n");
+}
+void displayKicauan(Kicauan kicauan){
+    printf("id: %d\n", IDKICAU(kicauan));
+    printf("text: %s\n", TEXT_KICAU(kicauan).TabWord);
+    printf("like: %d\n", JUMLAH_LIKE(kicauan));
+    printf("nama: %s\n", PEMBUAT(kicauan).TabWord);
+    DisplayDateTime(WAKTU(kicauan));
+}

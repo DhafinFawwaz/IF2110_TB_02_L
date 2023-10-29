@@ -4,6 +4,7 @@
 #include "../../ADT/Akun/akun.h"
 #include "../../ADT/DrafKicauan/drafkicauan.h"
 #include "../../ADT/DateTime/datetime.h"
+#include "../../ADT/Kicauan/kicauan.h"
 
 void tripleConcat(char *s1, char *s2, char *s3, char *result){
     int i = 0, j = 0;
@@ -46,10 +47,10 @@ void inisialisasi(){
     printf("\n[Balasan]\n");
     freopen(balasanPath, "r", stdin);
     STARTWORD();
-    int banyakKicauan = wordToInt(currentWord); // banyak kicauan yang memiliki balasan
-    printf("banyakKicauan: %d\n", banyakKicauan);
+    int banyakKicauanBerbalasan = wordToInt(currentWord); // banyak kicauan yang memiliki balasan
+    printf("banyakKicauanBerbalasan: %d\n", banyakKicauanBerbalasan);
     
-    for(i = 0; i < banyakKicauan; i++){
+    for(i = 0; i < banyakKicauanBerbalasan; i++){
         ADVWORD();
         int idKicauan = wordToInt(currentWord); // ID kicauan = 5
         printf("id kicauan: %d\n", idKicauan);
@@ -109,31 +110,32 @@ void inisialisasi(){
     }
 
 
- /*  
+ 
     // Inisialisasi kicauan
     freopen(kicauanPath, "r", stdin);
     STARTWORD();
     banyakKicauan = wordToInt(currentWord); // 2 # Banyak kicauan sebanyak 2
     for(i = 0; i < banyakKicauan; i++){
         ADVWORD();
-        printf("idKicauan: %d\n", wordToInt(currentWord)); // 1 # ID kicauan 1
+        listKicauan[i].id = wordToInt(currentWord); // 1 # ID kicauan 1
 
         ADVLINE();
-        printf("text: %s\n", cleanWord(currentWord).TabWord); // Halooo
+        listKicauan[i].text = cleanWord(currentWord); // Halooo
 
         ADVWORD();
-        printf("like: %d\n", wordToInt(currentWord)); // 12 # Like
+        listKicauan[i].likeCount = wordToInt(currentWord); // 12 # Like
 
         ADVLINE();
-        printf("nama: %s\n", cleanWord(currentWord).TabWord); // Tuan Bus
+        listKicauan[i].namaPembuat = cleanWord(currentWord); // Tuan Bus
 
         ADVWORD();
-        printf("date: %s\n", cleanWord(currentWord).TabWord); // 14/10/2023
+        SetDateFromWord(&listKicauan[i].dateTime, cleanWord(currentWord)); // 14/10/2023
 
         ADVWORD();
-        printf("time: %s\n", cleanWord(currentWord).TabWord); // 11:09:18
+        SetTimeFromWord(&listKicauan[i].dateTime, cleanWord(currentWord)); // 11:09:18
     }
-*/
+    DebugListKicauan();
+
 
     // Inisialisasi pengguna
     freopen(penggunaPath, "r", stdin);

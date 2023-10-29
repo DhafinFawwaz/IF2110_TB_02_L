@@ -1,7 +1,7 @@
 #ifndef LISTDINKICAUAN_H
 #define LISTDINKICAUAN_H
 
-// #include "boolean.h"
+#include "boolean.h"
 #include "../Kicauan/kicauan.h"
 
 #define INITIAL_CAPACITY 10
@@ -24,7 +24,7 @@ int getLastIdx(ListDinKicauan l_kicauan);
 
 Word getPembuatByIdx(ListDinKicauan l_kicauan, int idx);
 
-Word getPembuatById(listdinkicauan l_kicauan, int idKicau);
+Word getPembuatById(ListDinKicauan l_kicauan, int idKicau);
 
 Kicauan getKicauan(ListDinKicauan l_kicauan, int idx);
 

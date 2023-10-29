@@ -17,6 +17,8 @@
         "drafkicauan.h": "c",
         "datetime.h": "c",
         "date.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "kicauan.h": "c",
+        "listdinkicauan.h": "c"
     }
 }
