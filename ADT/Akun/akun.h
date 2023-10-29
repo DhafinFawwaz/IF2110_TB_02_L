@@ -23,7 +23,7 @@ extern int banyakAkun;
 
 void CreateAkun(Akun* akun);
 void DisplayAkun(Akun akun);
-void DebugListAkun(Akun lAkun[]);
+void DebugListAkun();
 
 boolean jenisAkunToBoolean(Word w);
 Word jenisAkunToWord(boolean b);

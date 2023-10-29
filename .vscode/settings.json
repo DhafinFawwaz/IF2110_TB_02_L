@@ -12,6 +12,11 @@
         "charmachine.h": "c",
         "akun.h": "c",
         "pcolor.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "liststatik.h": "c",
+        "drafkicauan.h": "c",
+        "datetime.h": "c",
+        "date.h": "c",
+        "time.h": "c"
     }
 }

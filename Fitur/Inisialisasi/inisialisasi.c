@@ -2,6 +2,8 @@
 #include "inisialisasi.h"
 #include "../../ADT/MesinKata/wordmachine.h"
 #include "../../ADT/Akun/akun.h"
+#include "../../ADT/DrafKicauan/drafkicauan.h"
+#include "../../ADT/DateTime/datetime.h"
 
 void tripleConcat(char *s1, char *s2, char *s3, char *result){
     int i = 0, j = 0;
@@ -81,32 +83,34 @@ void inisialisasi(){
         }
     }
 
+*/
+
     // Inisialisasi draf
-    printf("\n[Draf]\n");
+    // printf("\n[Draf]\n");
     freopen(drafPath, "r", stdin);
     STARTWORD();
-    int banyakDraf = wordToInt(currentWord);// 5 # Banyak draf
+    banyakDraf = wordToInt(currentWord);// 5 # Banyak draf
     for(i = 0; i < banyakDraf; i++){
+        
         ADVWORD();
-        printf("idDraf: %d\n", wordToInt(currentWord)); // 1 # draf dengan ID ke-1
+        listDraftkicauan[i].id = wordToInt(currentWord); // 1 # draf dengan ID ke-1
         
         ADVLINE();
-        printf("text: %s\n", cleanWord(currentWord).TabWord); // Hehe
+        listDraftkicauan[i].text = cleanWord(currentWord); // Hehe
         
         ADVLINE();
-        printf("nama: %s\n", cleanWord(currentWord).TabWord); // Tuan Hak
+        listDraftkicauan[i].nama = cleanWord(currentWord); // Tuan Hak
 
         ADVWORD();
-        printf("date: %s\n", cleanWord(currentWord).TabWord); // 14/10/2023
+        SetDateFromWord(&listDraftkicauan[i].dateTime, cleanWord(currentWord)); // 14/10/2023
 
         ADVWORD();
-        printf("time: %s\n", cleanWord(currentWord).TabWord); // 11:09:18
+        SetTimeFromWord(&listDraftkicauan[i].dateTime, cleanWord(currentWord)); // 11:09:18
     }
-    
 
-   
+
+ /*  
     // Inisialisasi kicauan
-    printf("\n[Kicauan]\n");
     freopen(kicauanPath, "r", stdin);
     STARTWORD();
     banyakKicauan = wordToInt(currentWord); // 2 # Banyak kicauan sebanyak 2
@@ -132,7 +136,6 @@ void inisialisasi(){
 */
 
     // Inisialisasi pengguna
-    printf("\n[Pengguna]\n");
     freopen(penggunaPath, "r", stdin);
     STARTWORD();
     banyakAkun = wordToInt(currentWord); // 2 # Banyak pengguna
@@ -169,8 +172,6 @@ void inisialisasi(){
         }
     }
     // Matriks Pertemanan
-    DebugListAkun(listAkun);
-
 /*
     // Inisialisasi pengguna
     printf("\n[Utas]\n");
@@ -205,7 +206,6 @@ void inisialisasi(){
     }
 
 */
-    // DebugListAkun(listAkun);
 
     printf("File konfigurasi berhasil dimuat! Selamat berkicau!\n");
 }
