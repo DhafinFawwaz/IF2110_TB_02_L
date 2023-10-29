@@ -1,7 +1,1 @@
-ADT/Foo/tests/2.in ADT/Foo/tests/2.out: [31mWRONG[0m
-Expected:
-Number:
-19
-Actual:
-Number:
-19
+* ADT/Foo/tests/2.in ADT/Foo/tests/2.out: [32mPASS[0m

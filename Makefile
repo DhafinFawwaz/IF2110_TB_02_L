@@ -37,50 +37,57 @@ run:
 	$(info [Run Program])
 	@echo -n ">> "
 	./$(OUTPUT_DIR)/$(MAIN)
-
-test:
-	$(info [Test Program])
-	@echo -n ">> "
+	
 
 
 # UNIT TESTS
-SRC_FOO = ADT/Foo/foo.c
-SRC_TEST = ADT/Foo/tests/mfoo.c
-OBJ_FOO = $(OUTPUT_DIR)/$(SRC_FOO:.c=.o)
-OBJ_TEST = $(OUTPUT_DIR)/$(SRC_TEST:.c=.o)
-
-TESTS_DIR = ADT/Foo/tests
+TESTS_DIR = $(word 2, $(MAKECMDGOALS))/tests
 TEST_CASES = $(wildcard $(TESTS_DIR)/*.in)
 TEST_OUTPUTS = $(TEST_CASES:.in=.out)
 TEST_RESULTS = $(TEST_CASES:.in=.result)
-
-mfoo: $(OBJ_FOO) $(OBJ_TEST)
-	$(CC) $(CFLAGS) -o $(OUTPUT_DIR)/$(TESTS_DIR)/$@ $^
-
-test_%: m% $(TEST_RESULTS)
-	$(info [Test])
-	@cat $(TEST_RESULTS)
 
 GREEN = \033[32m
 RED = \033[31m
 RESET = \033[0m
 
-
-$(TEST_RESULTS): $(TESTS_DIR)/%.result: $(TESTS_DIR)/%.in $(TESTS_DIR)/%.out mfoo
-	@if $(OUTPUT_DIR)/$(TESTS_DIR)/mfoo < $(TESTS_DIR)/$*.in | diff - $(word 2,$^) > /dev/null; then \
-		echo "$< $(word 2,$^): $(GREEN)TRUE$(RESET)"; \
-		echo "Expected:"; \
-		# cat $(word 2,$^); \
-		# echo ""; \
-		# echo "Actual:"; \
-		# $(OUTPUT_DIR)/$(TESTS_DIR)/mfoo < $(TESTS_DIR)/$*.in; \
-		# echo ""; \
+$(TEST_RESULTS): $(TESTS_DIR)/%.result: $(TESTS_DIR)/%.in $(TESTS_DIR)/%.out $(EXE_MTEST)
+	@if $(EXE_MTEST) < $(TESTS_DIR)/$*.in | diff --strip-trailing-cr - $(word 2,$^) > /dev/null; then \
+		echo "- $< $(word 2,$^): $(GREEN)PASS$(RESET)"; \
 	else \
-		echo "$< $(word 2,$^): $(RED)WRONG$(RESET)"; \
-		echo "Expected:"; \
-		cat $(word 2,$^); \
-		echo ""; \
-		echo "Actual:"; \
-		$(OUTPUT_DIR)/$(TESTS_DIR)/mfoo < $(TESTS_DIR)/$*.in; \
-		echo ""; \
+		echo "- $< $(word 2,$^): $(RED)FAIL$(RESET)"; \
 	fi > $@
+
+SRC_FILE = $(wildcard $(word 2, $(MAKECMDGOALS))/*.c)
+SRC_MTEST = $(wildcard $(word 2, $(MAKECMDGOALS))/tests/*.c)
+OBJ_FILE = $(OUTPUT_DIR)/$(SRC_FILE:.c=.o)
+OBJ_MTEST = $(OUTPUT_DIR)/$(SRC_MTEST:.c=.o)
+EXE_MTEST = $(OBJ_MTEST:.o=)
+$(EXE_MTEST):
+	$(info [Compiling Dependencies...])
+	mkdir -p $(@D)
+	@echo -n ">> "
+	$(CC) $(CFLAGS) -o $(EXE_MTEST) $(SRC_MTEST) $(SRC_FILE)
+
+ifeq ($(word 2, $(MAKECMDGOALS)),)
+DIRS = $(wildcard ADT/*) $(wildcard Bin/*)
+test:
+	$(info [Test All Programs])
+	@for dir in $(DIRS); do \
+		if [ -n "$$(ls $$dir/tests/*.c 2>/dev/null)" ]; then \
+			$(MAKE) -s test $$dir; \
+		fi \
+	done
+	
+else
+test: $(EXE_MTEST) $(TEST_RESULTS)
+	$(info [Test $(word 2, $(MAKECMDGOALS))])
+	@cat $(TEST_RESULTS)
+endif
+
+
+
+
+
+
+
+

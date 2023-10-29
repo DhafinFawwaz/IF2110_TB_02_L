@@ -1,5 +1,1 @@
-ADT/Foo/tests/1.in ADT/Foo/tests/1.out: [32mTRUE[0m
-Expected:
-Number: 13
-Actual:
-Number: 13
+* ADT/Foo/tests/1.in ADT/Foo/tests/1.out: [32mPASS[0m
