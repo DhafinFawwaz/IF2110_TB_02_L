@@ -176,3 +176,13 @@ boolean compareWord(Word w1, Word w2){
         return true;
     }
 }
+
+// Untuk mengslice current word dari 0 sampai cap. Dipakai misalnya bio max 135 huruf, password max 20 huruf
+void capCurrentWord(int cap){
+    int i = cap;
+    for(i = cap; i < currentWord.Length; i++){
+        currentWord.TabWord[i] = '\0';
+    }
+    currentWord.Length = cap;
+}
+
