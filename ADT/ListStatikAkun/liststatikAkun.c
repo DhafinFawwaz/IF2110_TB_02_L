@@ -130,7 +130,7 @@ int findIdxByName(ListStatikAkun l, Word name){
     return IDX_UNDEF;
 }
 
-void findIdxByPassword(ListStatikAkun l, Word password){
+int findIdxByPassword(ListStatikAkun l, Word password){
     int i = 0;
     while (i < listStatikAkun_Length(l)){
         if (compareWord(CONTENT(l,i).password, password)) {
