@@ -1,3 +1,5 @@
+/* File: akun.h */
+
 #ifndef AKUN_H
 #define AKUN_H
 
@@ -7,6 +9,7 @@
 #include "../StackDin/stackdin.h"
 #include "../PrioQueue/prioqueue.h"
 
+#define IDMax 20
 typedef struct akun
 {
     int id;
@@ -17,9 +20,13 @@ typedef struct akun
     boolean isPublic;
 } Akun;
 
-extern Akun currentAkun; // Global variable
-extern int banyakAkun;
+/* ********* AKSES (Selektor) ********* */
+/* Jika A adalah Akun, maka akses elemen : */
+#define Username(A) (A).username
+#define Password(A) (A).password
 
+extern Akun currentAkun; // Global variable
+extern Akun listAkun[IDMax];
 void CreateAkun(Akun* akun);
 void DisplayAkun(Akun akun);
 void DebugListAkun();
