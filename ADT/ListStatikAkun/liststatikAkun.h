@@ -132,6 +132,6 @@ int findIdxById(ListStatikAkun l, int id);
 
 int findIdxByName(ListStatikAkun l, Word name);
 
-void findIdxByPassword(ListStatikAkun l, Word password);
+int findIdxByPassword(ListStatikAkun l, Word password);
 
 #endif
