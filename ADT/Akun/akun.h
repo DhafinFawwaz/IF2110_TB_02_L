@@ -18,7 +18,6 @@ typedef struct akun
 } Akun;
 
 extern Akun currentAkun; // Global variable
-extern Akun listAkun[20]; // Global variable
 extern int banyakAkun;
 
 void CreateAkun(Akun* akun);

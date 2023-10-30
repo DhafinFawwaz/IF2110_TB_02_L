@@ -3,234 +3,137 @@
 /* Penempatan elemen selalu rapat kiri */
 /* Banyaknya elemen didefinisikan secara implisit, memori list statik */
 
-#include "liststatikAkun.h"
+#include "liststatikakun.h"
 #include <stdio.h>
 
-/* ********** KONSTRUKTOR ********** */
-void listStatikAkun_Create(ListStatik *l){
-  int i;
+ListStatikAkun listAkun; // Global 
 
-  for (i=0; i<CAPACITY; i++){
-    ELMT(*l, i) = MARK;
-  }
+/* ********** KONSTRUKTOR ********** */
+void listStatikAkun_Create(ListStatikAkun *l){
+    NEFF(*l) = 0;
 }
 
 
-int listStatikAkun_Length(ListStatik l){
-  int count = 0;
-
-  while ((ELMT(l,count) != MARK) && (count < CAPACITY)) {
-    count++;
-  }
-
-  return count;
+int listStatikAkun_Length(ListStatikAkun l){
+    return NEFF(l);
 }
 
 /* *** Selektor INDEKS *** */
-IdxType listStatikAkun_getFirstIdx(ListStatik l){
-  return 0;
+int listStatikAkun_getFirstIdx(ListStatikAkun l){
+    return IDX_MIN;
 }
 
-IdxType listStatikAkun_getLastIdx(ListStatik l){
-  return (listStatikAkun_Length(l) - 1);
+int listStatikAkun_getLastIdx(ListStatikAkun l){
+    return (NEFF(l) - 1);
 }
 
 /* ********** Test Indeks yang valid ********** */
-boolean listStatikAkun_isIdxValid(ListStatik l, IdxType i){
-  return ((i >= 0) && (i < CAPACITY));
+boolean listStatikAkun_isIdxValid(ListStatikAkun l, int i){
+    return ((i >= IDX_MIN) && (i < CAPACITY));
 }
 
-boolean listStatikAkun_isIdxEff(ListStatik l, IdxType i){
-  return ((i >= 0) && (i < listStatikAkun_Length(l)));
+boolean listStatikAkun_isIdxEff(ListStatikAkun l, int i){
+    return ((i >= IDX_MIN) && (i < NEFF(l)));
 }
 
 /* ********** TEST KOSONG/PENUH ********** */
-boolean listStatikAkun_isEmpty(ListStatik l){
-  return (listStatikAkun_Length(l) == 0);
+boolean listStatikAkun_isEmpty(ListStatikAkun l){
+    return (NEFF(l) == 0);
 }
 
-boolean listStatikAkun_isFull(ListStatik l){
-  return (listStatikAkun_Length(l) == CAPACITY);
+boolean listStatikAkun_isFull(ListStatikAkun l){
+    return (NEFF(l) == CAPACITY-1);
 }
 
-/* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
-void liststatik_readList(ListStatik *l){
-  int i;
-  int n;
+void listStatikAkun_print(ListStatikAkun l){
+    printf("[");
 
-  scanf("%d", &n);
-  while ((n < 0) || (n > CAPACITY)) {
-    scanf("%d", &n);
-  }
-
-  listStatikAkun_Create(l);
-
-  for (i=0; i<n; i++){
-    scanf("%d", &ELMT(*l,i));
-  }
-}
-
-void liststatik_printList(ListStatik l){
-  printf("[");
-
-  if (!listStatikAkun_isEmpty(l)){
-    int i;
-    for (i=0; i<(listStatikAkun_Length(l)-1); i++){
-      printf("%d,", ELMT(l, i));
+    if (!listStatikAkun_isEmpty(l)){
+        int i;
+        for (i = 0; i < (NEFF(l)); i++){
+            DisplayAkun(CONTENT(l, i));
+        }
     }
-    printf("%d", ELMT(l, listStatikAkun_Length(l)-1));
-  }
-
-  printf("]");
-}
-
-/* ********** OPERATOR ARITMATIKA ********** */
-/* *** Aritmatika List : Penjumlahan, pengurangan, perkalian, ... *** */
-
-ListStatik liststatik_plusMinusList(ListStatik l1, ListStatik l2, boolean plus){
-  int length = listStatikAkun_Length(l1); /* Sama untuk l1 dan l2*/
-  int i;
-  ListStatik l3;
-  listStatikAkun_Create(&l3);
-
-  if (plus == true) {
-    for (i=0; i<length; i++){
-      ELMT(l3,i) = ELMT(l1,i) + ELMT(l2,i);
-    }
-  }
-  else {
-    for (i=0; i<length; i++){
-      ELMT(l3,i) = ELMT(l1,i) - ELMT(l2,i);
-    }
-  }
-
-  return l3;
-}
-
-/* ********** OPERATOR RELASIONAL ********** */
-/* *** Operasi pembandingan List: *** */
-boolean liststatik_isListEqual(ListStatik l1, ListStatik l2){
-  if (listStatikAkun_Length(l1) != listStatikAkun_Length(l2)) {return false;}
-  
-  int i;
-  for (i=0; i<listStatikAkun_Length(l1); i++){
-    if (ELMT(l1,i) != ELMT(l2,i)) {return false;}
-  }
-
-  return true;
+    printf("]");
 }
 
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : List boleh kosong!! *** */
-int listStatikAkun_indexOf(ListStatik l, ElType val){
-  int i;
-  for (i=0; i<listStatikAkun_Length(l); i++){
-    if (ELMT(l,i) == val) {
-      return i;
+// Mencari akun dengan id
+int listStatikAkun_findById(ListStatikAkun l, int id){
+    int i = 0;
+    while (i < listStatikAkun_Length(l)){
+        if (CONTENT(l,i).id == id) {
+            return i;
+        }
+        else
+            i++;
     }
-  }
-  return IDX_UNDEF;
-}
-
-/* ********** NILAI EKSTREM ********** */
-void listStatikAkun_extremeValues(ListStatik l, ElType *max, ElType *min){
-  int i; 
-
-  for (i=0;i<listStatikAkun_Length(l);i++){
-    if (i==0){
-      *max = ELMT(l,i);
-      *min = ELMT(l,i);
-    }
-    else{
-      if (ELMT (l,i) < *min) {
-        *min = ELMT(l,i);
-      }
-      if (ELMT (l,i) > *max) {
-        *max = ELMT(l,i);
-      }
-    }
-  }
+    return IDX_UNDEF;
 }
 
 /* ********** MENAMBAH ELEMEN ********** */
-void listStatikAkun_insertFirst(ListStatik *l, ElType val){
-  listStatikAkun_insertAt(l, val, 0);
+void listStatikAkun_insertFirst(ListStatikAkun *l, Akun val){
+    listStatikAkun_insertAt(l, val, 0);
+    NEFF(*l)++;
 }
 
 /* *** Menambahkan elemen pada index tertentu *** */
-void listStatikAkun_insertAt(ListStatik *l, ElType val, IdxType idx){
-  int i;
+void listStatikAkun_insertAt(ListStatikAkun *l, Akun val, int idx){
+    int i;
 
-  for (i=listStatikAkun_Length(*l); i>idx ; i-- ){
-    ELMT(*l,i) = ELMT(*l,i-1);
-  }
+    for (i = listStatikAkun_Length(*l); i>idx ; i-- ){
+        CONTENT(*l,i) = CONTENT(*l,i-1);
+    }
 
-  ELMT(*l,idx) = val;
+    CONTENT(*l,idx) = val;
+    NEFF(*l)++;
 }
 
-void listStatikAkun_insertLast(ListStatik *l, ElType val){
-  ELMT(*l,listStatikAkun_Length(*l)) = val;
+void listStatikAkun_insertLast(ListStatikAkun *l, Akun val){
+    CONTENT(*l,listStatikAkun_Length(*l)) = val;
+    NEFF(*l)++;
 }
 
 /* ********** MENGHAPUS ELEMEN ********** */
-void listStatikAkun_deleteFirst(ListStatik *l, ElType *val){
-  listStatikAkun_deleteAt(l, val, 0);
+void listStatikAkun_deleteFirst(ListStatikAkun *l, Akun *val){
+    listStatikAkun_deleteAt(l, val, 0);
+    NEFF(*l)--;
 }
 
-void listStatikAkun_deleteAt(ListStatik *l, ElType *val, IdxType idx){
-  int i;
-  *val = ELMT(*l, idx);
+void listStatikAkun_deleteAt(ListStatikAkun *l, Akun *val, int idx){
+    int i;
+    *val = CONTENT(*l, idx);
 
-  for (i=idx; i<listStatikAkun_getLastIdx(*l); i++){
-    ELMT(*l, i) = ELMT(*l, i+1);
-  }
-
-  ELMT(*l, listStatikAkun_getLastIdx(*l)) = MARK;
-
-}
-
-void listStatikAkun_deleteLast(ListStatik *l, ElType *val){
-  listStatikAkun_deleteAt(l, val, listStatikAkun_Length(*l) - 1);
-}
-
-/* ********** SORTING ********** */
-
-void liststatik_swap(int* xp, int* yp)
-{
-    int temp = *xp;
-    *xp = *yp;
-    *yp = temp;
-}
-
-boolean liststatik_compare(int x, int y, boolean asc){
-  if (asc == true) {
-    return (x>y);
-  }
-  else{
-    return (x<y);
-  }
-}
-
-
-void listStatikAkun_sortList(ListStatik *l, boolean asc)
-  {
-  /* Bubble Sort */
-  int i,j;
-  int n = listStatikAkun_Length(*l);
-  boolean swapped;
-  for (i=0; i<n; i++) {
-    swapped = false;
-    for (j=0; j< n-i-1 ; j++) {
-      if (liststatik_compare (ELMT(*l,j) , ELMT(*l,j+1), asc)){
-        liststatik_swap(&ELMT(*l,j), &ELMT(*l,j+1));
-        swapped = true;
-      }
+    for (i=idx; i<listStatikAkun_getLastIdx(*l); i++){
+        CONTENT(*l, i) = CONTENT(*l, i+1);
     }
 
-    if (swapped == false){
-      break;
-    }
-  }
+    NEFF(*l)--;
+}
+
+void listStatikAkun_deleteLast(ListStatikAkun *l, Akun *val){
+    listStatikAkun_deleteAt(l, val, listStatikAkun_Length(*l) - 1);
+    NEFF(*l)--;
 }
 
 
+void debugAkun(Akun akun){
+    printf("nama: %s\n", akun.profil.nama.TabWord);
+    printf("password: %s\n", akun.password.TabWord);
+    printf("bio: %s\n", akun.profil.bio.TabWord);
+    printf("noHp: %s\n", akun.profil.noHp.TabWord);
+    printf("weton: %s\n", akun.profil.weton.TabWord);
+    printf("isPublic: %s\n", jenisAkunToWord(akun.isPublic).TabWord);
+    displayFoto(akun.profil.foto);
+}
+void DebugListAkun(){
+    printf("======== [Debug listAkun] ========\n");
+    printf("banyakAkun: %d\n", NEFF(listAkun));
+    int i = 0;
+    for(i = 0; i < NEFF(listAkun); i++){
+        printf("[Akun ke-%d]\n", i);
+        debugAkun(CONTENT(listAkun, i));
+    }
+    printf("======== [Debug listAkun End] ========\n");
+}

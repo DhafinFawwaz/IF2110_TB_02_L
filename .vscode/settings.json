@@ -20,6 +20,7 @@
         "time.h": "c",
         "kicauan.h": "c",
         "listdinkicauan.h": "c",
-        "balasan.h": "c"
+        "balasan.h": "c",
+        "liststatikakun.h": "c"
     }
 }

@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 /* ********** KONSTRUKTOR ********** */
-void listStatikAkun_Create(ListStatik *l){
+void listStatik_Create(ListStatik *l){
   int i;
 
   for (i=0; i<CAPACITY; i++){
@@ -16,7 +16,7 @@ void listStatikAkun_Create(ListStatik *l){
 }
 
 
-int listStatikAkun_Length(ListStatik l){
+int listStatik_Length(ListStatik l){
   int count = 0;
 
   while ((ELMT(l,count) != MARK) && (count < CAPACITY)) {
@@ -27,30 +27,30 @@ int listStatikAkun_Length(ListStatik l){
 }
 
 /* *** Selektor INDEKS *** */
-IdxType listStatikAkun_getFirstIdx(ListStatik l){
+IdxType listStatik_getFirstIdx(ListStatik l){
   return 0;
 }
 
-IdxType listStatikAkun_getLastIdx(ListStatik l){
-  return (listStatikAkun_Length(l) - 1);
+IdxType listStatik_getLastIdx(ListStatik l){
+  return (listStatik_Length(l) - 1);
 }
 
 /* ********** Test Indeks yang valid ********** */
-boolean listStatikAkun_isIdxValid(ListStatik l, IdxType i){
+boolean listStatik_isIdxValid(ListStatik l, IdxType i){
   return ((i >= 0) && (i < CAPACITY));
 }
 
-boolean listStatikAkun_isIdxEff(ListStatik l, IdxType i){
-  return ((i >= 0) && (i < listStatikAkun_Length(l)));
+boolean listStatik_isIdxEff(ListStatik l, IdxType i){
+  return ((i >= 0) && (i < listStatik_Length(l)));
 }
 
 /* ********** TEST KOSONG/PENUH ********** */
-boolean listStatikAkun_isEmpty(ListStatik l){
-  return (listStatikAkun_Length(l) == 0);
+boolean liststatik_isEmpty(ListStatik l){
+  return (listStatik_Length(l) == 0);
 }
 
-boolean listStatikAkun_isFull(ListStatik l){
-  return (listStatikAkun_Length(l) == CAPACITY);
+boolean liststatik_isFull(ListStatik l){
+  return (listStatik_Length(l) == CAPACITY);
 }
 
 /* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
@@ -63,7 +63,7 @@ void liststatik_readList(ListStatik *l){
     scanf("%d", &n);
   }
 
-  listStatikAkun_Create(l);
+  listStatik_Create(l);
 
   for (i=0; i<n; i++){
     scanf("%d", &ELMT(*l,i));
@@ -73,12 +73,12 @@ void liststatik_readList(ListStatik *l){
 void liststatik_printList(ListStatik l){
   printf("[");
 
-  if (!listStatikAkun_isEmpty(l)){
+  if (!liststatik_isEmpty(l)){
     int i;
-    for (i=0; i<(listStatikAkun_Length(l)-1); i++){
+    for (i=0; i<(listStatik_Length(l)-1); i++){
       printf("%d,", ELMT(l, i));
     }
-    printf("%d", ELMT(l, listStatikAkun_Length(l)-1));
+    printf("%d", ELMT(l, listStatik_Length(l)-1));
   }
 
   printf("]");
@@ -88,10 +88,10 @@ void liststatik_printList(ListStatik l){
 /* *** Aritmatika List : Penjumlahan, pengurangan, perkalian, ... *** */
 
 ListStatik liststatik_plusMinusList(ListStatik l1, ListStatik l2, boolean plus){
-  int length = listStatikAkun_Length(l1); /* Sama untuk l1 dan l2*/
+  int length = listStatik_Length(l1); /* Sama untuk l1 dan l2*/
   int i;
   ListStatik l3;
-  listStatikAkun_Create(&l3);
+  listStatik_Create(&l3);
 
   if (plus == true) {
     for (i=0; i<length; i++){
@@ -110,10 +110,10 @@ ListStatik liststatik_plusMinusList(ListStatik l1, ListStatik l2, boolean plus){
 /* ********** OPERATOR RELASIONAL ********** */
 /* *** Operasi pembandingan List: *** */
 boolean liststatik_isListEqual(ListStatik l1, ListStatik l2){
-  if (listStatikAkun_Length(l1) != listStatikAkun_Length(l2)) {return false;}
+  if (listStatik_Length(l1) != listStatik_Length(l2)) {return false;}
   
   int i;
-  for (i=0; i<listStatikAkun_Length(l1); i++){
+  for (i=0; i<listStatik_Length(l1); i++){
     if (ELMT(l1,i) != ELMT(l2,i)) {return false;}
   }
 
@@ -122,9 +122,9 @@ boolean liststatik_isListEqual(ListStatik l1, ListStatik l2){
 
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : List boleh kosong!! *** */
-int listStatikAkun_indexOf(ListStatik l, ElType val){
+int liststatik_indexOf(ListStatik l, ElType val){
   int i;
-  for (i=0; i<listStatikAkun_Length(l); i++){
+  for (i=0; i<listStatik_Length(l); i++){
     if (ELMT(l,i) == val) {
       return i;
     }
@@ -133,10 +133,10 @@ int listStatikAkun_indexOf(ListStatik l, ElType val){
 }
 
 /* ********** NILAI EKSTREM ********** */
-void listStatikAkun_extremeValues(ListStatik l, ElType *max, ElType *min){
+void liststatik_extremeValues(ListStatik l, ElType *max, ElType *min){
   int i; 
 
-  for (i=0;i<listStatikAkun_Length(l);i++){
+  for (i=0;i<listStatik_Length(l);i++){
     if (i==0){
       *max = ELMT(l,i);
       *min = ELMT(l,i);
@@ -153,44 +153,44 @@ void listStatikAkun_extremeValues(ListStatik l, ElType *max, ElType *min){
 }
 
 /* ********** MENAMBAH ELEMEN ********** */
-void listStatikAkun_insertFirst(ListStatik *l, ElType val){
-  listStatikAkun_insertAt(l, val, 0);
+void liststatik_insertFirst(ListStatik *l, ElType val){
+  liststatik_insertAt(l, val, 0);
 }
 
 /* *** Menambahkan elemen pada index tertentu *** */
-void listStatikAkun_insertAt(ListStatik *l, ElType val, IdxType idx){
+void liststatik_insertAt(ListStatik *l, ElType val, IdxType idx){
   int i;
 
-  for (i=listStatikAkun_Length(*l); i>idx ; i-- ){
+  for (i=listStatik_Length(*l); i>idx ; i-- ){
     ELMT(*l,i) = ELMT(*l,i-1);
   }
 
   ELMT(*l,idx) = val;
 }
 
-void listStatikAkun_insertLast(ListStatik *l, ElType val){
-  ELMT(*l,listStatikAkun_Length(*l)) = val;
+void liststatik_insertLast(ListStatik *l, ElType val){
+  ELMT(*l,listStatik_Length(*l)) = val;
 }
 
 /* ********** MENGHAPUS ELEMEN ********** */
-void listStatikAkun_deleteFirst(ListStatik *l, ElType *val){
-  listStatikAkun_deleteAt(l, val, 0);
+void liststatik_deleteFirst(ListStatik *l, ElType *val){
+  liststatik_deleteAt(l, val, 0);
 }
 
-void listStatikAkun_deleteAt(ListStatik *l, ElType *val, IdxType idx){
+void liststatik_deleteAt(ListStatik *l, ElType *val, IdxType idx){
   int i;
   *val = ELMT(*l, idx);
 
-  for (i=idx; i<listStatikAkun_getLastIdx(*l); i++){
+  for (i=idx; i<listStatik_getLastIdx(*l); i++){
     ELMT(*l, i) = ELMT(*l, i+1);
   }
 
-  ELMT(*l, listStatikAkun_getLastIdx(*l)) = MARK;
+  ELMT(*l, listStatik_getLastIdx(*l)) = MARK;
 
 }
 
-void listStatikAkun_deleteLast(ListStatik *l, ElType *val){
-  listStatikAkun_deleteAt(l, val, listStatikAkun_Length(*l) - 1);
+void liststatik_deleteLast(ListStatik *l, ElType *val){
+  liststatik_deleteAt(l, val, listStatik_Length(*l) - 1);
 }
 
 /* ********** SORTING ********** */
@@ -212,11 +212,11 @@ boolean liststatik_compare(int x, int y, boolean asc){
 }
 
 
-void listStatikAkun_sortList(ListStatik *l, boolean asc)
+void liststatik_sortList(ListStatik *l, boolean asc)
   {
   /* Bubble Sort */
   int i,j;
-  int n = listStatikAkun_Length(*l);
+  int n = listStatik_Length(*l);
   boolean swapped;
   for (i=0; i<n; i++) {
     swapped = false;

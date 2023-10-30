@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "inisialisasi.h"
 #include "../../ADT/MesinKata/wordmachine.h"
-#include "../../ADT/Akun/akun.h"
+#include "../../ADT/ListStatikAkun/liststatikakun.h"
 #include "../../ADT/DrafKicauan/drafkicauan.h"
 #include "../../ADT/DateTime/datetime.h"
 #include "../../ADT/Kicauan/kicauan.h"
@@ -135,36 +135,36 @@ void inisialisasi(){
     // Inisialisasi pengguna
     freopen(penggunaPath, "r", stdin);
     STARTWORD();
-    banyakAkun = wordToInt(currentWord); // 2 # Banyak pengguna
-    for(i = 0; i < banyakAkun; i++){
-        CreateAkun(&listAkun[i]);
+    NEFF(listAkun) = wordToInt(currentWord); // 2 # Banyak pengguna
+    for(i = 0; i < NEFF(listAkun); i++){
+        CreateAkun(&CONTENT(listAkun, i));
 
         ADVLINE();
-        listAkun[i].profil.nama = cleanWord(currentWord);
+        CONTENT(listAkun, i).profil.nama = cleanWord(currentWord);
 
         ADVLINE();
-        listAkun[i].password = cleanWord(currentWord);
+        CONTENT(listAkun, i).password = cleanWord(currentWord);
         
         ADVLINE();
-        listAkun[i].profil.bio = cleanWord(currentWord);
+        CONTENT(listAkun, i).profil.bio = cleanWord(currentWord);
         
         ADVLINE();
-        listAkun[i].profil.noHp = cleanWord(currentWord);
+        CONTENT(listAkun, i).profil.noHp = cleanWord(currentWord);
 
         ADVLINE();
-        listAkun[i].profil.weton = cleanWord(currentWord);
+        CONTENT(listAkun, i).profil.weton = cleanWord(currentWord);
 
         ADVLINE();
-        listAkun[i].isPublic = jenisAkunToBoolean(cleanWord(currentWord));
+        CONTENT(listAkun, i).isPublic = jenisAkunToBoolean(cleanWord(currentWord));
 
         int j = 0;
         for(j = 0; j < FOTO_ROW_CAP; j++){
             int k = 0;
             for(k = 0; k < FOTO_COL_CAP; k++){
                 ADVWORD();
-                setColor(&(listAkun[i].profil.foto), j, k, currentWord.TabWord[0]);
+                setColor(&(CONTENT(listAkun, i).profil.foto), j, k, currentWord.TabWord[0]);
                 ADVWORD();
-                setVal(&(listAkun[i].profil.foto), j, k, currentWord.TabWord[0]);
+                setVal(&(CONTENT(listAkun, i).profil.foto), j, k, currentWord.TabWord[0]);
             }
         }
     }
