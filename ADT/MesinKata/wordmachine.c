@@ -165,7 +165,7 @@ void setWord(Word* w, char s[]){
     (*w).Length = i;
 }
 
-boolean CompareWord(Word w1, Word w2){
+boolean compareWord(Word w1, Word w2){
     if(w1.Length != w2.Length) return false;
     else{
         int i = 0;

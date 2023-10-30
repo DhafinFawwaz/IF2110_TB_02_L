@@ -4,6 +4,7 @@
 /* Banyaknya elemen didefinisikan secara implisit, memori list statik */
 
 #include "liststatikakun.h"
+#include "../MesinKata/wordmachine.h"
 #include <stdio.h>
 
 ListStatikAkun listAkun; // Global 
@@ -57,21 +58,6 @@ void listStatikAkun_print(ListStatikAkun l){
     printf("]");
 }
 
-/* ********** SEARCHING ********** */
-/* ***  Perhatian : List boleh kosong!! *** */
-// Mencari akun dengan id
-int listStatikAkun_findById(ListStatikAkun l, int id){
-    int i = 0;
-    while (i < listStatikAkun_Length(l)){
-        if (CONTENT(l,i).id == id) {
-            return i;
-        }
-        else
-            i++;
-    }
-    return IDX_UNDEF;
-}
-
 /* ********** MENAMBAH ELEMEN ********** */
 void listStatikAkun_insertFirst(ListStatikAkun *l, Akun val){
     listStatikAkun_insertAt(l, val, 0);
@@ -115,6 +101,45 @@ void listStatikAkun_deleteAt(ListStatikAkun *l, Akun *val, int idx){
 void listStatikAkun_deleteLast(ListStatikAkun *l, Akun *val){
     listStatikAkun_deleteAt(l, val, listStatikAkun_Length(*l) - 1);
     NEFF(*l)--;
+}
+
+
+/* ********** SEARCHING ********** */
+/* ***  Perhatian : List boleh kosong!! *** */
+// Mencari akun dengan id. kalau ga ada, return IDX_UNDEF
+int findIdxById(ListStatikAkun l, int id){
+    int i = 0;
+    while (i < listStatikAkun_Length(l)){
+        if (CONTENT(l,i).id == id) {
+            return i;
+        }
+        else
+            i++;
+    }
+    return IDX_UNDEF;
+}
+int findIdxByName(ListStatikAkun l, Word name){
+    int i = 0;
+    while (i < listStatikAkun_Length(l)){
+        if (compareWord(CONTENT(l,i).profil.nama, name)) {
+            return i;
+        }
+        else
+            i++;
+    }
+    return IDX_UNDEF;
+}
+
+void findIdxByPassword(ListStatikAkun l, Word password){
+    int i = 0;
+    while (i < listStatikAkun_Length(l)){
+        if (compareWord(CONTENT(l,i).password, password)) {
+            return i;
+        }
+        else
+            i++;
+    }
+    return IDX_UNDEF;
 }
 
 

@@ -84,14 +84,6 @@ void listStatikAkun_print(ListStatikAkun l);
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika List kosong : menulis [] */
 
-/* ********** SEARCHING ********** */
-/* ***  Perhatian : List boleh kosong!! *** */
-int listStatikAkun_findById(ListStatikAkun l, int id);
-/* Search apakah ada elemen List l yang bernilai val */
-/* Jika ada, menghasilkan indeks i terkecil, dengan ELMT(l,i) = val */
-/* Jika tidak ada atau jika l kosong, mengirimkan IDX_UNDEF */
-/* Skema Searching yang digunakan bebas */
-
 /* ********** MENAMBAH ELEMEN ********** */
 /* *** Menambahkan elemen terakhir *** */
 void listStatikAkun_insertFirst(ListStatikAkun *l, Akun val);
@@ -132,5 +124,14 @@ void listStatikAkun_deleteLast(ListStatikAkun *l, Akun *val);
 /*      Banyaknya elemen List berkurang satu */
 /*      List l mungkin menjadi kosong */
 
+
+/* ********** SEARCHING ********** */
+/* ***  Perhatian : List boleh kosong!! *** */
+// return id akun. kalau ga ada, return IDX_UNDEF
+int findIdxById(ListStatikAkun l, int id);
+
+int findIdxByName(ListStatikAkun l, Word name);
+
+void findIdxByPassword(ListStatikAkun l, Word password);
 
 #endif

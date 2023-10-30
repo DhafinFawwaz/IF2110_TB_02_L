@@ -53,7 +53,7 @@ void CopyLine();
 Word cleanWord(Word w);
 int wordToInt(Word w);
 void setWord(Word* w, char s[]);
-boolean CompareWord(Word w1, Word w2);
+boolean compareWord(Word w1, Word w2);
 
 
 #endif

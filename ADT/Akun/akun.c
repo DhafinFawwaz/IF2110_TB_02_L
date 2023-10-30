@@ -19,9 +19,9 @@ boolean jenisAkunToBoolean(Word w){
     Word privat;
     setWord(&privat, "Privat");
     
-    if(CompareWord(w, publik)){
+    if(compareWord(w, publik)){
         return true;
-    } else if(CompareWord(w, privat)){
+    } else if(compareWord(w, privat)){
         return false;
     }
     printf("Publik/Privat comparison has an error!\n");
