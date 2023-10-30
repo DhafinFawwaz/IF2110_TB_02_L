@@ -54,6 +54,7 @@ Word cleanWord(Word w);
 int wordToInt(Word w);
 void setWord(Word* w, char s[]);
 boolean compareWord(Word w1, Word w2);
+void printWord(Word w);
 
 
 #endif
