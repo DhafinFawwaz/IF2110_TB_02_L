@@ -133,6 +133,7 @@ void CopyLine()
     }
 }
 
+// Mengembalikan currentWord yang memastikan setelah currentWord.Length itu empty string semua
 Word cleanWord(Word w){
     int i = 0;
     for(i = w.Length; i < NMax; i++){
@@ -141,6 +142,7 @@ Word cleanWord(Word w){
     return w;
 }
 
+// convert word ke integer, termasuk jika negatif
 int wordToInt(Word w){
     if(w.TabWord[0] == '-'){
         int i = 1, result = 0;
@@ -156,6 +158,7 @@ int wordToInt(Word w){
     return result;
 }
 
+// Set stringnya word menjadi s
 void setWord(Word* w, char s[]){
     int i = 0;
     while(s[i] != '\0'){
@@ -165,6 +168,7 @@ void setWord(Word* w, char s[]){
     (*w).Length = i;
 }
 
+// Cek apakah stringnya w1 sama dengan w2
 boolean compareWord(Word w1, Word w2){
     if(w1.Length != w2.Length) return false;
     else{
