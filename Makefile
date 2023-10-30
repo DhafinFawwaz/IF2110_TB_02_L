@@ -13,7 +13,7 @@ SRC_ADT = ADT
 SRC = $(wildcard $(SRC_FITUR)/*/*.c) $(wildcard $(SRC_ADT)/*/*.c)
 OBJS = $(patsubst %,$(OUTPUT_DIR)/%,$(SRC:.c=.o))
 
-.PHONY: all clean run test
+.PHONY: all clean run test debug
 
 all: build run
 
@@ -55,6 +55,12 @@ $(TEST_RESULTS): $(TESTS_DIR)/%.result: $(TESTS_DIR)/%.in $(TESTS_DIR)/%.out $(E
 		echo "- $< $(word 2,$^): $(GREEN)PASS$(RESET)"; \
 	else \
 		echo "- $< $(word 2,$^): $(RED)FAIL$(RESET)"; \
+		if [ "$(word 3, $(MAKECMDGOALS))" = "debug" ]; then \
+			echo "Expected:"; \
+			cat $(word 2,$^); \
+			echo "Actual:"; \
+			$(EXE_MTEST) < $<; \
+		fi; \
 	fi > $@
 
 SRC_FILE = $(wildcard $(word 2, $(MAKECMDGOALS))/*.c)
@@ -80,6 +86,8 @@ test:
 	
 else
 test: $(EXE_MTEST) $(TEST_RESULTS)
+	mkdir -p $(@D)
+	$(CC) $(CFLAGS) -o $(EXE_MTEST) $(SRC_MTEST) $(SRC_FILE)
 	$(info [Test $(word 2, $(MAKECMDGOALS))])
 	@cat $(TEST_RESULTS)
 endif

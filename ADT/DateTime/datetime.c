@@ -11,7 +11,16 @@ void DisplayDateTime(DateTime dt){
     printf(" ");
     DisplayTime(dt.time);
 }
-void SetToCurrentDateTime(DateTime *dt){}
+void SetToCurrentDateTime(DateTime *dt){
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    (*dt).date.day = tm.tm_mday;
+    (*dt).date.month = tm.tm_mon + 1;
+    (*dt).date.year = tm.tm_year + 1900;
+    (*dt).time.hour = tm.tm_hour;
+    (*dt).time.minute = tm.tm_min;
+    (*dt).time.second = tm.tm_sec;
+}
 void SetDateFromWord(DateTime *dt, Word w){
     date_SetFromWord(&(dt->date), w);
 }
