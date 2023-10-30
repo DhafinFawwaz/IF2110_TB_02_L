@@ -21,6 +21,7 @@
         "kicauan.h": "c",
         "listdinkicauan.h": "c",
         "balasan.h": "c",
-        "liststatikakun.h": "c"
+        "liststatikakun.h": "c",
+        "grafteman.h": "c"
     }
 }
