@@ -7,8 +7,8 @@
 #include "wordmachine.h"
 
 /* State Mesin Word */
-boolean EndWord;
 Word currentWord;
+boolean EndWord;
 
 void IgnorePossibleNewLine(){
     if(currentChar == CARRIAGE){

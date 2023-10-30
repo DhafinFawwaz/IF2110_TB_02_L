@@ -30,7 +30,7 @@ void displayTreeBalasan(TreeBalasan t){
 }
 
 TreeBalasan* nextBalasan(TreeBalasan *t, int idx){
-    
+    return NULL;
 }
 
 

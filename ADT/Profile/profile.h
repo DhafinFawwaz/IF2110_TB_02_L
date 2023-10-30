@@ -13,7 +13,6 @@
 
 typedef struct profile
 {
-    Word nama;
     Word bio;
     Word noHp;
     Word weton;

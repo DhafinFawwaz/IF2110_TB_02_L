@@ -6,6 +6,8 @@
 #include "../../ADT/DateTime/datetime.h"
 #include "../../ADT/Kicauan/kicauan.h"
 #include "../../ADT/Balasan/balasan.h"
+#include "../../ADT/GrafTeman/grafteman.h"
+#include "../Perintah/perintah.h"
 
 void tripleConcat(char *s1, char *s2, char *s3, char *result){
     int i = 0, j = 0;
@@ -31,8 +33,7 @@ void tripleConcat(char *s1, char *s2, char *s3, char *result){
 void inisialisasi(){
     printf("Silahkan masukan folder konfigurasi untuk dimuat: ");
 
-    STARTWORD();
-    ADVWORD(); // currentWord.TabWord = nama folder
+    readLine(); // currentWord.TabWord = nama folder
 
     char dataPath[] = "Config/";
     char balasanPath[NMax], drafPath[NMax], kicauanPath[NMax], penggunaPath[NMax], utasPath[NMax] = "";
@@ -102,7 +103,6 @@ void inisialisasi(){
         ADVWORD();
         SetTimeFromWord(&listDraftkicauan[i].dateTime, cleanWord(currentWord)); // 11:09:18
     }
-    DebugListDraftKicauan();
 
 
  
@@ -129,7 +129,7 @@ void inisialisasi(){
         ADVWORD();
         SetTimeFromWord(&listKicauan[i].dateTime, cleanWord(currentWord)); // 11:09:18
     }
-    DebugListKicauan();
+    // DebugListKicauan();
 
 
     // Inisialisasi pengguna
@@ -140,7 +140,7 @@ void inisialisasi(){
         CreateAkun(&CONTENT(listAkun, i));
 
         ADVLINE();
-        CONTENT(listAkun, i).profil.nama = cleanWord(currentWord);
+        CONTENT(listAkun, i).nama = cleanWord(currentWord);
 
         ADVLINE();
         CONTENT(listAkun, i).password = cleanWord(currentWord);
@@ -169,7 +169,16 @@ void inisialisasi(){
         }
     }
     // Matriks Pertemanan
-
+    CreateGrafTeman(&currentGrafTeman, NEFF(listAkun));
+    for(i = 0; i < NEFF(listAkun); i++){
+        int j = 0;
+        for(j = 0; j < NEFF(listAkun); j++){
+            ADVWORD();
+            if(currentWord.TabWord[0] == '1') setGrafTeman(&currentGrafTeman, i, j, true);
+            else setGrafTeman(&currentGrafTeman, i, j, false);
+        }
+    }
+    
     DebugListAkun();
 /*
     // Inisialisasi pengguna

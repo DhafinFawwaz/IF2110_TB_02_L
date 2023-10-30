@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../GrafTeman/grafteman.h"
 
-GrafTeman currentGrafTemn; // Global variable
+GrafTeman currentGrafTeman; // Global variable
 
 // elemen[i][j] semuanya 0
 void CreateGrafTeman(GrafTeman *g, int jumlahAkun){

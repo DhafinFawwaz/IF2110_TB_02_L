@@ -14,6 +14,7 @@ typedef struct akun
 {
     int id;
     Profile profil;
+    Word nama;
     Word password;
     StackDin* list_daftar_kicauan;
     PrioQueue list_permintaan_pertemanan;
@@ -26,7 +27,6 @@ typedef struct akun
 #define Password(A) (A).password
 
 extern Akun currentAkun; // Global variable
-extern Akun listAkun[IDMax];
 void CreateAkun(Akun* akun);
 void DisplayAkun(Akun akun);
 void DebugListAkun();

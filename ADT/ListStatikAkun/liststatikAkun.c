@@ -5,6 +5,7 @@
 
 #include "liststatikakun.h"
 #include "../MesinKata/wordmachine.h"
+#include "../../ADT/GrafTeman/grafteman.h"
 #include <stdio.h>
 
 ListStatikAkun listAkun; // Global 
@@ -121,7 +122,7 @@ int findIdxById(ListStatikAkun l, int id){
 int findIdxByName(ListStatikAkun l, Word name){
     int i = 0;
     while (i < listStatikAkun_Length(l)){
-        if (compareWord(CONTENT(l,i).profil.nama, name)) {
+        if (compareWord(CONTENT(l,i).nama, name)) {
             return i;
         }
         else
@@ -144,7 +145,7 @@ int findIdxByPassword(ListStatikAkun l, Word password){
 
 
 void debugAkun(Akun akun){
-    printf("nama: %s\n", akun.profil.nama.TabWord);
+    printf("nama: %s\n", akun.nama.TabWord);
     printf("password: %s\n", akun.password.TabWord);
     printf("bio: %s\n", akun.profil.bio.TabWord);
     printf("noHp: %s\n", akun.profil.noHp.TabWord);
@@ -160,5 +161,6 @@ void DebugListAkun(){
         printf("[Akun ke-%d]\n", i);
         debugAkun(CONTENT(listAkun, i));
     }
+    displayGrafTeman(currentGrafTeman);
     printf("======== [Debug listAkun End] ========\n");
 }

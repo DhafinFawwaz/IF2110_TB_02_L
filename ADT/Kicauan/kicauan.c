@@ -111,5 +111,6 @@ void displayKicauan(Kicauan kicauan){
     printf("text: %s\n", TEXT_KICAU(kicauan).TabWord);
     printf("like: %d\n", JUMLAH_LIKE(kicauan));
     printf("nama: %s\n", PEMBUAT(kicauan).TabWord);
+    printf("dateTime: ");
     DisplayDateTime(WAKTU(kicauan));
 }
