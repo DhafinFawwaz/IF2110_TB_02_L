@@ -190,3 +190,13 @@ void capCurrentWord(int cap){
     currentWord.Length = cap;
 }
 
+void printWord(Word word){
+    STARTWORD();
+    while (!EndWord){
+        for (int i = 0; i < currentWord.Length; i++){
+            printf("%c", currentWord.TabWord[i]);
+        }
+        printf("\n");
+        ADVWORD();
+    }
+}
