@@ -3,7 +3,7 @@
 /* Penempatan elemen selalu rapat kiri */
 /* Banyaknya elemen didefinisikan secara implisit, memori list statik */
 
-#include "liststatik.h"
+#include "liststatikAkun.h"
 #include <stdio.h>
 
 /* ********** KONSTRUKTOR ********** */

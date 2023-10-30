@@ -3,7 +3,7 @@
 int banyakKicauanBerbalasan;
 Balasan currentBalasan;
 Balasan listBalasan[100];
-
+/*
 void DebugListBalasan(){
     printf("======== [Debug listBalasan] ========\n");
     int i = 0;
@@ -21,3 +21,4 @@ void displayBalasan(Balasan balasan){
     printf("text: ", balasan.text.TabWord);
     printf("nama: ", balasan.nama.TabWord);
 }
+*/

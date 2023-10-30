@@ -42,7 +42,7 @@ void inisialisasi(){
     tripleConcat(dataPath, currentWord.TabWord, "/pengguna.config", penggunaPath);
     tripleConcat(dataPath, currentWord.TabWord, "/utas.config", utasPath);
     int i = 0;
-
+/*
     // Inisialisasi balasan
     printf("\n[Balasan]\n");
     freopen(balasanPath, "r", stdin);
@@ -79,7 +79,7 @@ void inisialisasi(){
         }
     }
 
-
+*/
     // Inisialisasi draf
     // printf("\n[Draf]\n");
     freopen(drafPath, "r", stdin);
@@ -102,6 +102,7 @@ void inisialisasi(){
         ADVWORD();
         SetTimeFromWord(&listDraftkicauan[i].dateTime, cleanWord(currentWord)); // 11:09:18
     }
+    DebugListDraftKicauan();
 
 
  
@@ -168,6 +169,8 @@ void inisialisasi(){
         }
     }
     // Matriks Pertemanan
+
+    DebugListAkun();
 /*
     // Inisialisasi pengguna
     printf("\n[Utas]\n");
