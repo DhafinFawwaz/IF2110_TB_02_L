@@ -33,7 +33,7 @@ void tripleConcat(char *s1, char *s2, char *s3, char *result){
 void inisialisasi(){
     printf("Silahkan masukan folder konfigurasi untuk dimuat: ");
 
-    readLine(); // currentWord.TabWord = nama folder
+    readInput(); // currentWord.TabWord = nama folder
 
     char dataPath[] = "Config/";
     char balasanPath[NMax], drafPath[NMax], kicauanPath[NMax], penggunaPath[NMax], utasPath[NMax] = "";
@@ -179,7 +179,7 @@ void inisialisasi(){
         }
     }
     
-    DebugListAkun();
+    // DebugListAkun();
 /*
     // Inisialisasi pengguna
     printf("\n[Utas]\n");
@@ -215,5 +215,11 @@ void inisialisasi(){
 
 */
 
+    
+
+
     printf("File konfigurasi berhasil dimuat! Selamat berkicau!\n");
+
+    freopen("/dev/tty", "r", stdin);
+
 }

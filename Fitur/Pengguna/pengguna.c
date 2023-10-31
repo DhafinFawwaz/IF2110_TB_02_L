@@ -11,14 +11,14 @@ boolean isLogin = false;
 void daftar(){
     /* INPUT USERNAME */
     printf("\nMasukkan nama: \n");
-    readLine();
+    readInput();
 
     int tempID = findIdxByName(listAkun, currentWord);
     while (tempID != IDX_UNDEF){
         printf("\nWah, sayang sekali nama tersebut telah diambil.\n");
         printf("Masukkan nama: \n");
 
-        readWord();
+        readInput();
         tempID = findIdxByName(listAkun, currentWord);
     }
     CreateAkun(&listAkun.contents[tempID]);
@@ -27,7 +27,7 @@ void daftar(){
 
     /* INPUT PASSWORD */
     printf("\nMasukkan kata sandi: \n");
-    readWord();
+    readInput();
     listAkun.contents[tempID].password = currentWord;
 
     printf("\nPengguna telah berhasil terdaftar. Masuk untuk menikmati fitur-fitur Burbir");
@@ -35,23 +35,23 @@ void daftar(){
 void masuk(){
     if (isLogin == false){
         printf("\nMasukkan nama: \n");
-        readWord();
+        readInput();
         int tempID = findIdxByName(listAkun, currentWord);
         while (tempID == IDX_UNDEF){
             printf("\nNama tersebut belum terdaftar dalam database BurBir.\n");
             printf("Masukkan nama: \n");
 
-            readWord();
+            readInput();
             tempID = findIdxByName(listAkun, currentWord);
         }
 
         printf("\nMasukkan kata sandi: \n");
-        readWord();
+        readInput();
 
         while (compareWord(listAkun.contents[tempID].password, currentWord)) {
             printf("\nWah, kata sandi yang Anda masukkan belum tepat. Periksa kembali kata sandi Anda!\n");
             printf("\nMasukkan kata sandi: \n");
-            readWord();
+            readInput();
         }
 
         printf("Anda telah berhasil masuk dengan nama pengguna %s. Mari menjelajahi Burbir bersama Ande-Ande Lumut!", listAkun.contents[tempID].username.TabWord);

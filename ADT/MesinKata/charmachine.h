@@ -26,4 +26,7 @@ void ADV();
           currentChar mungkin = MARK
           Jika  currentChar = MARK maka EOP akan menyala (true) */
 
+void RESET();
+/* Pita direset untuk handle freopen file. */
+
 #endif

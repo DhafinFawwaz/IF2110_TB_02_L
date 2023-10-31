@@ -2,9 +2,7 @@
 #include "../../ADT/MesinKata/wordmachine.h"
 #include <stdio.h>
 
-void readWord() {
-    int temp;
-    scanf("%d", &temp);
+void readInput() {
     int i;
     START();
     IgnoreBlanks();
@@ -21,12 +19,4 @@ void readWord() {
     currentWord.Length = i;
 
     currentWord.TabWord[i] = '\0';
-}
-
-
-// I.S currentWord sembarang
-// F.S currentWord berisi kata yang dibaca dari input
-void readLine(){
-    START();
-    ADVLINE();
 }

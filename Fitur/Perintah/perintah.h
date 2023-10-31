@@ -1,8 +1,8 @@
 #include "../../ADT/MesinKata/wordmachine.h"
 
-void readWord();
+void readInput();
 /* Akuisisi Word dari input user.
    I.S. : input sembarang
    F.S. : input terisi perintah atau masukan dari user */
 
-void readLine();
+void readLineUntilNewLine();
