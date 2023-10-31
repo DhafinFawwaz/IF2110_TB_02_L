@@ -14,7 +14,7 @@ typedef struct akun
 {
     int id;
     Profile profil;
-    Word nama;
+    Word username;
     Word password;
     StackDin* list_daftar_kicauan;
     PrioQueue list_permintaan_pertemanan;

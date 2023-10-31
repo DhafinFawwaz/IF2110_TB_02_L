@@ -3,7 +3,7 @@
 
 #include "../Matriks/matrix.h"
 
-#define COLOR_UNDEF ''
+#define COLOR_UNDEF ' '
 #define NORMAL_CHAR 'N'
 #define RED_CHAR 'R'
 #define GREEN_CHAR 'G'

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "inisialisasi.h"
 #include "../../ADT/MesinKata/wordmachine.h"
-#include "../../ADT/ListStatikAkun/liststatikakun.h"
+#include "../../ADT/ListStatikAkun/liststatikAkun.h"
 #include "../../ADT/DrafKicauan/drafkicauan.h"
 #include "../../ADT/DateTime/datetime.h"
 #include "../../ADT/Kicauan/kicauan.h"
@@ -140,7 +140,7 @@ void inisialisasi(){
         CreateAkun(&CONTENT(listAkun, i));
 
         ADVLINE();
-        CONTENT(listAkun, i).nama = cleanWord(currentWord);
+        CONTENT(listAkun, i).username = cleanWord(currentWord);
 
         ADVLINE();
         CONTENT(listAkun, i).password = cleanWord(currentWord);

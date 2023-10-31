@@ -1,22 +1,26 @@
 #include "perintah.h"
+#include "../../ADT/MesinKata/wordmachine.h"
+#include <stdio.h>
 
-void readWord(Word *input) {
+void readWord() {
+    int temp;
+    scanf("%d", &temp);
     int i;
     START();
     IgnoreBlanks();
 
-    (*input).Length = 0;
+    currentWord.Length = 0;
     i = 0;
 
     while ((currentChar != MARK) && (i < NMax)) {
-        (*input).TabWord[i] = currentChar;
+        currentWord.TabWord[i] = currentChar;
         ADV();
         i++;
     }
 
-    (*input).Length = i;
+    currentWord.Length = i;
 
-    (*input).TabWord[i] = '\0';
+    currentWord.TabWord[i] = '\0';
 }
 
 

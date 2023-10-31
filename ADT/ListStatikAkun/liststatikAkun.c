@@ -3,7 +3,7 @@
 /* Penempatan elemen selalu rapat kiri */
 /* Banyaknya elemen didefinisikan secara implisit, memori list statik */
 
-#include "liststatikakun.h"
+#include "liststatikAkun.h"
 #include "../MesinKata/wordmachine.h"
 #include "../../ADT/GrafTeman/grafteman.h"
 #include <stdio.h>
@@ -122,7 +122,7 @@ int findIdxById(ListStatikAkun l, int id){
 int findIdxByName(ListStatikAkun l, Word name){
     int i = 0;
     while (i < listStatikAkun_Length(l)){
-        if (compareWord(CONTENT(l,i).nama, name)) {
+        if (compareWord(CONTENT(l,i).username, name)) {
             return i;
         }
         else
@@ -145,7 +145,7 @@ int findIdxByPassword(ListStatikAkun l, Word password){
 
 
 void debugAkun(Akun akun){
-    printf("nama: %s\n", akun.nama.TabWord);
+    printf("nama: %s\n", akun.username.TabWord);
     printf("password: %s\n", akun.password.TabWord);
     printf("bio: %s\n", akun.profil.bio.TabWord);
     printf("noHp: %s\n", akun.profil.noHp.TabWord);

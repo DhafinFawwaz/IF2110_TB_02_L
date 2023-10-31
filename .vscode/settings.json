@@ -22,6 +22,8 @@
         "listdinkicauan.h": "c",
         "balasan.h": "c",
         "liststatikakun.h": "c",
-        "grafteman.h": "c"
+        "grafteman.h": "c",
+        "cstdlib": "c",
+        "locale": "c"
     }
 }

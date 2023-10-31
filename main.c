@@ -1,4 +1,5 @@
 #include "Fitur/Inisialisasi/inisialisasi.h"
+#include "Fitur/Pengguna/pengguna.h"
 #include <stdio.h>
 
 
@@ -16,5 +17,6 @@ int main()
     printf("(pengambilan data berupa) Focused Group Discussion kedua di zamannya. \n\n");
 
     inisialisasi();
+    daftar();
     return 0;
 }
