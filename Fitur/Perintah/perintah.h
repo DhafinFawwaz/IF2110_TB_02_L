@@ -5,4 +5,4 @@ void readInput();
    I.S. : input sembarang
    F.S. : input terisi perintah atau masukan dari user */
 
-void readLineUntilNewLine();
+void handlePerintah();

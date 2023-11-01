@@ -24,6 +24,8 @@
         "liststatikakun.h": "c",
         "grafteman.h": "c",
         "cstdlib": "c",
-        "locale": "c"
+        "locale": "c",
+        "treebalasan.h": "c",
+        "pengguna.h": "c"
     }
 }

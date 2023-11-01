@@ -3,7 +3,7 @@
 #ifndef AKUN_H
 #define AKUN_H
 
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 #include "../Profile/profile.h"
 #include "../MesinKata/wordmachine.h"
 #include "../StackDin/stackdin.h"

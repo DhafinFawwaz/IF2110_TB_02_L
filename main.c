@@ -1,22 +1,24 @@
-#include "Fitur/Inisialisasi/inisialisasi.h"
-#include "Fitur/Pengguna/pengguna.h"
 #include <stdio.h>
+#include "Fitur/Inisialisasi/inisialisasi.h"
+#include "Fitur/Perintah/perintah.h"
+#include "ADT/Boolean/boolean.h"
 
+boolean isRunning = true;
+
+void exitProgram()
+{
+    isRunning = false;
+}
 
 int main()
 {
-    printf(".______    __    __  .______      .______    __  .______ \n");
-    printf("|   _  \\  |  |  |  | |   _  \\     |   _  \\  |  | |   _  \\ \n");
-    printf("|  |_)  | |  |  |  | |  |_)  |    |  |_)  | |  | |  |_)  | \n");
-    printf("|   _  <  |  |  |  | |      /     |   _  <  |  | |      / \n");
-    printf("|  |_)  | |  `--'  | |  |\\  \\----.|  |_)  | |  | |  |\\  \\----. \n");
-    printf("|______/   \\______/  | _| `._____||______/  |__| | _| `._____| \n\n");
+    displayInisialisasi();
+    inisialisasiConfig();
 
-    printf("Selamat datang di BurBir. \n\n");
-    printf("Aplikasi untuk studi kualitatif mengenai perilaku manusia dengan menggunakan metode \n");
-    printf("(pengambilan data berupa) Focused Group Discussion kedua di zamannya. \n\n");
-
-    inisialisasi();
-    daftar();
+    while (isRunning)
+    {
+        handlePerintah();
+    }
+    
     return 0;
 }

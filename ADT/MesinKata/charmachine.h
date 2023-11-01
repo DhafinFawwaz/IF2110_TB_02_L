@@ -4,7 +4,7 @@
 #ifndef __CHAR_MACHINE_H__
 #define __CHAR_MACHINE_H__
 
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 
 #define MARK ';'
 /* State Mesin */

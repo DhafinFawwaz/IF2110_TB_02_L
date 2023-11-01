@@ -1,7 +1,7 @@
 #ifndef GRAFTEMAN_H
 #define GRAFTEMAN_H
 
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 #include "../Akun/akun.h"
 
 #define GRAFTEMAN_CAPACITY 20

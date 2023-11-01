@@ -1,7 +1,7 @@
 #ifndef LISTDINKICAUAN_H
 #define LISTDINKICAUAN_H
 
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 #include "../Kicauan/kicauan.h"
 
 #define INITIAL_CAPACITY 10

@@ -5,7 +5,7 @@
 #include "../../ADT/DrafKicauan/drafkicauan.h"
 #include "../../ADT/DateTime/datetime.h"
 #include "../../ADT/Kicauan/kicauan.h"
-#include "../../ADT/Balasan/balasan.h"
+#include "../../ADT/TreeBalasan/treebalasan.h"
 #include "../../ADT/GrafTeman/grafteman.h"
 #include "../Perintah/perintah.h"
 
@@ -29,8 +29,20 @@ void tripleConcat(char *s1, char *s2, char *s3, char *result){
     result[i] = '\0';
 }
 
+void displayInisialisasi(){
+    printf(".______    __    __  .______      .______    __  .______ \n");
+    printf("|   _  \\  |  |  |  | |   _  \\     |   _  \\  |  | |   _  \\ \n");
+    printf("|  |_)  | |  |  |  | |  |_)  |    |  |_)  | |  | |  |_)  | \n");
+    printf("|   _  <  |  |  |  | |      /     |   _  <  |  | |      / \n");
+    printf("|  |_)  | |  `--'  | |  |\\  \\----.|  |_)  | |  | |  |\\  \\----. \n");
+    printf("|______/   \\______/  | _| `._____||______/  |__| | _| `._____| \n\n");
 
-void inisialisasi(){
+    printf("Selamat datang di BurBir. \n\n");
+    printf("Aplikasi untuk studi kualitatif mengenai perilaku manusia dengan menggunakan metode \n");
+    printf("(pengambilan data berupa) Focused Group Discussion kedua di zamannya. \n\n");
+}
+
+void inisialisasiConfig(){
     printf("Silahkan masukan folder konfigurasi untuk dimuat: ");
 
     readInput(); // currentWord.TabWord = nama folder

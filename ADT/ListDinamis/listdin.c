@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "listdin.h"
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 
 void listdin_CreateListDin(ListDin *l, int capacity){
     BUFFER(*l) = (ElType*) malloc(capacity*sizeof(ElType));

@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <math.h>
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 #include "../LinkedListValue/linkedlistvalue.h"
 
 #define VAL_UNDEF NULL;

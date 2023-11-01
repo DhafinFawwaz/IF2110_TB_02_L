@@ -1,7 +1,7 @@
 #ifndef PROFILE_H
 #define PROFILE_H
 
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 #include "../MesinKata/wordmachine.h"
 #include "../Foto/foto.h"
 

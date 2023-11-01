@@ -6,7 +6,7 @@
 #ifndef LISTSTATIKAKUN_H
 #define LISTSTATIKAKUN_H
 
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 #include "../Akun/akun.h"
 
 /*  Kamus Umum */

@@ -1,6 +1,7 @@
 #ifndef __INISIALISASI_H__
 #define __INISIALISASI_H__
 
-void inisialisasi();
+void displayInisialisasi();
+void inisialisasiConfig();
 
 #endif

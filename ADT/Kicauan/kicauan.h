@@ -2,7 +2,7 @@
 #define KICAUAN_H
 
 #include <stdio.h>
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 #include "../Akun/akun.h"
 #include "../MesinKata/wordmachine.h"
 #include "../DateTime/datetime.h"

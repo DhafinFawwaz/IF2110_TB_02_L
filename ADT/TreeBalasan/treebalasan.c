@@ -1,37 +1,75 @@
-#ifndef TREEBALASAN_H
-#define TREEBALASAN_H
+#include "treeBalasan.h"
+#include "stdlib.h"
 
-#include "boolean.h"
-#include "../MesinKata/wordmachine.h"
-#include "../DateTime/datetime.h"
+int banyakKicauanBerTreeBalasan;
+TreeBalasan currentTreeBalasan;
+TreeBalasan listTreeBalasan[LISTDIN_BALASAN_DEFAULT_CAPACITY];
 
-typedef struct treebalasan
-{
-    int id;
-    Word text;
-    Word namaPenulis;
-    // ListDin listNextBalasan;    
-} TreeBalasan;
-
-TreeBalasan treeBalasan; // Global variable
-
-void CreateTreeBalasan(TreeBalasan *g){
-    (*g).id = 0;
-    setWord(&(*g).text, "");
-    setWord(&(*g).namaPenulis, "");
+void CreateTreeBalasan(TreeBalasan *l, int capacity){
+    l = (TreeBalasan*) malloc(capacity*sizeof(TreeBalasan));
+    (*l).childNeff = 0;
+    (*l).childCapacity = capacity;
 }
 
-void insertLastBalasan(TreeBalasan *current, TreeBalasan *next){
+void dealocateTreeBalasan(TreeBalasan *l){
+    free(l);
+    (*l).childNeff = 0;
+    (*l).childCapacity = 0;
+}
+
+boolean isListdinTreeBalasanFull(TreeBalasan l){
+    return (l.childNeff == l.childCapacity);
+}
+
+// Memasukkan inserted ke *l
+void insertAtTreeBalasan(TreeBalasan *l, int idx, TreeBalasan inserted){
+    if(isListdinTreeBalasanFull(*l)){
+        (*l).childCapacity *= 2;
+        (*l).listdinBalasan = (TreeBalasan*) realloc((*l).listdinBalasan, (*l).childCapacity*sizeof(TreeBalasan));
+    }else{
+        int i;
+        for(i = (*l).childNeff; i > idx; i--){
+            (*l).listdinBalasan[i] = (*l).listdinBalasan[i-1];
+        }
+        (*l).listdinBalasan[idx] = inserted;
+        (*l).childNeff++;
+    }
+}
+
+// Memasukkan inserted ke *l dari paling belakang
+void insertLastTreeBalasan(TreeBalasan *l, TreeBalasan inserted){
 
 }
 
-void displayTreeBalasan(TreeBalasan t){
+// Hapus elemen di index idx dan nilainya dimasukkan ke deleted
+void deleteAtTreeBalasan(TreeBalasan *l, int idx, TreeBalasan *deleted){
 
 }
 
-TreeBalasan* nextBalasan(TreeBalasan *t, int idx){
-    return NULL;
+void copyTreeBalasan(TreeBalasan *destination, TreeBalasan source){
+    // int i = destination->childNeff;
+
 }
 
 
-#endif
+void DebugListTreeBalasan();
+
+/*
+void DebugListTreeBalasan(){
+    printf("======== [Debug listTreeBalasan] ========\n");
+    int i = 0;
+    for(i = 0; i < banyakKicauanBerTreeBalasan; i++){
+        printf("[TreeBalasan ke-%d]\n", i+1);
+        displayTreeBalasan(listTreeBalasan[i]);
+    }
+    printf("======== [Debug listTreeBalasan End] ========\n");
+}
+
+void displayTreeBalasan(TreeBalasan TreeBalasan){
+    printf("idParent: %d\n", TreeBalasan.idParent);
+    printf("id: %d\n", TreeBalasan.id);
+    printf("banyakTreeBalasan: %d\n", TreeBalasan.banyakTreeBalasan);
+    printf("text: ", TreeBalasan.text.TabWord);
+    printf("nama: ", TreeBalasan.nama.TabWord);
+}
+*/

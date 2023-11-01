@@ -4,7 +4,7 @@
 #ifndef __PENGGUNA_H__
 #define __PENGGUNA_H__
 
-#include "../../ADT/MesinKata/boolean.h"
+#include "../../ADT/Boolean/boolean.h"
 #include "../../ADT/MesinKata/wordmachine.h"
 #include "../../ADT/StackDin/stackdin.h"
 #include "../../ADT/PrioQueue/prioqueue.h"

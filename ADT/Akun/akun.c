@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "boolean.h"
+#include "../Boolean/boolean.h"
 #include "akun.h"
 #include "../Pcolor/pcolor.h"
 
