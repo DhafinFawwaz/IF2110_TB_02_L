@@ -95,7 +95,17 @@ void CopyWord()
     }
 }
 
-
+void STARTWORDFILE(char path[]){
+    STARTFILE(path);
+    IgnoreBlanks();
+    if (currentChar == MARK) {
+        EndWord = true;
+    } else {
+        EndWord = false;
+        CopyWord();
+        IgnorePossibleNewLine();
+    }
+}
 void ADVLINE()
 {
     if(currentChar == MARK){

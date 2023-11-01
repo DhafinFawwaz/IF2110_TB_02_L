@@ -48,6 +48,7 @@ void CopyWord();
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
 
+void STARTWORDFILE(char path[]);
 void ADVLINE();
 void CopyLine();
 Word cleanWord(Word w);

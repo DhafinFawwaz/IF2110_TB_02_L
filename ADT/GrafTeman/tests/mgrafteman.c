@@ -33,6 +33,13 @@ int main()
         setGrafTeman(&currentGrafTeman, 9, 9, true);
         displayGrafTeman(currentGrafTeman);
         break;
+    
+    case 4:
+    
+        // Test displayGrafTeman
+        setGrafTeman(&currentGrafTeman, 4, 4, true);
+        displayGrafTeman(currentGrafTeman);
+        break;
     }
 
     return 0;

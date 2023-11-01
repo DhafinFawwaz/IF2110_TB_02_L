@@ -58,8 +58,7 @@ void inisialisasiConfig(){
 /*
     // Inisialisasi balasan
     printf("\n[Balasan]\n");
-    freopen(balasanPath, "r", stdin);
-    STARTWORD();
+    STARTWORDFILE(balasanPath);
     banyakKicauanBerbalasan = wordToInt(currentWord); // banyak kicauan yang memiliki balasan
     printf("banyakKicauanBerbalasan: %d\n", banyakKicauanBerbalasan);
     
@@ -95,9 +94,9 @@ void inisialisasiConfig(){
 */
     // Inisialisasi draf
     // printf("\n[Draf]\n");
-    freopen(drafPath, "r", stdin);
-    STARTWORD();
+    STARTWORDFILE(drafPath);
     banyakDraf = wordToInt(currentWord);// 5 # Banyak draf
+
     for(i = 0; i < banyakDraf; i++){
         
         ADVWORD();
@@ -119,9 +118,10 @@ void inisialisasiConfig(){
 
  
     // Inisialisasi kicauan
-    freopen(kicauanPath, "r", stdin);
-    STARTWORD();
+    STARTWORDFILE(kicauanPath);
+
     banyakKicauan = wordToInt(currentWord); // 2 # Banyak kicauan sebanyak 2
+    
     for(i = 0; i < banyakKicauan; i++){
         ADVWORD();
         listKicauan[i].id = wordToInt(currentWord); // 1 # ID kicauan 1
@@ -143,10 +143,9 @@ void inisialisasiConfig(){
     }
     // DebugListKicauan();
 
-
     // Inisialisasi pengguna
-    freopen(penggunaPath, "r", stdin);
-    STARTWORD();
+    STARTWORDFILE(penggunaPath);
+
     NEFF(listAkun) = wordToInt(currentWord); // 2 # Banyak pengguna
     for(i = 0; i < NEFF(listAkun); i++){
         CreateAkun(&CONTENT(listAkun, i));
@@ -195,8 +194,8 @@ void inisialisasiConfig(){
 /*
     // Inisialisasi pengguna
     printf("\n[Utas]\n");
-    freopen(utasPath, "r", stdin);
-    STARTWORD();
+    STARTWORDFILE(utasPath);
+
     int banyakKicauanBerutas = wordToInt(currentWord); // 2 # Banyak kicauan yang memiliki utas
     for(i = 0; i < banyakKicauanBerutas; i++) {
         ADVWORD();
@@ -232,6 +231,6 @@ void inisialisasiConfig(){
 
     printf("File konfigurasi berhasil dimuat! Selamat berkicau!\n");
 
-    freopen("/dev/tty", "r", stdin);
+    // freopen("/dev/tty", "r", stdin);
 
 }

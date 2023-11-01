@@ -40,3 +40,8 @@ void ADV()
        //        fclose(pita);
        // }
 }
+void STARTFILE(char path[])
+{
+       pita = fopen(path, "r");
+       ADV();
+}
