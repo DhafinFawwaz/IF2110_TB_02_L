@@ -7,6 +7,8 @@
 #include "../Perintah/perintah.h"
 
 boolean isLogin = false;
+Word currentPengguna;
+int effID = 0;
 
 void daftar(){
     /* INPUT USERNAME */
@@ -21,14 +23,15 @@ void daftar(){
         readInput();
         tempID = findIdxByName(listAkun, currentWord);
     }
-    CreateAkun(&listAkun.contents[tempID]);
-    listAkun.contents[tempID].username = currentWord;
+    effID++;
+    CreateAkun(&listAkun.contents[effID]);
+    listAkun.contents[effID].username = currentWord;
     
 
     /* INPUT PASSWORD */
     printf("\nMasukkan kata sandi: \n");
     readInput();
-    listAkun.contents[tempID].password = currentWord;
+    listAkun.contents[effID].password = currentWord;
 
     printf("\nPengguna telah berhasil terdaftar. Masuk untuk menikmati fitur-fitur Burbir");
 }
@@ -48,7 +51,7 @@ void masuk(){
         printf("\nMasukkan kata sandi: \n");
         readInput();
 
-        while (compareWord(listAkun.contents[tempID].password, currentWord)) {
+        while (compareWord(listAkun.contents[tempID].password, currentWord) == false) {
             printf("\nWah, kata sandi yang Anda masukkan belum tepat. Periksa kembali kata sandi Anda!\n");
             printf("\nMasukkan kata sandi: \n");
             readInput();
@@ -56,6 +59,7 @@ void masuk(){
 
         printf("Anda telah berhasil masuk dengan nama pengguna %s. Mari menjelajahi Burbir bersama Ande-Ande Lumut!", listAkun.contents[tempID].username.TabWord);
         isLogin = true;
+        currentPengguna = listAkun.contents[tempID].username;
     } else {
         printf("\nAnda sudah masuk. Keluar dulu yuk!");
     }

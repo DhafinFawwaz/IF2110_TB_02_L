@@ -10,11 +10,14 @@
 #include "../../ADT/PrioQueue/prioqueue.h"
 #include "../../ADT/Profile/profile.h"
 
-#define IDMax 20
 #define BLANK ' '
 
 /* State Pengguna */
 extern boolean isLogin;
+extern Word currentPengguna;
+extern int effID;
+
+
 
 void daftar();
 void masuk();
