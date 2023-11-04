@@ -205,3 +205,16 @@ void printWord(Word w){
         printf("%c", w.TabWord[i]);
     }
 }
+
+Word stringToWord(const char* str){
+    Word result;
+    int str_length = strlen(str);
+    if (str_length > NMax){
+        str_length = NMax;
+    }
+    for (int i = 0; i < str_length; i++){
+        result.TabWord[i] = str[i];
+    }
+    result.Length = str_length;
+    return result;
+}

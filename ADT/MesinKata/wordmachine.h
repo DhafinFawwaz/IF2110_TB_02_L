@@ -6,6 +6,7 @@
 
 #include "../Boolean/boolean.h"
 #include "charmachine.h"
+#include <string.h>
 
 #define NMax 300
 #define BLANK ' '
@@ -56,6 +57,7 @@ int wordToInt(Word w);
 void setWord(Word* w, char s[]);
 boolean compareWord(Word w1, Word w2);
 void printWord(Word w);
+Word stringToWord(const char* str);
 
 
 #endif
