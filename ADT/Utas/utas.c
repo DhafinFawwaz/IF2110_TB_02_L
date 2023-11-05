@@ -46,11 +46,11 @@ int indexOf(List l, ElType val){
 	boolean found = false;
 
 	while ((p != NULL) && (!found)){
-		if (INFO(p) == val) found = true;
-		else{
-			idx++;
-			p = NEXT(p);
-		}
+		// if (INFO(p) == val) found = true;
+		// else{
+		// 	idx++;
+		// 	p = NEXT(p);
+		// }
 	}
 	
 	if (found) return idx;
@@ -155,11 +155,11 @@ void displayList(List l) {
 	Utas p = l;
 	if (!isEmpty(p)){
 		while (NEXT(p) != NULL) {
-			printf("%d,", INFO(p));
+			// printf("%d,", INFO(p));
 			p = NEXT(p);
 		}
 
-		printf("%d", INFO(p));
+		// printf("%d", INFO(p));
 	}
 
 	printf("]");

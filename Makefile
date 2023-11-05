@@ -50,6 +50,12 @@ GREEN = \033[32m
 RED = \033[31m
 RESET = \033[0m
 
+SRC_FILE = $(wildcard $(word 2, $(MAKECMDGOALS))/*.c)
+SRC_MTEST = $(wildcard $(word 2, $(MAKECMDGOALS))/tests/*.c)
+OBJ_FILE = $(OUTPUT_DIR)/$(SRC_FILE:.c=.o)
+OBJ_MTEST = $(OUTPUT_DIR)/$(SRC_MTEST:.c=.o)
+EXE_MTEST = $(OBJ_MTEST:.o=)
+
 $(TEST_RESULTS): $(TESTS_DIR)/%.result: $(TESTS_DIR)/%.in $(TESTS_DIR)/%.out $(EXE_MTEST)
 	@if $(EXE_MTEST) < $(TESTS_DIR)/$*.in | diff --strip-trailing-cr - $(word 2,$^) > /dev/null; then \
 		echo "- $< $(word 2,$^): $(GREEN)PASS$(RESET)"; \
@@ -63,16 +69,12 @@ $(TEST_RESULTS): $(TESTS_DIR)/%.result: $(TESTS_DIR)/%.in $(TESTS_DIR)/%.out $(E
 		fi; \
 	fi > $@
 
-SRC_FILE = $(wildcard $(word 2, $(MAKECMDGOALS))/*.c)
-SRC_MTEST = $(wildcard $(word 2, $(MAKECMDGOALS))/tests/*.c)
-OBJ_FILE = $(OUTPUT_DIR)/$(SRC_FILE:.c=.o)
-OBJ_MTEST = $(OUTPUT_DIR)/$(SRC_MTEST:.c=.o)
-EXE_MTEST = $(OBJ_MTEST:.o=)
-$(EXE_MTEST):
+	
+$(EXE_MTEST): $(SRC_MTEST) $(SRC)
 	$(info [Compiling Dependencies...])
-	mkdir -p $(@D)
+	@mkdir -p $(@D)
 	@echo -n ">> "
-	$(CC) $(CFLAGS) -o $(EXE_MTEST) $(SRC_MTEST) $(SRC_FILE)
+	$(CC) $(CFLAGS) -o $(EXE_MTEST) $(SRC_MTEST) $(SRC)
 
 ifeq ($(word 2, $(MAKECMDGOALS)),)
 DIRS = $(wildcard ADT/*) $(wildcard Bin/*)
@@ -85,9 +87,9 @@ test:
 	done
 	
 else
+
 test: $(EXE_MTEST) $(TEST_RESULTS)
-	mkdir -p $(@D)
-	$(CC) $(CFLAGS) -o $(EXE_MTEST) $(SRC_MTEST) $(SRC_FILE)
+	@mkdir -p $(@D)
 	$(info [Test $(word 2, $(MAKECMDGOALS))])
 	@cat $(TEST_RESULTS)
 endif

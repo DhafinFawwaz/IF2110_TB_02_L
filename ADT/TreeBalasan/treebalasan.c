@@ -1,75 +1,90 @@
 #include "treebalasan.h"
 #include "stdlib.h"
+#include "stdio.h"
 
-int banyakKicauanBerTreeBalasan;
-TreeBalasan currentTreeBalasan;
-TreeBalasan listTreeBalasan[LISTDIN_BALASAN_DEFAULT_CAPACITY];
+int banyakKicauanBerbalasan;
+TreeBalasanAddress currentTreeBalasan;
 
-void CreateTreeBalasan(TreeBalasan *l, int capacity){
-    l = (TreeBalasan*) malloc(capacity*sizeof(TreeBalasan));
-    (*l).childNeff = 0;
-    (*l).childCapacity = capacity;
+TreeBalasanAddress newTreeBalasan(TreeBalasan treebalasan){
+    TreeBalasanAddress new = (TreeBalasanAddress) malloc(sizeof(TreeBalasan));
+    new->id = treebalasan.id;
+    new->idParent = treebalasan.idParent;
+    SetToCurrentDateTime(&new->dateTime);
+    new->nama = treebalasan.nama;
+    new->text = treebalasan.text;
+    return new;
 }
 
-void dealocateTreeBalasan(TreeBalasan *l){
-    free(l);
-    (*l).childNeff = 0;
-    (*l).childCapacity = 0;
-}
-
-boolean isListdinTreeBalasanFull(TreeBalasan l){
-    return (l.childNeff == l.childCapacity);
-}
-
-// Memasukkan inserted ke *l
-void insertAtTreeBalasan(TreeBalasan *l, int idx, TreeBalasan inserted){
-    if(isListdinTreeBalasanFull(*l)){
-        (*l).childCapacity *= 2;
-        (*l).listdinBalasan = (TreeBalasan*) realloc((*l).listdinBalasan, (*l).childCapacity*sizeof(TreeBalasan));
-    }else{
-        int i;
-        for(i = (*l).childNeff; i > idx; i--){
-            (*l).listdinBalasan[i] = (*l).listdinBalasan[i-1];
-        }
-        (*l).listdinBalasan[idx] = inserted;
-        (*l).childNeff++;
-    }
+void CreateTreeBalasan(TreeBalasanAddress l){
+    l = (TreeBalasanAddress) malloc(sizeof(TreeBalasan));
+    l->idParent = -1;
+    l->id = -1;
+    SetToCurrentDateTime(&l->dateTime);
 }
 
 // Memasukkan inserted ke *l dari paling belakang
-void insertLastTreeBalasan(TreeBalasan *l, TreeBalasan inserted){
-
-}
-
-// Hapus elemen di index idx dan nilainya dimasukkan ke deleted
-void deleteAtTreeBalasan(TreeBalasan *l, int idx, TreeBalasan *deleted){
-
-}
-
-void copyTreeBalasan(TreeBalasan *destination, TreeBalasan source){
-    // int i = destination->childNeff;
-
-}
-
-
-void DebugListTreeBalasan();
-
-/*
-void DebugListTreeBalasan(){
-    printf("======== [Debug listTreeBalasan] ========\n");
-    int i = 0;
-    for(i = 0; i < banyakKicauanBerTreeBalasan; i++){
-        printf("[TreeBalasan ke-%d]\n", i+1);
-        displayTreeBalasan(listTreeBalasan[i]);
+void insertLastTreeBalasan(TreeBalasanAddress l, TreeBalasan inserted){
+    TreeBalasanAddress curr = l;
+    while (curr->nextSibling != NULL)
+    {
+        curr = curr->nextSibling;
     }
-    printf("======== [Debug listTreeBalasan End] ========\n");
+    curr->nextSibling = newTreeBalasan(inserted);
 }
 
-void displayTreeBalasan(TreeBalasan TreeBalasan){
-    printf("idParent: %d\n", TreeBalasan.idParent);
-    printf("id: %d\n", TreeBalasan.id);
-    printf("banyakTreeBalasan: %d\n", TreeBalasan.banyakTreeBalasan);
-    printf("text: ", TreeBalasan.text.TabWord);
-    printf("nama: ", TreeBalasan.nama.TabWord);
+void replyTreeBalasan(TreeBalasanAddress l, TreeBalasan inserted){
+    if(l->child == NULL){
+        l->child = newTreeBalasan(inserted);
+    }else{
+        insertLastTreeBalasan(l->child, inserted);
+    }
 }
-*/
+
+// Hapus elemen di index idx dan nilainya dimasukkan ke deleted. delete secara cascade
+void deleteAtTreeBalasan(TreeBalasanAddress l, int idx, TreeBalasan *deleted){
+    if(idx == 0){
+        *deleted = *l;
+        *l = *(l->nextSibling);
+    }else{
+        TreeBalasanAddress curr = l;
+        int i = 0;
+        while (i < idx-1)
+        {
+            curr = curr->nextSibling;
+            i++;
+        }
+        *deleted = *(curr->nextSibling);
+        curr->nextSibling = curr->nextSibling->nextSibling;
+    }
+    if(deleted->child != NULL){
+        deleteAtTreeBalasan(deleted->child, 0, deleted);
+    }
+}
+
+int lengthTreeBalasan(TreeBalasan l){
+    int count = 0;
+    TreeBalasanAddress curr = &l;
+    while (curr != NULL)
+    {
+        count++;
+        curr = curr->nextSibling;
+    }
+    return count;
+}
+void debugTreeBalasan(TreeBalasanAddress l, int depth){
+    if(l == NULL) return;
+    else{
+        int i = 0;
+        for(i = 0; i < depth; i++){
+            printf(" ");
+        }
+        printf("%d\n", l->id);
+        debugTreeBalasan(l->child, depth+1);
+        debugTreeBalasan(l->nextSibling, depth);
+    }
+}
+void DebugCurrentTreeBalasan(){
+    printf("====================== Debug currentTreeBalasan ======================\n");
+    debugTreeBalasan(currentTreeBalasan, 0);
+    printf("====================== Debug currentTreeBalasan End ======================\n");
+}

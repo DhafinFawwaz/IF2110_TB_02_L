@@ -5,46 +5,39 @@
 #include "../DateTime/datetime.h"
 #include "../Boolean/boolean.h"
 
-#define LISTDIN_BALASAN_DEFAULT_CAPACITY 4
-
-typedef struct treebalasan* TreeAddress;
+typedef struct treebalasan* TreeBalasanAddress;
 
 typedef struct treebalasan
 {
     int idParent;
     int id;
-    int banyakBalasan;
     Word text;
     Word nama;
     DateTime dateTime;
 
-    TreeAddress listdinBalasan; 
-    int childCapacity;
-    int childNeff;
+    TreeBalasanAddress child; 
+    TreeBalasanAddress nextSibling; 
 } TreeBalasan;
 
 extern int banyakKicauanBerbalasan;
-extern TreeBalasan currentBalasan;
-extern TreeBalasan listBalasan[LISTDIN_BALASAN_DEFAULT_CAPACITY];
+extern TreeBalasanAddress currentTreeBalasan;
 
-void CreateBalasan(TreeBalasan *l, int capacity);
+TreeBalasanAddress newTreeBalasan(TreeBalasan treebalasan);
 
-void dealocateBalasan(TreeBalasan *l);
+void CreateTreeBalasan(TreeBalasanAddress t);
 
-boolean isListdinBalasanFull(TreeBalasan l);
-
-// Memasukkan inserted ke *l
-void insertAtBalasan(TreeBalasan *l, int idx, TreeBalasan inserted);
+int lengthTreeBalasan(TreeBalasan t);
 
 // Memasukkan inserted ke *l dari paling belakang
-void insertLastBalasan(TreeBalasan *l, TreeBalasan inserted);
+void insertLastTreeBalasan(TreeBalasanAddress t, TreeBalasan inserted);
+
+// Kalau childnya kosong, maka insert ke child, kalau tidak, insert ke child->nextSibling yang paling belakang
+void replyTreeBalasan(TreeBalasanAddress t, TreeBalasan inserted);
 
 // Hapus elemen di index idx dan nilainya dimasukkan ke deleted
-void deleteAtBalasan(TreeBalasan *l, int idx, TreeBalasan *deleted);
+void deleteAtTreeBalasan(TreeBalasanAddress t, int idx, TreeBalasanAddress deleted);
 
-void copyBalasan(TreeBalasan *destination, TreeBalasan source);
-
-void DebugListBalasan();
+void DebugCurrentTreeBalasan();
 
 
 #endif
