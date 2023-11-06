@@ -29,35 +29,70 @@ void insertLastTreeBalasan(TreeBalasanAddress l, TreeBalasan inserted){
     {
         curr = curr->nextSibling;
     }
-    curr->nextSibling = newTreeBalasan(inserted);
+    TreeBalasanAddress new = newTreeBalasan(inserted);
+    curr->nextSibling = new;
+    new->prevSibling = curr;
+    new->parent = l->parent;
 }
 
 void replyTreeBalasan(TreeBalasanAddress l, TreeBalasan inserted){
     if(l->child == NULL){
-        l->child = newTreeBalasan(inserted);
+        TreeBalasanAddress new = newTreeBalasan(inserted);
+        l->child = new;
+        new->parent = l;
     }else{
         insertLastTreeBalasan(l->child, inserted);
     }
 }
 
-// Hapus elemen di index idx dan nilainya dimasukkan ke deleted. delete secara cascade
-void deleteAtTreeBalasan(TreeBalasanAddress l, int idx, TreeBalasan *deleted){
-    if(idx == 0){
-        *deleted = *l;
-        *l = *(l->nextSibling);
-    }else{
-        TreeBalasanAddress curr = l;
-        int i = 0;
-        while (i < idx-1)
-        {
-            curr = curr->nextSibling;
-            i++;
-        }
-        *deleted = *(curr->nextSibling);
-        curr->nextSibling = curr->nextSibling->nextSibling;
+
+// free semua child dan nextSibling dari l
+void deleteTreeBalasanRecursive(TreeBalasanAddress l){
+    if(l == NULL) return;
+    else{
+        if(l->child != NULL) deleteCascadeTreeBalasan(l->child);
+        if(l->nextSibling != NULL) deleteCascadeTreeBalasan(l->nextSibling);
+        free(l);
     }
-    if(deleted->child != NULL){
-        deleteAtTreeBalasan(deleted->child, 0, deleted);
+}
+
+// Hapus elemen di index idx dan nilainya dimasukkan ke deleted. delete secara cascade
+void deleteCascadeTreeBalasan(TreeBalasanAddress l){
+    if(l->prevSibling == NULL && l->nextSibling == NULL){ // satu elemen
+        if(l->child != NULL){
+            deleteTreeBalasanRecursive(l->child);
+            l->child = NULL;
+        }
+        if(l->parent != NULL){
+            l->parent->child = NULL;
+        }
+        l = NULL;
+    }else if(l->prevSibling == NULL){ // elemen pertama
+        if(l->child != NULL){
+            deleteTreeBalasanRecursive(l->child);
+            l->child = NULL;
+        }
+        if(l->parent != NULL){
+            l->parent->child = l->nextSibling;
+        }
+        l->nextSibling->prevSibling = NULL;
+        *l = *(*l).nextSibling;
+        free(l->prevSibling);
+    }else if(l->nextSibling == NULL){ // elemen terakhir
+        if(l->child != NULL){
+            deleteTreeBalasanRecursive(l->child);
+            l->child = NULL;
+        }
+        l->prevSibling->nextSibling = NULL;
+        free(l);
+    }else{ // elemen tengah
+        if(l->child != NULL){
+            deleteTreeBalasanRecursive(l->child);
+            l->child = NULL;
+        }
+        l->prevSibling->nextSibling = l->nextSibling;
+        l->nextSibling->prevSibling = l->prevSibling;
+        free(l);
     }
 }
 
@@ -78,7 +113,12 @@ void debugTreeBalasan(TreeBalasanAddress l, int depth){
         for(i = 0; i < depth; i++){
             printf(" ");
         }
-        printf("%d\n", l->id);
+        printf("%d", l->id);
+        if(l->prevSibling != NULL) printf("   %d<-", l->prevSibling->id);else printf("      ");
+        if(l->parent != NULL) printf("   ^%d", l->parent->id);else printf("      ");
+        if(l->nextSibling != NULL) printf("   ->%d", l->nextSibling->id);else printf("      ");
+        printf("\n");
+
         debugTreeBalasan(l->child, depth+1);
         debugTreeBalasan(l->nextSibling, depth);
     }

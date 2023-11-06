@@ -16,6 +16,8 @@ typedef struct treebalasan
     DateTime dateTime;
 
     TreeBalasanAddress child; 
+    TreeBalasanAddress parent;
+    TreeBalasanAddress prevSibling; 
     TreeBalasanAddress nextSibling; 
 } TreeBalasan;
 
@@ -35,7 +37,7 @@ void insertLastTreeBalasan(TreeBalasanAddress t, TreeBalasan inserted);
 void replyTreeBalasan(TreeBalasanAddress t, TreeBalasan inserted);
 
 // Hapus elemen di index idx dan nilainya dimasukkan ke deleted
-void deleteAtTreeBalasan(TreeBalasanAddress t, int idx, TreeBalasanAddress deleted);
+void deleteCascadeTreeBalasan(TreeBalasanAddress t);
 
 void DebugCurrentTreeBalasan();
 
