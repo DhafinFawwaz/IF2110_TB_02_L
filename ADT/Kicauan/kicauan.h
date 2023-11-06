@@ -35,8 +35,8 @@ void createKicauan();
 void printKicauan(Kicauan kicauan);
 void printKicauan(Kicauan kicauan);
 
-void KICAU(Word currPengguna);
-void KICAU(Word currPengguna);
+void kicau(Word currPengguna);
+void kicau(Word currPengguna);
 
 // void KICAUAN(ListDinKicauan l_kicauan, Word currPengguna);
 // void KICAUAN(ListDinKicauan l_kicauan, Word currPengguna);

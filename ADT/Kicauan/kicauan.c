@@ -18,8 +18,8 @@ void printKicauan(Kicauan kicauan){
     printf("| Disukai : %d", JUMLAH_LIKE(kicauan));
 }
 
-void KICAU(Word currPengguna);
-void KICAU(Word currPengguna){
+void kicau(Word currPengguna);
+void kicau(Word currPengguna){
     // Word input_kicauan;
     printf("Masukkan kicauan:\n");
     // <--Disini nanti diminta masukan input_kicauan
