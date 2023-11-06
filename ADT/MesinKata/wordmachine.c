@@ -218,3 +218,21 @@ Word stringToWord(const char* str){
     result.Length = str_length;
     return result;
 }
+
+char* wordToString(Word w){
+    static char result[NMax + 1];
+    for (int i = 0; i < w.Length; i++){
+        result[i] = w.TabWord[i];
+    }
+    result[w.Length] = '\0';
+    return result;
+}
+
+char wordToChar(Word w){
+    if (w.Length > 0){
+        return w.TabWord[0];
+    }
+    else{
+        return '\0';
+    }
+}

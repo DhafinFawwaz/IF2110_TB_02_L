@@ -56,8 +56,10 @@ Word cleanWord(Word w);
 int wordToInt(Word w);
 void setWord(Word* w, char s[]);
 boolean compareWord(Word w1, Word w2);
+void capCurrentWord(int cap);
 void printWord(Word w);
 Word stringToWord(const char* str);
-
+char* wordToString(Word w);
+char wordToChar(Word w);
 
 #endif
