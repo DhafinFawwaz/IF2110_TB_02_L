@@ -3,26 +3,7 @@
 #include "../Pengguna/pengguna.h"
 #include <stdio.h>
 
-void readInput(){
-    int i;
-    START();
-    IgnoreBlanks();
-
-    currentWord.Length = 0;
-    i = 0;
-
-    while ((currentChar != MARK) && (i < NMax)) {
-        currentWord.TabWord[i] = currentChar;
-        ADV();
-        i++;
-    }
-
-    currentWord.Length = i;
-
-    currentWord.TabWord[i] = '\0';
-}
-
-
+#define MAX_ARGUMENT 3
 
 Word DAFTAR = {.TabWord = "DAFTAR", .Length = 6};
 Word MASUK = {.TabWord = "MASUK", .Length = 5};
@@ -62,6 +43,44 @@ Word SIMPAN = {.TabWord = "SIMPAN", .Length = 6};
 Word MUAT = {.TabWord = "MUAT", .Length = 4};
 
 Word LIST_PERINTAH = {.TabWord = "LIST_PERINTAH", .Length = 13};
+
+
+void readInput(){
+    int i;
+    START();
+    IgnoreBlanks();
+
+    currentWord.Length = 0;
+    i = 0;
+
+    while ((currentChar != MARK) && (i < NMax)) {
+        currentWord.TabWord[i] = currentChar;
+        ADV();
+        i++;
+    }
+
+    currentWord.Length = i;
+
+    currentWord.TabWord[i] = '\0';
+}
+void extractPerintah(Word input, Word perintahArgumen[]){
+    int i = 0;
+    int j = 0;
+    int blankCount = 0;
+    while(i < input.Length){
+        if(input.TabWord[i] == BLANK){
+            blankCount++;
+            j = 0;
+            while(input.TabWord[i] == BLANK)i++;
+        }else{
+            perintahArgumen[blankCount].Length = j+1;
+            perintahArgumen[blankCount].TabWord[j] = input.TabWord[i];
+            perintahArgumen[blankCount].TabWord[j+1] = '\0';
+            j++;
+            i++;
+        }
+    }
+}
 
 void displayListPerintah(){
     
@@ -119,45 +138,73 @@ void displayListPerintah(){
 
 void handlePerintah(){
     printf(">> ");
+
     readInput();
-    if(compareWord(currentWord, DAFTAR))daftar();
-    else if(compareWord(currentWord, MASUK))masuk();
-    else if(compareWord(currentWord, KELUAR));
-    else if(compareWord(currentWord, TUTUP_PROGRAM));
+    Word perintahArgumen[MAX_ARGUMENT];
+    extractPerintah(currentWord,perintahArgumen);
+
+    if(compareWord(perintahArgumen[0], DAFTAR))daftar();
+    else if(compareWord(perintahArgumen[0], MASUK))masuk();
+    else if(compareWord(perintahArgumen[0], KELUAR));
+    else if(compareWord(perintahArgumen[0], TUTUP_PROGRAM));
 
     else if(compareWord(currentWord, GANTI_PROFIL));
-    else if(compareWord(currentWord, LIHAT_PROFIL)); // LIHAT_PROFIL <nama pengguna>;
-    else if(compareWord(currentWord, ATUR_JENIS_AKUN));
-    else if(compareWord(currentWord, UBAH_FOTO_PROFIL));
+    else if(compareWord(perintahArgumen[0], LIHAT_PROFIL)){  // LIHAT_PROFIL <nama pengguna>;
+        Word nama = perintahArgumen[1];
+    }
+    else if(compareWord(perintahArgumen[0], ATUR_JENIS_AKUN));
+    else if(compareWord(perintahArgumen[0], UBAH_FOTO_PROFIL));
 
-    else if(compareWord(currentWord, DAFTAR_TEMAN));
-    else if(compareWord(currentWord, HAPUS_TEMAN));
+    else if(compareWord(perintahArgumen[0], DAFTAR_TEMAN));
+    else if(compareWord(perintahArgumen[0], HAPUS_TEMAN));
 
-    else if(compareWord(currentWord, TAMBAH_TEMAN));
-    else if(compareWord(currentWord, DAFTAR_PERMINTAAN_PERTEMANAN));
-    else if(compareWord(currentWord, SETUJUI_PERTEMANAN));
+    else if(compareWord(perintahArgumen[0], TAMBAH_TEMAN));
+    else if(compareWord(perintahArgumen[0], DAFTAR_PERMINTAAN_PERTEMANAN));
+    else if(compareWord(perintahArgumen[0], SETUJUI_PERTEMANAN));
 
-    else if(compareWord(currentWord, KICAU));
-    else if(compareWord(currentWord, KICAUAN));
-    else if(compareWord(currentWord, SUKA_KICAUAN)); // SUKA_KICAUAN <id kicauan>;
-    else if(compareWord(currentWord, UBAH_KICAUAN)); // UBAH_KICAUAN <id kicauan>;
+    else if(compareWord(perintahArgumen[0], KICAU));
+    else if(compareWord(perintahArgumen[0], KICAUAN));
+    else if(compareWord(perintahArgumen[0], SUKA_KICAUAN)){ // SUKA_KICAUAN <id kicauan>;
+        int idKicauan = wordToInt(perintahArgumen[1]);
+    }
+    else if(compareWord(perintahArgumen[0], UBAH_KICAUAN)){  // UBAH_KICAUAN <id kicauan>;
+        int idKicauan = wordToInt(perintahArgumen[1]);
+    }
 
-    else if(compareWord(currentWord, BALAS));  // BALAS <id kicauan> <id balasan>;
-    else if(compareWord(currentWord, BALASAN));  // BALASAN <id kicauan>;
-    else if(compareWord(currentWord, HAPUS_BALASAN)); // HAPUS_BALASAN <id kicauan> <id balasan>;
+    else if(compareWord(perintahArgumen[0], BALAS)){ // BALAS <id kicauan> <id balasan>;
+        int idKicauan = wordToInt(perintahArgumen[1]);
+        int idBalasan = wordToInt(perintahArgumen[2]);
+    }
+    else if(compareWord(perintahArgumen[0], BALASAN)){ // BALASAN <id kicauan>;
+        int idKicauan = wordToInt(perintahArgumen[1]);
+    }
+    else if(compareWord(perintahArgumen[0], HAPUS_BALASAN)){ // HAPUS_BALASAN <id kicauan> <id balasan>;
+        int idKicauan = wordToInt(perintahArgumen[1]);
+        int idBalasan = wordToInt(perintahArgumen[2]);
+    }
 
-    else if(compareWord(currentWord, BUAT_DRAF));
-    else if(compareWord(currentWord, LIHAT_DRAF));
+    else if(compareWord(perintahArgumen[0], BUAT_DRAF));
+    else if(compareWord(perintahArgumen[0], LIHAT_DRAF));
 
-    else if(compareWord(currentWord, UTAS)); // UTAS <id kicauan>;
-    else if(compareWord(currentWord, SAMBUNG_UTAS)); // SAMBUNG_UTAS <id utas> <index>;
-    else if(compareWord(currentWord, HAPUS_UTAS)); // HAPUS_UTAS <id utas> <index>;
-    else if(compareWord(currentWord, CETAK_UTAS)); // CETAK_UTAS <id utas>;
+    else if(compareWord(perintahArgumen[0], UTAS)){ // UTAS <id kicauan>;
+        int idKicauan = wordToInt(perintahArgumen[1]);
+    }
+    else if(compareWord(perintahArgumen[0], SAMBUNG_UTAS)){ // SAMBUNG_UTAS <id utas> <index>;
+        int idUtas = wordToInt(perintahArgumen[1]);
+        int index = wordToInt(perintahArgumen[2]);
+    }
+    else if(compareWord(perintahArgumen[0], HAPUS_UTAS)){ // HAPUS_UTAS <id utas> <index>;
+        int idUtas = wordToInt(perintahArgumen[1]);
+        int index = wordToInt(perintahArgumen[2]);
+    }
+    else if(compareWord(perintahArgumen[0], CETAK_UTAS)){ // CETAK_UTAS <id utas>;
+        int idUtas = wordToInt(perintahArgumen[1]);
+    }
 
-    else if(compareWord(currentWord, SIMPAN));
-    else if(compareWord(currentWord, MUAT));
+    else if(compareWord(perintahArgumen[0], SIMPAN));
+    else if(compareWord(perintahArgumen[0], MUAT));
 
-    else if(compareWord(currentWord, LIST_PERINTAH))displayListPerintah();
+    else if(compareWord(perintahArgumen[0], LIST_PERINTAH))displayListPerintah();
     else {
         printf("Perintah tidak dikenali. Gunakan 'LIST_PERINTAH' untuk melihat list perintah yang bisa dilakukan.\n\n");
     }
