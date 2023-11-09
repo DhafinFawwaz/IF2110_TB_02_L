@@ -200,6 +200,14 @@ void capCurrentWord(int cap){
     currentWord.Length = cap;
 }
 
+void capWord(Word w, int cap){
+    int i = cap;
+    for(i = cap; i < w.Length; i++){
+        w.TabWord[i] = '\0';
+    }
+    w.Length = cap;
+}
+
 void printWord(Word w){
     for (int i = 0; i < w.Length; i++){
         printf("%c", w.TabWord[i]);
