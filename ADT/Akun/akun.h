@@ -25,6 +25,7 @@ typedef struct akun
 /* Jika A adalah Akun, maka akses elemen : */
 #define Username(A) (A).username
 #define Password(A) (A).password
+#define Profil(A) (A).profil
 
 extern Akun currentAkun; // Global variable
 void CreateAkun(Akun* akun);
