@@ -33,6 +33,9 @@ Word HAPUS_BALASAN = {.TabWord = "HAPUS_BALASAN", .Length = 13}; // HAPUS_BALASA
 
 Word BUAT_DRAF = {.TabWord = "BUAT_DRAF", .Length = 9};
 Word LIHAT_DRAF = {.TabWord = "LIHAT_DRAF", .Length = 10};
+Word HAPUS_DRAF = {.TabWord = "HAPUS", .Length = 5};
+Word SIMPAN_DRAF = {.TabWord = "SIMPAN", .Length = 6};
+Word TERBIT_DRAF = {.TabWord = "TERBIT", .Length = 6};
 
 Word UTAS = {.TabWord = "UTAS", .Length = 4}; // UTAS <id kicauan>;
 Word SAMBUNG_UTAS = {.TabWord = "SAMBUNG_UTAS", .Length = 12}; // SAMBUNG_UTAS <id utas> <index>;

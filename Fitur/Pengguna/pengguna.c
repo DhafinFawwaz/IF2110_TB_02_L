@@ -7,7 +7,6 @@
 #include "../Perintah/perintah.h"
 
 boolean isLogin = false;
-Word currentPengguna;
 int effID = 0;
 
 void daftar(){
@@ -62,9 +61,7 @@ void masuk(){
     } else {
         printf("\nAnda sudah masuk. Keluar dulu yuk!");
     }
-
 }
-
 
 void keluar(){
     if (isLogin == true){
@@ -79,9 +76,3 @@ void keluar(){
 void tutup_program(){
     printf("Anda telah keluar dari program BurBir. Sampai jumpa di penjelajahan berikutnya!\n");
 }
-
-// int main(){
-//     List pengguna;
-//     listStatikAkun_Create(&pengguna);
-
-// }

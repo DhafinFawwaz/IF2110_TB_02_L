@@ -16,4 +16,12 @@ extern DrafKicauan listDraftkicauan[100]; // sementara di array aja dulu
 
 void DebugListDraftKicauan();
 
+void buat_draf();
+void lihat_draf();
+
+void hapus_draf();
+void simpan_draf();
+void terbit_draf();
+void ubah_draf();
+
 #endif
