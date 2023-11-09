@@ -1,45 +1,47 @@
+/* File: foto.c */
+/* ADT Foto untuk foto profil pengguna yang berbentuk matriks persegi 5 x 5 dengan warna dan simbol */
+
 #include <stdio.h>
 #include "foto.h"
-#include "../Pcolor/pcolor.h"
 
-#define MATRIX(foto) (foto).buffer
-
-void CreateFoto(Foto* foto){
-    int i = 0;
-    for(i = 0; i < FOTO_ROW_CAP; i++){
-        int j = 0;
-        for(j = 0; j < FOTO_COL_CAP; j++){
-            Pixel pixel;
-            pixel.color = RED_CHAR;
-            pixel.val = '*';
-            setPixel(foto,i,j,pixel);
+/* *** PROTOTYPE *** */
+/* *** PEMBUATAN DENGAN NILAI DEFAULT *** */
+void CreateFotoProfil(Foto *F){
+    /* Mengisi foto profil dengan nilai default */
+    for (int i = 0; i < 5; i++){
+        for (int j = 0; j < 5; j++){
+            Warna(*F, i, j) = 'R';
+            Simbol(*F, i, j) = '*';
         }
     }
 }
 
-void setPixel(Foto* foto, IdxType row, IdxType col, Pixel pixel){
-    MATRIX(*foto)[row][col] = pixel;
+/* *** PENGUBAHAN NILAI *** */
+void changeFotoProfil(Foto *F, Word w){
+    /* Mengubah foto profil berdasarkan masukan pengguna */
+    for (int i = 0; i < 5; i++){
+        for (int j = 0; j < 5; j++){
+            Warna(*F, i, j) = w.TabWord[i * 20 + 4 * j];
+            Simbol(*F, i, j) = w.TabWord[i * 20 + 4 * j + 2];            
+        }
+    }
 }
-void setColor(Foto* foto, IdxType row, IdxType col, char c){
-    MATRIX(*foto)[row][col].color = c;
-}
-void setVal(Foto* foto, IdxType row, IdxType col, char val){
-    MATRIX(*foto)[row][col].val = val;
-}
-void displayFoto(Foto foto){
-    int j = 0;
-    for(j = 0; j < FOTO_ROW_CAP; j++){
-        int k = 0;
-        for(k = 0; k < FOTO_COL_CAP; k++){
-            printPixel(foto.buffer[j][k]);
-            printf(" ");
+
+/* *** PENAMPILAN NILAI *** */
+void displayFotoProfil(Foto F){
+    /* Menampilkan foto profil pengguna */
+    for (int i = 0; i < 5; i++){
+        for (int j = 0; j < 5; j++){
+            if (Warna(F, i, j) == 'R'){
+                print_red(Simbol(F, i, j));
+            }
+            else if (Warna(F, i, j) == 'G'){
+                print_green(Simbol(F, i, j));
+            }
+            else if (Warna(F, i, j) == 'B'){
+                print_blue(Simbol(F, i, j));
+            }
         }
         printf("\n");
     }
-}
-void printPixel(Pixel p){
-    if(p.color == NORMAL_CHAR) printf("%c", p.val);
-    else if(p.color == RED_CHAR) print_red(p.val);
-    else if(p.color == GREEN_CHAR) print_green(p.val);
-    else if(p.color == BLUE_CHAR) print_blue(p.val);
 }

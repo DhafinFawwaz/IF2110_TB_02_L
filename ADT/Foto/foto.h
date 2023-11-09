@@ -1,23 +1,33 @@
-#ifndef FOTOPROFILE_H
-#define FOTOPROFILE_H
+/* File: foto.h */
+/* ADT Foto untuk foto profil pengguna yang berbentuk matriks persegi 5 x 5 dengan warna dan simbol */
 
-#include "pixel.h"
+#ifndef FOTO_H
+#define FOTO_H
 
-/* Ukuran maksimum baris dan kolom */
-#define FOTO_ROW_CAP 5
-#define FOTO_COL_CAP 5
+/* *** ADT LAIN YANG DIPAKAI *** */
+#include "../Pcolor/pcolor.h"
+#include "../MesinKata/wordmachine.h"
 
-typedef int IdxType; /* Index baris, kolom */
-
-typedef struct foto
-{
-    Pixel buffer[FOTO_ROW_CAP][FOTO_COL_CAP];
+/* *** DEFINISI TYPE FOTO *** */
+typedef struct foto {
+    char warna[5][5];
+    char simbol[5][5];
 } Foto;
 
-void CreateFoto(Foto* foto);
-void setPixel(Foto* foto, IdxType row, IdxType col, Pixel pixel);
-void setColor(Foto* foto, IdxType row, IdxType col, char c);
-void setVal(Foto* foto, IdxType row, IdxType col, char val);
-void displayFoto(Foto foto);
-void printPixel(Pixel p);
+/* ********* AKSES (Selektor) ********* */
+/* Jika F adalah Foto, maka akses elemen : */
+#define Warna(F, i, j) (F).warna[i][j]
+#define Simbol(F, i, j) (F).simbol[i][j]
+
+/* *** PROTOTYPE *** */
+/* *** PEMBUATAN DENGAN NILAI DEFAULT *** */
+void CreateFotoProfil(Foto *F);
+/* Mengisi foto profil dengan nilai default */
+/* *** PENGUBAHAN NILAI *** */
+void changeFotoProfil(Foto *F, Word w);
+/* Mengubah foto profil berdasarkan masukan pengguna */
+/* *** PENAMPILAN NILAI *** */
+void displayFotoProfil(Foto F);
+/* Menampilkan foto profil pengguna */
+
 #endif
