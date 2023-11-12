@@ -10,15 +10,15 @@ Utas newNode(ElType val){
 	return p;
 }
 
-void CreateList(List *l){
+void Utas_CreateUtas(Utas *l){
 	*l = NULL;
 }
 
-boolean isEmpty(List l){
+boolean Utas_isEmpty(Utas l){
 	return (l == NULL);
 }
 
-ElType getElmt(List l, int idx){
+ElType Utas_getElmt(Utas l, int idx){
 	int ctr = 0;
 	Utas p = l;
 	while (ctr<idx) {
@@ -29,7 +29,7 @@ ElType getElmt(List l, int idx){
 	return INFO(p);
 }
 
-void setElmt(List *l, int idx, ElType val){
+void Utas_setElmt(Utas *l, int idx, ElType val){
 	int ctr = 0;
 	Utas p = *l;
 	while (ctr<idx) {
@@ -40,7 +40,7 @@ void setElmt(List *l, int idx, ElType val){
 	INFO(p) = val;
 }
 
-int indexOf(List l, ElType val){
+int Utas_indexOf(Utas l, ElType val){
 	int idx = 0;
 	Utas p = l;
 	boolean found = false;
@@ -57,7 +57,7 @@ int indexOf(List l, ElType val){
 	else return IDX_UNDEF;
 }
 
-void insertFirst(List *l, ElType val){
+void Utas_insertFirst(Utas *l, ElType val){
 	Utas p;
 	p = newNode(val);
 	if (p != NULL) {
@@ -66,8 +66,8 @@ void insertFirst(List *l, ElType val){
 	}
 }
 
-void insertLast(List *l, ElType val){
-	if (isEmpty(*l)) insertFirst(l, val);
+void Utas_insertLast(Utas *l, ElType val){
+	if (Utas_isEmpty(*l)) Utas_insertFirst(l, val);
 	else {
 		Utas p = newNode(val);
 		if (p != NULL) {
@@ -80,8 +80,8 @@ void insertLast(List *l, ElType val){
 	}
 }
 
-void insertAt(List *l, ElType val, int idx){
-	if (idx == 0) insertFirst(l, val);
+void Utas_insertAt(Utas *l, ElType val, int idx){
+	if (idx == 0) Utas_insertFirst(l, val);
 	else{
 		Utas p = newNode(val);
 		if (p != NULL){
@@ -97,14 +97,14 @@ void insertAt(List *l, ElType val, int idx){
 	}
 }
 
-void deleteFirst(List *l, ElType *val){
+void Utas_deleteFirst(Utas *l, ElType *val){
 	Utas p = *l;
 	*val = INFO(p);
 	*l = NEXT(p);
 	free(p);
 }
 
-void deleteLast(List *l, ElType *val){
+void Utas_deleteLast(Utas *l, ElType *val){
 	Utas p, loc;
 	
 	p = *l;
@@ -125,12 +125,12 @@ void deleteLast(List *l, ElType *val){
 	free(p);
 }
 
-void deleteAt(List *l, int idx, ElType *val){
+void Utas_deleteAt(Utas *l, int idx, ElType *val){
 	int ctr;
 	Utas p, loc;
 	
 	if (idx == 0){
-		deleteFirst(l,val);
+		Utas_deleteFirst(l,val);
 	}
 	else{
 		ctr = 0;
@@ -148,12 +148,12 @@ void deleteAt(List *l, int idx, ElType *val){
 
 }
 
-void displayList(List l) {
+void Utas_displayUtas(Utas l) {
 
 	printf("[");
 
 	Utas p = l;
-	if (!isEmpty(p)){
+	if (!Utas_isEmpty(p)){
 		while (NEXT(p) != NULL) {
 			// printf("%d,", INFO(p));
 			p = NEXT(p);
@@ -166,7 +166,7 @@ void displayList(List l) {
 
 }
 
-int length(List l){
+int length(Utas l){
 	int ctr = 0;
 	Utas p = l;
 	while (p != NULL){
@@ -176,20 +176,20 @@ int length(List l){
 	return ctr;
 }
 
-List concat(List l1, List l2) {
+Utas Utas_concatUtas(Utas l1, Utas l2) {
 	Utas p;
-	List l3;
+	Utas l3;
 
-	CreateList(&l3);
+	Utas_CreateUtas(&l3);
 	p = l1;
 	while (p != NULL) {
-		insertLast(&l3, INFO(p));
+		Utas_insertLast(&l3, INFO(p));
 		p = NEXT(p);
 	}
 
 	p = l2;
 	while (p != NULL) {
-		insertLast(&l3, INFO(p));
+		Utas_insertLast(&l3, INFO(p));
 		p = NEXT(p);
 	}
 
