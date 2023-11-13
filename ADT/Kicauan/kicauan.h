@@ -7,6 +7,7 @@
 #include "../MesinKata/wordmachine.h"
 #include "../DateTime/datetime.h"
 
+// Struktur Kicauan
 typedef struct kicauan
 {
     int id;
@@ -14,8 +15,8 @@ typedef struct kicauan
     int likeCount;
     Word namaPembuat;
     DateTime dateTime;
-    // Word tagar;
-    // boolean isUtas;
+    Word tagar;
+    boolean isUtas;
 } Kicauan;
 
 extern int banyakKicauan;
@@ -29,27 +30,57 @@ extern Kicauan listKicauan[100];
 #define WAKTU(k) (k).dateTime
 #define TAGAR(k) (k).tagar
 #define isUTAS(k) (k).isUtas
+// End of Struktur Kicauan
 
-void createKicauan();
+// Struktur List Dinamis Kicauan
+typedef Kicauan* AddressKicauan;
+
+typedef struct listdinkicauan
+{
+    AddressKicauan* contents;
+    int nEff;
+    int cap;
+} ListDinKicauan;
+
+#define ADDR_KICAUAN(l,idx) (l).contents[idx]
+#define CONTENTS_LIST_KICAUAN(l) (l).contents
+#define NEFF_LIST_KICAUAN(l) (l).nEff
+#define CAP_LIST_KICAUAN(l) (l).cap
+// End of Struktur List Dinamis Kicauan
+
+// Global Variable
+extern ListDinKicauan listKicauan;
+// End of Global Variable
+
+// Fungsi dan Prosedur Kicauan
+void createKicauan(Kicauan * k, Word text, Word tagar);
 
 void printKicauan(Kicauan kicauan);
-void printKicauan(Kicauan kicauan);
 
-void kicau(Word currPengguna);
-void kicau(Word currPengguna);
+void kicau();
 
-// void KICAUAN(ListDinKicauan l_kicauan, Word currPengguna);
-// void KICAUAN(ListDinKicauan l_kicauan, Word currPengguna);
+void KICAUAN();
 
-// boolean isAkunPublicByPengguna(Word pengguna);
-// boolean isBerteman(ListDinKicauan l, int id);
+void SUKA_KICAUAN(int id_kicau, ListDinKicauan * l_kicauan);
 
-// void SUKA_KICAUAN(int id_kicau, Word currPengguna,ListDinKicauan l_kicauan);
-// void SUKA_KICAUAN(int id_kicau, Word currPengguna,ListDinKicauan l_kicauan);
-// boolean isSama(Word w1, Word w2);
+void UBAH_KICAUAN(int id_kicau, Word currPengguna, ListDinKicauan l_kicauan);
+// End of Fungsi dan Prosedur Kicauan
 
-// void UBAH_KICAUAN(int id_kicau, Word currPengguna, ListDinKicauan l_kicauan);
-// void UBAH_KICAUAN(int id_kicau, Word currPengguna, ListDinKicauan l_kicauan);
+// Fungsi dan Prosedur List Dinamis Kicauan
+void createListDinKicauan(ListDinKicauan *l, int cap);
+
+void copyContentListKicauan(ListDinKicauan *l1, ListDinKicauan *l2);
+
+void expandListKicauan(ListDinKicauan *l);
+
+boolean isFullListKicauan(ListDinKicauan l);
+
+void insertKicauan(Kicauan *k);
+
+boolean isListKicauanEmpty();
+
+boolean isInListKicauan(int idKicau);
+// End of Fungsi dan Prosedur List Dinamis Kicauan
 
 
 void DebugListKicauan();
