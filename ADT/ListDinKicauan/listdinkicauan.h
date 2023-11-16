@@ -8,7 +8,6 @@
 #include "../DateTime/datetime.h"
 #include "../Akun/akun.h"
 #include "../listKaitUtas/listkaitUtas.h"
-
 // Struktur Kicauan
 typedef struct kicauan
 {
@@ -46,7 +45,7 @@ typedef struct listdinkicauan
 // End of Struktur List Dinamis Kicauan
 
 // Fungsi dan Prosedur Kicauan
-void createKicauan(Kicauan * k, Word text, Word tagar);
+void createKicauan(Kicauan * k, Akun * currentAkun, Word text, Word tagar);
 
 void printKicauan(Kicauan kicauan);
 // End of Fungsi dan Prosedur Kicauan
@@ -60,11 +59,11 @@ void expandListKicauan(ListDinKicauan *l);
 
 boolean isFullListKicauan(ListDinKicauan l);
 
-void insertKicauan(Kicauan *k);
+void insertKicauan(Kicauan *k, ListDinKicauan listKicauan);
 
-boolean isListKicauanEmpty();
+boolean isListKicauanEmpty(ListDinKicauan listKicauan);
 
-boolean isInListKicauan(int idKicau);
+boolean isInListKicauan(int idKicau, ListDinKicauan listKicauan);
 // End of Fungsi dan Prosedur List Dinamis Kicauan
 
 

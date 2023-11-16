@@ -8,8 +8,6 @@
 #include "../../ADT/GrafTeman/grafteman.h"
 #include <stdio.h>
 
-ListStatikAkun listAkun; // Global 
-
 /* ********** KONSTRUKTOR ********** */
 void listStatikAkun_Create(ListStatikAkun *l){
     NEFF(*l) = 0;
@@ -153,14 +151,14 @@ void debugAkun(Akun akun){
     printf("isPublic: %s\n", jenisAkunToWord(akun.isPublic).TabWord);
     displayFotoProfil(akun.profil.foto);
 }
-void DebugListAkun(){
-    printf("======== [Debug listAkun] ========\n");
-    printf("banyakAkun: %d\n", NEFF(listAkun));
-    int i = 0;
-    for(i = 0; i < NEFF(listAkun); i++){
-        printf("[Akun ke-%d]\n", i);
-        debugAkun(CONTENT(listAkun, i));
-    }
-    displayGrafTeman(currentGrafTeman);
-    printf("======== [Debug listAkun End] ========\n");
-}
+// void DebugListAkun(){
+//     printf("======== [Debug listAkun] ========\n");
+//     printf("banyakAkun: %d\n", NEFF(listAkun));
+//     int i = 0;
+//     for(i = 0; i < NEFF(listAkun); i++){
+//         printf("[Akun ke-%d]\n", i);
+//         debugAkun(CONTENT(listAkun, i));
+//     }
+//     displayGrafTeman(currentGrafTeman);
+//     printf("======== [Debug listAkun End] ========\n");
+// }

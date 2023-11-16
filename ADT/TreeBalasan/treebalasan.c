@@ -2,9 +2,6 @@
 #include "stdlib.h"
 #include "stdio.h"
 
-int banyakKicauanBerbalasan;
-TreeBalasanAddress currentTreeBalasan;
-
 TreeBalasanAddress newTreeBalasan(TreeBalasan treebalasan){
     TreeBalasanAddress new = (TreeBalasanAddress) malloc(sizeof(TreeBalasan));
     new->id = treebalasan.id;
@@ -170,8 +167,8 @@ void debugTreeBalasan(TreeBalasanAddress l, int depth){
         debugTreeBalasan(l->nextSibling, depth);
     }
 }
-void DebugCurrentTreeBalasan(){
-    printf("====================== Debug currentTreeBalasan ======================\n");
-    debugTreeBalasan(currentTreeBalasan, 0);
-    printf("====================== Debug currentTreeBalasan End ======================\n");
-}
+// void DebugCurrentTreeBalasan(){
+//     printf("====================== Debug currentTreeBalasan ======================\n");
+//     debugTreeBalasan(currentTreeBalasan, 0);
+//     printf("====================== Debug currentTreeBalasan End ======================\n");
+// }

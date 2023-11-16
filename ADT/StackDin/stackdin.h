@@ -13,6 +13,8 @@ typedef struct node {
     ElType info;
     Address next; 
 } Node; 
+#define     NEXT(p) (p)->next
+#define     INFO(p) (p)->info
 
 /* Type stack dengan ciri Top: */
 typedef struct stackdin
@@ -21,8 +23,6 @@ typedef struct stackdin
 } StackDin;
 
 /* Selektor */
-#define     NEXT(p) (p)->next
-#define     INFO(p) (p)->info
 #define ADDR_TOP(s) (s).addrTop
 #define      TOP(s) (s).addrTop->info 
 

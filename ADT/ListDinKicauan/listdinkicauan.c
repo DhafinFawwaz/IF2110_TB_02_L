@@ -5,16 +5,10 @@
 #include "../ListStatikAkun/liststatikAkun.h"
 #include "../Akun/akun.h"
 
-// int banyakKicauan;
-// Kicauan currentKicauan;
-// Kicauan listKicauan[100]; // sementara array dulu
-
-ListDinKicauan globalListKicauan;
-
-void createKicauan(Kicauan *k, Word text, Word tagar){
+void createKicauan(Kicauan *k, Akun * currentAkun, Word text, Word tagar){
     k = (Kicauan*) malloc(sizeof(Kicauan));
     if(k!=NULL){
-        IDKICAU(*k) = NEFF_LIST_KICAUAN(globalListKicauan)+1;
+        IDKICAU(*k) = -1;
         setWord(&TEXT_KICAU(*k),text.TabWord);
         JUMLAH_LIKE(*k) = 0;
         ADDR_AKUN_KICAUAN(*k) = currentAkun;
@@ -66,22 +60,22 @@ boolean isFullListKicauan(ListDinKicauan l){
     return(NEFF_LIST_KICAUAN(l) == CAP_LIST_KICAUAN(l));
 }
 
-void insertKicauan(Kicauan *k){
+void insertKicauan(Kicauan *k, ListDinKicauan listKicauan){
     AddressKicauan p = k;
-    if(isFullListKicauan(globalListKicauan)){
-        expandListKicauan(&globalListKicauan);
+    if(isFullListKicauan(listKicauan)){
+        expandListKicauan(&listKicauan);
     }
-    int idx = NEFF_LIST_KICAUAN(globalListKicauan);
-    ADDR_KICAUAN(globalListKicauan,idx) = p;
-    NEFF_LIST_KICAUAN(globalListKicauan)++;
+    int idx = NEFF_LIST_KICAUAN(listKicauan);
+    ADDR_KICAUAN(listKicauan,idx) = p;
+    NEFF_LIST_KICAUAN(listKicauan)++;
 }
 
-boolean isListKicauanEmpty(){
-    return(NEFF_LIST_KICAUAN(globalListKicauan)==0);
+boolean isListKicauanEmpty(ListDinKicauan listKicauan){
+    return(NEFF_LIST_KICAUAN(listKicauan)==0);
 }
 
-boolean isInListKicauan(int idKicau){
-    return(idKicau <= NEFF_LIST_KICAUAN(globalListKicauan) && idKicau >= 1);
+boolean isInListKicauan(int idKicau, ListDinKicauan listKicauan){
+    return(idKicau <= NEFF_LIST_KICAUAN(listKicauan) && idKicau >= 1);
 }
 
 // void DebugListKicauan(){
