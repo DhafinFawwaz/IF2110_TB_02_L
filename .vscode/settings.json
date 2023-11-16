@@ -27,6 +27,9 @@
         "locale": "c",
         "treebalasan.h": "c",
         "pengguna.h": "c",
-        "perintah.h": "c"
-    }
+        "perintah.h": "c",
+        "utas.h": "c",
+        "listdinutas.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

@@ -12,7 +12,7 @@
 /* Definisi isi_utas */
 typedef struct isiUtas {
 	DateTime waktu;
-	Word text_utas;
+	Word text;
 } isi_utas;
 
 /* Definisi Utas :  */
@@ -25,14 +25,16 @@ typedef struct node {
 
 #define INFO(p) (p)->info
 #define NEXT(p) (p)->next_utas
+#define TEXT(p) (p)->info.text
+#define WAKTU(p) (p)->info.waktu
 
 Utas newNode(ElType isiUtas);
 
 #define IDX_UNDEF (-1)
-#define FIRST(l) (l)
 
 void Utas_CreateUtas(Utas *u);
 boolean Utas_isEmpty(Utas u);
+boolean Utas_compareIsi(ElType iu1, ElType iu2); 
 ElType Utas_getElmt(Utas u, int idUtas);
 void Utas_setElmt(Utas *u, int idUtas, ElType isiUtas);
 int Utas_indexOf(Utas u, ElType isiUtas);
@@ -44,15 +46,8 @@ void Utas_deleteFirst(Utas *u, ElType *isiUtas);
 void Utas_deleteLast(Utas *u, ElType *isiUtas);
 void Utas_deleteAt(Utas *u, int idUtas, ElType *isiUtas);
 
-void Utas_displayUtas(Utas u);
 int length(Utas u);
 
 Utas Utas_concatUtas(Utas u1, Utas u2) ;
-
-/*Todo: */
-boolean Utas_isiUtasEQ(ElType isi_utas1, ElType isi_utas2); /*Kalau Utas_indexOf diperlukan*/
-
-
-
 
 #endif

@@ -27,3 +27,14 @@ void SetDateFromWord(DateTime *dt, Word w){
 void SetTimeFromWord(DateTime *dt, Word w){
     time_SetFromWord(&(dt->time), w);
 }
+
+boolean compareDateTime(DateTime dt1, DateTime dt2){
+    return (
+        (dt1).date.day == (dt2).date.day &&
+        (dt1).date.month == (dt2).date.month &&
+        (dt1).date.year == (dt2).date.year &&
+        (dt1).time.hour == (dt2).date.hour &&
+        (dt1).time.minute == (dt2).date.minute &&
+        (dt1).time.second == (dt2).date.second
+    );
+}
