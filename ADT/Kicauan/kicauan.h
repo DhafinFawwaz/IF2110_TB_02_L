@@ -13,7 +13,7 @@ typedef struct kicauan
     int id;
     Word text;
     int likeCount;
-    Word namaPembuat;
+    Akun *akunKicauan;
     DateTime dateTime;
     Word tagar;
     boolean isUtas;
@@ -26,7 +26,7 @@ extern Kicauan listKicauan[100];
 #define IDKICAU(k) (k).id
 #define TEXT_KICAU(k) (k).text
 #define JUMLAH_LIKE(k) (k).likeCount
-#define PEMBUAT(k) (k).namaPembuat
+#define ADDR_AKUN_KICAUAN(k) (k).akunKicauan
 #define WAKTU(k) (k).dateTime
 #define TAGAR(k) (k).tagar
 #define isUTAS(k) (k).isUtas
@@ -61,9 +61,9 @@ void kicau();
 
 void KICAUAN();
 
-void SUKA_KICAUAN(int id_kicau, ListDinKicauan * l_kicauan);
+void SUKA_KICAUAN(int id_kicau);
 
-void UBAH_KICAUAN(int id_kicau, Word currPengguna, ListDinKicauan l_kicauan);
+void UBAH_KICAUAN(int id_kicau);
 // End of Fungsi dan Prosedur Kicauan
 
 // Fungsi dan Prosedur List Dinamis Kicauan
