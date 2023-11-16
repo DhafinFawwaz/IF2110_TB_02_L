@@ -15,8 +15,6 @@ typedef struct grafteman
 
 } GrafTeman;
 
-extern GrafTeman currentGrafTeman; // Global variable
-
 // elemen[i][j] semuanya 0
 void CreateGrafTeman(GrafTeman *g, int jumlahAkun);
 

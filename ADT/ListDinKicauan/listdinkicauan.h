@@ -21,9 +21,6 @@ typedef struct kicauan
     Word tagar;
 } Kicauan;
 
-extern int banyakKicauan;
-extern Kicauan currentKicauan;
-
 #define IDKICAU(k) (k).id
 #define TEXT_KICAU(k) (k).text
 #define JUMLAH_LIKE(k) (k).likeCount
@@ -47,10 +44,6 @@ typedef struct listdinkicauan
 #define NEFF_LIST_KICAUAN(l) (l).nEff
 #define CAP_LIST_KICAUAN(l) (l).cap
 // End of Struktur List Dinamis Kicauan
-
-// Global Variable
-extern ListDinKicauan listKicauan;
-// End of Global Variable
 
 // Fungsi dan Prosedur Kicauan
 void createKicauan(Kicauan * k, Word text, Word tagar);
