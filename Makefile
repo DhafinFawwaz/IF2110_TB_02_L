@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Werror -std=c11
+CFLAGS = -Wall -Werror -std=c11 -w
 
 OUTPUT_DIR = Bin
 

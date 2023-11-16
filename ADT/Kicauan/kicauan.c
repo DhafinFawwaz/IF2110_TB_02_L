@@ -2,18 +2,17 @@
 #include "kicauan.h"
 #include "../MesinKata/wordmachine.h"
 #include "../DateTime/datetime.h"
-#include "grafteman.h"
+#include "../GrafTeman/grafteman.h"
 
 int banyakKicauan;
 Kicauan currentKicauan;
-Kicauan listKicauan[100]; // sementara array dulu
 
 ListDinKicauan listDinKicauan;
 
 void createKicauan(Kicauan *k, Word text, Word tagar){
     k = (Kicauan*) malloc(sizeof(Kicauan));
     if(k!=NULL){
-        IDKICAU(*k) = NEFF(listDinKicauan)+1;
+        IDKICAU(*k) = listDinKicauan.nEff+1;
         setWord(&TEXT_KICAU(*k),text.TabWord);
         JUMLAH_LIKE(*k) = 0;
         setWord(&PEMBUAT(*k),Username(currentAkun).TabWord);
@@ -82,23 +81,23 @@ void kicau(){
     }
 }
 
-void KICAUAN(){
-    int i;
-    if(isListKicauanEmpty()){
-        printf("Masih belum ada kicauan\n");
-    }else{
-        Kicauan currentKicauan;
-        for(i=NEFF_LIST_KICAUAN(listDinKicauan)-1;i>=0;i--){
-            currentKicauan = *ADDR_KICAUAN(listDinKicauan,i);
-            // if(isAkunBerteman(currentGrafTeman, akun1, akun2)){
-                printKicauan(currentKicauan);
-                printf("\n");
-            // }
-        }
-    }
-}
+// void KICAUAN(){
+//     int i;
+//     if(isListKicauanEmpty()){
+//         printf("Masih belum ada kicauan\n");
+//     }else{
+//         Kicauan currentKicauan;
+//         for(i=NEFF_LIST_KICAUAN(listDinKicauan)-1;i>=0;i--){
+//             currentKicauan = *ADDR_KICAUAN(listDinKicauan,i);
+//             // if(isAkunBerteman(currentGrafTeman, akun1, akun2)){
+//                 printKicauan(currentKicauan);
+//                 printf("\n");
+//             // }
+//         }
+//     }
+// }
 
-void SUKA_KICAUAN(int id_kicau){
+// void SUKA_KICAUAN(int id_kicau){
     // printf("\n");
     // if(!isIn(id_kicau,l_kicauan)){
     //     printf("Tidak ditemukan kicauan dengan ID = %d", id_kicau);
@@ -110,20 +109,20 @@ void SUKA_KICAUAN(int id_kicau){
     //     printKicauan(getKicauan(l_kicauan,id_kicau));
     // }
     // printf("\n\n");
-}
+// }
 
-void UBAH_KICAUAN(int id_kicau){
-    int idxKicauan = id_kicau-1;
-    Kicauan k = *ADDR_KICAUAN(listDinKicauan,idxKicauan);
-    if(!isInListKicauan(id_kicau)){
-        printf("Tidak ditemukan kicauan dengan ID = %d!", id_kicau);
-    }else if(compareWord(Username(currentAkun),PEMBUAT(k))){ // pre-requisite: boolean isSama(Word w1, Word w2)
-        printf("Kicauan dengan ID = %d bukan milikmu!",id_kicau);
-    }else{
-        Word new_textKicauan;
-        printf("Masukkan kicauan baru:\n");
+// void UBAH_KICAUAN(int id_kicau){
+//     int idxKicauan = id_kicau-1;
+//     Kicauan k = *ADDR_KICAUAN(listDinKicauan,idxKicauan);
+//     if(!isInListKicauan(id_kicau)){
+//         printf("Tidak ditemukan kicauan dengan ID = %d!", id_kicau);
+//     }else if(compareWord(Username(currentAkun),PEMBUAT(k))){ // pre-requisite: boolean isSama(Word w1, Word w2)
+//         printf("Kicauan dengan ID = %d bukan milikmu!",id_kicau);
+//     }else{
+//         Word new_textKicauan;
+//         printf("Masukkan kicauan baru:\n");
         // <--Disini nanti diminta masukan input_kicauan
-        printf("\n");
+        // printf("\n");
         // # Case 1 : input_kicauan hanya mengandung spasi saja
 
             // --> printf("Kicauan tidak boleh hanya berisi spasi!\n\n");
@@ -133,10 +132,10 @@ void UBAH_KICAUAN(int id_kicau){
         // --> buat kicauan baru, masukin ke list_kicauan (ListDin)
 
         // Cetak pesan
-        printf("Selamat! kicauan telah diterbitkan!\nDetil kicauan:\n");
-        printKicauan(k);
-    } 
-}
+//         printf("Selamat! kicauan telah diterbitkan!\nDetil kicauan:\n");
+//         printKicauan(k);
+//     } 
+// }
 
 void createListDinKicauan(ListDinKicauan *l, int cap){
     NEFF_LIST_KICAUAN(*l) = 0;
@@ -146,7 +145,7 @@ void createListDinKicauan(ListDinKicauan *l, int cap){
 
 void copyContentListKicauan(ListDinKicauan *l1, ListDinKicauan *l2){
     int i;
-    createListDinKicauan(l2);
+    // createListDinKicauan(l2);
     for(i=0;i < NEFF_LIST_KICAUAN(*l1);i++){
         ADDR_KICAUAN(*l2,i) = ADDR_KICAUAN(*l1,i);
     }
@@ -189,7 +188,7 @@ void DebugListKicauan(){
     int i;
     for(i=0;i<banyakKicauan;i++){
         printf("[Kicauan ke-%d]\n",i+1);
-        displayKicauan(listKicauan[i]);
+        // displayKicauan(listKicauan[i]);
         printf("\n");
     }
     printf("======== [Debug listKicauan End] ========\n");
