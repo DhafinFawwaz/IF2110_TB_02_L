@@ -8,6 +8,7 @@
 #include "../MesinKata/wordmachine.h"
 #include "../StackDin/stackdin.h"
 #include "../PrioQueue/prioqueue.h"
+#include "../Kicauan/kicauan.h"
 
 #define IDMax 20
 typedef struct akun
@@ -16,7 +17,7 @@ typedef struct akun
     Profile profil;
     Word username;
     Word password;
-    StackDin* list_daftar_kicauan;
+    ListDinKicauan* list_daftar_kicauan;
     PrioQueue list_permintaan_pertemanan;
     boolean isPublic;
 } Akun;

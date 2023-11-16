@@ -1,5 +1,6 @@
 #include "perintah.h"
 #include "../../ADT/MesinKata/wordmachine.h"
+#include "../../ADT/TreeBalasan/treebalasan.h"
 #include "../Pengguna/pengguna.h"
 #include <stdio.h>
 
@@ -83,6 +84,10 @@ void extractPerintah(Word input, Word perintahArgumen[]){
             i++;
         }
     }
+    // set sisa array jadi \0
+    for(i = blankCount+1; i < MAX_ARGUMENT; i++){
+        perintahArgumen[i].TabWord[0] = '\0';
+    }
 }
 
 void displayListPerintah(){
@@ -145,6 +150,7 @@ void handlePerintah(){
     readInput();
     Word perintahArgumen[MAX_ARGUMENT];
     extractPerintah(currentWord,perintahArgumen);
+    printf("%s\n", perintahArgumen[0].TabWord);
 
     if(compareWord(perintahArgumen[0], DAFTAR))daftar();
     else if(compareWord(perintahArgumen[0], MASUK))masuk();

@@ -124,22 +124,22 @@ void inisialisasiConfig(){
     
     for(i = 0; i < banyakKicauan; i++){
         ADVWORD();
-        listKicauan[i].id = wordToInt(currentWord); // 1 # ID kicauan 1
+        // listDinKicauan.contents[i]->id = wordToInt(currentWord); // 1 # ID kicauan 1
 
         ADVLINE();
-        listKicauan[i].text = cleanWord(currentWord); // Halooo
+        // listDinKicauan.contents[i]->text = cleanWord(currentWord); // Halooo
 
         ADVWORD();
-        listKicauan[i].likeCount = wordToInt(currentWord); // 12 # Like
+        // listDinKicauan.contents[i]->likeCount = wordToInt(currentWord); // 12 # Like
 
         ADVLINE();
-        listKicauan[i].namaPembuat = cleanWord(currentWord); // Tuan Bus
+        // listDinKicauan.contents[i]->namaPembuat = cleanWord(currentWord); // Tuan Bus
 
         ADVWORD();
-        SetDateFromWord(&listKicauan[i].dateTime, cleanWord(currentWord)); // 14/10/2023
+        // SetDateFromWord(&(listDinKicauan.contents[i]->dateTime), cleanWord(currentWord)); // 14/10/2023
 
         ADVWORD();
-        SetTimeFromWord(&listKicauan[i].dateTime, cleanWord(currentWord)); // 11:09:18
+        // SetTimeFromWord(&(listDinKicauan.contents[i]->dateTime), cleanWord(currentWord)); // 11:09:18
     }
     // DebugListKicauan();
 
@@ -160,7 +160,7 @@ void inisialisasiConfig(){
         CONTENT(listAkun, i).profil.bio = cleanWord(currentWord);
         
         ADVLINE();
-        CONTENT(listAkun, i).profil.noHp = cleanWord(currentWord);
+        CONTENT(listAkun, i).profil.nomor_hp = cleanWord(currentWord);
 
         ADVLINE();
         CONTENT(listAkun, i).profil.weton = cleanWord(currentWord);
@@ -168,16 +168,20 @@ void inisialisasiConfig(){
         ADVLINE();
         CONTENT(listAkun, i).isPublic = jenisAkunToBoolean(cleanWord(currentWord));
 
+        Foto foto;
+        CreateFotoProfil(&foto);
         int j = 0;
         for(j = 0; j < FOTO_ROW_CAP; j++){
             int k = 0;
             for(k = 0; k < FOTO_COL_CAP; k++){
                 ADVWORD();
-                setColor(&(CONTENT(listAkun, i).profil.foto), j, k, currentWord.TabWord[0]);
+                Warna(foto, j, k) = currentWord.TabWord[0];
+
                 ADVWORD();
-                setVal(&(CONTENT(listAkun, i).profil.foto), j, k, currentWord.TabWord[0]);
+                Simbol(foto, j, k) = currentWord.TabWord[0];
             }
         }
+        CONTENT(listAkun, i).profil.foto = foto;
     }
     // Matriks Pertemanan
     CreateGrafTeman(&currentGrafTeman, NEFF(listAkun));

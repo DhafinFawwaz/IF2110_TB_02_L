@@ -6,6 +6,7 @@
 #include "../Akun/akun.h"
 #include "../MesinKata/wordmachine.h"
 #include "../DateTime/datetime.h"
+#include "../Akun/akun.h"
 
 // Struktur Kicauan
 typedef struct kicauan
@@ -17,11 +18,11 @@ typedef struct kicauan
     DateTime dateTime;
     Word tagar;
     Utas firstUtas;
+    TreeBalasanAddress balasan;
 } Kicauan;
 
 extern int banyakKicauan;
 extern Kicauan currentKicauan;
-extern Kicauan listKicauan[100];
 
 #define IDKICAU(k) (k).id
 #define TEXT_KICAU(k) (k).text
