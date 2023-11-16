@@ -29,7 +29,8 @@
         "pengguna.h": "c",
         "perintah.h": "c",
         "utas.h": "c",
-        "listdinutas.h": "c"
+        "listdinutas.h": "c",
+        "listkaitutas.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

@@ -18,33 +18,32 @@ typedef struct isiUtas {
 /* Definisi Utas :  */
 typedef struct node_utas* Utas;
 typedef struct node_utas {
-    isi_utas info;
+    isi_utas info_utas;
     Utas next_utas;
 } NodeUtas;
 
-#define INFO(p) (p)->info
-#define NEXT(p) (p)->next_utas
-#define TEXT(p) (p)->info.text
-#define WAKTU(p) (p)->info.waktu
+#define INFO_UTAS(p) (p)->info_utas
+#define NEXT_UTAS(p) (p)->next_utas
+#define TEXT_UTAS(p) (p)->info_utas.text
+#define WAKTU_UTAS(p) (p)->info_utas.waktu
 
-Utas newNode(ElType isiUtas);
+Utas newNode(isi_utas isiUtas);
 
 #define IDX_UNDEF (-1)
 
 void Utas_CreateUtas(Utas *u);
 boolean Utas_isEmpty(Utas u);
-boolean Utas_compareIsi(ElType iu1, ElType iu2); 
+boolean Utas_compareUtas(Utas u1, Utas u2); 
 void Utas_setUtasFromWord(Utas *u, Word w);
-ElType Utas_getElmt(Utas u, int idUtas);
-void Utas_setElmt(Utas *u, int idUtas, ElType isiUtas);
-int Utas_indexOf(Utas u, ElType isiUtas);
+isi_utas Utas_getElmt(Utas u, int idUtas);
+void Utas_setElmt(Utas *u, int idUtas, isi_utas isiUtas);
 
-void Utas_insertFirst(Utas *u, ElType isiUtas);
-void Utas_insertLast(Utas *u, ElType isiUtas);
-void Utas_insertAt(Utas *u, ElType isiUtas, int idUtas);
-void Utas_deleteFirst(Utas *u, ElType *isiUtas);
-void Utas_deleteLast(Utas *u, ElType *isiUtas);
-void Utas_deleteAt(Utas *u, int idUtas, ElType *isiUtas);
+void Utas_insertFirst(Utas *u, isi_utas isiUtas);
+void Utas_insertLast(Utas *u, isi_utas isiUtas);
+void Utas_insertAt(Utas *u, isi_utas isiUtas, int idUtas);
+void Utas_deleteFirst(Utas *u, isi_utas *isiUtas);
+void Utas_deleteLast(Utas *u, isi_utas *isiUtas);
+void Utas_deleteAt(Utas *u, int idUtas, isi_utas *isiUtas);
 
 int length(Utas u);
 

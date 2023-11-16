@@ -1,5 +1,7 @@
 #include "utas.h"
 
+Word currentUtas;
+
 boolean isUtasMilikOrangLain(IDKicau){
 	return (
 		!(compareWord((*ADDR_AKUN_KICAUAN(*ADDR_KICAUAN(listKicauan,IDKicau-1))).username, (*currentAkun).username))
@@ -38,8 +40,8 @@ Utas buatUtas(int IDKicau){
 				p = firstUtas;
 			}
 			else {
-				NEXT(p) = currentUtas; 
-				p = NEXT(p);
+				NEXT_UTAS(p) = currentUtas; 
+				p = NEXT_UTAS(p);
 			}
 
 			do
@@ -71,13 +73,13 @@ void sambungUtas(int IDUtas, int index){
 		printf("Masukkan kicauan:\n");
 		readInput();
 		Utas_setUtasFromWord(&newUtas, currentWord);
-		Utas_insertAt(&mainUtas, INFO(newUtas), IDUtas);
+		Utas_insertAt(&mainUtas, INFO_UTAS(newUtas), IDUtas);
 	}
 }
 
 void hapusUtas(int IDUtas, int index){
 	Utas mainUtas = getUtasInListKicauan(IDUtas);
-	ElType temp;
+	isi_utas temp;
 	if (mainUtas == NULL){ 
 		printf("Utas tidak ditemukan!\n");
 	}
@@ -117,7 +119,7 @@ void cetakUtas(int IDUtas){
 		printf("   | INDEX = %d\n", idxUtas);
 		printf("   | "); printWord(pembuat); printf("\n");
 		printf("   | "); DisplayDateTime(WAKTU(kicauUtas)); printf("\n");
-		printf("   | "); printWord(TEXT(p));printf("\n");
-		p = NEXT(p);
+		printf("   | "); printWord(TEXT_UTAS(p));printf("\n");
+		p = NEXT_UTAS(p);
 	}
 }

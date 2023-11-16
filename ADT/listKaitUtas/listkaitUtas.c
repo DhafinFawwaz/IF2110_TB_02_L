@@ -1,12 +1,12 @@
 
-#include "listdinUtas.h"
+#include "listkaitUtas.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 Utas newNode(isi_utas val){
 	Utas p = (NodeUtas*)malloc(sizeof(NodeUtas));
-	INFO(p) = val;
-	NEXT(p) = NULL;
+	INFO_UTAS(p) = val;
+	NEXT_UTAS(p) = NULL;
 	return p;
 }
 
@@ -18,13 +18,13 @@ boolean Utas_isEmpty(Utas l){
 	return (l == NULL);
 }
 
-boolean Utas_compareIsi(isi_utas iu1, isi_utas iu2){
-	return (compareDateTime(WAKTU(iu1), WAKTU(iu2)) && compareWord(TEXT(iu1), TEXT(iu2)));
+boolean Utas_compareUtas(Utas u1, Utas u2){
+	return (compareDateTime(WAKTU_UTAS(u1), WAKTU_UTAS(u2)) && compareWord(TEXT_UTAS(u1), TEXT_UTAS(u2)));
 }
 
 void Utas_setUtasFromWord(Utas *u, Word w){
-	TEXT(*u) = currentWord;
-	SetToCurrentDateTime(&WAKTU(*u));
+	TEXT_UTAS(*u) = currentWord;
+	SetToCurrentDateTime(&WAKTU_UTAS(*u));
 }
 
 isi_utas Utas_getElmt(Utas l, int idx){
@@ -32,10 +32,10 @@ isi_utas Utas_getElmt(Utas l, int idx){
 	Utas p = l;
 	while (ctr<idx) {
 		ctr++;
-		p = NEXT(p);
+		p = NEXT_UTAS(p);
 	}
 
-	return INFO(p);
+	return INFO_UTAS(p);
 }
 
 void Utas_setElmt(Utas *l, int idx, isi_utas val){
@@ -43,34 +43,17 @@ void Utas_setElmt(Utas *l, int idx, isi_utas val){
 	Utas p = *l;
 	while (ctr<idx) {
 		ctr++;
-		p = NEXT(p);
+		p = NEXT_UTAS(p);
 	}
 
-	INFO(p) = val;
-}
-
-int Utas_indexOf(Utas l, isi_utas val){
-	int idx = 0;
-	Utas p = l;
-	boolean found = false;
-
-	while ((p != NULL) && (!found)){
-		if (Utas_compareIsi(INFO(p), INFO(val))) found = true;
-		else{
-		 	idx++;
-		 	p = NEXT(p);
-		}
-	}
-	
-	if (found) return idx;
-	else return IDX_UNDEF;
+	INFO_UTAS(p) = val;
 }
 
 void Utas_insertFirst(Utas *l, isi_utas val){
 	Utas p;
 	p = newNode(val);
 	if (p != NULL) {
-		NEXT(p) = *l;
+		NEXT_UTAS(p) = *l;
 		*l = p;
 	}
 }
@@ -81,10 +64,10 @@ void Utas_insertLast(Utas *l, isi_utas val){
 		Utas p = newNode(val);
 		if (p != NULL) {
 			Utas last = *l;
-			while (NEXT(last) != NULL) {
-				last = NEXT(last);
+			while (NEXT_UTAS(last) != NULL) {
+				last = NEXT_UTAS(last);
 			}
-			NEXT(last) = p;
+			NEXT_UTAS(last) = p;
 		}
 	}
 }
@@ -98,18 +81,18 @@ void Utas_insertAt(Utas *l, isi_utas val, int idx){
 			Utas loc = *l;
 			while (ctr<(idx-1)){
 				ctr++;
-				loc = NEXT(loc);
+				loc = NEXT_UTAS(loc);
 			}
-			NEXT(p) = NEXT(loc);
-			NEXT(loc) = p;
+			NEXT_UTAS(p) = NEXT_UTAS(loc);
+			NEXT_UTAS(loc) = p;
 		}
 	}
 }
 
 void Utas_deleteFirst(Utas *l, isi_utas *val){
 	Utas p = *l;
-	*val = INFO(p);
-	*l = NEXT(p);
+	*val = INFO_UTAS(p);
+	*l = NEXT_UTAS(p);
 	free(p);
 }
 
@@ -118,19 +101,19 @@ void Utas_deleteLast(Utas *l, isi_utas *val){
 	
 	p = *l;
 	loc = NULL;
-	while (NEXT(p) != NULL) {
+	while (NEXT_UTAS(p) != NULL) {
 		loc = p;
-		p = NEXT(p);
+		p = NEXT_UTAS(p);
 	}
 	// p->next = NULL;
 	if (loc == NULL) {
 		*l = NULL;
 	}
 	else {
-		NEXT(loc) = NULL;
+		NEXT_UTAS(loc) = NULL;
 	}
 
-	*val = INFO(p);
+	*val = INFO_UTAS(p);
 	free(p);
 }
 
@@ -146,12 +129,12 @@ void Utas_deleteAt(Utas *l, int idx, isi_utas *val){
 		loc = *l;
 		while (ctr < (idx-1)) {
 			ctr++;
-			loc = NEXT(loc);
+			loc = NEXT_UTAS(loc);
 		}
 		//ctr = idx-1
-		p = NEXT(loc);
-		*val = INFO(p);
-		NEXT(loc) = NEXT(p);
+		p = NEXT_UTAS(loc);
+		*val = INFO_UTAS(p);
+		NEXT_UTAS(loc) = NEXT_UTAS(p);
 		free(p);
 	}
 
@@ -162,7 +145,7 @@ int length(Utas l){
 	Utas p = l;
 	while (p != NULL){
 		ctr++;
-		p = NEXT(p);
+		p = NEXT_UTAS(p);
 	}
 	return ctr;
 }
@@ -174,14 +157,14 @@ Utas Utas_concatUtas(Utas l1, Utas l2) {
 	Utas_CreateUtas(&l3);
 	p = l1;
 	while (p != NULL) {
-		Utas_insertLast(&l3, INFO(p));
-		p = NEXT(p);
+		Utas_insertLast(&l3, INFO_UTAS(p));
+		p = NEXT_UTAS(p);
 	}
 
 	p = l2;
 	while (p != NULL) {
-		Utas_insertLast(&l3, INFO(p));
-		p = NEXT(p);
+		Utas_insertLast(&l3, INFO_UTAS(p));
+		p = NEXT_UTAS(p);
 	}
 
 	return l3;
