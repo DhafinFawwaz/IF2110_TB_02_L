@@ -1,5 +1,6 @@
 
-#include "../../ADT/listdinUtas/listdinUtas.h"
+#include "../../ADT/listKaitUtas/listkaitUtas.h"
+#include "../../ADT/ListDinKicauan/listdinkicauan.h"
 #include "../Perintah/perintah.h"
 
 extern Word currentUtas;

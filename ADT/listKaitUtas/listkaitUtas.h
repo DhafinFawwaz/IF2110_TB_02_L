@@ -8,7 +8,6 @@
 #include "../Boolean/boolean.h"
 #include "../DateTime/datetime.h"
 #include "../MesinKata/wordmachine.h"
-#include "../ListDinKicauan/listdinkicauan.h"
 
 /* Definisi isi_utas */
 typedef struct isiUtas {

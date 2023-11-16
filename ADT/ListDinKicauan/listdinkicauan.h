@@ -7,6 +7,7 @@
 #include "../MesinKata/wordmachine.h"
 #include "../DateTime/datetime.h"
 #include "../Akun/akun.h"
+#include "../listKaitUtas/listkaitUtas.h"
 
 // Struktur Kicauan
 typedef struct kicauan
@@ -16,6 +17,7 @@ typedef struct kicauan
     int likeCount;
     Akun *akunKicauan;
     DateTime dateTime;
+    Utas firstUtas;
     Word tagar;
 } Kicauan;
 
