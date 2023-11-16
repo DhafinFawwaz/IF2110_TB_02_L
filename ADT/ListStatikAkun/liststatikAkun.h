@@ -31,9 +31,6 @@ typedef struct {
    List kosong: semua elemen bernilai MARK
    Definisi elemen pertama: ELMT(l,i) dengan i=0 */
 
-extern ListStatikAkun listAkun; // Global 
-
-
 /* ********** SELEKTOR ********** */
 #define CONTENT(l, i) (l).contents[(i)]
 #define NEFF(l) (l).Neff

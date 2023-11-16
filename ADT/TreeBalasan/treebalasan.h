@@ -22,9 +22,6 @@ typedef struct treebalasan
     TreeBalasanAddress nextSibling; 
 } TreeBalasan;
 
-extern int banyakKicauanBerbalasan;
-extern TreeBalasanAddress currentTreeBalasan;
-
 TreeBalasanAddress newTreeBalasan(TreeBalasan treebalasan);
 
 void CreateTreeBalasan(TreeBalasanAddress t);

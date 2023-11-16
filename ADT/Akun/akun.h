@@ -26,7 +26,6 @@ typedef struct akun
 #define Password(A) (A).password
 #define Profil(A) (A).profil
 
-extern Akun * currentAkun; // Global variable
 void CreateAkun(Akun* akun);
 void DisplayAkun(Akun akun);
 void DebugListAkun();
