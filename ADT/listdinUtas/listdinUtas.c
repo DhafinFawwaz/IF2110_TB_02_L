@@ -1,5 +1,5 @@
 
-#include "utas.h"
+#include "listdinUtas.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -16,6 +16,15 @@ void Utas_CreateUtas(Utas *l){
 
 boolean Utas_isEmpty(Utas l){
 	return (l == NULL);
+}
+
+boolean Utas_compareIsi(ElType iu1, ElType iu2){
+	return (compareDateTime(WAKTU(iu1), WAKTU(iu2)) && compareWord(TEXT(iu1), TEXT(iu2)));
+}
+
+void Utas_setUtasFromWord(Utas *u, Word w){
+	TEXT(*u) = currentWord;
+	SetToCurrentDateTime(&WAKTU(*u));
 }
 
 ElType Utas_getElmt(Utas l, int idx){
@@ -46,11 +55,11 @@ int Utas_indexOf(Utas l, ElType val){
 	boolean found = false;
 
 	while ((p != NULL) && (!found)){
-		// if (INFO(p) == val) found = true;
-		// else{
-		// 	idx++;
-		// 	p = NEXT(p);
-		// }
+		if (Utas_compareIsi(INFO(p), INFO(val))) found = true;
+		else{
+		 	idx++;
+		 	p = NEXT(p);
+		}
 	}
 	
 	if (found) return idx;
@@ -145,24 +154,6 @@ void Utas_deleteAt(Utas *l, int idx, ElType *val){
 		NEXT(loc) = NEXT(p);
 		free(p);
 	}
-
-}
-
-void Utas_displayUtas(Utas l) {
-
-	printf("[");
-
-	Utas p = l;
-	if (!Utas_isEmpty(p)){
-		while (NEXT(p) != NULL) {
-			// printf("%d,", INFO(p));
-			p = NEXT(p);
-		}
-
-		// printf("%d", INFO(p));
-	}
-
-	printf("]");
 
 }
 

@@ -17,7 +17,7 @@ typedef struct kicauan
     Akun *akunKicauan;
     DateTime dateTime;
     Word tagar;
-    boolean isUtas;
+    Utas firstUtas;
     TreeBalasanAddress balasan;
 } Kicauan;
 
