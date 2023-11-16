@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-Utas newNode(ElType val){
-	Utas p = (Node*)malloc(sizeof(Node));
+Utas newNode(isi_utas val){
+	Utas p = (NodeUtas*)malloc(sizeof(NodeUtas));
 	INFO(p) = val;
 	NEXT(p) = NULL;
 	return p;
@@ -18,7 +18,7 @@ boolean Utas_isEmpty(Utas l){
 	return (l == NULL);
 }
 
-boolean Utas_compareIsi(ElType iu1, ElType iu2){
+boolean Utas_compareIsi(isi_utas iu1, isi_utas iu2){
 	return (compareDateTime(WAKTU(iu1), WAKTU(iu2)) && compareWord(TEXT(iu1), TEXT(iu2)));
 }
 
@@ -27,7 +27,7 @@ void Utas_setUtasFromWord(Utas *u, Word w){
 	SetToCurrentDateTime(&WAKTU(*u));
 }
 
-ElType Utas_getElmt(Utas l, int idx){
+isi_utas Utas_getElmt(Utas l, int idx){
 	int ctr = 0;
 	Utas p = l;
 	while (ctr<idx) {
@@ -38,7 +38,7 @@ ElType Utas_getElmt(Utas l, int idx){
 	return INFO(p);
 }
 
-void Utas_setElmt(Utas *l, int idx, ElType val){
+void Utas_setElmt(Utas *l, int idx, isi_utas val){
 	int ctr = 0;
 	Utas p = *l;
 	while (ctr<idx) {
@@ -49,7 +49,7 @@ void Utas_setElmt(Utas *l, int idx, ElType val){
 	INFO(p) = val;
 }
 
-int Utas_indexOf(Utas l, ElType val){
+int Utas_indexOf(Utas l, isi_utas val){
 	int idx = 0;
 	Utas p = l;
 	boolean found = false;
@@ -66,7 +66,7 @@ int Utas_indexOf(Utas l, ElType val){
 	else return IDX_UNDEF;
 }
 
-void Utas_insertFirst(Utas *l, ElType val){
+void Utas_insertFirst(Utas *l, isi_utas val){
 	Utas p;
 	p = newNode(val);
 	if (p != NULL) {
@@ -75,7 +75,7 @@ void Utas_insertFirst(Utas *l, ElType val){
 	}
 }
 
-void Utas_insertLast(Utas *l, ElType val){
+void Utas_insertLast(Utas *l, isi_utas val){
 	if (Utas_isEmpty(*l)) Utas_insertFirst(l, val);
 	else {
 		Utas p = newNode(val);
@@ -89,7 +89,7 @@ void Utas_insertLast(Utas *l, ElType val){
 	}
 }
 
-void Utas_insertAt(Utas *l, ElType val, int idx){
+void Utas_insertAt(Utas *l, isi_utas val, int idx){
 	if (idx == 0) Utas_insertFirst(l, val);
 	else{
 		Utas p = newNode(val);
@@ -106,14 +106,14 @@ void Utas_insertAt(Utas *l, ElType val, int idx){
 	}
 }
 
-void Utas_deleteFirst(Utas *l, ElType *val){
+void Utas_deleteFirst(Utas *l, isi_utas *val){
 	Utas p = *l;
 	*val = INFO(p);
 	*l = NEXT(p);
 	free(p);
 }
 
-void Utas_deleteLast(Utas *l, ElType *val){
+void Utas_deleteLast(Utas *l, isi_utas *val){
 	Utas p, loc;
 	
 	p = *l;
@@ -134,7 +134,7 @@ void Utas_deleteLast(Utas *l, ElType *val){
 	free(p);
 }
 
-void Utas_deleteAt(Utas *l, int idx, ElType *val){
+void Utas_deleteAt(Utas *l, int idx, isi_utas *val){
 	int ctr;
 	Utas p, loc;
 	

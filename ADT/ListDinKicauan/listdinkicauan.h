@@ -17,8 +17,6 @@ typedef struct kicauan
     Akun *akunKicauan;
     DateTime dateTime;
     Word tagar;
-    Utas firstUtas;
-    TreeBalasanAddress balasan;
 } Kicauan;
 
 extern int banyakKicauan;
@@ -30,7 +28,6 @@ extern Kicauan currentKicauan;
 #define ADDR_AKUN_KICAUAN(k) (k).akunKicauan
 #define WAKTU(k) (k).dateTime
 #define TAGAR(k) (k).tagar
-#define isUTAS(k) (k).isUtas
 // End of Struktur Kicauan
 
 // Struktur List Dinamis Kicauan
@@ -57,14 +54,6 @@ extern ListDinKicauan listKicauan;
 void createKicauan(Kicauan * k, Word text, Word tagar);
 
 void printKicauan(Kicauan kicauan);
-
-void kicau();
-
-void KICAUAN();
-
-void SUKA_KICAUAN(int id_kicau);
-
-void UBAH_KICAUAN(int id_kicau);
 // End of Fungsi dan Prosedur Kicauan
 
 // Fungsi dan Prosedur List Dinamis Kicauan
@@ -84,7 +73,6 @@ boolean isInListKicauan(int idKicau);
 // End of Fungsi dan Prosedur List Dinamis Kicauan
 
 
-void DebugListKicauan();
-void displayKicauan(Kicauan kicauan);
+// void DebugListKicauan();
 
 #endif

@@ -1,9 +1,8 @@
-
 #include "utas.h"
 
 boolean isUtasMilikOrangLain(IDKicau){
 	return (
-		!(compareWord(*ADDR_AKUN_KICAUAN(*ADDR_KICAUAN(listKicauan,IDKicau-1)).username, currentAkun.username))
+		!(compareWord((*ADDR_AKUN_KICAUAN(*ADDR_KICAUAN(listKicauan,IDKicau-1))).username, (*currentAkun).username))
 	);
 }
 
@@ -12,7 +11,7 @@ Utas getUtasInListKicauan(int IDUtas){
 	return (*ADDR_KICAUAN(listKicauan,IDUtas-1)).firstUtas;
 }
 
-Utas UTAS(int IDKicau){
+Utas buatUtas(int IDKicau){
 	Word YA = {.TabWord = "YA", .Length = "2"};
 	Word TIDAK = {.TabWord = "TIDAK", .Length = "5"};
 	Utas currentUtas, firstUtas, p;
@@ -55,7 +54,7 @@ Utas UTAS(int IDKicau){
 	return firstUtas;
 }
 
-void SAMBUNG_UTAS(int IDUtas, int index){
+void sambungUtas(int IDUtas, int index){
 	Utas mainUtas = getUtasInListKicauan(IDUtas);
 	if (mainUtas == NULL){ 
 		printf("Utas tidak ditemukan!\n");
@@ -76,7 +75,7 @@ void SAMBUNG_UTAS(int IDUtas, int index){
 	}
 }
 
-void HAPUS_UTAS(int IDUtas, int index){
+void hapusUtas(int IDUtas, int index){
 	Utas mainUtas = getUtasInListKicauan(IDUtas);
 	ElType temp;
 	if (mainUtas == NULL){ 
@@ -98,7 +97,7 @@ void HAPUS_UTAS(int IDUtas, int index){
 	}
 }
 
-void CETAK_UTAS(int IDUtas){
+void cetakUtas(int IDUtas){
 	Kicauan kicauUtas = (*ADDR_KICAUAN(listKicauan,IDUtas-1));
 	Utas p = kicauUtas.firstUtas;
 	int idxUtas = 1;

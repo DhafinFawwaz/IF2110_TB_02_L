@@ -8,7 +8,7 @@
 #include "../Boolean/boolean.h"
 #include "../DateTime/datetime.h"
 #include "../MesinKata/wordmachine.h"
-#include "../Kicauan/kicauan.h"
+#include "../ListDinKicauan/listdinkicauan.h"
 
 /* Definisi isi_utas */
 typedef struct isiUtas {
@@ -17,12 +17,11 @@ typedef struct isiUtas {
 } isi_utas;
 
 /* Definisi Utas :  */
-typedef isi_utas ElType;
-typedef struct node* Utas;
-typedef struct node {
-    ElType info;
+typedef struct node_utas* Utas;
+typedef struct node_utas {
+    isi_utas info;
     Utas next_utas;
-} Node;
+} NodeUtas;
 
 #define INFO(p) (p)->info
 #define NEXT(p) (p)->next_utas

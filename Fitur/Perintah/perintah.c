@@ -2,6 +2,7 @@
 #include "../../ADT/MesinKata/wordmachine.h"
 #include "../../ADT/TreeBalasan/treebalasan.h"
 #include "../Pengguna/pengguna.h"
+#include "../Kicauan/kicauan.h"
 #include <stdio.h>
 
 #define MAX_ARGUMENT 3
@@ -171,13 +172,19 @@ void handlePerintah(){
     else if(compareWord(perintahArgumen[0], DAFTAR_PERMINTAAN_PERTEMANAN));
     else if(compareWord(perintahArgumen[0], SETUJUI_PERTEMANAN));
 
-    else if(compareWord(perintahArgumen[0], KICAU));
-    else if(compareWord(perintahArgumen[0], KICAUAN));
+    else if(compareWord(perintahArgumen[0], KICAU)){
+        kicau();
+    }
+    else if(compareWord(perintahArgumen[0], KICAUAN)){
+        kicauan();
+    }
     else if(compareWord(perintahArgumen[0], SUKA_KICAUAN)){ // SUKA_KICAUAN <id kicauan>;
         int idKicauan = wordToInt(perintahArgumen[1]);
+        sukaKicauan(idKicauan);
     }
     else if(compareWord(perintahArgumen[0], UBAH_KICAUAN)){  // UBAH_KICAUAN <id kicauan>;
         int idKicauan = wordToInt(perintahArgumen[1]);
+        ubahKicauan(idKicauan);
     }
 
     else if(compareWord(perintahArgumen[0], BALAS)){ // BALAS <id kicauan> <id balasan>;
@@ -216,7 +223,5 @@ void handlePerintah(){
     else if(compareWord(perintahArgumen[0], LIST_PERINTAH))displayListPerintah();
     else {
         printf("Perintah tidak dikenali. Gunakan 'LIST_PERINTAH' untuk melihat list perintah yang bisa dilakukan.\n\n");
-    }
-
-    
+    } 
 }

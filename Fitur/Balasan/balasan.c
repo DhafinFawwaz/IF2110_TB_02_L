@@ -1,6 +1,6 @@
 #include "../../ADT/TreeBalasan/treebalasan.h"
 #include "../../ADT/ListStatikAkun/liststatikakun.h"
-#include "../../ADT/Kicauan/kicauan.h"
+#include "../../ADT/ListDinKicauan/listdinkicauan.h"
 #include "../../ADT/GrafTeman/grafteman.h"
 #include "balasan.h"
 #include "../Perintah/perintah.h"

@@ -33,8 +33,8 @@ boolean compareDateTime(DateTime dt1, DateTime dt2){
         (dt1).date.day == (dt2).date.day &&
         (dt1).date.month == (dt2).date.month &&
         (dt1).date.year == (dt2).date.year &&
-        (dt1).time.hour == (dt2).date.hour &&
-        (dt1).time.minute == (dt2).date.minute &&
-        (dt1).time.second == (dt2).date.second
+        (dt1).time.hour == (dt2).time.hour &&
+        (dt1).time.minute == (dt2).time.minute &&
+        (dt1).time.second == (dt2).time.second
     );
 }
