@@ -9,12 +9,12 @@
 // Kicauan currentKicauan;
 // Kicauan listKicauan[100]; // sementara array dulu
 
-ListDinKicauan listKicauan;
+ListDinKicauan globalListKicauan;
 
 void createKicauan(Kicauan *k, Word text, Word tagar){
     k = (Kicauan*) malloc(sizeof(Kicauan));
     if(k!=NULL){
-        IDKICAU(*k) = NEFF_LIST_KICAUAN(listKicauan)+1;
+        IDKICAU(*k) = NEFF_LIST_KICAUAN(globalListKicauan)+1;
         setWord(&TEXT_KICAU(*k),text.TabWord);
         JUMLAH_LIKE(*k) = 0;
         ADDR_AKUN_KICAUAN(*k) = currentAkun;
@@ -68,20 +68,20 @@ boolean isFullListKicauan(ListDinKicauan l){
 
 void insertKicauan(Kicauan *k){
     AddressKicauan p = k;
-    if(isFullListKicauan(listKicauan)){
-        expandListKicauan(&listKicauan);
+    if(isFullListKicauan(globalListKicauan)){
+        expandListKicauan(&globalListKicauan);
     }
-    int idx = NEFF_LIST_KICAUAN(listKicauan);
-    ADDR_KICAUAN(listKicauan,idx) = p;
-    NEFF_LIST_KICAUAN(listKicauan)++;
+    int idx = NEFF_LIST_KICAUAN(globalListKicauan);
+    ADDR_KICAUAN(globalListKicauan,idx) = p;
+    NEFF_LIST_KICAUAN(globalListKicauan)++;
 }
 
 boolean isListKicauanEmpty(){
-    return(NEFF_LIST_KICAUAN(listKicauan)==0);
+    return(NEFF_LIST_KICAUAN(globalListKicauan)==0);
 }
 
 boolean isInListKicauan(int idKicau){
-    return(idKicau <= NEFF_LIST_KICAUAN(listKicauan) && idKicau >= 1);
+    return(idKicau <= NEFF_LIST_KICAUAN(globalListKicauan) && idKicau >= 1);
 }
 
 // void DebugListKicauan(){

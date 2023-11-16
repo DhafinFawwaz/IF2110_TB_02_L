@@ -1,16 +1,17 @@
 #include "utas.h"
+#include "../Global/global.h"
 
 Word currentUtas;
 
 boolean isUtasMilikOrangLain(IDKicau){
 	return (
-		!(compareWord((*ADDR_AKUN_KICAUAN(*ADDR_KICAUAN(listKicauan,IDKicau-1))).username, (*currentAkun).username))
+		!(compareWord((*ADDR_AKUN_KICAUAN(*ADDR_KICAUAN(globalListKicauan,IDKicau-1))).username, (*currentAddrAkun).username))
 	);
 }
 
 /*Mengeluarkan Utas pada List Kicauan, dan NULL jika tidak ketemu*/
 Utas getUtasInListKicauan(int IDUtas){
-	return (*ADDR_KICAUAN(listKicauan,IDUtas-1)).firstUtas;
+	return (*ADDR_KICAUAN(globalListKicauan,IDUtas-1)).firstUtas;
 }
 
 Utas buatUtas(int IDKicau){
@@ -100,7 +101,7 @@ void hapusUtas(int IDUtas, int index){
 }
 
 void cetakUtas(int IDUtas){
-	Kicauan kicauUtas = (*ADDR_KICAUAN(listKicauan,IDUtas-1));
+	Kicauan kicauUtas = (*ADDR_KICAUAN(globalListKicauan,IDUtas-1));
 	Utas p = kicauUtas.firstUtas;
 	int idxUtas = 1;
 

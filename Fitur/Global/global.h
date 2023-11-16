@@ -8,7 +8,7 @@
 extern Akun * currentAddrAkun;
 // extern DrafKicauan
 extern GrafTeman currentGrafTeman;
-extern ListDinKicauan listKicauan;
+extern ListDinKicauan globalListKicauan;
 extern ListStatikAkun listAkun; 
 extern int banyakKicauanBerbalasan;
 extern TreeBalasanAddress currentTreeBalasan;

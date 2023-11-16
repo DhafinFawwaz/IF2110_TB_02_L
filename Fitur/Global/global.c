@@ -3,7 +3,7 @@
 Akun * currentAddrAkun;
 // DrafKicauan
 GrafTeman currentGrafTeman;
-ListDinKicauan listKicauan;
+ListDinKicauan globalListKicauan;
 ListStatikAkun listAkun; 
 int banyakKicauanBerbalasan;
 TreeBalasanAddress currentTreeBalasan;

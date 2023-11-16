@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "inisialisasi.h"
+#include "../Global/global.h"
 #include "../../ADT/MesinKata/wordmachine.h"
 #include "../../ADT/ListStatikAkun/liststatikAkun.h"
 #include "../../ADT/DrafKicauan/drafkicauan.h"
@@ -120,9 +121,9 @@ void inisialisasiConfig(){
     // Inisialisasi kicauan
     STARTWORDFILE(kicauanPath);
 
-    banyakKicauan = wordToInt(currentWord); // 2 # Banyak kicauan sebanyak 2
+    NEFF_LIST_KICAUAN(globalListKicauan) = wordToInt(currentWord); // 2 # Banyak kicauan sebanyak 2
     
-    for(i = 0; i < banyakKicauan; i++){
+    for(i = 0; i < NEFF_LIST_KICAUAN(globalListKicauan); i++){
         ADVWORD();
         // listDinKicauan.contents[i]->id = wordToInt(currentWord); // 1 # ID kicauan 1
 
