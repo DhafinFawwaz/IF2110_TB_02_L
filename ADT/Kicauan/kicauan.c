@@ -3,20 +3,21 @@
 #include "../MesinKata/wordmachine.h"
 #include "../DateTime/datetime.h"
 #include "grafteman.h"
+#include "../ListStatikAkun/liststatikAkun.h"
 
-int banyakKicauan;
-Kicauan currentKicauan;
-Kicauan listKicauan[100]; // sementara array dulu
+// int banyakKicauan;
+// Kicauan currentKicauan;
+// Kicauan listKicauan[100]; // sementara array dulu
 
-ListDinKicauan listDinKicauan;
+ListDinKicauan listKicauan;
 
 void createKicauan(Kicauan *k, Word text, Word tagar){
     k = (Kicauan*) malloc(sizeof(Kicauan));
     if(k!=NULL){
-        IDKICAU(*k) = NEFF(listDinKicauan)+1;
+        IDKICAU(*k) = NEFF_LIST_KICAUAN(listKicauan)+1;
         setWord(&TEXT_KICAU(*k),text.TabWord);
         JUMLAH_LIKE(*k) = 0;
-        setWord(&PEMBUAT(*k),Username(currentAkun).TabWord);
+        ADDR_AKUN_KICAUAN(*k) = currentAkun;
         SetToCurrentDateTime(&WAKTU(*k));
         setWord(&TAGAR(*k),tagar.TabWord);
         isUTAS(*k) = false;
@@ -26,44 +27,37 @@ void createKicauan(Kicauan *k, Word text, Word tagar){
 void printKicauan(Kicauan kicauan){
     printf("| ID = %d\n", IDKICAU(kicauan));
     printf("| ");
-    // --> printWord(PEMBUAT(kicauan)); printf("\n");
-    printWord(PEMBUAT(kicauan));
+    Word pembuat = (*ADDR_AKUN_KICAUAN(kicauan)).username;
+    printWord(pembuat);
     printf("\n");
     printf("| ");
-    // --> printDatetime(WAKTU(kicauan)); printf("\n");
     DisplayDateTime(WAKTU(kicauan));
     printf("\n");
     printf("| ");
-    // --> printWord(TEXT_KICAU(kicauan)); printf("\n");
     printWord(TEXT_KICAU(kicauan));
     printf("\n");
     printf("| Disukai : %d", JUMLAH_LIKE(kicauan));
 }
 
+// INI NANTI DIPINDAH KE FOLDER FITUR
+#include "../Perintah/perintah.h"
+// BELUM BERES : TINGGAL HASHING KL ADA TAGAR
 void kicau(){
     Word text_kicau, tagar;
     // Word input_kicauan;
     printf("Masukkan kicauan:\n");
-
-    currentWord.Length = 0;
-    currentWord = cleanWord(currentWord);
-    STARTWORD();
+    readInput();
     capCurrentWord(280);
     setWord(&text_kicau, currentWord.TabWord);
 
     printf("\n");
 
-    // # Case 1 : input_kicauan hanya mengandung spasi saja
     if(text_kicau.Length == 0){
         printf("Kicauan tidak boleh kosong!");
-        // --> printf("Kicauan tidak boleh hanya berisi spasi!\n\n");
     }
-    // # Case 2 : input_kicauan valid, terima maksimal 280 character
     else{
         printf("Masukkan tagar:\n");
-        currentWord.Length = 0;
-        currentWord = cleanWord(currentWord);
-        STARTWORD();
+        readInput();
         setWord(&tagar, currentWord.TabWord);
 
         printf("\n");
@@ -71,7 +65,6 @@ void kicau(){
         if(tagar.Length!=0){
             //Hash map
         }
-
         Kicauan k;
         createKicauan(&k, text_kicau, tagar);
         insertKicauan(&k);
@@ -81,60 +74,65 @@ void kicau(){
         printf("\n");
     }
 }
+// END OF INI NANTI DIPINDAH KE FOLDER FITUR
 
 void KICAUAN(){
     int i;
     if(isListKicauanEmpty()){
         printf("Masih belum ada kicauan\n");
     }else{
-        Kicauan currentKicauan;
-        for(i=NEFF_LIST_KICAUAN(listDinKicauan)-1;i>=0;i--){
-            currentKicauan = *ADDR_KICAUAN(listDinKicauan,i);
-            // if(isAkunBerteman(currentGrafTeman, akun1, akun2)){
-                printKicauan(currentKicauan);
+        AddressKicauan currentKicauan;
+        Word pengguna;
+        int idx_akun;
+        for(i=NEFF_LIST_KICAUAN(listKicauan)-1;i>=0;i--){
+            currentKicauan = ADDR_KICAUAN(listKicauan,i);
+            if(isAkunBerteman(currentGrafTeman, *ADDR_AKUN_KICAUAN(*currentKicauan), *currentAkun)){
+                printKicauan(*currentKicauan);
                 printf("\n");
-            // }
+            }
         }
     }
 }
 
+
+// BELUM BERES : PERLU isBerteman dan isAkunPublik dengan parameter nama pembuat
 void SUKA_KICAUAN(int id_kicau){
-    // printf("\n");
-    // if(!isIn(id_kicau,l_kicauan)){
-    //     printf("Tidak ditemukan kicauan dengan ID = %d", id_kicau);
-    // }else if(!isAkunPublicByPengguna(getPembuatById(l_kicauan,id_kicau)) && !isBerteman(currPengguna,getPembuatById(l_kicauan,id_kicau))){
-    //     printf("Wah, kicauan tersebut dibuat oleh akun privat! Ikuti akun itu dulu ya!")
-    // }else{
-    //     setLike(id_kicau, l_kicauan, 1+getLike(id_kicau, l_kicauan));
-    //     printf("Selamat! kicauan telah disukai!\nDetil kicauan:\n");
-    //     printKicauan(getKicauan(l_kicauan,id_kicau));
-    // }
-    // printf("\n\n");
+    printf("\n");
+    AddressKicauan k = (ADDR_KICAUAN(listKicauan,(id_kicau-1)));
+    if(!isInListKicauan(id_kicau)){
+        printf("Tidak ditemukan kicauan dengan ID = %d", id_kicau);   
+    }else if(!((*ADDR_AKUN_KICAUAN(*k)).isPublic) && !isAkunBerteman(currentGrafTeman,(*ADDR_AKUN_KICAUAN(*k)),*currentAkun)){
+        printf("Wah, kicauan tersebut dibuat oleh akun privat! Berteman dengan akun itu dulu ya!");
+    }else{
+        JUMLAH_LIKE(*k)++;
+        printf("Selamat! kicauan telah disukai!\nDetil kicauan:\n");
+        printKicauan(*k);
+    }
+    printf("\n\n");
 }
 
 void UBAH_KICAUAN(int id_kicau){
     int idxKicauan = id_kicau-1;
-    Kicauan k = *ADDR_KICAUAN(listDinKicauan,idxKicauan);
+    AddressKicauan k = ADDR_KICAUAN(listKicauan,idxKicauan);
     if(!isInListKicauan(id_kicau)){
         printf("Tidak ditemukan kicauan dengan ID = %d!", id_kicau);
-    }else if(compareWord(Username(currentAkun),PEMBUAT(k))){ // pre-requisite: boolean isSama(Word w1, Word w2)
+    }else if(!compareWord(Username(*currentAkun),Username(*ADDR_AKUN_KICAUAN(*ADDR_KICAUAN(listKicauan,id_kicau-1))))){ // pre-requisite: boolean isSama(Word w1, Word w2)
         printf("Kicauan dengan ID = %d bukan milikmu!",id_kicau);
     }else{
         Word new_textKicauan;
         printf("Masukkan kicauan baru:\n");
-        // <--Disini nanti diminta masukan input_kicauan
+        readInput();
+        capCurrentWord(280);
+        setWord(&new_textKicauan, currentWord.TabWord);
+
         printf("\n");
-        // # Case 1 : input_kicauan hanya mengandung spasi saja
-
-            // --> printf("Kicauan tidak boleh hanya berisi spasi!\n\n");
-
-        // # Case 2 : input_kicauan valid, terima maksimal 280 character
-
-        // --> buat kicauan baru, masukin ke list_kicauan (ListDin)
-
-        // Cetak pesan
-        printf("Selamat! kicauan telah diterbitkan!\nDetil kicauan:\n");
-        printKicauan(k);
+        if(new_textKicauan.Length == 0){
+            printf("Kicauan tidak boleh kosong!");
+        }else{
+            setWord(&TEXT_KICAU(*k),new_textKicauan.TabWord);
+            // Cetak pesan
+            printf("Selamat! kicauan telah diterbitkan!\nDetil kicauan:\n");
+            printKicauan(*k);
     } 
 }
 
