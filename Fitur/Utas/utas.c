@@ -1,19 +1,43 @@
 
 #include "utas.h"
 
-void UTAS(int IDKicau){
+boolean isUtasMilikOrangLain(IDKicau){
+	return (
+		!(compareWord(*ADDR_AKUN_KICAUAN(*ADDR_KICAUAN(listKicauan,IDKicau-1)).username, currentAkun.username))
+	);
+}
+
+Utas UTAS(int IDKicau){
 	Word YA = {.TabWord = "YA", .Length = "2"};
 	Word TIDAK = {.TabWord = "TIDAK", .Length = "5"};
-	Utas currentUtas;
+	Utas currentUtas, firstUtas, p;
+	Utas_CreateUtas(&firstUtas);
+	Utas_CreateUtas(&currentUtas);
+	Utas_CreateUtas(&p);
 
-	if (IDKicau == true){ /*temp*/
+	if (!(isInListKicauan(IDKicau))){ /*Kicauan tidak ditemukan*/
+		printf("Kicauan tidak ditemukan\n");
+	}
+	else if (isUtasMilikOrangLain(IDKicau)){ /*Utas milik akun lain*/
+		printf("Utas ini bukan milik anda!\n");
+	}	
+	else{
 		printf("Utas berhasil dibuat!");
 
 		do{
 			printf("\n\nMasukkan kicauan:\n");
 			readInput();
-			TEXT(currentUtas) = currentWord;
-			SetToCurrentDateTime(&WAKTU(currentUtas));
+			
+			Utas_setUtasFromWord(&currentUtas, currentWord);
+			if (Utas_isEmpty(firstUtas)) {
+				firstUtas = currentUtas; 
+				p = firstUtas;
+			}
+			else {
+				NEXT(p) = currentUtas; 
+				p = NEXT(p);
+			}
+
 			do
 			{
 				printf("Apakah Anda ingin melanjutkan utas ini? (YA/TIDAK) ");
@@ -23,20 +47,26 @@ void UTAS(int IDKicau){
 		} while (!compareWord(currentWord, TIDAK));
 		
 	}
-	else if (IDKicau == false){ /*Utas ini bukan milik anda!*/
-
-	}
-	else{ /*Kicauan tidak ditemukan*/
-
-	}
+	return firstUtas;
 }
 
 void SAMBUNG_UTAS(int IDUtas, int index){
-	/*Jika input benar: */
-	Utas currentUtas;
-	printf("\n\nMasukkan kicauan:\n");
-	readInput();
-
+	/*Asumsi: IDUtas == IDKicau*/
+	if (!(isInListKicauan(IDUtas))){ 
+		printf("Utas tidak ditemukan!\n");
+	}
+	else if (isUtasMilikOrangLain(IDUtas)){
+		printf("Anda tidak bisa menyambung utas ini!\n");
+	}
+	else if (index > length(/**/)){
+		printf("Index terlalu tinggi!\n");
+	}
+	else{
+		Utas currentUtas;
+		printf("Masukkan kicauan:\n");
+		readInput();
+		Utas_insertAt()
+	}
 }
 void HAPUS_UTAS(int IDUtas, int index);
 void CETAK_UTAS(int IDUtas);

@@ -8,6 +8,7 @@
 #include "../Boolean/boolean.h"
 #include "../DateTime/datetime.h"
 #include "../MesinKata/wordmachine.h"
+#include "../Kicauan/kicauan.h"
 
 /* Definisi isi_utas */
 typedef struct isiUtas {
@@ -35,6 +36,7 @@ Utas newNode(ElType isiUtas);
 void Utas_CreateUtas(Utas *u);
 boolean Utas_isEmpty(Utas u);
 boolean Utas_compareIsi(ElType iu1, ElType iu2); 
+void Utas_setUtasFromWord(Utas *u, Word w);
 ElType Utas_getElmt(Utas u, int idUtas);
 void Utas_setElmt(Utas *u, int idUtas, ElType isiUtas);
 int Utas_indexOf(Utas u, ElType isiUtas);

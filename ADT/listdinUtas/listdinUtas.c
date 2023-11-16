@@ -22,6 +22,11 @@ boolean Utas_compareIsi(ElType iu1, ElType iu2){
 	return (compareDateTime(WAKTU(iu1), WAKTU(iu2)) && compareWord(TEXT(iu1), TEXT(iu2)));
 }
 
+void Utas_setUtasFromWord(Utas *u, Word w){
+	TEXT(*u) = currentWord;
+	SetToCurrentDateTime(&WAKTU(*u));
+}
+
 ElType Utas_getElmt(Utas l, int idx){
 	int ctr = 0;
 	Utas p = l;

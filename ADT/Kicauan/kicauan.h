@@ -16,7 +16,7 @@ typedef struct kicauan
     Akun *akunKicauan;
     DateTime dateTime;
     Word tagar;
-    boolean isUtas;
+    Utas firstUtas;
 } Kicauan;
 
 extern int banyakKicauan;
