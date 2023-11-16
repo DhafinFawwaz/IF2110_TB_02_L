@@ -8,7 +8,6 @@
 #include "../MesinKata/wordmachine.h"
 #include "../StackDin/stackdin.h"
 #include "../PrioQueue/prioqueue.h"
-#include "../Kicauan/kicauan.h"
 
 #define IDMax 20
 typedef struct akun
@@ -17,7 +16,6 @@ typedef struct akun
     Profile profil;
     Word username;
     Word password;
-    ListDinKicauan* list_daftar_kicauan;
     PrioQueue list_permintaan_pertemanan;
     boolean isPublic;
 } Akun;
@@ -28,7 +26,7 @@ typedef struct akun
 #define Password(A) (A).password
 #define Profil(A) (A).profil
 
-extern Akun currentAkun; // Global variable
+extern Akun * currentAkun; // Global variable
 void CreateAkun(Akun* akun);
 void DisplayAkun(Akun akun);
 void DebugListAkun();

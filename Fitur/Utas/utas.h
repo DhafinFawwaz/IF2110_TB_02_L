@@ -5,8 +5,8 @@
 extern Word currentUtas;
 
 //Fungsi dan Prosedur UTAS
-void UTAS(int IDKicau);
-void SAMBUNG_UTAS(int IDUtas, int index);
-void HAPUS_UTAS(int IDUtas, int index);
-void CETAK_UTAS(int IDUtas);
+Utas buatUtas(int IDKicau);
+void sambungUtas(int IDUtas, int index);
+void hapusUtas(int IDUtas, int index);
+void cetakUtas(int IDUtas);
 //

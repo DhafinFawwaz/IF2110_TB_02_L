@@ -1,13 +1,12 @@
-
 #include "utas.h"
 
 boolean isUtasMilikOrangLain(IDKicau){
 	return (
-		!(compareWord(*ADDR_AKUN_KICAUAN(*ADDR_KICAUAN(listKicauan,IDKicau-1)).username, currentAkun.username))
+		!(compareWord((*ADDR_AKUN_KICAUAN(*ADDR_KICAUAN(listKicauan,IDKicau-1))).username, (*currentAkun).username))
 	);
 }
 
-Utas UTAS(int IDKicau){
+Utas buatUtas(int IDKicau){
 	Word YA = {.TabWord = "YA", .Length = "2"};
 	Word TIDAK = {.TabWord = "TIDAK", .Length = "5"};
 	Utas currentUtas, firstUtas, p;
@@ -50,23 +49,23 @@ Utas UTAS(int IDKicau){
 	return firstUtas;
 }
 
-void SAMBUNG_UTAS(int IDUtas, int index){
-	/*Asumsi: IDUtas == IDKicau*/
-	if (!(isInListKicauan(IDUtas))){ 
-		printf("Utas tidak ditemukan!\n");
-	}
-	else if (isUtasMilikOrangLain(IDUtas)){
-		printf("Anda tidak bisa menyambung utas ini!\n");
-	}
-	else if (index > length(/**/)){
-		printf("Index terlalu tinggi!\n");
-	}
-	else{
-		Utas currentUtas;
-		printf("Masukkan kicauan:\n");
-		readInput();
-		Utas_insertAt()
-	}
+void sambungUtas(int IDUtas, int index){
+	// /*Asumsi: IDUtas == IDKicau*/
+	// if (!(isInListKicauan(IDUtas))){ 
+	// 	printf("Utas tidak ditemukan!\n");
+	// }
+	// else if (isUtasMilikOrangLain(IDUtas)){
+	// 	printf("Anda tidak bisa menyambung utas ini!\n");
+	// }
+	// else if (index > length(/**/)){
+	// 	printf("Index terlalu tinggi!\n");
+	// }
+	// else{
+	// 	Utas currentUtas;
+	// 	printf("Masukkan kicauan:\n");
+	// 	readInput();
+	// 	// Utas_insertAt();
+	// }
 }
-void HAPUS_UTAS(int IDUtas, int index);
-void CETAK_UTAS(int IDUtas);
+void hapusUtas(int IDUtas, int index);
+void cetakUtas(int IDUtas);

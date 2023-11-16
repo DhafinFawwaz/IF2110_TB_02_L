@@ -3,7 +3,7 @@
 #include "akun.h"
 #include "../Pcolor/pcolor.h"
 
-Akun currentAkun; // Global variable
+Akun * currentAkun; // Global variable
 
 void CreateAkun(Akun* akun){
 

@@ -4,7 +4,7 @@
 #include "../../ADT/ListStatikAkun/liststatikAkun.h"
 #include "../../ADT/DrafKicauan/drafkicauan.h"
 #include "../../ADT/DateTime/datetime.h"
-#include "../../ADT/Kicauan/kicauan.h"
+#include "../../ADT/ListDinKicauan/listdinkicauan.h"
 #include "../../ADT/TreeBalasan/treebalasan.h"
 #include "../../ADT/GrafTeman/grafteman.h"
 #include "../Perintah/perintah.h"
