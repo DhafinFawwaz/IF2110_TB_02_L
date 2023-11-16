@@ -10,8 +10,7 @@ TreeBalasanAddress newTreeBalasan(TreeBalasan treebalasan){
     new->id = treebalasan.id;
     new->idParent = treebalasan.idParent;
     SetToCurrentDateTime(&new->dateTime);
-    new->nama = treebalasan.nama;
-    new->text = treebalasan.text;
+    new->akunPembuat = treebalasan.akunPembuat;
     return new;
 }
 
@@ -106,6 +105,54 @@ int lengthTreeBalasan(TreeBalasan l){
     }
     return count;
 }
+
+// leftMargin nentuin seberapa maju textnya ke kanan.
+void displayTreeBalasan(TreeBalasan t, int leftMargin){
+    int i = 0;
+    for(i = 0; i < leftMargin; i++){
+        printf(" ");
+    }
+    printf("| ID = %d\n", t.id);
+    for(i = 0; i < leftMargin; i++){
+        printf(" ");
+    }
+
+    printf("| %s\n", t.akunPembuat->username.TabWord);
+    for(i = 0; i < leftMargin; i++){
+        printf(" ");
+    }
+    printf("| "); DisplayDateTime(t.dateTime); printf("\n");
+    for(i = 0; i < leftMargin; i++){
+        printf(" ");
+    }
+    printf("| %s\n", t.text.TabWord);
+}
+void displayTreeBalasanRecursive(TreeBalasanAddress t, int depth){
+    if(t == NULL) return;
+    else{
+        displayTreeBalasan(*t, depth);
+        debugTreeBalasan(t->child, depth+1);
+        debugTreeBalasan(t->nextSibling, depth);
+    }
+}
+void displayAllTreeBalasan(TreeBalasan t){
+    displayTreeBalasanRecursive(&t, 0);
+}
+
+TreeBalasanAddress getTreeBalasanById(TreeBalasan treebalasan, int id){
+    if(treebalasan.id == id) return &treebalasan;
+    else{
+        TreeBalasanAddress curr = treebalasan.child;
+        while (curr != NULL)
+        {
+            TreeBalasanAddress res = getTreeBalasanById(*curr, id);
+            if(res != NULL) return res;
+            curr = curr->nextSibling;
+        }
+        return NULL;
+    }
+}
+
 void debugTreeBalasan(TreeBalasanAddress l, int depth){
     if(l == NULL) return;
     else{

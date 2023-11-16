@@ -17,11 +17,11 @@ typedef struct kicauan
     DateTime dateTime;
     Word tagar;
     boolean isUtas;
+    TreeBalasanAddress balasan;
 } Kicauan;
 
 extern int banyakKicauan;
 extern Kicauan currentKicauan;
-extern Kicauan listKicauan[100];
 
 #define IDKICAU(k) (k).id
 #define TEXT_KICAU(k) (k).text

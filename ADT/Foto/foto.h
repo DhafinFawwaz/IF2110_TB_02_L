@@ -8,10 +8,13 @@
 #include "../Pcolor/pcolor.h"
 #include "../MesinKata/wordmachine.h"
 
+#define FOTO_ROW_CAP 5
+#define FOTO_COL_CAP 5
+
 /* *** DEFINISI TYPE FOTO *** */
 typedef struct foto {
-    char warna[5][5];
-    char simbol[5][5];
+    char warna[FOTO_ROW_CAP][FOTO_COL_CAP];
+    char simbol[FOTO_ROW_CAP][FOTO_COL_CAP];
 } Foto;
 
 /* ********* AKSES (Selektor) ********* */
