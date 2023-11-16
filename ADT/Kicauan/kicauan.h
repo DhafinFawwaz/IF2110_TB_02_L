@@ -6,6 +6,7 @@
 #include "../Akun/akun.h"
 #include "../MesinKata/wordmachine.h"
 #include "../DateTime/datetime.h"
+#include "../Akun/akun.h"
 
 // Struktur Kicauan
 typedef struct kicauan
