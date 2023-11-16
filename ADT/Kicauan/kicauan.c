@@ -2,30 +2,20 @@
 #include "kicauan.h"
 #include "../MesinKata/wordmachine.h"
 #include "../DateTime/datetime.h"
-<<<<<<< HEAD
 #include "grafteman.h"
 #include "../ListStatikAkun/liststatikAkun.h"
+#include "../Akun/akun.h"
 
 // int banyakKicauan;
 // Kicauan currentKicauan;
 // Kicauan listKicauan[100]; // sementara array dulu
-=======
-#include "../GrafTeman/grafteman.h"
-
-int banyakKicauan;
-Kicauan currentKicauan;
->>>>>>> 43ddaa12eba8c1210fb89ace0cc99e33ac5082e2
 
 ListDinKicauan listKicauan;
 
 void createKicauan(Kicauan *k, Word text, Word tagar){
     k = (Kicauan*) malloc(sizeof(Kicauan));
     if(k!=NULL){
-<<<<<<< HEAD
         IDKICAU(*k) = NEFF_LIST_KICAUAN(listKicauan)+1;
-=======
-        IDKICAU(*k) = listDinKicauan.nEff+1;
->>>>>>> 43ddaa12eba8c1210fb89ace0cc99e33ac5082e2
         setWord(&TEXT_KICAU(*k),text.TabWord);
         JUMLAH_LIKE(*k) = 0;
         ADDR_AKUN_KICAUAN(*k) = currentAkun;
@@ -87,7 +77,6 @@ void kicau(){
 }
 // END OF INI NANTI DIPINDAH KE FOLDER FITUR
 
-<<<<<<< HEAD
 void KICAUAN(){
     int i;
     if(isListKicauanEmpty()){
@@ -147,63 +136,6 @@ void UBAH_KICAUAN(int id_kicau){
             printKicauan(*k);
     } 
 }
-=======
-// void KICAUAN(){
-//     int i;
-//     if(isListKicauanEmpty()){
-//         printf("Masih belum ada kicauan\n");
-//     }else{
-//         Kicauan currentKicauan;
-//         for(i=NEFF_LIST_KICAUAN(listDinKicauan)-1;i>=0;i--){
-//             currentKicauan = *ADDR_KICAUAN(listDinKicauan,i);
-//             // if(isAkunBerteman(currentGrafTeman, akun1, akun2)){
-//                 printKicauan(currentKicauan);
-//                 printf("\n");
-//             // }
-//         }
-//     }
-// }
-
-// void SUKA_KICAUAN(int id_kicau){
-    // printf("\n");
-    // if(!isIn(id_kicau,l_kicauan)){
-    //     printf("Tidak ditemukan kicauan dengan ID = %d", id_kicau);
-    // }else if(!isAkunPublicByPengguna(getPembuatById(l_kicauan,id_kicau)) && !isBerteman(currPengguna,getPembuatById(l_kicauan,id_kicau))){
-    //     printf("Wah, kicauan tersebut dibuat oleh akun privat! Ikuti akun itu dulu ya!")
-    // }else{
-    //     setLike(id_kicau, l_kicauan, 1+getLike(id_kicau, l_kicauan));
-    //     printf("Selamat! kicauan telah disukai!\nDetil kicauan:\n");
-    //     printKicauan(getKicauan(l_kicauan,id_kicau));
-    // }
-    // printf("\n\n");
-// }
-
-// void UBAH_KICAUAN(int id_kicau){
-//     int idxKicauan = id_kicau-1;
-//     Kicauan k = *ADDR_KICAUAN(listDinKicauan,idxKicauan);
-//     if(!isInListKicauan(id_kicau)){
-//         printf("Tidak ditemukan kicauan dengan ID = %d!", id_kicau);
-//     }else if(compareWord(Username(currentAkun),PEMBUAT(k))){ // pre-requisite: boolean isSama(Word w1, Word w2)
-//         printf("Kicauan dengan ID = %d bukan milikmu!",id_kicau);
-//     }else{
-//         Word new_textKicauan;
-//         printf("Masukkan kicauan baru:\n");
-        // <--Disini nanti diminta masukan input_kicauan
-        // printf("\n");
-        // # Case 1 : input_kicauan hanya mengandung spasi saja
-
-            // --> printf("Kicauan tidak boleh hanya berisi spasi!\n\n");
-
-        // # Case 2 : input_kicauan valid, terima maksimal 280 character
-
-        // --> buat kicauan baru, masukin ke list_kicauan (ListDin)
-
-        // Cetak pesan
-//         printf("Selamat! kicauan telah diterbitkan!\nDetil kicauan:\n");
-//         printKicauan(k);
-//     } 
-// }
->>>>>>> 43ddaa12eba8c1210fb89ace0cc99e33ac5082e2
 
 void createListDinKicauan(ListDinKicauan *l, int cap){
     NEFF_LIST_KICAUAN(*l) = 0;
