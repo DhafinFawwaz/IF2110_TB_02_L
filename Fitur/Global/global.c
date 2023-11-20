@@ -1,4 +1,5 @@
 #include "global.h"
+#include "../../ADT/ListDinKicauan/listdinkicauan.h"
 
 boolean isLogin = false;
 Akun * globalCurrentAddrAkun;
