@@ -265,10 +265,11 @@ void handlePerintah(){
     }
 
     else if(compareWord(perintahArgumen[0], SIMPAN)){
-
+        simpan();
     }
     else if(compareWord(perintahArgumen[0], MUAT)){
-
+        if(isLogin){ printf("Anda harus keluar terlebih dahulu untuk melakukan pemuatan.\n\n"); return; }
+        muat();
     }
 
     else if(compareWord(perintahArgumen[0], LIST_PERINTAH))displayListPerintah();
