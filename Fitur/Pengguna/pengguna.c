@@ -25,8 +25,9 @@ void daftar(){
     int effID = globalListStatikAkun.Neff;
     CreateAkun(&globalListStatikAkun.contents[effID]);
     globalListStatikAkun.contents[effID].username = currentWord;
+    globalListStatikAkun.contents[effID].id = effID;
     globalListStatikAkun.Neff++;
-    
+    globalGrafTeman.size++;
 
     /* INPUT PASSWORD */
     printf("\nMasukkan kata sandi: \n");
@@ -56,7 +57,7 @@ void masuk(){
             printf("\nMasukkan kata sandi: \n");
             readInput();
         }
-
+        globalCurrentAddrAkun = &globalListStatikAkun.contents[tempID];
         printf("Anda telah berhasil masuk dengan nama pengguna %s. Mari menjelajahi Burbir bersama Ande-Ande Lumut!\n\n", globalListStatikAkun.contents[tempID].username.TabWord);
         isLogin = true;
     } else {

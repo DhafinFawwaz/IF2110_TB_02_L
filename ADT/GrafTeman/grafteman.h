@@ -36,11 +36,4 @@ int countTeman(GrafTeman g, Akun akun);
 // Hitung banyak teman akun yang temannya juga berteman dengan akun
 int countSalingTeman(GrafTeman g, Akun akun);
 
-// Display list saling teman
-// contoh:
-// Daftar teman Alice
-// | Bob
-// | Carol
-void displaySalingTeman(GrafTeman g, Akun akun);
-
 #endif

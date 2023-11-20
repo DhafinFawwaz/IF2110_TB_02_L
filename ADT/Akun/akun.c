@@ -4,7 +4,7 @@
 #include "../Pcolor/pcolor.h"
 
 void CreateAkun(Akun* akun){
-    
+    akun = (Akun*) malloc(sizeof(Akun));
 }
 void DisplayAkun(Akun akun){
 

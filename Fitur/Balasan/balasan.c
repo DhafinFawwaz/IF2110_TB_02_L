@@ -58,7 +58,7 @@ void balasan(int idKicau){
     if(kicauan->firstBalasan == NULL){
         printf("Belum terdapat balasan apapun pada kicauan tersebut. Yuk balas kicauan tersebut!\n\n");
     }
-    displayAllTreeBalasan(*kicauan->balasan);
+    displayAllTreeBalasan(*kicauan->firstBalasan);
 }
 
 // Hapus balasan dengan idBalasan dari kicauan dengan idKicau
@@ -78,7 +78,7 @@ void hapusBalasan(int idKicau, int idBalasan){
     }
 
     deleteCascadeTreeBalasan(balasanAddr);
-    kicauan->balasan = NULL;
+    kicauan->firstBalasan = NULL;
     printf("Balasan berhasil dihapus.\n\n");
 
 }

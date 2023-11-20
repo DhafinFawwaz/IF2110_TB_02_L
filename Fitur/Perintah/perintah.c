@@ -155,7 +155,7 @@ void handlePerintah(){
     readInput();
     Word perintahArgumen[MAX_ARGUMENT];
     extractPerintah(currentWord, perintahArgumen);
-    printf("%s\n", perintahArgumen[0].TabWord);
+    // printf("%s\n", perintahArgumen[0].TabWord);
 
     if(compareWord(perintahArgumen[0], DAFTAR))daftar();
     else if(compareWord(perintahArgumen[0], MASUK))masuk();

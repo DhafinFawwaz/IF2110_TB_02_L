@@ -20,6 +20,12 @@ void CreateTreeBalasan(TreeBalasanAddress l){
 
 // Memasukkan inserted ke *l dari paling belakang
 void insertLastTreeBalasan(TreeBalasanAddress l, TreeBalasan inserted){
+    // case 1: l kosong
+    if(l == NULL){
+        l = newTreeBalasan(inserted);
+        l->id = 1;
+        return;
+    }
     TreeBalasanAddress curr = l;
     while (curr->nextSibling != NULL)
     {

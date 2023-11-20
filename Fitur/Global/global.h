@@ -12,3 +12,6 @@ extern ListDinKicauan globalListDinKicauan;
 extern ListStatikAkun globalListStatikAkun; 
 extern int globalBanyakKicauanBerbalasan;
 extern TreeBalasanAddress globalTreeBalasan;
+
+
+void inisialisasiGlobal();

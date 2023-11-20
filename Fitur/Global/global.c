@@ -9,3 +9,7 @@ ListDinKicauan globalListDinKicauan;
 ListStatikAkun globalListStatikAkun; 
 int globalBanyakKicauanBerbalasan;
 TreeBalasanAddress globalTreeBalasan;
+
+void inisialisasiGlobal(){
+    CreateAkun(globalCurrentAddrAkun);
+}
