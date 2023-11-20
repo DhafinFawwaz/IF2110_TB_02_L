@@ -4,7 +4,7 @@
 #include "../Pcolor/pcolor.h"
 
 void CreateAkun(Akun* akun){
-
+    
 }
 void DisplayAkun(Akun akun){
 

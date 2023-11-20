@@ -145,82 +145,135 @@ void displayListPerintah(){
     printf("\n");
 }
 
+void displayBelumLogin(){
+    printf("Anda belum masuk! Masuk terlebih dahulu untuk menikmati layanan BurBir.\n");
+}
+
 void handlePerintah(){
     printf(">> ");
 
     readInput();
     Word perintahArgumen[MAX_ARGUMENT];
-    extractPerintah(currentWord,perintahArgumen);
+    extractPerintah(currentWord, perintahArgumen);
     printf("%s\n", perintahArgumen[0].TabWord);
 
     if(compareWord(perintahArgumen[0], DAFTAR))daftar();
     else if(compareWord(perintahArgumen[0], MASUK))masuk();
-    else if(compareWord(perintahArgumen[0], KELUAR));
-    else if(compareWord(perintahArgumen[0], TUTUP_PROGRAM));
+    else if(compareWord(perintahArgumen[0], KELUAR))keluar();
+    else if(compareWord(perintahArgumen[0], TUTUP_PROGRAM))tutup_program();
 
-    else if(compareWord(currentWord, GANTI_PROFIL));
+
+    else if(compareWord(currentWord, GANTI_PROFIL)){
+        if(!isLogin){ displayBelumLogin(); return; }
+
+    }
     else if(compareWord(perintahArgumen[0], LIHAT_PROFIL)){  // LIHAT_PROFIL <nama pengguna>;
+        if(!isLogin){ displayBelumLogin(); return; }
         Word nama = perintahArgumen[1];
     }
-    else if(compareWord(perintahArgumen[0], ATUR_JENIS_AKUN));
-    else if(compareWord(perintahArgumen[0], UBAH_FOTO_PROFIL));
+    else if(compareWord(perintahArgumen[0], ATUR_JENIS_AKUN)){
+        if(!isLogin){ displayBelumLogin(); return; }
 
-    else if(compareWord(perintahArgumen[0], DAFTAR_TEMAN));
-    else if(compareWord(perintahArgumen[0], HAPUS_TEMAN));
+    }
+    else if(compareWord(perintahArgumen[0], UBAH_FOTO_PROFIL)){
+        if(!isLogin){ displayBelumLogin(); return; }
 
-    else if(compareWord(perintahArgumen[0], TAMBAH_TEMAN));
-    else if(compareWord(perintahArgumen[0], DAFTAR_PERMINTAAN_PERTEMANAN));
-    else if(compareWord(perintahArgumen[0], SETUJUI_PERTEMANAN));
+    }
+
+    else if(compareWord(perintahArgumen[0], DAFTAR_TEMAN)){
+        if(!isLogin){ displayBelumLogin(); return; }
+        daftarTeman();
+    }
+    else if(compareWord(perintahArgumen[0], HAPUS_TEMAN)){
+        if(!isLogin){ displayBelumLogin(); return; }
+        hapusTeman();
+    }
+
+    else if(compareWord(perintahArgumen[0], TAMBAH_TEMAN)){
+        if(!isLogin){ displayBelumLogin(); return; }
+        
+    }
+    else if(compareWord(perintahArgumen[0], DAFTAR_PERMINTAAN_PERTEMANAN)){
+        if(!isLogin){ displayBelumLogin(); return; }
+
+    }
+    else if(compareWord(perintahArgumen[0], SETUJUI_PERTEMANAN)){
+        if(!isLogin){ displayBelumLogin(); return; }
+
+    }
 
     else if(compareWord(perintahArgumen[0], KICAU)){
+        if(!isLogin){ displayBelumLogin(); return; }
         kicau();
     }
     else if(compareWord(perintahArgumen[0], KICAUAN)){
+        if(!isLogin){ displayBelumLogin(); return; }
         kicauan();
     }
     else if(compareWord(perintahArgumen[0], SUKA_KICAUAN)){ // SUKA_KICAUAN <id kicauan>;
+        if(!isLogin){ displayBelumLogin(); return; }
         int idKicauan = wordToInt(perintahArgumen[1]);
         sukaKicauan(idKicauan);
     }
     else if(compareWord(perintahArgumen[0], UBAH_KICAUAN)){  // UBAH_KICAUAN <id kicauan>;
+        if(!isLogin){ displayBelumLogin(); return; }
         int idKicauan = wordToInt(perintahArgumen[1]);
         ubahKicauan(idKicauan);
     }
 
     else if(compareWord(perintahArgumen[0], BALAS)){ // BALAS <id kicauan> <id balasan>;
+        if(!isLogin){ displayBelumLogin(); return; }
         int idKicauan = wordToInt(perintahArgumen[1]);
         int idBalasan = wordToInt(perintahArgumen[2]);
     }
     else if(compareWord(perintahArgumen[0], BALASAN)){ // BALASAN <id kicauan>;
+        if(!isLogin){ displayBelumLogin(); return; }
         int idKicauan = wordToInt(perintahArgumen[1]);
     }
     else if(compareWord(perintahArgumen[0], HAPUS_BALASAN)){ // HAPUS_BALASAN <id kicauan> <id balasan>;
+        if(!isLogin){ displayBelumLogin(); return; }
         int idKicauan = wordToInt(perintahArgumen[1]);
         int idBalasan = wordToInt(perintahArgumen[2]);
     }
 
-    else if(compareWord(perintahArgumen[0], BUAT_DRAF));
-    else if(compareWord(perintahArgumen[0], LIHAT_DRAF));
+    else if(compareWord(perintahArgumen[0], BUAT_DRAF)){
+        if(!isLogin){ displayBelumLogin(); return; }
+
+    }
+    else if(compareWord(perintahArgumen[0], LIHAT_DRAF)){
+        if(!isLogin){ displayBelumLogin(); return; }
+
+    }
 
     else if(compareWord(perintahArgumen[0], UTAS)){ // UTAS <id kicauan>;
+        if(!isLogin){ displayBelumLogin(); return; }
         int idKicauan = wordToInt(perintahArgumen[1]);
     }
     else if(compareWord(perintahArgumen[0], SAMBUNG_UTAS)){ // SAMBUNG_UTAS <id utas> <index>;
+        if(!isLogin){ displayBelumLogin(); return; }
         int idUtas = wordToInt(perintahArgumen[1]);
         int index = wordToInt(perintahArgumen[2]);
     }
     else if(compareWord(perintahArgumen[0], HAPUS_UTAS)){ // HAPUS_UTAS <id utas> <index>;
+        if(!isLogin){ displayBelumLogin(); return; }
         int idUtas = wordToInt(perintahArgumen[1]);
         int index = wordToInt(perintahArgumen[2]);
     }
     else if(compareWord(perintahArgumen[0], CETAK_UTAS)){ // CETAK_UTAS <id utas>;
+        if(!isLogin){ displayBelumLogin(); return; }
         int idUtas = wordToInt(perintahArgumen[1]);
     }
 
-    else if(compareWord(perintahArgumen[0], SIMPAN));
-    else if(compareWord(perintahArgumen[0], MUAT));
+    else if(compareWord(perintahArgumen[0], SIMPAN)){
+
+    }
+    else if(compareWord(perintahArgumen[0], MUAT)){
+
+    }
 
     else if(compareWord(perintahArgumen[0], LIST_PERINTAH))displayListPerintah();
+
+
     else {
         printf("Perintah tidak dikenali. Gunakan 'LIST_PERINTAH' untuk melihat list perintah yang bisa dilakukan.\n\n");
     } 

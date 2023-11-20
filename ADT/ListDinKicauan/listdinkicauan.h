@@ -8,6 +8,7 @@
 #include "../DateTime/datetime.h"
 #include "../Akun/akun.h"
 #include "../listKaitUtas/listkaitUtas.h"
+#include "../TreeBalasan/treebalasan.h"
 // Struktur Kicauan
 typedef struct kicauan
 {
@@ -17,6 +18,7 @@ typedef struct kicauan
     Akun *akunKicauan;
     DateTime dateTime;
     Utas firstUtas;
+    TreeBalasan firstBalasan;
     Word tagar;
 } Kicauan;
 

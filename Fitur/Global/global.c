@@ -1,9 +1,10 @@
 #include "global.h"
 
-Akun * currentAddrAkun;
+boolean isLogin = false;
+Akun * globalCurrentAddrAkun;
 // DrafKicauan
-GrafTeman currentGrafTeman;
-ListDinKicauan globalListKicauan;
-ListStatikAkun listAkun; 
-int banyakKicauanBerbalasan;
-TreeBalasanAddress currentTreeBalasan;
+GrafTeman globalGrafTeman;
+ListDinKicauan globalListDinKicauan;
+ListStatikAkun globalListStatikAkun; 
+int globalBanyakKicauanBerbalasan;
+TreeBalasanAddress globalTreeBalasan;

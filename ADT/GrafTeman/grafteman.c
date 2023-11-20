@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "../GrafTeman/grafteman.h"
+#include "../MesinKata/wordmachine.h"
 
 // elemen[i][j] semuanya 0
 void CreateGrafTeman(GrafTeman *g, int jumlahAkun){
@@ -75,5 +76,17 @@ int countSalingTeman(GrafTeman g, Akun akun){
         }
     }
     return count;
+}
+
+void displaySalingTeman(GrafTeman g, Akun akun){
+    printf("Daftar teman %s\n", akun.username.TabWord);
+    int i = 0;
+    int count = 0;
+    for(i = 0; i < GRAFTEMAN_SIZE(g); i++){
+        if(GRAFTEMAN_ELMT(g, akun.id, i) && GRAFTEMAN_ELMT(g, i, akun.id)){
+            printf("%d. %s\n", ADDR_AKUN(g, i)->username);
+            count++;
+        }
+    }
 }
 

@@ -29,9 +29,9 @@ void kicau(){
             //Hash map
         }
         Kicauan k;
-        createKicauan(&k, currentAddrAkun,text_kicau, tagar);
-        IDKICAU(k) = NEFF_LIST_KICAUAN(globalListKicauan)+1;
-        insertKicauan(&k, globalListKicauan);
+        createKicauan(&k, globalCurrentAddrAkun,text_kicau, tagar);
+        IDKICAU(k) = NEFF_LIST_KICAUAN(globalListDinKicauan)+1;
+        insertKicauan(&k, globalListDinKicauan);
         printf("Selamat! kicauan telah diterbitkan!\nDetil kicauan:\n");
         printKicauan(k);
         printf("\n");
@@ -41,15 +41,15 @@ void kicau(){
 
 void kicauan(){
     int i;
-    if(isListKicauanEmpty(globalListKicauan)){
+    if(isListKicauanEmpty(globalListDinKicauan)){
         printf("Masih belum ada kicauan\n");
     }else{
         AddressKicauan currentKicauan;
         Word pengguna;
         int idx_akun;
-        for(i=NEFF_LIST_KICAUAN(globalListKicauan)-1;i>=0;i--){
-            currentKicauan = ADDR_KICAUAN(globalListKicauan,i);
-            if(isAkunBerteman(currentGrafTeman, *ADDR_AKUN_KICAUAN(*currentKicauan), *currentAddrAkun)){
+        for(i=NEFF_LIST_KICAUAN(globalListDinKicauan)-1;i>=0;i--){
+            currentKicauan = ADDR_KICAUAN(globalListDinKicauan,i);
+            if(isAkunBerteman(globalGrafTeman, *ADDR_AKUN_KICAUAN(*currentKicauan), *globalCurrentAddrAkun)){
                 printKicauan(*currentKicauan);
                 printf("\n");
             }
@@ -59,10 +59,10 @@ void kicauan(){
 
 void sukaKicauan(int id_kicau){
     printf("\n");
-    AddressKicauan k = (ADDR_KICAUAN(globalListKicauan,(id_kicau-1)));
-    if(!isInListKicauan(id_kicau, globalListKicauan)){
+    AddressKicauan k = (ADDR_KICAUAN(globalListDinKicauan,(id_kicau-1)));
+    if(!isInListKicauan(id_kicau, globalListDinKicauan)){
         printf("Tidak ditemukan kicauan dengan ID = %d", id_kicau);   
-    }else if(!((*ADDR_AKUN_KICAUAN(*k)).isPublic) && !isAkunBerteman(currentGrafTeman,(*ADDR_AKUN_KICAUAN(*k)),*currentAddrAkun)){
+    }else if(!((*ADDR_AKUN_KICAUAN(*k)).isPublic) && !isAkunBerteman(globalGrafTeman,(*ADDR_AKUN_KICAUAN(*k)),*globalCurrentAddrAkun)){
         printf("Wah, kicauan tersebut dibuat oleh akun privat! Berteman dengan akun itu dulu ya!");
     }else{
         JUMLAH_LIKE(*k)++;
@@ -74,10 +74,10 @@ void sukaKicauan(int id_kicau){
 
 void ubahKicauan(int id_kicau){
     int idxKicauan = id_kicau-1;
-    AddressKicauan k = ADDR_KICAUAN(globalListKicauan,idxKicauan);
-    if(!isInListKicauan(id_kicau, globalListKicauan)){
+    AddressKicauan k = ADDR_KICAUAN(globalListDinKicauan,idxKicauan);
+    if(!isInListKicauan(id_kicau, globalListDinKicauan)){
         printf("Tidak ditemukan kicauan dengan ID = %d!", id_kicau);
-    }else if(!compareWord(Username(*currentAddrAkun),Username(*ADDR_AKUN_KICAUAN(*ADDR_KICAUAN(globalListKicauan,id_kicau-1))))){ // pre-requisite: boolean isSama(Word w1, Word w2)
+    }else if(!compareWord(Username(*globalCurrentAddrAkun),Username(*ADDR_AKUN_KICAUAN(*ADDR_KICAUAN(globalListDinKicauan,id_kicau-1))))){ // pre-requisite: boolean isSama(Word w1, Word w2)
         printf("Kicauan dengan ID = %d bukan milikmu!",id_kicau);
     }else{
         Word new_textKicauan;

@@ -9,11 +9,11 @@
 /* I.S. terdapat pengguna yang login */
 void ganti_profil(){
     /* Mengubah profil berdasarkan masukan pengguna */
-    displayProfil(Profil(*currentAddrAkun), Username(*currentAddrAkun));
+    displayProfil(Profil(*globalCurrentAddrAkun), Username(*globalCurrentAddrAkun));
     printf("\n\n");
     printf("Masukkan Bio Akun:\n");
     readInput();
-    changeBio(&Profil(*currentAddrAkun), currentWord);
+    changeBio(&Profil(*globalCurrentAddrAkun), currentWord);
     printf("\n");
     printf("Masukkan No HP:\n");
     readInput();
@@ -22,7 +22,7 @@ void ganti_profil(){
         printf("\nMasukkan No HP:\n");
         readInput();
     }
-    changeNomorHP(&Profil(*currentAddrAkun), currentWord);
+    changeNomorHP(&Profil(*globalCurrentAddrAkun), currentWord);
     printf("\n");
     printf("Masukkan Weton:\n");
     readInput();
@@ -31,33 +31,33 @@ void ganti_profil(){
         printf("\nMasukkan Weton:\n");
         readInput();
     }
-    changeWeton(&Profil(*currentAddrAkun), currentWord);
+    changeWeton(&Profil(*globalCurrentAddrAkun), currentWord);
     printf("\nProfil Anda sudah berhasil diperbarui!\n\n");
 }
 
 void lihat_profil_other(Word nama){
     /* Menampilkan profil pengguna yang diinginkan */
-    int othersID = findIdxByName(listAkun, nama);
+    int othersID = findIdxByName(globalListStatikAkun, nama);
     if (othersID == IDX_UNDEF){
         printf("\nNama tersebut belum terdaftar dalam database BurBir.\n");
     }
     else{
-        if (isAkunPrivat(Profil(*currentAddrAkun)) && !isAkunBerteman(currentGrafTeman, *currentAddrAkun, CONTENT(listAkun, othersID))){
+        if (isAkunPrivat(Profil(*globalCurrentAddrAkun)) && !isAkunBerteman(globalGrafTeman, *globalCurrentAddrAkun, CONTENT(globalListStatikAkun, othersID))){
             printf("Wah, akun Tuan Prim diprivat nih. Ikuti dulu yuk untuk bisa melihat profil Tuan Prim!");
         }
         else{
             printf("\n| Nama: ");
             printWord(nama);
             printf("\n| Bio Akun: ");
-            printWord(Bio(Profil(CONTENT(listAkun, othersID))));
+            printWord(Bio(Profil(CONTENT(globalListStatikAkun, othersID))));
             printf("\n| No HP: ");
-            printWord(NomorHP(Profil(CONTENT(listAkun, othersID))));
+            printWord(NomorHP(Profil(CONTENT(globalListStatikAkun, othersID))));
             printf("\n| Weton: ");
-            printWord(Weton(Profil(CONTENT(listAkun, othersID))));
+            printWord(Weton(Profil(CONTENT(globalListStatikAkun, othersID))));
             printf("\n\nFoto profil akun ");
             printWord(nama);
             printf("\n");
-            displayFotoProfil(Foto(Profil(CONTENT(listAkun, othersID))));
+            displayFotoProfil(Foto(Profil(CONTENT(globalListStatikAkun, othersID))));
             printf("\n");    
         }
     }
@@ -65,21 +65,21 @@ void lihat_profil_other(Word nama){
 
 void atur_jenis_akun(){
     /* Mengubah jenis akun pengguna */
-    if (isAkunPrivat(Profil(*currentAddrAkun))){
+    if (isAkunPrivat(Profil(*globalCurrentAddrAkun))){
         printf("\nSaat ini, akun Anda adalah akun Privat. Ingin mengubah ke akun Publik? (YA/TIDAK) ");
         readInput();
         printf("\n");
         if (compareWord(currentWord, stringToWord("YA"))){
-            changeJenisAkun(&Profil(*currentAddrAkun));
+            changeJenisAkun(&Profil(*globalCurrentAddrAkun));
             printf("Akun anda sudah diubah menjadi akun Publik.\n");
         }
     }
-    else if (isAkunPublik(Profil(*currentAddrAkun))){
+    else if (isAkunPublik(Profil(*globalCurrentAddrAkun))){
         printf("\nSaat ini, akun Anda adalah akun Publik. Ingin mengubah ke akun Privat? (YA/TIDAK) ");
         readInput();
         printf("\n");
         if (compareWord(currentWord, stringToWord("YA"))){
-            changeJenisAkun(&Profil(*currentAddrAkun));
+            changeJenisAkun(&Profil(*globalCurrentAddrAkun));
             printf("Akun anda sudah diubah menjadi akun Privat.\n");
         }
     }
@@ -88,9 +88,9 @@ void atur_jenis_akun(){
 void ubah_foto_profil(){
     /* Mengubah foto profil berdasarkan masukan pengguna */
     printf("\nFoto profil Anda saat ini adalah\n");
-    displayFotoProfil(Foto(Profil(*currentAddrAkun)));
+    displayFotoProfil(Foto(Profil(*globalCurrentAddrAkun)));
     printf("\nMasukkan foto profil yang baru\n");
     readInput();
-    changeFotoProfil(&Foto(Profil(*currentAddrAkun)), currentWord);
+    changeFotoProfil(&Foto(Profil(*globalCurrentAddrAkun)), currentWord);
     printf("\nFoto profil anda sudah berhasil diganti!\n\n");
 }

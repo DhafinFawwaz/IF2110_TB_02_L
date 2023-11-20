@@ -5,13 +5,13 @@ Word currentUtas;
 
 boolean isUtasMilikOrangLain(IDKicau){
 	return (
-		!(compareWord((*ADDR_AKUN_KICAUAN(*ADDR_KICAUAN(globalListKicauan,IDKicau-1))).username, (*currentAddrAkun).username))
+		!(compareWord((*ADDR_AKUN_KICAUAN(*ADDR_KICAUAN(globalListDinKicauan,IDKicau-1))).username, (*globalCurrentAddrAkun).username))
 	);
 }
 
 /*Mengeluarkan Utas pada List Kicauan, dan NULL jika tidak ketemu*/
 Utas getUtasInListKicauan(int IDUtas){
-	return (*ADDR_KICAUAN(globalListKicauan,IDUtas-1)).firstUtas;
+	return (*ADDR_KICAUAN(globalListDinKicauan,IDUtas-1)).firstUtas;
 }
 
 Utas buatUtas(int IDKicau){
@@ -22,7 +22,7 @@ Utas buatUtas(int IDKicau){
 	Utas_CreateUtas(&currentUtas);
 	Utas_CreateUtas(&p);
 
-	if (!(isInListKicauan(IDKicau))){ /*Kicauan tidak ditemukan*/
+	if (!(isInListKicauan(IDKicau, globalListDinKicauan))){ /*Kicauan tidak ditemukan*/
 		printf("Kicauan tidak ditemukan\n");
 	}
 	else if (isUtasMilikOrangLain(IDKicau)){ /*Utas milik akun lain*/
@@ -101,7 +101,7 @@ void hapusUtas(int IDUtas, int index){
 }
 
 void cetakUtas(int IDUtas){
-	Kicauan kicauUtas = (*ADDR_KICAUAN(globalListKicauan,IDUtas-1));
+	Kicauan kicauUtas = (*ADDR_KICAUAN(globalListDinKicauan,IDUtas-1));
 	Utas p = kicauUtas.firstUtas;
 	int idxUtas = 1;
 

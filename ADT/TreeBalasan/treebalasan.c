@@ -26,6 +26,7 @@ void insertLastTreeBalasan(TreeBalasanAddress l, TreeBalasan inserted){
         curr = curr->nextSibling;
     }
     TreeBalasanAddress new = newTreeBalasan(inserted);
+    new->id = curr->id + 1;
     curr->nextSibling = new;
     new->prevSibling = curr;
     new->parent = l->parent;
@@ -34,9 +35,12 @@ void insertLastTreeBalasan(TreeBalasanAddress l, TreeBalasan inserted){
 void replyTreeBalasan(TreeBalasanAddress l, TreeBalasan inserted){
     if(l->child == NULL){
         TreeBalasanAddress new = newTreeBalasan(inserted);
+        new->id = 1;
         l->child = new;
         new->parent = l;
     }else{
+        inserted.idParent = l->id;
+        inserted.id = lengthTreeBalasan(*l->child) + 1;
         insertLastTreeBalasan(l->child, inserted);
     }
 }

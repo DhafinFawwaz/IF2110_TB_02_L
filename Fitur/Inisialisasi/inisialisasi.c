@@ -121,9 +121,9 @@ void inisialisasiConfig(){
     // Inisialisasi kicauan
     STARTWORDFILE(kicauanPath);
 
-    NEFF_LIST_KICAUAN(globalListKicauan) = wordToInt(currentWord); // 2 # Banyak kicauan sebanyak 2
+    NEFF_LIST_KICAUAN(globalListDinKicauan) = wordToInt(currentWord); // 2 # Banyak kicauan sebanyak 2
     
-    for(i = 0; i < NEFF_LIST_KICAUAN(globalListKicauan); i++){
+    for(i = 0; i < NEFF_LIST_KICAUAN(globalListDinKicauan); i++){
         ADVWORD();
         // listDinKicauan.contents[i]->id = wordToInt(currentWord); // 1 # ID kicauan 1
 
@@ -147,27 +147,27 @@ void inisialisasiConfig(){
     // Inisialisasi pengguna
     STARTWORDFILE(penggunaPath);
 
-    NEFF(listAkun) = wordToInt(currentWord); // 2 # Banyak pengguna
-    for(i = 0; i < NEFF(listAkun); i++){
-        CreateAkun(&CONTENT(listAkun, i));
+    NEFF(globalListStatikAkun) = wordToInt(currentWord); // 2 # Banyak pengguna
+    for(i = 0; i < NEFF(globalListStatikAkun); i++){
+        CreateAkun(&CONTENT(globalListStatikAkun, i));
 
         ADVLINE();
-        CONTENT(listAkun, i).username = cleanWord(currentWord);
+        CONTENT(globalListStatikAkun, i).username = cleanWord(currentWord);
 
         ADVLINE();
-        CONTENT(listAkun, i).password = cleanWord(currentWord);
+        CONTENT(globalListStatikAkun, i).password = cleanWord(currentWord);
         
         ADVLINE();
-        CONTENT(listAkun, i).profil.bio = cleanWord(currentWord);
+        CONTENT(globalListStatikAkun, i).profil.bio = cleanWord(currentWord);
         
         ADVLINE();
-        CONTENT(listAkun, i).profil.nomor_hp = cleanWord(currentWord);
+        CONTENT(globalListStatikAkun, i).profil.nomor_hp = cleanWord(currentWord);
 
         ADVLINE();
-        CONTENT(listAkun, i).profil.weton = cleanWord(currentWord);
+        CONTENT(globalListStatikAkun, i).profil.weton = cleanWord(currentWord);
 
         ADVLINE();
-        CONTENT(listAkun, i).isPublic = jenisAkunToBoolean(cleanWord(currentWord));
+        CONTENT(globalListStatikAkun, i).isPublic = jenisAkunToBoolean(cleanWord(currentWord));
 
         Foto foto;
         CreateFotoProfil(&foto);
@@ -182,16 +182,16 @@ void inisialisasiConfig(){
                 Simbol(foto, j, k) = currentWord.TabWord[0];
             }
         }
-        CONTENT(listAkun, i).profil.foto = foto;
+        CONTENT(globalListStatikAkun, i).profil.foto = foto;
     }
     // Matriks Pertemanan
-    CreateGrafTeman(&currentGrafTeman, NEFF(listAkun));
-    for(i = 0; i < NEFF(listAkun); i++){
+    CreateGrafTeman(&globalGrafTeman, NEFF(globalListStatikAkun));
+    for(i = 0; i < NEFF(globalListStatikAkun); i++){
         int j = 0;
-        for(j = 0; j < NEFF(listAkun); j++){
+        for(j = 0; j < NEFF(globalListStatikAkun); j++){
             ADVWORD();
-            if(currentWord.TabWord[0] == '1') setGrafTeman(&currentGrafTeman, i, j, true);
-            else setGrafTeman(&currentGrafTeman, i, j, false);
+            if(currentWord.TabWord[0] == '1') setGrafTeman(&globalGrafTeman, i, j, true);
+            else setGrafTeman(&globalGrafTeman, i, j, false);
         }
     }
     
