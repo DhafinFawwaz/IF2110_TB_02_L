@@ -2,6 +2,7 @@
 #include "Fitur/Inisialisasi/inisialisasi.h"
 #include "Fitur/Perintah/perintah.h"
 #include "ADT/Boolean/boolean.h"
+#include "Fitur/Global/global.h"
 
 boolean isRunning = true;
 
@@ -12,6 +13,7 @@ void exitProgram()
 
 int main()
 {
+    inisialisasiGlobal();
     displayInisialisasi();
     inisialisasiConfig();
 
