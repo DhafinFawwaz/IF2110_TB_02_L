@@ -95,8 +95,8 @@ void CopyWord()
     }
 }
 
-void STARTWORDFILE(char path[]){
-    STARTFILE(path);
+void STARTWORDFILEREADER(char path[]){
+    STARTFILEREADER(path);
     IgnoreBlanks();
     if (currentChar == MARK) {
         EndWord = true;
@@ -106,6 +106,41 @@ void STARTWORDFILE(char path[]){
         IgnorePossibleNewLine();
     }
 }
+void STARTWORDFILEWRITER(char path[]){
+    STARTFILEWRITER(path);
+}
+
+// Tulis Word ke file
+void WRITEWORD(Word w){
+    for(int i = 0; i < w.Length; i++){
+        WRITECHAR(w.TabWord[i]);
+    }
+    WRITECHAR(w.TabWord[w.Length-1]); // anehnya kalau gak ada ini, huruf terakhir gak ketulis
+}
+
+// Tulis int ke file
+void WRITEINT(int N){
+    if(N < 0){
+        WRITECHAR('-');
+        N = -N;
+    }
+    if(N == 0){
+        WRITECHAR('0');
+    } else {
+        int digits[10];
+        int n = 0;
+        while(N > 0){
+            digits[n] = N % 10;
+            N /= 10;
+            n++;
+        }
+        for(int j = n - 1; j >= 0; j--){
+            WRITECHAR(digits[j] + '0');
+        }
+        WRITECHAR(digits[0] + '0'); // anehnya kalau gak ada ini, huruf terakhir gak ketulis
+    }
+}
+
 void ADVLINE()
 {
     if(currentChar == MARK){

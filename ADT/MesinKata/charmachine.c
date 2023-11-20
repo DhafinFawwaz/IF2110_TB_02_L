@@ -40,8 +40,20 @@ void ADV()
        //        fclose(pita);
        // }
 }
-void STARTFILE(char path[])
+void STARTFILEREADER(char path[])
 {
        pita = fopen(path, "r");
        ADV();
+}
+
+void STARTFILEWRITER(char path[])
+{
+       pita = fopen(path, "w");
+}
+
+
+// Tulis char ke file
+void WRITECHAR(char c){
+       fflush(pita);
+       fprintf(pita, "%c", c);
 }

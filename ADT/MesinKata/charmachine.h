@@ -26,7 +26,13 @@ void ADV();
           currentChar mungkin = MARK
           Jika  currentChar = MARK maka EOP akan menyala (true) */
 
-void STARTFILE(char path[]);
-/* Pita direset untuk handle freopen file. */
+void STARTFILEREADER(char path[]);
+/* Pita direset untuk handle fopen file. */
+
+void STARTFILEWRITER(char path[]);
+/* Pita direset untuk handle fopen file. */
+
+// Tulis char ke file
+void WRITECHAR(char c);
 
 #endif

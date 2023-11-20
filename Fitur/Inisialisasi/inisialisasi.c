@@ -74,7 +74,7 @@ void inisialisasiConfig(){
 }
 
 void simpan(){
-    printf("Masukkan nama folder penyimpanan.\n");
+    printf("\nMasukkan nama folder penyimpanan.\n");
     char folderPath[NMax] = "";
     
     readInput(); // currentWord.TabWord = nama folder
@@ -82,7 +82,7 @@ void simpan(){
     
     if(!isDirectoryExists(folderPath)){
         printf("Belum terdapat %s. Akan dilakukan pembuatan %s terlebih dahulu.\n\nMohon tunggu...\n1...\n2...\n3...", currentWord.TabWord, currentWord.TabWord);
-        mkdir(folderPath, 0777);
+        createDirectory(folderPath);
         printf("\n\n%s sudah berhasil dibuat.\n\n", currentWord.TabWord);
     }
 
@@ -109,7 +109,6 @@ void muat(){
 }
 
 void assignGlobalVariablesFromFiles(){
-
     char balasanPath[NMax], drafPath[NMax], kicauanPath[NMax], penggunaPath[NMax], utasPath[NMax] = "";
     tripleConcat(dataPath, currentWord.TabWord, "/balasan.config", balasanPath);
     tripleConcat(dataPath, currentWord.TabWord, "/draf.config", drafPath);
@@ -156,7 +155,7 @@ void assignGlobalVariablesFromFiles(){
 */
     // Inisialisasi draf
     // printf("\n[Draf]\n");
-    STARTWORDFILE(drafPath);
+    STARTWORDFILEREADER(drafPath);
     banyakDraf = wordToInt(currentWord);// 5 # Banyak draf
 
     for(i = 0; i < banyakDraf; i++){
@@ -180,7 +179,7 @@ void assignGlobalVariablesFromFiles(){
 
  
     // Inisialisasi kicauan
-    STARTWORDFILE(kicauanPath);
+    STARTWORDFILEREADER(kicauanPath);
 
     NEFF_LIST_KICAUAN(globalListDinKicauan) = wordToInt(currentWord); // 2 # Banyak kicauan sebanyak 2
     
@@ -206,7 +205,7 @@ void assignGlobalVariablesFromFiles(){
     // DebugListKicauan();
 
     // Inisialisasi pengguna
-    STARTWORDFILE(penggunaPath);
+    STARTWORDFILEREADER(penggunaPath);
 
     NEFF(globalListStatikAkun) = wordToInt(currentWord); // 2 # Banyak pengguna
     for(i = 0; i < NEFF(globalListStatikAkun); i++){
@@ -301,5 +300,30 @@ void assignGlobalVariablesFromFiles(){
 }
 
 void writeGlobalVariablesToFiles(){
+    char balasanPath[NMax], drafPath[NMax], kicauanPath[NMax], penggunaPath[NMax], utasPath[NMax] = "";
+    tripleConcat(dataPath, currentWord.TabWord, "/balasan.config", balasanPath);
+    tripleConcat(dataPath, currentWord.TabWord, "/draf.config", drafPath);
+    tripleConcat(dataPath, currentWord.TabWord, "/kicauan.config", kicauanPath);
+    tripleConcat(dataPath, currentWord.TabWord, "/pengguna.config", penggunaPath);
+    tripleConcat(dataPath, currentWord.TabWord, "/utas.config", utasPath);
+    int i = 0;
+    
+    STARTWORDFILEWRITER(balasanPath);
 
+    Word w;
+    setWord(&w, "a\nb\nc\n");
+    WRITEWORD(w);
+
+    WRITEINT(1345);
+
+    // STARTWORDFILEWRITER(drafPath);
+    // STARTWORDFILEWRITER(kicauanPath);
+    // STARTWORDFILEWRITER(penggunaPath);
+    // STARTWORDFILEWRITER(utasPath);
+
+}
+
+void createDirectory(char folderPath[NMax]){
+    mkdir(folderPath, 0777);
+    
 }
