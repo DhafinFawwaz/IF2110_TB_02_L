@@ -6,15 +6,15 @@
 boolean isLogin = false;
 Akun * globalCurrentAddrAkun;
 // DrafKicauan
-GrafTeman currentGrafTeman;
+GrafTeman globalGrafTeman;
 boolean isLoginGlobal = false;
 
 ListDinKicauan globalListKicauan;
-ListStatikAkun listAkun; 
+ListStatikAkun globalListStatikAkun; 
 int banyakKicauanBerbalasan;
-TreeBalasanAddress currentTreeBalasan;
+TreeBalasanAddress globalTreeBalasan;
 
 void inisialisasiGlobal(){
     createListDinKicauan(&globalListKicauan,10);
-    listStatikAkun_Create(&listAkun);
+    listStatikAkun_Create(&globalListStatikAkun);
 }

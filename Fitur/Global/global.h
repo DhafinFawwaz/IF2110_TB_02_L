@@ -15,10 +15,10 @@ extern int globalBanyakKicauanBerbalasan;
 extern TreeBalasanAddress globalTreeBalasan;
 
 extern boolean isLoginGlobal;
-extern GrafTeman currentGrafTeman;
+extern GrafTeman globalGrafTeman;
 extern ListDinKicauan globalListKicauan;
-extern ListStatikAkun listAkun; 
+extern ListStatikAkun globalListStatikAkun; 
 extern int banyakKicauanBerbalasan;
-extern TreeBalasanAddress currentTreeBalasan;
+extern TreeBalasanAddress globalTreeBalasan;
 
 void inisialisasiGlobal();
