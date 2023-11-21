@@ -83,10 +83,9 @@ void ubahKicauan(int id_kicau){
         printf("Masukkan kicauan baru:\n");
         readInput();
         capCurrentWord(280);
-
         printf("\n");
         if(currentWord.Length == 0){
-            printf("Kicauan tidak boleh kosong!");
+            printf("Kicauan tidak boleh kosong!\n\n");
         }else{
             setWord(&TEXT_KICAU(*k),currentWord.TabWord);
             // Cetak pesan

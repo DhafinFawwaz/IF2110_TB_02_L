@@ -232,7 +232,9 @@ void capCurrentWord(int cap){
     for(i = cap; i < currentWord.Length; i++){
         currentWord.TabWord[i] = '\0';
     }
-    currentWord.Length = cap;
+    if(currentWord.Length>cap){
+        currentWord.Length = cap;
+    }
 }
 
 void capWord(Word w, int cap){
