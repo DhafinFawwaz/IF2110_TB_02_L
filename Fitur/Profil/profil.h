@@ -4,7 +4,7 @@
 #ifndef PROFIL_H
 #define PROFIL_H
 
-#include "../Perintah/perintah.h" // readInput(), nama
+#include "../Perintah/perintah.h"
 #include "../../ADT/Akun/akun.h"
 #include "../../ADT/Profile/profile.h"
 #include "../../ADT/GrafTeman/grafteman.h"
