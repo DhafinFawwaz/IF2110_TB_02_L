@@ -4,6 +4,7 @@
 #ifndef PROFIL_H
 #define PROFIL_H
 
+#include "../Global/global.h"
 #include "../Perintah/perintah.h"
 #include "../../ADT/Akun/akun.h"
 #include "../../ADT/Profile/profile.h"

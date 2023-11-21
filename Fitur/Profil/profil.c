@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include "profil.h"
-#include "../Global/global.h"
 
 /* *** DAFTAR PERINTAH FITUR PROFIL *** */
 /* I.S. terdapat pengguna yang login */
