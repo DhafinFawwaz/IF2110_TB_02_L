@@ -6,6 +6,7 @@
 #define DAFTARPERMINTAAN_H
 
 /* *** ADT LAIN YANG DIPAKAI *** */
+#include "../Akun/akun.h"
 #include "../Boolean/boolean.h"
 #include "../MesinKata/wordmachine.h"
 
@@ -14,8 +15,8 @@
 
 /* *** DEFINISI TYPE DAFTAR PERMINTAAN *** */
 typedef struct {
-    int jumlah_teman; // int prio
-    Word nama_minta; // char info
+    int jumlah_teman;
+    Akun akun_minta;
 } permintaan; // infotype
 typedef int address;   /* indeks tabel */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
@@ -29,7 +30,7 @@ typedef struct {
 /* ********* AKSES (Selektor) ********* */
 /* Jika p adalah permintaan dan D adalah DaftarPermintaan, maka akses elemen : */
 #define JumlahTeman(p) (p).jumlah_teman
-#define NamaMinta(p) (p).nama_minta
+#define AkunMinta(p) (p).akun_minta
 #define Head(D) (D).HEAD
 #define Tail(D) (D).TAIL
 #define HeadPermintaan(D) (D).P[(D).HEAD]

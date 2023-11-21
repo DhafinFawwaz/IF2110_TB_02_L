@@ -88,9 +88,9 @@ void dequeuePermintaan(DaftarPermintaan *D, permintaan *p){
 void displayTopPermintaan(DaftarPermintaan D){
 /* Menampilkan permintaan pertemanan teratas */
 	printf("\nPermintaan pertemanan teratas dari ");
-	printWord(NamaMinta(HeadPermintaan(D)));
+	printWord(Username(AkunMinta(HeadPermintaan(D))));
 	printf("\n\n| ");
-	printWord(NamaMinta(HeadPermintaan(D)));
+	printWord(Username(AkunMinta(HeadPermintaan(D))));
 	printf("\n| Jumlah teman: %d\n", JumlahTeman(HeadPermintaan(D)));
 }
 
@@ -100,12 +100,12 @@ void displayDaftar(DaftarPermintaan D){
 	if (Tail(D) - Head(D) < 0){
 		for (i = Head(D); i < MaxPermintaan(D); i++){
 			printf("\n| ");
-			printWord(NamaMinta(Elmt(D,i)));
+			printWord(Username(AkunMinta(Elmt(D,i))));
 			printf("\n| Jumlah teman: %d\n", JumlahTeman(Elmt(D,i)));
 		}
 		for (j = 0; j < Tail(D) + 1; j++){
 			printf("\n| ");
-			printWord(NamaMinta(Elmt(D,j)));
+			printWord(Username(AkunMinta(Elmt(D,j))));
 			printf("\n| Jumlah teman: %d\n", JumlahTeman(Elmt(D,j)));
 		}
 		printf("\n");
@@ -113,7 +113,7 @@ void displayDaftar(DaftarPermintaan D){
 	else{
 		for (i = Head(D); i < Tail(D) + 1; i++){
 			printf("\n| ");
-			printWord(NamaMinta(Elmt(D,i)));
+			printWord(Username(AkunMinta(Elmt(D,i))));
 			printf("\n| Jumlah teman: %d\n", JumlahTeman(Elmt(D,i)));
 		}
 		printf("\n");
