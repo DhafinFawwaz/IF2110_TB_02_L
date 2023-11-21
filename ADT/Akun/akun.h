@@ -16,7 +16,7 @@ typedef struct akun
     Profile profil;
     Word username;
     Word password;
-    DaftarPermintaan list_permintaan_pertemanan;
+    DaftarPermintaan daftar_permintaan_pertemanan;
     boolean isPublic;
 } Akun;
 
@@ -25,7 +25,7 @@ typedef struct akun
 #define Username(A) (A).username
 #define Password(A) (A).password
 #define Profil(A) (A).profil
-#define Permintaan(A) (A).list_permintaan_pertemanan
+#define DaftarPermintaan(A) (A).daftar_permintaan_pertemanan
 
 void CreateAkun(Akun* akun);
 void DisplayAkun(Akun akun);
