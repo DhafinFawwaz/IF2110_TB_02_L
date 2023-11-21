@@ -25,6 +25,7 @@ typedef struct akun
 #define Username(A) (A).username
 #define Password(A) (A).password
 #define Profil(A) (A).profil
+#define Permintaan(A) (A).list_permintaan_pertemanan
 
 void CreateAkun(Akun* akun);
 void DisplayAkun(Akun akun);
