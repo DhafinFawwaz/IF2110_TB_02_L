@@ -3,6 +3,7 @@
 #include "../../ADT/TreeBalasan/treebalasan.h"
 #include "../Pengguna/pengguna.h"
 #include "../Kicauan/kicauan.h"
+#include "../Utas/utas.h"
 #include <stdio.h>
 
 #define MAX_ARGUMENT 3
@@ -248,20 +249,24 @@ void handlePerintah(){
     else if(compareWord(perintahArgumen[0], UTAS)){ // UTAS <id kicauan>;
         if(!isLogin){ displayBelumLogin(); return; }
         int idKicauan = wordToInt(perintahArgumen[1]);
+        buatUtas(idKicauan);
     }
     else if(compareWord(perintahArgumen[0], SAMBUNG_UTAS)){ // SAMBUNG_UTAS <id utas> <index>;
         if(!isLogin){ displayBelumLogin(); return; }
         int idUtas = wordToInt(perintahArgumen[1]);
         int index = wordToInt(perintahArgumen[2]);
+        sambungUtas(idUtas, index);
     }
     else if(compareWord(perintahArgumen[0], HAPUS_UTAS)){ // HAPUS_UTAS <id utas> <index>;
         if(!isLogin){ displayBelumLogin(); return; }
         int idUtas = wordToInt(perintahArgumen[1]);
         int index = wordToInt(perintahArgumen[2]);
+        hapusUtas(idUtas, index);
     }
     else if(compareWord(perintahArgumen[0], CETAK_UTAS)){ // CETAK_UTAS <id utas>;
         if(!isLogin){ displayBelumLogin(); return; }
         int idUtas = wordToInt(perintahArgumen[1]);
+        cetakUtas(idUtas);
     }
 
     else if(compareWord(perintahArgumen[0], SIMPAN)){

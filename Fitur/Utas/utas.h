@@ -6,7 +6,7 @@
 extern Word currentUtas;
 
 //Fungsi dan Prosedur UTAS
-Utas buatUtas(int IDKicau);
+void buatUtas(int IDKicau);
 void sambungUtas(int IDUtas, int index);
 void hapusUtas(int IDUtas, int index);
 void cetakUtas(int IDUtas);
