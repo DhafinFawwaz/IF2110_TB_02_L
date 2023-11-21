@@ -1,13 +1,32 @@
 #include <stdio.h>
-#include "../Boolean/boolean.h"
 #include "akun.h"
+
+#include "../Boolean/boolean.h"
 #include "../Pcolor/pcolor.h"
+#include "../Profile/profile.h"
+#include "../GrafTeman/grafteman.h"
 
 void CreateAkun(Akun* akun){
     akun = (Akun*) malloc(sizeof(Akun));
-}
-void DisplayAkun(Akun akun){
 
+    (akun)->id = 0;
+    CreateProfil(&(akun)->profil);
+
+    setWord(&(akun)->username, "");
+    setWord(&(akun)->password, "");
+}
+
+void DisplayAkun(Akun akun){
+    printf("ID: %d\n", akun.id);
+
+    displayProfil(Profil(akun), Username(akun));
+
+    printf("Username: ");
+    printWord(Username(akun));
+    printf("Password: ");
+    printWord(Password(akun));
+
+    // list permintaan pertemanan
 }
 
 
