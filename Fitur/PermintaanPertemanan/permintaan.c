@@ -62,13 +62,17 @@ void setujui_pertemanan(){
         Word namaPeminta = NamaMinta(HeadPermintaan(DaftarPermintaan(*globalCurrentAddrAkun)));
         int othersID = findIdxByName(globalListStatikAkun, namaPeminta);
         Akun akunPeminta = CONTENT(globalListStatikAkun, othersID);
+        permintaan teratas;
         printf("\nApakah Anda ingin menyetujui permintaan pertemanan ini? (YA/TIDAK) ");
         readInput();
         if (compareWord(currentWord, stringToWord("YA"))){
             GRAFTEMAN_ELMT(globalGrafTeman, globalCurrentAddrAkun->id, akunPeminta.id) = true;
+            dequeuePermintaan(&DaftarPermintaan(*globalCurrentAddrAkun), &teratas);
             printf("\n\nPermintaan pertemanan dari %s telah disetujui. Selamat! Anda telah berteman dengan %s.\n", wordToString(namaPeminta));
         }
         else if (compareWord(currentWord, stringToWord("TIDAK"))){
+            GRAFTEMAN_ELMT(globalGrafTeman, akunPeminta.id, globalCurrentAddrAkun->id) = false;
+            dequeuePermintaan(&DaftarPermintaan(*globalCurrentAddrAkun), &teratas);
             printf("\n\nPermintaan pertemanan dari %s telah ditolak.\n", wordToString(namaPeminta));
         }
     }
