@@ -3,7 +3,7 @@
 
 int main(){
     ListDinKicauan listDin;
-    createListDinKicauan(&listdinkicauan);
+    createListDinKicauan(&listDin,10);
     kicau();
     return 0;
 }
