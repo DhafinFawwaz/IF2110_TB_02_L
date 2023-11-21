@@ -32,6 +32,7 @@ void kicau(){
         createKicauan(&k, globalCurrentAddrAkun,text_kicau, tagar);
         IDKICAU(k) = NEFF_LIST_KICAUAN(globalListDinKicauan)+1;
         insertKicauan(&k, &globalListDinKicauan);
+        
         printf("Selamat! kicauan telah diterbitkan!\nDetil kicauan:\n");
         printKicauan(k);
         printf("\n");

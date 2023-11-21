@@ -6,15 +6,12 @@
 #include "../Akun/akun.h"
 
 void createKicauan(Kicauan *k, Akun * currentAkun, Word text, Word tagar){
-    k = (Kicauan*) malloc(sizeof(Kicauan));
-    if(k!=NULL){
-        IDKICAU(*k) = -1;
-        setWord(&TEXT_KICAU(*k),text.TabWord);
-        JUMLAH_LIKE(*k) = 0;
-        ADDR_AKUN_KICAUAN(*k) = currentAkun;
-        SetToCurrentDateTime(&WAKTU(*k));
-        setWord(&TAGAR(*k),tagar.TabWord);
-    }
+    IDKICAU(*k) = -1;
+    setWord(&TEXT_KICAU(*k),text.TabWord);
+    JUMLAH_LIKE(*k) = 0;
+    ADDR_AKUN_KICAUAN(*k) = currentAkun;
+    SetToCurrentDateTime(&WAKTU(*k));
+    setWord(&TAGAR(*k),tagar.TabWord);
 }
 
 void printKicauan(Kicauan kicauan){
