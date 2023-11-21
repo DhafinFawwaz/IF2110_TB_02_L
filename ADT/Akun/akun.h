@@ -12,12 +12,16 @@
 #define IDMax 20
 typedef struct akun
 {
+#define IDMax 20
+typedef struct akun
+{
     int id;
     Profile profil;
     Word username;
     Word password;
-    DaftarPermintaan daftar_permintaan_pertemanan;
-    boolean isPublic;
+    
+    DaftarPermintaan list_permintaan_pertemanan;
+    StackDin draf_kicauan;
 } Akun;
 
 /* ********* AKSES (Selektor) ********* */
