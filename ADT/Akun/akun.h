@@ -12,9 +12,6 @@
 #define IDMax 20
 typedef struct akun
 {
-#define IDMax 20
-typedef struct akun
-{
     int id;
     Profile profil;
     Word username;
