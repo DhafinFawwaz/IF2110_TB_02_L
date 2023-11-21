@@ -12,9 +12,9 @@
 // Struktur Kicauan
 typedef struct kicauan
 {
+    int likeCount;
     int id;
     Word text;
-    int likeCount;
     Akun * akunKicauan;
     DateTime dateTime;
     Utas firstUtas;
@@ -31,23 +31,22 @@ typedef struct kicauan
 // End of Struktur Kicauan
 
 // Struktur List Dinamis Kicauan
-typedef Kicauan* AddressKicauan;
 
 typedef struct listdinkicauan
 {
-    AddressKicauan* contents;
+    Kicauan* contents;
     int nEff;
     int cap;
 } ListDinKicauan;
 
-#define ADDR_KICAUAN(l,idx) (l).contents[idx]
+#define GET_ELMT_KICAUAN(l,idx) (l).contents[idx]
 #define CONTENTS_LIST_KICAUAN(l) (l).contents
 #define NEFF_LIST_KICAUAN(l) (l).nEff
 #define CAP_LIST_KICAUAN(l) (l).cap
 // End of Struktur List Dinamis Kicauan
 
 // Fungsi dan Prosedur Kicauan
-void createKicauan(Kicauan * k, Akun * currentAkun, Word text, Word tagar);
+void createKicauan(Kicauan * k, Word text, Word tagar);
 
 void printKicauan(Kicauan kicauan);
 // End of Fungsi dan Prosedur Kicauan
@@ -61,7 +60,7 @@ void expandListKicauan(ListDinKicauan *l);
 
 boolean isFullListKicauan(ListDinKicauan l);
 
-void insertKicauan(Kicauan *k, ListDinKicauan * listKicauan);
+void insertKicauan(Kicauan k, ListDinKicauan * listKicauan);
 
 boolean isListKicauanEmpty(ListDinKicauan listKicauan);
 

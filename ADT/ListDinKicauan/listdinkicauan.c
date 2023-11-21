@@ -4,12 +4,12 @@
 #include "../DateTime/datetime.h"
 #include "../ListStatikAkun/liststatikAkun.h"
 #include "../Akun/akun.h"
+#include <stdlib.h>
 
-void createKicauan(Kicauan *k, Akun * currentAkun, Word text, Word tagar){
+void createKicauan(Kicauan *k, Word text, Word tagar){
     IDKICAU(*k) = -1;
-    setWord(&TEXT_KICAU(*k),text.TabWord);
+    setWord(&(TEXT_KICAU(*k)),text.TabWord);
     JUMLAH_LIKE(*k) = 0;
-    ADDR_AKUN_KICAUAN(*k) = currentAkun;
     SetToCurrentDateTime(&WAKTU(*k));
     setWord(&TAGAR(*k),tagar.TabWord);
 }
@@ -17,8 +17,7 @@ void createKicauan(Kicauan *k, Akun * currentAkun, Word text, Word tagar){
 void printKicauan(Kicauan kicauan){
     printf("| ID = %d\n", IDKICAU(kicauan));
     printf("| ");
-    Word pembuat = (*ADDR_AKUN_KICAUAN(kicauan)).username;
-    printWord(pembuat);
+    printWord(ADDR_AKUN_KICAUAN(kicauan)->username);
     printf("\n");
     printf("| ");
     DisplayDateTime(WAKTU(kicauan));
@@ -32,14 +31,14 @@ void printKicauan(Kicauan kicauan){
 void createListDinKicauan(ListDinKicauan *l, int cap){
     NEFF_LIST_KICAUAN(*l) = 0;
     CAP_LIST_KICAUAN(*l) = cap;
-    CONTENTS_LIST_KICAUAN(*l) = (AddressKicauan*) malloc(cap * sizeof(AddressKicauan));
+    CONTENTS_LIST_KICAUAN(*l) = (Kicauan*) malloc(cap * sizeof(Kicauan));
 }
 
 void copyContentListKicauan(ListDinKicauan *l1, ListDinKicauan *l2){
     int i;
     // createListDinKicauan(l2);
     for(i=0;i < NEFF_LIST_KICAUAN(*l1);i++){
-        ADDR_KICAUAN(*l2,i) = ADDR_KICAUAN(*l1,i);
+        GET_ELMT_KICAUAN(*l2,i) = GET_ELMT_KICAUAN(*l1,i);
     }
     NEFF_LIST_KICAUAN(*l2) = NEFF_LIST_KICAUAN(*l1);
     CAP_LIST_KICAUAN(*l2) = CAP_LIST_KICAUAN(*l1);
@@ -57,13 +56,12 @@ boolean isFullListKicauan(ListDinKicauan l){
     return(NEFF_LIST_KICAUAN(l) == CAP_LIST_KICAUAN(l));
 }
 
-void insertKicauan(Kicauan *k, ListDinKicauan * listKicauan){
-    AddressKicauan p = k;
+void insertKicauan(Kicauan k, ListDinKicauan * listKicauan){
     if(isFullListKicauan(*listKicauan)){
         expandListKicauan(listKicauan);
     }
     int idx = NEFF_LIST_KICAUAN(*listKicauan);
-    ADDR_KICAUAN(*listKicauan,idx) = p;
+    GET_ELMT_KICAUAN((*listKicauan),idx) = k;
     NEFF_LIST_KICAUAN(*listKicauan)++;
 }
 

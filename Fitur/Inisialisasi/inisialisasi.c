@@ -180,8 +180,8 @@ void assignGlobalVariablesFromFiles(){
  
     // Inisialisasi kicauan
     STARTWORDFILEREADER(kicauanPath);
-
-    NEFF_LIST_KICAUAN(globalListDinKicauan) = wordToInt(currentWord); // 2 # Banyak kicauan sebanyak 2
+    
+    // NEFF_LIST_KICAUAN(globalListDinKicauan) = wordToInt(currentWord); // 2 # Banyak kicauan sebanyak 2
     
     for(i = 0; i < NEFF_LIST_KICAUAN(globalListDinKicauan); i++){
         ADVWORD();
