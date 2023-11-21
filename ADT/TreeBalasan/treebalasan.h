@@ -6,6 +6,8 @@
 #include "../Boolean/boolean.h"
 #include "../Akun/akun.h"
 
+#define LEFT_MARGIN_BLANK "   " 
+
 typedef struct treebalasan* TreeBalasanAddress;
 
 typedef struct treebalasan
@@ -24,7 +26,7 @@ typedef struct treebalasan
 
 TreeBalasanAddress newTreeBalasan(TreeBalasan treebalasan);
 
-void CreateTreeBalasan(TreeBalasanAddress t);
+void CreateTreeBalasan(TreeBalasanAddress t, Akun *akunPembuat);
 
 int lengthTreeBalasan(TreeBalasan t);
 

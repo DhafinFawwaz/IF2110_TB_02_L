@@ -5,7 +5,8 @@ int main()
 {
     int type;
     scanf("%d", &type);
-    
+
+    GrafTeman currentGrafTeman;
     CreateGrafTeman(&currentGrafTeman, 5);
     setGrafTeman(&currentGrafTeman, 0, 1, true);
     setGrafTeman(&currentGrafTeman, 3, 2, true);

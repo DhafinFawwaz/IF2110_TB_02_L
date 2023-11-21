@@ -5,13 +5,13 @@ Word currentUtas;
 
 boolean isUtasMilikOrangLain(IDKicau){
 	return (
-		!(compareWord((*ADDR_AKUN_KICAUAN(*ADDR_KICAUAN(globalListDinKicauan,IDKicau-1))).username, (*globalCurrentAddrAkun).username))
+		!(compareWord((*ADDR_AKUN_KICAUAN(GET_ELMT_KICAUAN(globalListDinKicauan,IDKicau-1))).username, (*globalCurrentAddrAkun).username))
 	);
 }
 
 /*Mengeluarkan Utas pada List Kicauan, dan NULL jika tidak ketemu*/
 Utas getUtasInListKicauan(int IDUtas){
-	return (*ADDR_KICAUAN(globalListDinKicauan,IDUtas-1)).firstUtas;
+	return GET_ELMT_KICAUAN(globalListDinKicauan,IDUtas-1).firstUtas;
 }
 
 void buatUtas(int IDKicau){
@@ -54,7 +54,7 @@ void buatUtas(int IDKicau){
 		} while (!compareWord(currentWord, TIDAK));
 		
 	}
-	(globalListDinKicauan.contents[IDKicau-1])->firstUtas = newFirstUtas;
+	(globalListDinKicauan.contents[IDKicau-1]).firstUtas = newFirstUtas;
 }
 
 void sambungUtas(int IDUtas, int index){
@@ -101,7 +101,7 @@ void hapusUtas(int IDUtas, int index){
 }
 
 void cetakUtas(int IDUtas){
-	Kicauan kicauUtas = (*ADDR_KICAUAN(globalListDinKicauan,IDUtas-1));
+	Kicauan kicauUtas = GET_ELMT_KICAUAN(globalListDinKicauan,IDUtas-1);
 	Utas p = kicauUtas.firstUtas;
 	int idxUtas = 1;
 

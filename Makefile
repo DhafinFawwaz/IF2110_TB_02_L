@@ -48,6 +48,7 @@ TEST_RESULTS = $(TEST_CASES:.in=.result)
 
 GREEN = \033[32m
 RED = \033[31m
+YELLOW = \033[33m
 RESET = \033[0m
 
 SRC_FILE = $(wildcard $(word 2, $(MAKECMDGOALS))/*.c)
@@ -62,9 +63,9 @@ $(TEST_RESULTS): $(TESTS_DIR)/%.result: $(TESTS_DIR)/%.in $(TESTS_DIR)/%.out $(E
 	else \
 		echo "- $< $(word 2,$^): $(RED)FAIL$(RESET)"; \
 		if [ "$(word 3, $(MAKECMDGOALS))" = "debug" ]; then \
-			echo "Expected:"; \
+			echo "$(YELLOW)Expected:$(RESET)"; \
 			cat $(word 2,$^); \
-			echo "Actual:"; \
+			echo "$(YELLOW)Actual:$(RESET)"; \
 			$(EXE_MTEST) < $<; \
 		fi; \
 	fi > $@

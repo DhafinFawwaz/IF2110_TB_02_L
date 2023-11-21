@@ -4,17 +4,27 @@
 
 TreeBalasanAddress newTreeBalasan(TreeBalasan treebalasan){
     TreeBalasanAddress new = (TreeBalasanAddress) malloc(sizeof(TreeBalasan));
-    new->id = treebalasan.id;
     new->idParent = treebalasan.idParent;
-    SetToCurrentDateTime(&new->dateTime);
+    new->id = treebalasan.id;
     new->akunPembuat = treebalasan.akunPembuat;
+    new->text = treebalasan.text;
+    new->dateTime = treebalasan.dateTime;
+    new->child = treebalasan.child; 
+    new->parent = treebalasan.parent;
+    new->prevSibling = treebalasan.prevSibling;  
+    new->nextSibling = treebalasan.nextSibling; 
     return new;
 }
 
-void CreateTreeBalasan(TreeBalasanAddress l){
-    l = (TreeBalasanAddress) malloc(sizeof(TreeBalasan));
+void CreateTreeBalasan(TreeBalasanAddress l, Akun *akunPembuat){
     l->idParent = -1;
     l->id = -1;
+    l->akunPembuat = akunPembuat;
+    
+    l->nextSibling = NULL;
+    l->prevSibling = NULL;
+    l->parent = NULL;
+    l->child = NULL;
     SetToCurrentDateTime(&l->dateTime);
 }
 
@@ -115,31 +125,44 @@ int lengthTreeBalasan(TreeBalasan l){
 
 // leftMargin nentuin seberapa maju textnya ke kanan.
 void displayTreeBalasan(TreeBalasan t, int leftMargin){
+
     int i = 0;
     for(i = 0; i < leftMargin; i++){
-        printf(" ");
+        printf(LEFT_MARGIN_BLANK);
     }
     printf("| ID = %d\n", t.id);
-    for(i = 0; i < leftMargin; i++){
-        printf(" ");
-    }
 
-    printf("| %s\n", t.akunPembuat->username.TabWord);
+    
     for(i = 0; i < leftMargin; i++){
-        printf(" ");
+        printf(LEFT_MARGIN_BLANK);
     }
-    printf("| "); DisplayDateTime(t.dateTime); printf("\n");
+    if(!t.akunPembuat->isPublic)
+        printf("| PRIVAT\n");
+    else printf("| %s\n", t.akunPembuat->username.TabWord);
+    
+    
     for(i = 0; i < leftMargin; i++){
-        printf(" ");
+        printf(LEFT_MARGIN_BLANK);
     }
-    printf("| %s\n", t.text.TabWord);
+    if(!t.akunPembuat->isPublic)
+        printf("| PRIVAT\n");
+    else printf("| "); DisplayDateTime(t.dateTime); printf("\n");
+    
+    
+    for(i = 0; i < leftMargin; i++){
+        printf(LEFT_MARGIN_BLANK);
+    }
+    if(!t.akunPembuat->isPublic)
+        printf("| PRIVAT\n");
+    else printf("| %s\n", t.text.TabWord);
+    printf("\n");
 }
 void displayTreeBalasanRecursive(TreeBalasanAddress t, int depth){
     if(t == NULL) return;
     else{
         displayTreeBalasan(*t, depth);
-        debugTreeBalasan(t->child, depth+1);
-        debugTreeBalasan(t->nextSibling, depth);
+        displayTreeBalasanRecursive(t->child, depth+1);
+        displayTreeBalasanRecursive(t->nextSibling, depth);
     }
 }
 void displayAllTreeBalasan(TreeBalasan t){
