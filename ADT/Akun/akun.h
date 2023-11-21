@@ -16,8 +16,7 @@ typedef struct akun
     Profile profil;
     Word username;
     Word password;
-    
-    DaftarPermintaan list_permintaan_pertemanan;
+    DaftarPermintaan daftar_permintaan_pertemanan;
     StackDin draf_kicauan;
 } Akun;
 
