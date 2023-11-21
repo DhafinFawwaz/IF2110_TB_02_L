@@ -87,7 +87,9 @@ void dequeuePermintaan(DaftarPermintaan *D, permintaan *p){
 /* *** PENAMPILAN NILAI *** */
 void displayTopPermintaan(DaftarPermintaan D){
 /* Menampilkan permintaan pertemanan teratas */
-	printf("\n| ");
+	printf("\nPermintaan pertemanan teratas dari ");
+	printWord(NamaMinta(HeadPermintaan(D)));
+	printf("\n\n| ");
 	printWord(NamaMinta(HeadPermintaan(D)));
 	printf("\n| Jumlah teman: %d\n", JumlahTeman(HeadPermintaan(D)));
 }

@@ -41,22 +41,23 @@ void lihat_profil_other(Word nama){
         printf("\nNama tersebut belum terdaftar dalam database BurBir.\n");
     }
     else{
-        if (isAkunPrivat(Profil(*globalCurrentAddrAkun)) && !isAkunBerteman(globalGrafTeman, *globalCurrentAddrAkun, CONTENT(globalListStatikAkun, othersID))){
+        Akun akunTujuan = CONTENT(globalListStatikAkun, othersID);
+        if (isAkunPrivat(Profil(*globalCurrentAddrAkun)) && !isAkunBerteman(globalGrafTeman, *globalCurrentAddrAkun, akunTujuan)){
             printf("Wah, akun Tuan Prim diprivat nih. Ikuti dulu yuk untuk bisa melihat profil Tuan Prim!");
         }
         else{
             printf("\n| Nama: ");
             printWord(nama);
             printf("\n| Bio Akun: ");
-            printWord(Bio(Profil(CONTENT(globalListStatikAkun, othersID))));
+            printWord(Bio(Profil(akunTujuan)));
             printf("\n| No HP: ");
-            printWord(NomorHP(Profil(CONTENT(globalListStatikAkun, othersID))));
+            printWord(NomorHP(Profil(akunTujuan)));
             printf("\n| Weton: ");
-            printWord(Weton(Profil(CONTENT(globalListStatikAkun, othersID))));
+            printWord(Weton(Profil(akunTujuan)));
             printf("\n\nFoto profil akun ");
             printWord(nama);
             printf("\n");
-            displayFotoProfil(Foto(Profil(CONTENT(globalListStatikAkun, othersID))));
+            displayFotoProfil(Foto(Profil(akunTujuan)));
             printf("\n");    
         }
     }
