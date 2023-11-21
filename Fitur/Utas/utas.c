@@ -14,11 +14,11 @@ Utas getUtasInListKicauan(int IDUtas){
 	return (*ADDR_KICAUAN(globalListDinKicauan,IDUtas-1)).firstUtas;
 }
 
-Utas buatUtas(int IDKicau){
+void buatUtas(int IDKicau){
 	Word YA = {.TabWord = "YA", .Length = "2"};
 	Word TIDAK = {.TabWord = "TIDAK", .Length = "5"};
-	Utas currentUtas, firstUtas, p;
-	Utas_CreateUtas(&firstUtas);
+	Utas currentUtas, newFirstUtas, p;
+	Utas_CreateUtas(&newFirstUtas);
 	Utas_CreateUtas(&currentUtas);
 	Utas_CreateUtas(&p);
 
@@ -36,9 +36,9 @@ Utas buatUtas(int IDKicau){
 			readInput();
 			
 			Utas_setUtasFromWord(&currentUtas, currentWord);
-			if (Utas_isEmpty(firstUtas)) {
-				firstUtas = currentUtas; 
-				p = firstUtas;
+			if (Utas_isEmpty(newFirstUtas)) {
+				newFirstUtas = currentUtas; 
+				p = newFirstUtas;
 			}
 			else {
 				NEXT_UTAS(p) = currentUtas; 
@@ -54,7 +54,7 @@ Utas buatUtas(int IDKicau){
 		} while (!compareWord(currentWord, TIDAK));
 		
 	}
-	return firstUtas;
+	(globalListDinKicauan.contents[IDKicau-1])->firstUtas = newFirstUtas;
 }
 
 void sambungUtas(int IDUtas, int index){
