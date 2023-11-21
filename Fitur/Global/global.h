@@ -16,7 +16,7 @@ extern TreeBalasanAddress globalTreeBalasan;
 
 extern boolean isLoginGlobal;
 extern GrafTeman globalGrafTeman;
-extern ListDinKicauan globalListKicauan;
+extern ListDinKicauan globalListDinKicauan;
 extern ListStatikAkun globalListStatikAkun; 
 extern int banyakKicauanBerbalasan;
 extern TreeBalasanAddress globalTreeBalasan;

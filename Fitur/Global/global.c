@@ -9,12 +9,12 @@ Akun * globalCurrentAddrAkun;
 GrafTeman globalGrafTeman;
 boolean isLoginGlobal = false;
 
-ListDinKicauan globalListKicauan;
+ListDinKicauan globalListDinKicauan;
 ListStatikAkun globalListStatikAkun; 
 int banyakKicauanBerbalasan;
 TreeBalasanAddress globalTreeBalasan;
 
 void inisialisasiGlobal(){
-    createListDinKicauan(&globalListKicauan,10);
+    createListDinKicauan(&globalListDinKicauan,10);
     listStatikAkun_Create(&globalListStatikAkun);
 }

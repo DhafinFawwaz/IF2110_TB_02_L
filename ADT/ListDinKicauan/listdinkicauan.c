@@ -60,14 +60,14 @@ boolean isFullListKicauan(ListDinKicauan l){
     return(NEFF_LIST_KICAUAN(l) == CAP_LIST_KICAUAN(l));
 }
 
-void insertKicauan(Kicauan *k, ListDinKicauan listKicauan){
+void insertKicauan(Kicauan *k, ListDinKicauan * listKicauan){
     AddressKicauan p = k;
-    if(isFullListKicauan(listKicauan)){
-        expandListKicauan(&listKicauan);
+    if(isFullListKicauan(*listKicauan)){
+        expandListKicauan(listKicauan);
     }
-    int idx = NEFF_LIST_KICAUAN(listKicauan);
-    ADDR_KICAUAN(listKicauan,idx) = p;
-    NEFF_LIST_KICAUAN(listKicauan)++;
+    int idx = NEFF_LIST_KICAUAN(*listKicauan);
+    ADDR_KICAUAN(*listKicauan,idx) = p;
+    NEFF_LIST_KICAUAN(*listKicauan)++;
 }
 
 boolean isListKicauanEmpty(ListDinKicauan listKicauan){
