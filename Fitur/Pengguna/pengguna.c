@@ -6,7 +6,6 @@
 #include "../../ADT/ListStatikAkun/liststatikAkun.h"
 #include "../Perintah/perintah.h"
 #include "../Global/global.h"
-#include "../Global/global.h"
 
 
 void daftar(){
@@ -33,9 +32,9 @@ void daftar(){
     /* INPUT PASSWORD */
     printf("\nMasukkan kata sandi: \n");
     readInput();
-    newAkun.password = currentWord;
-    listStatikAkun_insertLast(&listAkun,newAkun);
-    printf("\nPengguna telah berhasil terdaftar. Masuk untuk menikmati fitur-fitur Burbir");
+    globalListStatikAkun.contents[effID].password = currentWord;
+
+    printf("\nPengguna telah berhasil terdaftar. Masuk untuk menikmati fitur-fitur Burbir\n");
 }
 void masuk(){
     if (isLogin == false){
@@ -58,9 +57,9 @@ void masuk(){
             printf("\nMasukkan kata sandi: \n");
             readInput();
         }
-        currentAddrAkun = &(listAkun.contents[tempID]);
-        isLoginGlobal = true;
-        printf("Anda telah berhasil masuk dengan nama pengguna %s. Mari menjelajahi Burbir bersama Ande-Ande Lumut!", listAkun.contents[tempID].username.TabWord);
+        globalCurrentAddrAkun = &globalListStatikAkun.contents[tempID];
+        printf("Anda telah berhasil masuk dengan nama pengguna %s. Mari menjelajahi Burbir bersama Ande-Ande Lumut!\n\n", globalListStatikAkun.contents[tempID].username.TabWord);
+        isLogin = true;
     } else {
         printf("\nAnda sudah masuk. Keluar dulu yuk!\n");
     }

@@ -27,6 +27,12 @@ void displayGrafTeman(GrafTeman g);
 // cek apakah akun1 berteman dengan akun2
 boolean isAkunBerteman(GrafTeman g, Akun akun1, Akun akun2);
 
+// cek apakah akun1 minta berteman dengan akun2
+boolean isAkunMintaBerteman(GrafTeman g, Akun akun1, Akun akun2);
+
+// cek apakah akun1 tidak berteman dengan akun2
+boolean isAkunTidakBerteman(GrafTeman g, Akun akun1, Akun akun2);
+
 // resize graf teman
 void resizeGrafTeman(GrafTeman *g, int newSize);
 
