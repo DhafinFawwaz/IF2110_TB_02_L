@@ -13,8 +13,8 @@ Tugas besar ini berisi
 - 13522065 - Rafiki Prawhira Harianto<br/>
 - 13522069 - Nabila Shikoofa Muida<br/>
 - 13522084 - Dhafin Fawwaz Ikramullah<br/>
-- 13522096 - Novelya Putri<br/>
-- 13522103 - Ramadhani Steven Tjhia<br/>
+- 13522096 - Novelya Putri Ramadhani<br/>
+- 13522103 - Steven Tjhia<br/>
 
 <h2 id="how-to-run">Cara Menggunakan Program</h2>
 Gunakan wsl. Pastikan gcc dan makefile sudah terinstall.
