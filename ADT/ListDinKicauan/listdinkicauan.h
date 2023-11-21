@@ -13,21 +13,21 @@
 typedef struct kicauan
 {
     int id;
-    Word text;
+    Word * text;
     int likeCount;
-    Akun *akunKicauan;
-    DateTime dateTime;
+    Akun * akunKicauan;
+    DateTime * dateTime;
     Utas firstUtas;
     TreeBalasanAddress firstBalasan;
     Word tagar;
 } Kicauan;
 
 #define IDKICAU(k) (k).id
-#define TEXT_KICAU(k) (k).text
+#define ADDR_TEXT_KICAU(k) (k).text
 #define JUMLAH_LIKE(k) (k).likeCount
 #define ADDR_AKUN_KICAUAN(k) (k).akunKicauan
-#define WAKTU(k) (k).dateTime
-#define TAGAR(k) (k).tagar
+#define ADDR_WAKTU(k) (k).dateTime
+#define ADDR_TAGAR(k) (k).tagar
 // End of Struktur Kicauan
 
 // Struktur List Dinamis Kicauan
@@ -47,7 +47,7 @@ typedef struct listdinkicauan
 // End of Struktur List Dinamis Kicauan
 
 // Fungsi dan Prosedur Kicauan
-void createKicauan(Kicauan * k, Akun * currentAkun, Word text, Word tagar);
+void createKicauan(Kicauan * k, Akun * currentAkun, Word * text, Word * tagar);
 
 void printKicauan(Kicauan kicauan);
 // End of Fungsi dan Prosedur Kicauan
@@ -61,7 +61,7 @@ void expandListKicauan(ListDinKicauan *l);
 
 boolean isFullListKicauan(ListDinKicauan l);
 
-void insertKicauan(Kicauan *k, ListDinKicauan listKicauan);
+void insertKicauan(Kicauan *k, ListDinKicauan * listKicauan);
 
 boolean isListKicauanEmpty(ListDinKicauan listKicauan);
 
