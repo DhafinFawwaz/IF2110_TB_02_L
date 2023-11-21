@@ -2,6 +2,7 @@
 
 
 #include "../StackDin/stackdin.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 /* Prototype manajemen memori */
@@ -48,26 +49,24 @@ void CreateStackDin(StackDin *s)
     ADDR_TOP(*s) = NIL;
 }
 
-// void DisplayStackDin(StackDin s)
-// /* Proses : Menuliskan isi Stack, ditulis di antara kurung siku; antara dua elemen 
-//     dipisahkan dengan separator "koma", tanpa tambahan karakter di depan, di tengah, 
-//     atau di belakang, termasuk spasi dan enter */
-// /* I.S. s boleh kosong */
-// /* F.S. Jika s tidak kosong: [e1,e2,...,en] */
-// /* Contoh : jika ada tiga elemen bernilai 1 (TOP), 20, 30 akan dicetak: [1,20,30] */
-// /* Jika Stack kosong : menulis [] */
-// {
-//     Address p = ADDR_TOP(s);
-//     printf("[");
-//     while (p != NIL){
-//         printf("%d", INFO(p));
-//         p = NEXT(p);
-//         if (p!=NIL){
-//             printf(",");
-//         } 
-//     }
-//     printf("]");
-// }
+void DisplayStackDin(StackDin s)
+/* Proses : Menuliskan isi Stack, ditulis di antara kurung siku; antara dua elemen 
+    dipisahkan dengan separator "koma", tanpa tambahan karakter di depan, di tengah, 
+    atau di belakang, termasuk spasi dan enter */
+/* I.S. s boleh kosong */
+/* F.S. Jika s tidak kosong: [e1,e2,...,en] */
+/* Contoh : jika ada tiga elemen bernilai 1 (TOP), 20, 30 akan dicetak: [1,20,30] */
+/* Jika Stack kosong : menulis [] */
+{
+    Address p = ADDR_TOP(s);
+    while (p != NIL) {
+        printf("%d", INFO(p)); 
+        p = NEXT(p);
+        if (p != NIL) {
+            printf(",");
+        } 
+    }
+}
 
 void pushStackDin(StackDin *s, ElType x)
 /* Menambahkan x sebagai elemen Stack s */
