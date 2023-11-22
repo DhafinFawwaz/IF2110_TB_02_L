@@ -183,7 +183,6 @@ void handlePerintah(){
     else if(compareWord(perintahArgumen[0], LIHAT_PROFIL)){  // LIHAT_PROFIL <nama pengguna>;
         if(!isLogin){ displayBelumLogin(); return; }
         Word nama = getWordAfterFirstSpace(currentWord);
-        printWord(nama);
         lihat_profil_other(nama);
     }
     else if(compareWord(perintahArgumen[0], ATUR_JENIS_AKUN)){
