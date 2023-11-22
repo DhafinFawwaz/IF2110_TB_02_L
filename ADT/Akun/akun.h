@@ -17,6 +17,7 @@ typedef struct akun
     Word username;
     Word password;
     DaftarPermintaan daftar_permintaan_pertemanan;
+    boolean isPublic;
     StackDin draf_kicauan;
 } Akun;
 
