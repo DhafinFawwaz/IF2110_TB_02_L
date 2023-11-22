@@ -6,12 +6,11 @@
 #include "../Akun/akun.h"
 #include <stdlib.h>
 
-void createKicauan(Kicauan *k, Word text, Word tagar){
+void createKicauan(Kicauan *k, Word text){
     IDKICAU(*k) = -1;
     setWord(&(TEXT_KICAU(*k)),text.TabWord);
     JUMLAH_LIKE(*k) = 0;
     SetToCurrentDateTime(&WAKTU(*k));
-    setWord(&TAGAR(*k),tagar.TabWord);
     k->firstBalasan = NULL;
     k->firstUtas = NULL;
 }

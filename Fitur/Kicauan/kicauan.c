@@ -29,7 +29,8 @@ void kicau(){
             //Hash map
         }
         Kicauan k;
-        createKicauan(&k,text_kicau, tagar);
+        createKicauan(&k,text_kicau);
+        setWord(&TAGAR(k),tagar.TabWord);
         IDKICAU(k) = NEFF_LIST_KICAUAN(globalListDinKicauan)+1;
         ADDR_AKUN_KICAUAN(k) = globalCurrentAddrAkun;
         insertKicauan(k, &globalListDinKicauan);

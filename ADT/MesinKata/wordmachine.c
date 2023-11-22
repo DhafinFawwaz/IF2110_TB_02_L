@@ -281,3 +281,20 @@ char wordToChar(Word w){
         return '\0';
     }
 }
+
+Word getWordAfterFirstSpace(Word inputWord){
+    Word result;
+    result.Length = 0;
+    boolean firstSpaceFound = false;
+    for (int i = 0; i < inputWord.Length; i++){
+        if (firstSpaceFound){
+            result.TabWord[result.Length] = inputWord.TabWord[i];
+            result.Length++;
+        } 
+        else if (inputWord.TabWord[i] == BLANK){
+            firstSpaceFound = true;
+        }
+    }
+    result.TabWord[result.Length] = '\0';
+    return result;
+}

@@ -23,8 +23,11 @@ boolean Utas_compareUtas(Utas u1, Utas u2){
 }
 
 void Utas_setUtasFromWord(Utas *u, Word w){
-	TEXT_UTAS(*u) = currentWord;
-	SetToCurrentDateTime(&WAKTU_UTAS(*u));
+	Utas p = (NodeUtas*)malloc(sizeof(NodeUtas));
+	TEXT_UTAS(p) = w;
+	NEXT_UTAS(p) = NULL;
+	SetToCurrentDateTime(&WAKTU_UTAS(p));
+	*u = p;
 }
 
 isi_utas Utas_getElmt(Utas l, int idx){

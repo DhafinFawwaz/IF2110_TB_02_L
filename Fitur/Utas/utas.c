@@ -3,22 +3,17 @@
 
 Word currentUtas;
 
+
 boolean isUtasMilikOrangLain(IDKicau){
 	return (
 		!(compareWord((*ADDR_AKUN_KICAUAN(GET_ELMT_KICAUAN(globalListDinKicauan,IDKicau-1))).username, (*globalCurrentAddrAkun).username))
 	);
 }
 
-/*Mengeluarkan Utas pada List Kicauan, dan NULL jika tidak ketemu*/
-Utas getUtasInListKicauan(int IDUtas){
-	return GET_ELMT_KICAUAN(globalListDinKicauan,IDUtas-1).firstUtas;
-}
-
 void buatUtas(int IDKicau){
-	Word YA = {.TabWord = "YA", .Length = "2"};
-	Word TIDAK = {.TabWord = "TIDAK", .Length = "5"};
-	Utas currentUtas, newFirstUtas, p;
-	Utas_CreateUtas(&newFirstUtas);
+	Word YA = {.TabWord = "YA", .Length = 2};
+	Word TIDAK = {.TabWord = "TIDAK", .Length = 5};
+	Utas currentUtas, p;
 	Utas_CreateUtas(&currentUtas);
 	Utas_CreateUtas(&p);
 
@@ -36,29 +31,31 @@ void buatUtas(int IDKicau){
 			readInput();
 			
 			Utas_setUtasFromWord(&currentUtas, currentWord);
-			if (Utas_isEmpty(newFirstUtas)) {
-				newFirstUtas = currentUtas; 
-				p = newFirstUtas;
+			if (Utas_isEmpty(UtasInKicau(IDKicau))) {
+				printf("dksaopdkas\n");
+				UtasInKicau(IDKicau) = currentUtas;
 			}
 			else {
+				p = UtasInKicau(IDKicau);
+				while (NEXT_UTAS(p) != NULL){
+					p = NEXT_UTAS(p);
+				}
 				NEXT_UTAS(p) = currentUtas; 
-				p = NEXT_UTAS(p);
 			}
 
 			do
 			{
 				printf("Apakah Anda ingin melanjutkan utas ini? (YA/TIDAK) ");
 				readInput();
-			} while (!compareWord(currentWord,YA) || !compareWord(currentWord,TIDAK));
+			} while (!compareWord(currentWord,TIDAK) && !compareWord(currentWord,YA));
 
 		} while (!compareWord(currentWord, TIDAK));
 		
 	}
-	(globalListDinKicauan.contents[IDKicau-1]).firstUtas = newFirstUtas;
 }
 
 void sambungUtas(int IDUtas, int index){
-	Utas mainUtas = getUtasInListKicauan(IDUtas);
+	Utas mainUtas = UtasInKicau(IDUtas);
 	if (mainUtas == NULL){ 
 		printf("Utas tidak ditemukan!\n");
 	}
@@ -74,12 +71,12 @@ void sambungUtas(int IDUtas, int index){
 		printf("Masukkan kicauan:\n");
 		readInput();
 		Utas_setUtasFromWord(&newUtas, currentWord);
-		Utas_insertAt(&mainUtas, INFO_UTAS(newUtas), IDUtas);
+		Utas_insertAt(&mainUtas, INFO_UTAS(newUtas), index);
 	}
 }
 
 void hapusUtas(int IDUtas, int index){
-	Utas mainUtas = getUtasInListKicauan(IDUtas);
+	Utas mainUtas = UtasInKicau(IDUtas);
 	isi_utas temp;
 	if (mainUtas == NULL){ 
 		printf("Utas tidak ditemukan!\n");
@@ -95,7 +92,7 @@ void hapusUtas(int IDUtas, int index){
 		printf("Kicauan sambungan dengan index %d tidak ditemukan pada utas!\n", index);
 	}
 	else{
-		Utas_deleteAt(&mainUtas, IDUtas, &temp);
+		Utas_deleteAt(&mainUtas, index, &temp);
 		printf("Kicauan sambungan berhasil dihapus!\n");
 	}
 }
@@ -120,7 +117,8 @@ void cetakUtas(int IDUtas){
 		printf("   | INDEX = %d\n", idxUtas);
 		printf("   | "); printWord(pembuat); printf("\n");
 		printf("   | "); DisplayDateTime(WAKTU(kicauUtas)); printf("\n");
-		printf("   | "); printWord(TEXT_UTAS(p));printf("\n");
+		printf("   | "); printWord(TEXT_UTAS(p));printf("\n\n");
 		p = NEXT_UTAS(p);
+		idxUtas++;
 	}
 }

@@ -102,7 +102,13 @@ void terbit_draf(StackDinDraf s) {
 
         printf("Selamat! Draf kicauan telah diterbitkan!\n");
         printf("Detil kicauan:\n");
-        // printKicauan(x);
+        
+        Kicauan dariDrafKicauan;
+    
+
+        createKicauan(&dariDrafKicauan,x.text);
+        printKicauan(dariDrafKicauan);
+
     } else {
         printf("Tidak ada draf yang dapat diterbitkan.\n");
     }
@@ -123,7 +129,6 @@ void buat_draf(StackDinDraf *s){
 
     printf("Masukkan draf: ");
     readInput();
-    
     isiDrafKicauan = currentWord;
 
     printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini?");
