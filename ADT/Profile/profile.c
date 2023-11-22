@@ -29,7 +29,8 @@ boolean isWetonValid(Word weton){
             compareWord(weton_kecil, stringToWord("kliwon")) ||
             compareWord(weton_kecil, stringToWord("wage")) ||
             compareWord(weton_kecil, stringToWord("pon")) ||
-            compareWord(weton_kecil, stringToWord("legi")));
+            compareWord(weton_kecil, stringToWord("legi")) ||
+            compareWord(weton, stringToWord("")));
 }
 
 boolean isNomorHPValid(Word nomor_hp){
