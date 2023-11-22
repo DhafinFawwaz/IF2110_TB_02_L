@@ -37,6 +37,8 @@ Word HAPUS_BALASAN = {.TabWord = "HAPUS_BALASAN", .Length = 13}; // HAPUS_BALASA
 
 Word BUAT_DRAF = {.TabWord = "BUAT_DRAF", .Length = 9};
 Word LIHAT_DRAF = {.TabWord = "LIHAT_DRAF", .Length = 10};
+Word UBAH_DRAF = {.TabWord = "UBAH", .Length = 4};
+Word KEMBALI_DRAF = {.TabWord = "KEMBALI", .Length = 7};
 Word HAPUS_DRAF = {.TabWord = "HAPUS", .Length = 5};
 Word SIMPAN_DRAF = {.TabWord = "SIMPAN", .Length = 6};
 Word TERBIT_DRAF = {.TabWord = "TERBIT", .Length = 6};
@@ -131,6 +133,15 @@ void displayListPerintah(){
     
     printf("| BUAT_DRAF\n");
     printf("| LIHAT_DRAF\n");
+    printf("\n");
+
+    printf("| UBAH_DRAF\n");
+    printf("| KEMBALI_DRAF\n");
+    printf("\n");
+
+    printf("| HAPUS_DRAF\n");
+    printf("| SIMPAN_DRAF\n");
+    printf("| TERBIT_DRAF\n");
     printf("\n");
     
     printf("| UTAS <id kicauan>\n");

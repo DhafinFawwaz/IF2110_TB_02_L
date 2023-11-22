@@ -47,14 +47,6 @@ void displayStackDinDraf(StackDinDraf s);
 void pushStackDinDraf(StackDinDraf *s, DrafKicauan x);
 void popStackDinDraf(StackDinDraf *s, DrafKicauan *x);
 
-void hapus_draf(StackDinDraf s);
-void simpan_draf(StackDinDraf s);
-void terbit_draf(StackDinDraf s);
-void ubah_draf(StackDinDraf *s);
-
-void buat_draf(StackDinDraf *s);
-void lihat_draf(StackDinDraf s);
-
 void DebugListDraftKicauan();
 
 #endif
