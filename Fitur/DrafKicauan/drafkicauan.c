@@ -10,9 +10,9 @@
 #include "../../ADT/MesinKata/wordmachine.h"
 #include "../../ADT/StackDinDraf/stackdindraf.h"
 
-Word HAPUS = {.TabWord = "HAPUS", .Length = 5};
-Word SIMPAN = {.TabWord = "SIMPAN", .Length = 6};
-Word TERBIT= {.TabWord = "TERBIT", .Length = 6};
+Word HAPUSDRAF = {.TabWord = "HAPUS", .Length = 5};
+Word SIMPANDRAF = {.TabWord = "SIMPAN", .Length = 6};
+Word TERBITDRAF= {.TabWord = "TERBIT", .Length = 6};
 
 void hapus_draf(StackDinDraf s) {
     /* KAMUS LOKAL */
@@ -80,13 +80,13 @@ void ubah_draf(StackDinDraf *s){
         printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini? ");
         readInput();
 
-        if (compareWord(HAPUS, currentWord)) {
+        if (compareWord(HAPUSDRAF, currentWord)) {
             hapus_draf(*s);
             validChoice = true;
-        } else if (compareWord(SIMPAN, currentWord)) {
+        } else if (compareWord(SIMPANDRAF, currentWord)) {
             simpan_draf(*s);
             validChoice = true;
-        } else if (compareWord(TERBIT, currentWord)) {
+        } else if (compareWord(TERBITDRAF, currentWord)) {
             terbit_draf(*s);
             validChoice = true;
         } else {
@@ -117,13 +117,13 @@ void buat_draf(StackDinDraf *s){
         printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini? ");
         readInput();
 
-        if (compareWord(HAPUS, currentWord)) {
+        if (compareWord(HAPUSDRAF, currentWord)) {
             hapus_draf(*s);
             validChoice = true;
-        } else if (compareWord(SIMPAN, currentWord)) {
+        } else if (compareWord(SIMPANDRAF, currentWord)) {
             simpan_draf(*s);
             validChoice = true;
-        } else if (compareWord(TERBIT, currentWord)) {
+        } else if (compareWord(TERBITDRAF, currentWord)) {
             terbit_draf(*s);
             validChoice = true;
         } else {
