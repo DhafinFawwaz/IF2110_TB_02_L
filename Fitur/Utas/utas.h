@@ -3,6 +3,8 @@
 #include "../../ADT/ListDinKicauan/listdinkicauan.h"
 #include "../Perintah/perintah.h"
 
+#define UtasInKicau(id) (globalListDinKicauan.contents[id-1]).firstUtas
+
 extern Word currentUtas;
 
 //Fungsi dan Prosedur UTAS

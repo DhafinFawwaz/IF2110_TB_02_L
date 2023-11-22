@@ -12,6 +12,7 @@ void createKicauan(Kicauan *k, Word text, Word tagar){
     JUMLAH_LIKE(*k) = 0;
     SetToCurrentDateTime(&WAKTU(*k));
     setWord(&TAGAR(*k),tagar.TabWord);
+    (*k).firstUtas = NULL;
 }
 
 void printKicauan(Kicauan kicauan){
