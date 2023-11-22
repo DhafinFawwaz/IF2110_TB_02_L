@@ -7,7 +7,7 @@
 #include "../Profile/profile.h"
 #include "../MesinKata/wordmachine.h"
 #include "../StackDin/stackdin.h"
-#include "../PrioQueue/prioqueue.h"
+#include "../DaftarPermintaan/daftarpermintaan.h"
 
 #define IDMax 20
 typedef struct akun
@@ -16,8 +16,9 @@ typedef struct akun
     Profile profil;
     Word username;
     Word password;
-    PrioQueue list_permintaan_pertemanan;
+    DaftarPermintaan daftar_permintaan_pertemanan;
     boolean isPublic;
+    StackDin draf_kicauan;
 } Akun;
 
 /* ********* AKSES (Selektor) ********* */
@@ -25,7 +26,7 @@ typedef struct akun
 #define Username(A) (A).username
 #define Password(A) (A).password
 #define Profil(A) (A).profil
-#define Permintaan(A) (A).list_permintaan_pertemanan
+#define DaftarPermintaan(A) (A).daftar_permintaan_pertemanan
 
 void CreateAkun(Akun* akun);
 void DisplayAkun(Akun akun);

@@ -8,8 +8,7 @@
 /* Prototype manajemen memori */
 Address newNodeStackDin(ElType x)
 /* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x, 
-   atau 
-   NULL jika alokasi gagal */   
+   atau NULL jika alokasi gagal */   
 {
     Address new = malloc(sizeof(Node));
     if (new != NIL) {

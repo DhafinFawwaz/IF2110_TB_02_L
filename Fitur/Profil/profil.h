@@ -13,13 +13,13 @@
 
 /* *** DAFTAR PERINTAH FITUR PROFIL *** */
 /* I.S. terdapat pengguna yang login */
-void ganti_profil();
 /* Mengubah profil berdasarkan masukan pengguna */
-void lihat_profil_other(Word nama);
+void ganti_profil();
 /* Menampilkan profil pengguna yang diinginkan */
-void atur_jenis_akun();
+void lihat_profil_other(Word nama);
 /* Mengubah jenis akun pengguna */
-void ubah_foto_profil();
+void atur_jenis_akun();
 /* Mengubah foto profil berdasarkan masukan pengguna */
+void ubah_foto_profil();
 
 #endif

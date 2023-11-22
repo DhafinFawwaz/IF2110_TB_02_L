@@ -1,67 +1,145 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "drafkicauan.h"
 #include "../MesinKata/wordmachine.h"
+#include "../StackDin/stackdin.h"
+#include "../Profile/profile.h"
+#include "../DateTime/datetime.h"
+
 #include "../../Fitur/Perintah/perintah.h"
+#include "../../Fitur/Kicauan/kicauan.h"
 
 int banyakDraf;
 DrafKicauan listDraftkicauan[100];
 
-void hapus_draf(){
-    printf("Draf telah berhasil dihapus!");
+AddressDraf newNodeStackDinDraf(DrafKicauan x) {
+/* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x, 
+    atau NULL jika alokasi gagal */   
+    AddressDraf new = malloc(sizeof(NodeDraf));
+    if (new != NULL) {
+        new->drafkicauan = x;
+        new->next = NULL;
+    }
+    return new;
 }
 
-void simpan_draf(){
-    // [TO DO] currentAkun.drafKicauan.ID++ 
-    printf("Draf telah berhasil disimpan!");
+boolean isEmptyStackDinDraf(StackDinDraf s) {
+    return ADDR_TOP_DRAF(s) == NIL;
 }
 
-void terbit_draf(){
-    // [TO DO] ubah nama variabel
-    printf("Selamat! Draf kicauan telah diterbitkan!\n");
-    printf("Detil kicauan:\n");
-    printf("| ID ");
-    printf("| username");
-    printf("| SetToCurrentDateTime(dt)");
-    printf("| isiDrafKicauan <ID>");
-    printf("| Disukai: ");
+int lengthStackDinDraf(StackDinDraf s) {
+    int count = 0;
+    AddressDraf current = ADDR_TOP_DRAF(s);
+    while (current != NIL) {
+        count++;
+        current = current->next;
+    }
+    return count;
 }
 
-void buat_draf(){
-    printf("Masukkan draf: ");
-    readInput();
-    Word isiDrafKicauan = currentWord;
-
-    printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini?");
-    readInput();
-
-    // while ((compareWord("HAPUS", currentWord) != true) && (compareWord("SIMPAN", currentWord) != true) && (compareWord("TERBIT", currentWord) != true)){
-    //     readInput();
-    // }
-
-    // if (compareWord(HAPUS_DRAF, currentWord)){
-    //     hapus_draf();
-    // } else if (compareWord(SIMPAN_DRAF, currentWord)){
-    //     simpan_draf();
-    // } else if (compareWord(TERBIT_DRAF, currentWord)){
-    //     terbit_draf();
-    // }
+void createStackDinDraf(StackDinDraf *s) {
+    ADDR_TOP_DRAF(*s) = NIL;
 }
-void ubah_draf(){
+
+void pushStackDinDraf(StackDinDraf *s, DrafKicauan x) {
+    /* KAMUS LOKAL */
+    AddressDraf p;
+
+    /* ALGORITMA */
+    p = newNodeStackDinDraf(x);
+    if (p != NIL) {
+        NEXT(p) = ADDR_TOP_DRAF(*s);
+        ADDR_TOP_DRAF(*s) = p;
+    }
+}
+
+void popStackDinDraf(StackDinDraf *s, DrafKicauan *x) {
+    /* KAMUS LOKAL */
+    AddressDraf p;
+
+    /* ALGORITMA */
+    *x = TOP_DRAF(*s);
+    p = ADDR_TOP_DRAF(*s);
+    ADDR_TOP_DRAF(*s) = NEXT(ADDR_TOP_DRAF(*s));
+    NEXT(p) = NIL;
+    free(p);
+}
+
+void hapus_draf(StackDinDraf s) {
+    /* KAMUS LOKAL */
+    DrafKicauan x;
+
+    /* ALGORITMA */
+    if (!isEmptyStackDinDraf(s)) {
+        popStackDinDraf(&s, &x);
+        printf("Draf telah berhasil dihapus!\n");
+    } else {
+        printf("Anda tidak memiliki draf untuk dihapus.\n");
+    }
+}
+
+void simpan_draf(StackDinDraf s) {
+    /* KAMUS LOKAL */
+    DrafKicauan x;
+
+    /* ALGORITMA */
+    if (!isEmptyStackDinDraf(s)) {
+        popStackDinDraf(&s, &x);
+        printf("Draf telah berhasil disimpan!\n");
+    } else {
+        printf("Anda tidak memiliki draf untuk disimpan.\n");
+    }
+}
+
+void terbit_draf(StackDinDraf s) {
+    /* KAMUS LOKAL */
+    DrafKicauan x;
+    int currentID;
+
+    /* ALGORITMA */
+    if (!isEmptyStackDinDraf(s)) {
+        popStackDinDraf(&s, &x);
+
+        printf("Selamat! Draf kicauan telah diterbitkan!\n");
+        printf("Detil kicauan:\n");
+        // printKicauan(x);
+    } else {
+        printf("Tidak ada draf yang dapat diterbitkan.\n");
+    }
+}
+
+void ubah_draf(StackDinDraf *s){
+    Word isiDrafKicauan;
+
     printf("Masukkan draf yang baru:");
     readInput();
-
-    Word isiDrafKicauan = currentWord;
+    isiDrafKicauan = currentWord;
 
     printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini?");
-    readInput();
-
-    // sama kaya buat_draf
 }
 
-void lihat_draf(){
-    printf("Ini draf terakhir anda: ");
-    printf("| SetToCurrentDateTime(dt)");
-    printf("| isiDrafKicauan <ID>");
+void buat_draf(StackDinDraf *s){
+    Word isiDrafKicauan;
+
+    printf("Masukkan draf: ");
+    readInput();
+    
+    isiDrafKicauan = currentWord;
+
+    printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini?");
+}
+
+void lihat_draf(StackDinDraf s) {
+    if (!isEmptyStackDinDraf(s)) {
+        int lastIndex = lengthStackDinDraf(s) - 1;
+
+        printf("Ini draf terakhir anda:\n");
+        printf("| SetToCurrentDateTime(dt)");
+        printf("| isiDrafKicauan <ID>");
+
+    } else {
+        printf("Yah, anda belum memiliki draf apapun! Buat dulu ya :D\n");
+    }
 }
 
 void DebugDraftKicauan(DrafKicauan list){
@@ -76,6 +154,7 @@ void DebugDraftKicauan(DrafKicauan list){
     DisplayDateTime(list.dateTime);
     printf("\n");
 }
+
 void DebugListDraftKicauan(){
     printf("======== [Debug listDraftkicauan] ========\n");
     int i = 0;

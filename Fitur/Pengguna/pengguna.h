@@ -7,7 +7,7 @@
 #include "../../ADT/Boolean/boolean.h"
 #include "../../ADT/MesinKata/wordmachine.h"
 #include "../../ADT/StackDin/stackdin.h"
-#include "../../ADT/PrioQueue/prioqueue.h"
+#include "../../ADT/DaftarPermintaan/daftarpermintaan.h"
 #include "../../ADT/Profile/profile.h"
 
 #define BLANK ' '

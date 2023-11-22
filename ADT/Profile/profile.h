@@ -28,30 +28,30 @@ typedef struct profile {
 
 /* *** PROTOTYPE *** */
 /* *** PEMBUATAN DENGAN NILAI DEFAULT *** */
-void CreateProfil(Profile *P);
 /* Mambuat profil kosong dengan nilai-nilai default */
+void CreateProfil(Profile *P);
 /* *** PEMERIKSAAN NILAI *** */
-boolean isWetonValid(Word weton);
 /* Memeriksa apakah weton valid */
-boolean isNomorHPValid(Word nomor_hp);
+boolean isWetonValid(Word weton);
 /* Memeriksa apakah nomor HP valid */
-boolean isAkunPrivat(Profile P);
+boolean isNomorHPValid(Word nomor_hp);
 /* Memeriksa apakah jenis akun privat */
-boolean isAkunPublik(Profile P);
+boolean isAkunPrivat(Profile P);
 /* Memeriksa apakah jenis akun publik */
+boolean isAkunPublik(Profile P);
 /* *** PENGUBAHAN NILAI *** */
-void changeBio(Profile *P, Word w);
 /* Mengubah bio berdasarkan masukan pengguna */
-void changeNomorHP(Profile *P, Word w);
+void changeBio(Profile *P, Word w);
 /* Mengubah nomor HP berdasarkan masukan pengguna */
-void changeWeton(Profile *P, Word w);
+void changeNomorHP(Profile *P, Word w);
 /* Mengubah weton berdasarkan masukan pengguna */
-void changeJenisAkun(Profile *P);
+void changeWeton(Profile *P, Word w);
 /* Mengubah jenis akun pengguna */
+void changeJenisAkun(Profile *P);
 /* *** PENAMPILAN NILAI *** */
-void displayProfil(Profile P, Word username);
 /* Menampilkan profil pengguna kecuali bagian foto profil */
-void lihatProfil(Profile P, Word username);
+void displayProfil(Profile P, Word username);
 /* Menampilkan profil pengguna dengan username "username" */
+void lihatProfil(Profile P, Word username);
 
 #endif
