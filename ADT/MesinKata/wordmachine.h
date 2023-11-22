@@ -73,5 +73,6 @@ void printWord(Word w);
 Word stringToWord(const char* str);
 char* wordToString(Word w);
 char wordToChar(Word w);
+Word getWordAfterFirstSpace(Word inputWord);
 
 #endif
