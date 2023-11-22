@@ -13,6 +13,7 @@ extern ListDinKicauan globalListDinKicauan;
 extern ListStatikAkun globalListStatikAkun; 
 extern int globalBanyakKicauanBerbalasan;
 extern TreeBalasanAddress globalTreeBalasan;
+extern int globalLastTreeBalasanId;
 
 extern boolean isLoginGlobal;
 extern GrafTeman globalGrafTeman;

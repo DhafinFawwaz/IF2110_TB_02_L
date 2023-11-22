@@ -14,32 +14,49 @@ void balas(int idKicau, int idBalasan){
         printf("Wah, tidak terdapat kicauan yang ingin Anda balas!\n\n");
         return;
     }
-    Akun* akunYangDibalas = GET_ELMT_KICAUAN(globalListDinKicauan, idKicau).akunKicauan;;
+    Akun* akunYangDibalas = getKicauanById(globalListDinKicauan, idKicau).akunKicauan;
     if(!akunYangDibalas->isPublic && !isAkunBerteman(globalGrafTeman,*akunYangDibalas, *globalCurrentAddrAkun)){
         printf("Wah, akun tersebut merupakan akun privat dan anda belum berteman akun tersebut!\n\n");
         return;
     }
 
-    printf("\nMasukkan balasan:\n");
-    readInput();
-    TreeBalasan newTreeBalasan;
-    CreateTreeBalasan(&newTreeBalasan, globalCurrentAddrAkun);
-    newTreeBalasan.akunPembuat = globalCurrentAddrAkun;
-    newTreeBalasan.text = currentWord;
+    
+    TreeBalasan newBalasan;
+    CreateTreeBalasan(&newBalasan, globalCurrentAddrAkun);
+    newBalasan.akunPembuat = globalCurrentAddrAkun;
+    globalLastTreeBalasanId++;
+    newBalasan.id = globalLastTreeBalasanId;
 
     if(idBalasan == -1){
-        insertLastTreeBalasan(globalTreeBalasan, newTreeBalasan);
-        GET_ELMT_KICAUAN(globalListDinKicauan, idKicau).firstBalasan = &newTreeBalasan;
+        printf("\nMasukkan balasan:\n");
+        readInput();
+        newBalasan.text = currentWord;
+
+        if(GET_ELMT_KICAUAN(globalListDinKicauan, idKicau-1).firstBalasan == NULL){
+            TreeBalasanAddress currentTreeBalasan = newTreeBalasan(newBalasan);
+            GET_ELMT_KICAUAN(globalListDinKicauan, idKicau-1).firstBalasan = currentTreeBalasan;
+        }else{
+            TreeBalasanAddress balasanToReply = GET_ELMT_KICAUAN(globalListDinKicauan, idKicau-1).firstBalasan;
+            insertLastTreeBalasan(balasanToReply, newBalasan);
+        }
     }else{
-        TreeBalasanAddress balasanToReply = getTreeBalasanById(*globalTreeBalasan, idBalasan);
-        replyTreeBalasan(balasanToReply, newTreeBalasan);
+        
+        TreeBalasanAddress balasanToReply = getTreeBalasanById(GET_ELMT_KICAUAN(globalListDinKicauan, idKicau-1).firstBalasan, idBalasan);
+        if(balasanToReply == NULL){
+            printf("Wah, tidak terdapat balasan yang ingin Anda balas!\n");
+            return;
+        }
+        printf("\nMasukkan balasan:\n");
+        readInput();
+        newBalasan.text = currentWord;
+        
+        replyTreeBalasan(balasanToReply, newBalasan);
     }
 
     printf("\n\nSelamat! balasan telah diterbitkan!\n");
 
     printf("Detil balasan:\n");
-    displayTreeBalasan(newTreeBalasan, 0);
-    printf("\n");
+    displayTreeBalasan(newBalasan, 0);
 }
 
 // Tampilkan balasan dari kicauan dengan idKicau
@@ -48,7 +65,7 @@ void balasan(int idKicau){
         printf("Tidak terdapat kicauan dengan id tersebut!\n\n");
         return;
     }
-    Kicauan kicauan = GET_ELMT_KICAUAN(globalListDinKicauan, idKicau);
+    Kicauan kicauan = getKicauanById(globalListDinKicauan, idKicau);
     Akun* akunYangBerkicau = kicauan.akunKicauan;
     if(!akunYangBerkicau->isPublic){
         printf("Wah, kicauan tersebut dibuat oleh pengguna dengan akun privat!\n\n");
@@ -57,28 +74,29 @@ void balasan(int idKicau){
 
     if(kicauan.firstBalasan == NULL){
         printf("Belum terdapat balasan apapun pada kicauan tersebut. Yuk balas kicauan tersebut!\n\n");
+        return;
     }
     displayAllTreeBalasan(*kicauan.firstBalasan);
 }
 
 // Hapus balasan dengan idBalasan dari kicauan dengan idKicau
 void hapusBalasan(int idKicau, int idBalasan){
-    Kicauan kicauan = GET_ELMT_KICAUAN(globalListDinKicauan, idKicau);
-    if(kicauan.firstBalasan == NULL){
+    if(GET_ELMT_KICAUAN(globalListDinKicauan, idKicau-1).firstBalasan == NULL){
         printf("Balasan tidak ditemukan.\n\n");
         return;
     }
 
-    TreeBalasanAddress balasanAddr = getTreeBalasanById(*kicauan.firstBalasan, idBalasan);
+    TreeBalasanAddress balasanAddr = getTreeBalasanById(GET_ELMT_KICAUAN(globalListDinKicauan, idKicau-1).firstBalasan, idBalasan);
     if(balasanAddr == NULL){
         printf("Balasan tidak ditemukan.\n\n");
+        return;
     }
-    if(balasanAddr->akunPembuat != &globalCurrentAddrAkun){
+    if(balasanAddr->akunPembuat->id != globalCurrentAddrAkun->id){
         printf("Hei, ini balasan punya siapa? Jangan dihapus ya!.\n\n");
+        return;
     }
 
     deleteCascadeTreeBalasan(balasanAddr);
-    kicauan.firstBalasan = NULL;
     printf("Balasan berhasil dihapus.\n\n");
 
 }

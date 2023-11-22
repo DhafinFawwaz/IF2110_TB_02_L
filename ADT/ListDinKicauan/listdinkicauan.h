@@ -70,4 +70,6 @@ boolean isInListKicauan(int idKicau, ListDinKicauan listKicauan);
 
 // void DebugListKicauan();
 
+Kicauan getKicauanById(ListDinKicauan listKicauan, int id);
+
 #endif

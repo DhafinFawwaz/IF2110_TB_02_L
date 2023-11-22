@@ -43,7 +43,7 @@ void displayAllTreeBalasan(TreeBalasan t);
 // Hapus elemen di index idx dan nilainya dimasukkan ke deleted
 void deleteCascadeTreeBalasan(TreeBalasanAddress t);
 
-TreeBalasanAddress getTreeBalasanById(TreeBalasan treebalasan, int id);
+TreeBalasanAddress getTreeBalasanById(TreeBalasanAddress treebalasan, int id);
 
 void DebugCurrentTreeBalasan();
 

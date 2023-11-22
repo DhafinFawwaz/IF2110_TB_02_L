@@ -18,7 +18,7 @@ TreeBalasanAddress newTreeBalasan(TreeBalasan treebalasan){
 
 void CreateTreeBalasan(TreeBalasanAddress l, Akun *akunPembuat){
     l->idParent = -1;
-    l->id = -1;
+    l->id = 1;
     l->akunPembuat = akunPembuat;
     
     l->nextSibling = NULL;
@@ -33,7 +33,6 @@ void insertLastTreeBalasan(TreeBalasanAddress l, TreeBalasan inserted){
     // case 1: l kosong
     if(l == NULL){
         l = newTreeBalasan(inserted);
-        l->id = 1;
         return;
     }
     TreeBalasanAddress curr = l;
@@ -42,7 +41,7 @@ void insertLastTreeBalasan(TreeBalasanAddress l, TreeBalasan inserted){
         curr = curr->nextSibling;
     }
     TreeBalasanAddress new = newTreeBalasan(inserted);
-    new->id = curr->id + 1;
+    new->idParent = l->idParent;
     curr->nextSibling = new;
     new->prevSibling = curr;
     new->parent = l->parent;
@@ -51,12 +50,11 @@ void insertLastTreeBalasan(TreeBalasanAddress l, TreeBalasan inserted){
 void replyTreeBalasan(TreeBalasanAddress l, TreeBalasan inserted){
     if(l->child == NULL){
         TreeBalasanAddress new = newTreeBalasan(inserted);
-        new->id = 1;
+        new->idParent = l->id;
         l->child = new;
         new->parent = l;
     }else{
         inserted.idParent = l->id;
-        inserted.id = lengthTreeBalasan(*l->child) + 1;
         insertLastTreeBalasan(l->child, inserted);
     }
 }
@@ -169,13 +167,14 @@ void displayAllTreeBalasan(TreeBalasan t){
     displayTreeBalasanRecursive(&t, 0);
 }
 
-TreeBalasanAddress getTreeBalasanById(TreeBalasan treebalasan, int id){
-    if(treebalasan.id == id) return &treebalasan;
+TreeBalasanAddress getTreeBalasanById(TreeBalasanAddress treebalasan, int id){
+    if(treebalasan == NULL) return NULL;
+    else if(treebalasan->id == id) return treebalasan;
     else{
-        TreeBalasanAddress curr = treebalasan.child;
+        TreeBalasanAddress curr = treebalasan->child;
         while (curr != NULL)
         {
-            TreeBalasanAddress res = getTreeBalasanById(*curr, id);
+            TreeBalasanAddress res = getTreeBalasanById(curr, id);
             if(res != NULL) return res;
             curr = curr->nextSibling;
         }
