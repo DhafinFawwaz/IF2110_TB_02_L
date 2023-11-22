@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "stackDinDraf.h"
+#include "stackdindraf.h"
+
 #include "../MesinKata/wordmachine.h"
 #include "../StackDin/stackdin.h"
 #include "../Profile/profile.h"
 #include "../DateTime/datetime.h"
-
 #include "../../Fitur/Perintah/perintah.h"
 #include "../../Fitur/Kicauan/kicauan.h"
 
@@ -63,88 +63,6 @@ void popStackDinDraf(StackDinDraf *s, DrafKicauan *x) {
     ADDR_TOP_DRAF(*s) = NEXT(ADDR_TOP_DRAF(*s));
     NEXT(p) = NIL;
     free(p);
-}
-
-void hapus_draf(StackDinDraf s) {
-    /* KAMUS LOKAL */
-    DrafKicauan x;
-
-    /* ALGORITMA */
-    if (!isEmptyStackDinDraf(s)) {
-        popStackDinDraf(&s, &x);
-        printf("Draf telah berhasil dihapus!\n");
-    } else {
-        printf("Anda tidak memiliki draf untuk dihapus.\n");
-    }
-}
-
-void simpan_draf(StackDinDraf s) {
-    /* KAMUS LOKAL */
-    DrafKicauan x;
-
-    /* ALGORITMA */
-    if (!isEmptyStackDinDraf(s)) {
-        popStackDinDraf(&s, &x);
-        printf("Draf telah berhasil disimpan!\n");
-    } else {
-        printf("Anda tidak memiliki draf untuk disimpan.\n");
-    }
-}
-
-void terbit_draf(StackDinDraf s) {
-    /* KAMUS LOKAL */
-    DrafKicauan x;
-    int currentID;
-
-    /* ALGORITMA */
-    if (!isEmptyStackDinDraf(s)) {
-        popStackDinDraf(&s, &x);
-
-        printf("Selamat! Draf kicauan telah diterbitkan!\n");
-        printf("Detil kicauan:\n");
-        
-        Kicauan dariDrafKicauan;
-    
-
-        createKicauan(&dariDrafKicauan,x.text);
-        printKicauan(dariDrafKicauan);
-
-    } else {
-        printf("Tidak ada draf yang dapat diterbitkan.\n");
-    }
-}
-
-void ubah_draf(StackDinDraf *s){
-    Word isiDrafKicauan;
-
-    printf("Masukkan draf yang baru:");
-    readInput();
-    isiDrafKicauan = currentWord;
-
-    printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini?");
-}
-
-void buat_draf(StackDinDraf *s){
-    Word isiDrafKicauan;
-
-    printf("Masukkan draf: ");
-    readInput();
-    isiDrafKicauan = currentWord;
-
-    printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini?");
-}
-
-void lihat_draf(StackDinDraf s) {
-    if (!isEmptyStackDinDraf(s)) {
-        int lastIndex = lengthStackDinDraf(s) - 1;
-
-        printf("Ini draf terakhir anda:\n");
-        printf("| SetToCurrentDateTime(dt)");
-        printf("| isiDrafKicauan <ID>");
-
-    } else {
-        printf("Yah, anda belum memiliki draf apapun! Buat dulu ya :D\n");
-    }
 }
 
 void DebugDraftKicauan(DrafKicauan list){

@@ -1,9 +1,10 @@
-#ifndef DRAFKICAUAN_H
-#define DRAFKICAUAN_H
+#ifndef STACKDINDRAF_H
+#define STACKDINDRAF_H
 
 #include "../MesinKata/wordmachine.h"
 #include "../DateTime/datetime.h"
 #include "../StackDin/stackdin.h"
+
 
 #define NIL NULL
 
