@@ -13,6 +13,7 @@ ListDinKicauan globalListDinKicauan;
 ListStatikAkun globalListStatikAkun; 
 int banyakKicauanBerbalasan;
 TreeBalasanAddress globalTreeBalasan;
+int globalLastTreeBalasanId = 0;
 
 void inisialisasiGlobal(){
     createListDinKicauan(&globalListDinKicauan,10);

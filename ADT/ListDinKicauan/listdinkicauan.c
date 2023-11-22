@@ -6,13 +6,13 @@
 #include "../Akun/akun.h"
 #include <stdlib.h>
 
-void createKicauan(Kicauan *k, Word text, Word tagar){
+void createKicauan(Kicauan *k, Word text){
     IDKICAU(*k) = -1;
     setWord(&(TEXT_KICAU(*k)),text.TabWord);
     JUMLAH_LIKE(*k) = 0;
     SetToCurrentDateTime(&WAKTU(*k));
-    setWord(&TAGAR(*k),tagar.TabWord);
-    (*k).firstUtas = NULL;
+    k->firstBalasan = NULL;
+    k->firstUtas = NULL;
 }
 
 void printKicauan(Kicauan kicauan){
@@ -73,6 +73,11 @@ boolean isListKicauanEmpty(ListDinKicauan listKicauan){
 boolean isInListKicauan(int idKicau, ListDinKicauan listKicauan){
     return(idKicau <= NEFF_LIST_KICAUAN(listKicauan) && idKicau >= 1);
 }
+
+Kicauan getKicauanById(ListDinKicauan listKicauan, int id){
+    return GET_ELMT_KICAUAN(listKicauan, id-1);
+}
+
 
 // void DebugListKicauan(){
 //     printf("======== [Debug listKicauan] ========\n");

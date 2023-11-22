@@ -1,6 +1,7 @@
 #include "perintah.h"
 #include "../../ADT/MesinKata/wordmachine.h"
 #include "../../ADT/TreeBalasan/treebalasan.h"
+#include "../Balasan/balasan.h"
 #include "../Pengguna/pengguna.h"
 #include "../Kicauan/kicauan.h"
 #include "../Utas/utas.h"
@@ -226,15 +227,18 @@ void handlePerintah(){
         if(!isLogin){ displayBelumLogin(); return; }
         int idKicauan = wordToInt(perintahArgumen[1]);
         int idBalasan = wordToInt(perintahArgumen[2]);
+        balas(idKicauan, idBalasan);
     }
     else if(compareWord(perintahArgumen[0], BALASAN)){ // BALASAN <id kicauan>;
         if(!isLogin){ displayBelumLogin(); return; }
         int idKicauan = wordToInt(perintahArgumen[1]);
+        balasan(idKicauan);
     }
     else if(compareWord(perintahArgumen[0], HAPUS_BALASAN)){ // HAPUS_BALASAN <id kicauan> <id balasan>;
         if(!isLogin){ displayBelumLogin(); return; }
         int idKicauan = wordToInt(perintahArgumen[1]);
         int idBalasan = wordToInt(perintahArgumen[2]);
+        hapusBalasan(idKicauan, idBalasan);
     }
 
     else if(compareWord(perintahArgumen[0], BUAT_DRAF)){

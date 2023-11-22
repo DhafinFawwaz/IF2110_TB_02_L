@@ -46,7 +46,7 @@ typedef struct listdinkicauan
 // End of Struktur List Dinamis Kicauan
 
 // Fungsi dan Prosedur Kicauan
-void createKicauan(Kicauan * k, Word text, Word tagar);
+void createKicauan(Kicauan * k, Word text);
 
 void printKicauan(Kicauan kicauan);
 // End of Fungsi dan Prosedur Kicauan
@@ -69,5 +69,7 @@ boolean isInListKicauan(int idKicau, ListDinKicauan listKicauan);
 
 
 // void DebugListKicauan();
+
+Kicauan getKicauanById(ListDinKicauan listKicauan, int id);
 
 #endif
