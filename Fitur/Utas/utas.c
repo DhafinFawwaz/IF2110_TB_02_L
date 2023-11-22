@@ -32,7 +32,6 @@ void buatUtas(int IDKicau){
 			
 			Utas_setUtasFromWord(&currentUtas, currentWord);
 			if (Utas_isEmpty(UtasInKicau(IDKicau))) {
-				printf("dksaopdkas\n");
 				UtasInKicau(IDKicau) = currentUtas;
 			}
 			else {
@@ -55,14 +54,13 @@ void buatUtas(int IDKicau){
 }
 
 void sambungUtas(int IDUtas, int index){
-	Utas mainUtas = UtasInKicau(IDUtas);
-	if (mainUtas == NULL){ 
+	if (UtasInKicau(IDUtas) == NULL){ 
 		printf("Utas tidak ditemukan!\n");
 	}
 	else if (isUtasMilikOrangLain(IDUtas)){
 		printf("Anda tidak bisa menyambung utas ini!\n");
 	}
-	else if (index > length(mainUtas)){
+	else if ((index-1) > length(UtasInKicau(IDUtas))){
 		printf("Index terlalu tinggi!\n");
 	}
 	else{
@@ -71,14 +69,13 @@ void sambungUtas(int IDUtas, int index){
 		printf("Masukkan kicauan:\n");
 		readInput();
 		Utas_setUtasFromWord(&newUtas, currentWord);
-		Utas_insertAt(&mainUtas, INFO_UTAS(newUtas), index);
+		Utas_insertAt(&UtasInKicau(IDUtas), INFO_UTAS(newUtas), index-1);
 	}
 }
 
 void hapusUtas(int IDUtas, int index){
-	Utas mainUtas = UtasInKicau(IDUtas);
 	isi_utas temp;
-	if (mainUtas == NULL){ 
+	if (UtasInKicau(IDUtas) == NULL){ 
 		printf("Utas tidak ditemukan!\n");
 	}
 	else if (isUtasMilikOrangLain(IDUtas)){
@@ -87,12 +84,12 @@ void hapusUtas(int IDUtas, int index){
 	else if (index == 0){
 		printf("Anda tidak bisa menghapus kicauan utama!\n");
 	}
-	else if (index > length(mainUtas)){
+	else if (index > length(UtasInKicau(IDUtas))){
 		/*Asumsi kondisi Utas tidak ditemukan hanya terjadi ketika index melebihi length mainUtas*/
 		printf("Kicauan sambungan dengan index %d tidak ditemukan pada utas!\n", index);
 	}
 	else{
-		Utas_deleteAt(&mainUtas, index, &temp);
+		Utas_deleteAt(&UtasInKicau(IDUtas), index-1, &temp);
 		printf("Kicauan sambungan berhasil dihapus!\n");
 	}
 }
