@@ -167,19 +167,21 @@ void handlePerintah(){
 
     else if(compareWord(currentWord, GANTI_PROFIL)){
         if(!isLogin){ displayBelumLogin(); return; }
-
+        ganti_profil();
     }
     else if(compareWord(perintahArgumen[0], LIHAT_PROFIL)){  // LIHAT_PROFIL <nama pengguna>;
         if(!isLogin){ displayBelumLogin(); return; }
-        Word nama = perintahArgumen[1];
+        Word nama = getWordAfterFirstSpace(currentWord);
+        printWord(nama);
+        lihat_profil_other(nama);
     }
     else if(compareWord(perintahArgumen[0], ATUR_JENIS_AKUN)){
         if(!isLogin){ displayBelumLogin(); return; }
-
+        atur_jenis_akun();
     }
     else if(compareWord(perintahArgumen[0], UBAH_FOTO_PROFIL)){
         if(!isLogin){ displayBelumLogin(); return; }
-
+        ubah_foto_profil();
     }
 
     else if(compareWord(perintahArgumen[0], DAFTAR_TEMAN)){
@@ -193,15 +195,15 @@ void handlePerintah(){
 
     else if(compareWord(perintahArgumen[0], TAMBAH_TEMAN)){
         if(!isLogin){ displayBelumLogin(); return; }
-        
+        tambah_teman();
     }
     else if(compareWord(perintahArgumen[0], DAFTAR_PERMINTAAN_PERTEMANAN)){
         if(!isLogin){ displayBelumLogin(); return; }
-
+        daftar_permintaan();
     }
     else if(compareWord(perintahArgumen[0], SETUJUI_PERTEMANAN)){
         if(!isLogin){ displayBelumLogin(); return; }
-
+        setujui_pertemanan();
     }
 
     else if(compareWord(perintahArgumen[0], KICAU)){
