@@ -14,6 +14,8 @@ void CreateAkun(Akun* akun){
 
     setWord(&(akun)->username, "");
     setWord(&(akun)->password, "");
+
+    CreateDaftar(&DaftarPermintaan(*akun), 19);
 }
 
 void DisplayAkun(Akun akun){
