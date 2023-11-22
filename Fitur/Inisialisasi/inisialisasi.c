@@ -4,7 +4,7 @@
 #include "../Global/global.h"
 #include "../../ADT/MesinKata/wordmachine.h"
 #include "../../ADT/ListStatikAkun/liststatikAkun.h"
-#include "../../ADT/DrafKicauan/drafkicauan.h"
+#include "../../ADT/StackDinDraf/stackdindraf.h"
 #include "../../ADT/DateTime/datetime.h"
 #include "../../ADT/ListDinKicauan/listdinkicauan.h"
 #include "../../ADT/TreeBalasan/treebalasan.h"
