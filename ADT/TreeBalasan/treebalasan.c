@@ -181,26 +181,3 @@ TreeBalasanAddress getTreeBalasanById(TreeBalasanAddress treebalasan, int id){
         return NULL;
     }
 }
-
-void debugTreeBalasan(TreeBalasanAddress l, int depth){
-    if(l == NULL) return;
-    else{
-        int i = 0;
-        for(i = 0; i < depth; i++){
-            printf(" ");
-        }
-        printf("%d", l->id);
-        if(l->prevSibling != NULL) printf("   %d<-", l->prevSibling->id);else printf("      ");
-        if(l->parent != NULL) printf("   ^%d", l->parent->id);else printf("      ");
-        if(l->nextSibling != NULL) printf("   ->%d", l->nextSibling->id);else printf("      ");
-        printf("\n");
-
-        debugTreeBalasan(l->child, depth+1);
-        debugTreeBalasan(l->nextSibling, depth);
-    }
-}
-// void DebugCurrentTreeBalasan(){
-//     printf("====================== Debug currentTreeBalasan ======================\n");
-//     debugTreeBalasan(currentTreeBalasan, 0);
-//     printf("====================== Debug currentTreeBalasan End ======================\n");
-// }

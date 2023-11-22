@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "../treebalasan.h"
 #include "../../DateTime/datetime.h"
+#include "../../../Fitur/Global/global.h"
 
 DateTime getZero(){
     DateTime zero;
@@ -34,37 +35,47 @@ int main()
 
     int i = 1;
     for(i = 1; i < 10; i++){
+        globalLastTreeBalasanId++;
         TreeBalasan newBalasan;
         CreateTreeBalasan(&newBalasan, &akunPembuat);
         newBalasan.dateTime = getZero();
         newBalasan.text = balasan;
+        newBalasan.id = globalLastTreeBalasanId;
         insertLastTreeBalasan(currentTreeBalasan, newBalasan);
     }
     for(i = 0; i < 7; i++){
+        globalLastTreeBalasanId++;
         TreeBalasan newBalasan;
         CreateTreeBalasan(&newBalasan, &akunPembuat);
         newBalasan.dateTime = getZero();
         newBalasan.text = balasan;
+        newBalasan.id = globalLastTreeBalasanId;
         replyTreeBalasan(currentTreeBalasan, newBalasan);
     }
     
     for(i = 0; i < 5; i++){
+        globalLastTreeBalasanId++;
         TreeBalasan newBalasan;
         CreateTreeBalasan(&newBalasan, &akunPembuat);
         newBalasan.dateTime = getZero();
+        newBalasan.id = globalLastTreeBalasanId;
         replyTreeBalasan(currentTreeBalasan->nextSibling->nextSibling->nextSibling, newBalasan);
     }
     for(i = 0; i < 5; i++){
+        globalLastTreeBalasanId++;
         TreeBalasan newBalasan;
         CreateTreeBalasan(&newBalasan, &akunPembuat);
         newBalasan.dateTime = getZero();
+        newBalasan.id = globalLastTreeBalasanId;
         replyTreeBalasan(currentTreeBalasan->nextSibling->nextSibling->nextSibling->child->nextSibling->nextSibling, newBalasan);
     }
 
     for(i = 0; i < 7; i++){
+        globalLastTreeBalasanId++;
         TreeBalasan newBalasan;
         CreateTreeBalasan(&newBalasan, &akunPembuat);
         newBalasan.dateTime = getZero();
+        newBalasan.id = globalLastTreeBalasanId;
         replyTreeBalasan(currentTreeBalasan->child->nextSibling->nextSibling, newBalasan);
     }
 
@@ -79,6 +90,5 @@ int main()
             displayAllTreeBalasan(*currentTreeBalasan);
             break;
     }
-
     return 0;
 }

@@ -15,6 +15,7 @@ extern int globalBanyakKicauanBerbalasan;
 extern TreeBalasanAddress globalTreeBalasan;
 extern int globalLastTreeBalasanId;
 
+extern boolean globalIsRunning;
 extern boolean isLoginGlobal;
 extern GrafTeman globalGrafTeman;
 extern ListDinKicauan globalListDinKicauan;

@@ -3,6 +3,7 @@
 #include "../../ADT/ListStatikAkun/liststatikAkun.h"
 #include "../../ADT/Boolean/boolean.h"
 
+boolean globalIsRunning = true;
 boolean isLogin = false;
 Akun * globalCurrentAddrAkun;
 // DrafKicauan

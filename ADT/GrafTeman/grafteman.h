@@ -15,13 +15,13 @@ typedef struct grafteman
 
 } GrafTeman;
 
-// elemen[i][j] semuanya 0
+// Inisialisasi sehingga elemen[i][j] semuanya 0
 void CreateGrafTeman(GrafTeman *g, int jumlahAkun);
 
-// elemen[i][j] = isBerteman
+// membuat elemen[i][j] = isBerteman
 void setGrafTeman(GrafTeman *g, int i, int j, boolean isBerteman);
 
-// print
+// Display matrix graf
 void displayGrafTeman(GrafTeman g);
 
 // cek apakah akun1 berteman dengan akun2

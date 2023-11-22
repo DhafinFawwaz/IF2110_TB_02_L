@@ -48,3 +48,8 @@ make test
 ```bash
 make test ADT/ListDinamis
 ```
+
+### Debug Specific Unit Test
+```bash
+make test ADT/ListDinamis debug
+```

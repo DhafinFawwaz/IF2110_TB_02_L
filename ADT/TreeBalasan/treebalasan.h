@@ -24,10 +24,13 @@ typedef struct treebalasan
     TreeBalasanAddress nextSibling; 
 } TreeBalasan;
 
+// Mengembalikan address balasan baru
 TreeBalasanAddress newTreeBalasan(TreeBalasan treebalasan);
 
+// Membuat address balasan baru
 void CreateTreeBalasan(TreeBalasanAddress t, Akun *akunPembuat);
 
+// Mengembalikan panjang tree balasan, tanpa anak
 int lengthTreeBalasan(TreeBalasan t);
 
 // Memasukkan inserted ke *l dari paling belakang
@@ -36,16 +39,17 @@ void insertLastTreeBalasan(TreeBalasanAddress t, TreeBalasan inserted);
 // Kalau childnya kosong, maka insert ke child, kalau tidak, insert ke child->nextSibling yang paling belakang
 void replyTreeBalasan(TreeBalasanAddress t, TreeBalasan inserted);
 
+// Display balasan ke layar dengan indentasi sesuai depth
 void displayTreeBalasan(TreeBalasan t, int depth);
 
+// Display balasan beserta anak anaknya
 void displayAllTreeBalasan(TreeBalasan t);
 
-// Hapus elemen di index idx dan nilainya dimasukkan ke deleted
+// Hapus balasan beserta anak anaknya
 void deleteCascadeTreeBalasan(TreeBalasanAddress t);
 
+// Mengembalikan address balasan dengan id yang dicari
 TreeBalasanAddress getTreeBalasanById(TreeBalasanAddress treebalasan, int id);
-
-void DebugCurrentTreeBalasan();
 
 
 #endif

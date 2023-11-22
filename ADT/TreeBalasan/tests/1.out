@@ -3,75 +3,80 @@
 | 0/0/0 0:0:0
 | Ini sebuah balasan.
 
-   | ID = 1
+   | ID = 10
    | Tuan Hak
    | 0/0/0 0:0:0
    | Ini sebuah balasan.
 
-   | ID = 2
+   | ID = 11
    | Tuan Hak
    | 0/0/0 0:0:0
    | Ini sebuah balasan.
 
-   | ID = 3
+   | ID = 12
    | Tuan Hak
    | 0/0/0 0:0:0
    | Ini sebuah balasan.
 
-      | ID = 1
+      | ID = 27
       | Tuan Hak
       | 0/0/0 0:0:0
       | Ini sebuah balasan.
 
-      | ID = 2
+      | ID = 28
       | Tuan Hak
       | 0/0/0 0:0:0
       | Ini sebuah balasan.
 
-      | ID = 3
+      | ID = 29
       | Tuan Hak
       | 0/0/0 0:0:0
       | Ini sebuah balasan.
 
-      | ID = 4
+      | ID = 30
       | Tuan Hak
       | 0/0/0 0:0:0
       | Ini sebuah balasan.
 
-      | ID = 5
+      | ID = 31
       | Tuan Hak
       | 0/0/0 0:0:0
       | Ini sebuah balasan.
 
-      | ID = 6
+      | ID = 32
       | Tuan Hak
       | 0/0/0 0:0:0
       | Ini sebuah balasan.
 
-      | ID = 7
+      | ID = 33
       | Tuan Hak
       | 0/0/0 0:0:0
       | Ini sebuah balasan.
 
-   | ID = 4
+   | ID = 13
    | Tuan Hak
    | 0/0/0 0:0:0
    | Ini sebuah balasan.
 
-   | ID = 5
+   | ID = 14
    | Tuan Hak
    | 0/0/0 0:0:0
    | Ini sebuah balasan.
 
-   | ID = 6
+   | ID = 15
    | Tuan Hak
    | 0/0/0 0:0:0
    | Ini sebuah balasan.
 
-   | ID = 7
+   | ID = 16
    | Tuan Hak
    | 0/0/0 0:0:0
    | Ini sebuah balasan.
+
+| ID = 1
+| Tuan Hak
+| 0/0/0 0:0:0
+| Ini sebuah balasan.
 
 | ID = 2
 | Tuan Hak
@@ -83,60 +88,60 @@
 | 0/0/0 0:0:0
 | Ini sebuah balasan.
 
+   | ID = 17
+   | Tuan Hak
+   | 0/0/0 0:0:0
+   | Ini sebuah balasan.
+
+   | ID = 18
+   | Tuan Hak
+   | 0/0/0 0:0:0
+   | Ini sebuah balasan.
+
+   | ID = 19
+   | Tuan Hak
+   | 0/0/0 0:0:0
+   | Ini sebuah balasan.
+
+      | ID = 22
+      | Tuan Hak
+      | 0/0/0 0:0:0
+      | Ini sebuah balasan.
+
+      | ID = 23
+      | Tuan Hak
+      | 0/0/0 0:0:0
+      | Ini sebuah balasan.
+
+      | ID = 24
+      | Tuan Hak
+      | 0/0/0 0:0:0
+      | Ini sebuah balasan.
+
+      | ID = 25
+      | Tuan Hak
+      | 0/0/0 0:0:0
+      | Ini sebuah balasan.
+
+      | ID = 26
+      | Tuan Hak
+      | 0/0/0 0:0:0
+      | Ini sebuah balasan.
+
+   | ID = 20
+   | Tuan Hak
+   | 0/0/0 0:0:0
+   | Ini sebuah balasan.
+
+   | ID = 21
+   | Tuan Hak
+   | 0/0/0 0:0:0
+   | Ini sebuah balasan.
+
 | ID = 4
 | Tuan Hak
 | 0/0/0 0:0:0
 | Ini sebuah balasan.
-
-   | ID = 1
-   | Tuan Hak
-   | 0/0/0 0:0:0
-   | Ini sebuah balasan.
-
-   | ID = 2
-   | Tuan Hak
-   | 0/0/0 0:0:0
-   | Ini sebuah balasan.
-
-   | ID = 3
-   | Tuan Hak
-   | 0/0/0 0:0:0
-   | Ini sebuah balasan.
-
-      | ID = 1
-      | Tuan Hak
-      | 0/0/0 0:0:0
-      | Ini sebuah balasan.
-
-      | ID = 2
-      | Tuan Hak
-      | 0/0/0 0:0:0
-      | Ini sebuah balasan.
-
-      | ID = 3
-      | Tuan Hak
-      | 0/0/0 0:0:0
-      | Ini sebuah balasan.
-
-      | ID = 4
-      | Tuan Hak
-      | 0/0/0 0:0:0
-      | Ini sebuah balasan.
-
-      | ID = 5
-      | Tuan Hak
-      | 0/0/0 0:0:0
-      | Ini sebuah balasan.
-
-   | ID = 4
-   | Tuan Hak
-   | 0/0/0 0:0:0
-   | Ini sebuah balasan.
-
-   | ID = 5
-   | Tuan Hak
-   | 0/0/0 0:0:0
-   | Ini sebuah balasan.
 
 | ID = 5
 | Tuan Hak
@@ -159,11 +164,6 @@
 | Ini sebuah balasan.
 
 | ID = 9
-| Tuan Hak
-| 0/0/0 0:0:0
-| Ini sebuah balasan.
-
-| ID = 10
 | Tuan Hak
 | 0/0/0 0:0:0
 | Ini sebuah balasan.

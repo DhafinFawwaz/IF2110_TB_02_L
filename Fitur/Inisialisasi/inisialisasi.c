@@ -153,7 +153,7 @@ void assignGlobalVariablesFromFiles(){
     }
 
 */
-    // Inisialisasi draf
+    // =================================== Inisialisasi draf ===================================
     // printf("\n[Draf]\n");
     STARTWORDFILEREADER(drafPath);
     banyakDraf = wordToInt(currentWord);// 5 # Banyak draf
@@ -178,33 +178,7 @@ void assignGlobalVariablesFromFiles(){
 
 
  
-    // Inisialisasi kicauan
-    STARTWORDFILEREADER(kicauanPath);
-    
-    // NEFF_LIST_KICAUAN(globalListDinKicauan) = wordToInt(currentWord); // 2 # Banyak kicauan sebanyak 2
-    
-    for(i = 0; i < NEFF_LIST_KICAUAN(globalListDinKicauan); i++){
-        ADVWORD();
-        // listDinKicauan.contents[i]->id = wordToInt(currentWord); // 1 # ID kicauan 1
-
-        ADVLINE();
-        // listDinKicauan.contents[i]->text = cleanWord(currentWord); // Halooo
-
-        ADVWORD();
-        // listDinKicauan.contents[i]->likeCount = wordToInt(currentWord); // 12 # Like
-
-        ADVLINE();
-        // listDinKicauan.contents[i]->namaPembuat = cleanWord(currentWord); // Tuan Bus
-
-        ADVWORD();
-        // SetDateFromWord(&(listDinKicauan.contents[i]->dateTime), cleanWord(currentWord)); // 14/10/2023
-
-        ADVWORD();
-        // SetTimeFromWord(&(listDinKicauan.contents[i]->dateTime), cleanWord(currentWord)); // 11:09:18
-    }
-    // DebugListKicauan();
-
-    // Inisialisasi pengguna
+    // =================================== Inisialisasi pengguna ===================================
     STARTWORDFILEREADER(penggunaPath);
 
     NEFF(globalListStatikAkun) = wordToInt(currentWord); // 2 # Banyak pengguna
@@ -255,6 +229,37 @@ void assignGlobalVariablesFromFiles(){
         }
     }
     
+    // =================================== Inisialisasi kicauan ===================================
+    // Harus setelah inisialisasi globalListStatikAkun
+    STARTWORDFILEREADER(kicauanPath); 
+    
+    NEFF_LIST_KICAUAN(globalListDinKicauan) = wordToInt(currentWord); // 2 # Banyak kicauan sebanyak 2
+    
+    for(i = 0; i < NEFF_LIST_KICAUAN(globalListDinKicauan); i++){
+        ADVWORD();
+        GET_ELMT_KICAUAN(globalListDinKicauan, i).id = wordToInt(currentWord); // 1 # ID kicauan 1
+
+        ADVLINE();
+        GET_ELMT_KICAUAN(globalListDinKicauan, i).text = cleanWord(currentWord); // Halooo
+
+        ADVWORD();
+        GET_ELMT_KICAUAN(globalListDinKicauan, i).likeCount = wordToInt(currentWord); // 12 # Like
+
+        ADVLINE();
+        // cari username di listStatikAkun
+        Word username = cleanWord(currentWord);
+        int idxAkun = findIdxByName(globalListStatikAkun, username);
+        GET_ELMT_KICAUAN(globalListDinKicauan, i).akunKicauan = &(CONTENT(globalListStatikAkun, idxAkun)); // Tuan Bus
+
+        ADVWORD();
+        SetDateFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, i).dateTime), cleanWord(currentWord)); // 14/10/2023
+
+        ADVWORD();
+        SetTimeFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, i).dateTime), cleanWord(currentWord)); // 11:09:18
+    }
+    // DebugListKicauan();
+
+
     // DebugListAkun();
 /*
     // Inisialisasi pengguna

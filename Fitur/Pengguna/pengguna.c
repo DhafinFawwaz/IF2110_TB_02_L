@@ -27,7 +27,7 @@ void daftar(){
     globalListStatikAkun.contents[effID].username = currentWord;
     globalListStatikAkun.contents[effID].id = effID;
     globalListStatikAkun.Neff++;
-    globalGrafTeman.size++;
+    resizeGrafTeman(globalListStatikAkun.Neff);
 
     /* INPUT PASSWORD */
     printf("\nMasukkan kata sandi: \n");
@@ -77,4 +77,5 @@ void keluar(){
 
 void tutup_program(){
     printf("Anda telah keluar dari program BurBir. Sampai jumpa di penjelajahan berikutnya!\n");
+    globalIsRunning = false;
 }
