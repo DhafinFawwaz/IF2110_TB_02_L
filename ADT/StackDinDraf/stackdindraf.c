@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "drafkicauan.h"
+#include "stackDinDraf.h"
 #include "../MesinKata/wordmachine.h"
 #include "../StackDin/stackdin.h"
 #include "../Profile/profile.h"
