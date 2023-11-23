@@ -202,7 +202,7 @@ void assignGlobalVariablesFromFiles(){
         CONTENT(globalListStatikAkun, i).profil.weton = cleanWord(currentWord);
 
         ADVLINE();
-        CONTENT(globalListStatikAkun, i).isPublic = jenisAkunToBoolean(cleanWord(currentWord));
+        CONTENT(globalListStatikAkun, i).profil.jenis_akun = jenisAkunToBoolean(cleanWord(currentWord));
 
         Foto foto;
         CreateFotoProfil(&foto);

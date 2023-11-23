@@ -62,8 +62,8 @@ void sukaKicauan(int id_kicau){
     printf("\n");
     Kicauan* k = &(GET_ELMT_KICAUAN(globalListDinKicauan,(id_kicau-1)));
     if(!isInListKicauan(id_kicau, globalListDinKicauan)){
-        printf("Tidak ditemukan kicauan dengan ID = %d", id_kicau);   
-    }else if(!((*ADDR_AKUN_KICAUAN(*k)).isPublic) && !isAkunBerteman(globalGrafTeman,(*ADDR_AKUN_KICAUAN(*k)),*globalCurrentAddrAkun)){
+        printf("Tidak ditemukan kicauan dengan ID = %d", id_kicau); 
+    }else if(!JenisAkun(Profil(*ADDR_AKUN_KICAUAN(*k))) && !isAkunBerteman(globalGrafTeman,(*ADDR_AKUN_KICAUAN(*k)),*globalCurrentAddrAkun)){
         printf("Wah, kicauan tersebut dibuat oleh akun privat! Berteman dengan akun itu dulu ya!");
     }else{
         JUMLAH_LIKE(*k)++;
