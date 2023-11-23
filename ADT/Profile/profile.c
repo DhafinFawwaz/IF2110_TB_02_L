@@ -11,7 +11,7 @@ void CreateProfil(Profile *P){
     setWord(&Bio(*P), "");
     setWord(&NomorHP(*P), "");
     setWord(&Weton(*P), "");
-    setWord(&JenisAkun(*P), "Publik");
+    JenisAkun(*P) = true;
     CreateFotoProfil(&Foto(*P));
 }
 
@@ -45,12 +45,12 @@ boolean isNomorHPValid(Word nomor_hp){
 
 boolean isAkunPrivat(Profile P){
     /* Memeriksa apakah jenis akun privat */
-    return (compareWord(JenisAkun(P), stringToWord("Privat")));
+    return (!JenisAkun(P));
 }
 
 boolean isAkunPublik(Profile P){
     /* Memeriksa apakah jenis akun publik */
-    return (compareWord(JenisAkun(P), stringToWord("Publik")));
+    return (JenisAkun(P));
 }
 
 /* *** PENGUBAHAN NILAI *** */
@@ -75,11 +75,11 @@ void changeWeton(Profile *P, Word w){
 
 void changeJenisAkun(Profile *P){
     /* Mengubah jenis akun pengguna */
-    if (compareWord(JenisAkun(*P), stringToWord("Privat"))){
-        setWord(&JenisAkun(*P), "Publik");
+    if (JenisAkun(*P)){
+        JenisAkun(*P) = false;
     }
-    else if (compareWord(JenisAkun(*P), stringToWord("Publik"))){
-        setWord(&JenisAkun(*P), "Privat");
+    else if (!JenisAkun(*P)){
+        JenisAkun(*P) = true;
     }
 }
 

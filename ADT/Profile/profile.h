@@ -14,7 +14,7 @@ typedef struct profile {
     Word bio;
     Word nomor_hp;
     Word weton;
-    Word jenis_akun;
+    boolean jenis_akun;
     Foto foto;
 } Profile;
 
