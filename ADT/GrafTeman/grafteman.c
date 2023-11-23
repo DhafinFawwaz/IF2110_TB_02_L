@@ -30,7 +30,7 @@ void displayGrafTeman(GrafTeman g){
 
 // cek apakah akun1 berteman dengan akun2. Tapi bukan berarti akun2 berteman dengan akun1
 boolean isAkunBerteman(GrafTeman g, Akun akun1, Akun akun2){
-    return GRAFTEMAN_ELMT(g, akun1.id, akun2.id) == GRAFTEMAN_ELMT(g, akun2.id, akun1.id);
+    return (GRAFTEMAN_ELMT(g, akun1.id, akun2.id) && GRAFTEMAN_ELMT(g, akun2.id, akun1.id));
 }
 
 boolean isAkunMintaBerteman(GrafTeman g, Akun akun1, Akun akun2){

@@ -143,7 +143,7 @@ void Utas_deleteAt(Utas *l, int idx, isi_utas *val){
 
 }
 
-int length(Utas l){
+int Utas_length(Utas l){
 	int ctr = 0;
 	Utas p = l;
 	while (p != NULL){
@@ -171,4 +171,23 @@ Utas Utas_concatUtas(Utas l1, Utas l2) {
 	}
 
 	return l3;
+}
+
+void displayTestUtas(Utas u){
+	Utas p;
+
+	printf("[");
+
+	if (!Utas_isEmpty(u)){
+		p = u;
+		while (NEXT_UTAS(p) != NULL){
+			printWord(TEXT_UTAS(p));
+			//DisplayDateTime(WAKTU_UTAS(p));
+			printf(", ");
+			p = NEXT_UTAS(p);
+		}
+		printWord(TEXT_UTAS(p));
+	}
+
+	printf("]");
 }

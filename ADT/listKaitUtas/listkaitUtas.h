@@ -48,5 +48,6 @@ void Utas_deleteAt(Utas *u, int idUtas, isi_utas *isiUtas);
 int length(Utas u);
 
 Utas Utas_concatUtas(Utas u1, Utas u2) ;
+void displayTestUtas(Utas u);
 
 #endif

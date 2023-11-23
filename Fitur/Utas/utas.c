@@ -1,5 +1,6 @@
 #include "utas.h"
 #include "../Global/global.h"
+#include "../../ADT/GrafTeman/grafteman.h"
 
 Word currentUtas;
 
@@ -60,7 +61,7 @@ void sambungUtas(int IDUtas, int index){
 	else if (isUtasMilikOrangLain(IDUtas)){
 		printf("Anda tidak bisa menyambung utas ini!\n");
 	}
-	else if ((index-1) > length(UtasInKicau(IDUtas))){
+	else if ((index-1) > Utas_length(UtasInKicau(IDUtas))){
 		printf("Index terlalu tinggi!\n");
 	}
 	else{
@@ -84,7 +85,7 @@ void hapusUtas(int IDUtas, int index){
 	else if (index == 0){
 		printf("Anda tidak bisa menghapus kicauan utama!\n");
 	}
-	else if (index > length(UtasInKicau(IDUtas))){
+	else if (index > Utas_length(UtasInKicau(IDUtas))){
 		/*Asumsi kondisi Utas tidak ditemukan hanya terjadi ketika index melebihi length mainUtas*/
 		printf("Kicauan sambungan dengan index %d tidak ditemukan pada utas!\n", index);
 	}
@@ -97,25 +98,33 @@ void hapusUtas(int IDUtas, int index){
 void cetakUtas(int IDUtas){
 	Kicauan kicauUtas = GET_ELMT_KICAUAN(globalListDinKicauan,IDUtas-1);
 	Utas p = kicauUtas.firstUtas;
-	int idxUtas = 1;
-
-    printf("| ID = %d\n", IDKICAU(kicauUtas));
-    printf("| ");
-    Word pembuat = (*ADDR_AKUN_KICAUAN(kicauUtas)).username;
-    printWord(pembuat);
-    printf("\n");
-    printf("| ");
-    DisplayDateTime(WAKTU(kicauUtas));
-    printf("\n");
-    printf("| ");
-    printWord(TEXT_KICAU(kicauUtas));
-    printf("\n");
-	while (p != NULL){
-		printf("   | INDEX = %d\n", idxUtas);
-		printf("   | "); printWord(pembuat); printf("\n");
-		printf("   | "); DisplayDateTime(WAKTU(kicauUtas)); printf("\n");
-		printf("   | "); printWord(TEXT_UTAS(p));printf("\n\n");
-		p = NEXT_UTAS(p);
-		idxUtas++;
+	Word pembuat = (*ADDR_AKUN_KICAUAN(kicauUtas)).username;
+	Akun OP = *ADDR_AKUN_KICAUAN(kicauUtas);
+	if (p == NULL){
+		printf("Utas tidak ditemukan!\n");
+	}
+	else if (!(*ADDR_AKUN_KICAUAN(kicauUtas)).isPublic && !isAkunBerteman(globalGrafTeman, OP, *globalCurrentAddrAkun)){
+		printf("Akun yang membuat utas ini adalah akun privat! Ikuti dahulu akun ini untuk melihat utasnya!");
+	}
+	else{
+		int idxUtas = 1;
+		printf("| ID = %d\n", IDKICAU(kicauUtas));
+		printf("| ");
+		printWord(pembuat);
+		printf("\n");
+		printf("| ");
+		DisplayDateTime(WAKTU(kicauUtas));
+		printf("\n");
+		printf("| ");
+		printWord(TEXT_KICAU(kicauUtas));
+		printf("\n");
+		while (p != NULL){
+			printf("   | INDEX = %d\n", idxUtas);
+			printf("   | "); printWord(pembuat); printf("\n");
+			printf("   | "); DisplayDateTime(WAKTU(kicauUtas)); printf("\n");
+			printf("   | "); printWord(TEXT_UTAS(p));printf("\n\n");
+			p = NEXT_UTAS(p);
+			idxUtas++;
+		}
 	}
 }
