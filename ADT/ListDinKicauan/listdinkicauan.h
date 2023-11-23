@@ -46,30 +46,42 @@ typedef struct listdinkicauan
 // End of Struktur List Dinamis Kicauan
 
 // Fungsi dan Prosedur Kicauan
+
+// Membuat Kicauan dengan text kicauan
 void createKicauan(Kicauan * k, Word text);
 
+// Menampilkan informasi mengenai Kicauan
 void printKicauan(Kicauan kicauan);
+
 // End of Fungsi dan Prosedur Kicauan
 
 // Fungsi dan Prosedur List Dinamis Kicauan
+
+// Membuat List Dinamis Kicauan Kosong dengan kapasitas sebesar cap
 void createListDinKicauan(ListDinKicauan *l, int cap);
 
+// Menyalin isi List l1 pada l2
 void copyContentListKicauan(ListDinKicauan *l1, ListDinKicauan *l2);
 
+// Memperbesar ukuran kapasitas list sebanyak 2x lipat kapasitas sebelumnya
 void expandListKicauan(ListDinKicauan *l);
 
+// Mengembalikan true jika List l penuh
 boolean isFullListKicauan(ListDinKicauan l);
 
+// Memasukkan Kicauan k pada indeks efektif terakhir List
 void insertKicauan(Kicauan k, ListDinKicauan * listKicauan);
 
+// Mengembalikan true jika List kosong
 boolean isListKicauanEmpty(ListDinKicauan listKicauan);
 
+// Mengembalikan true jika Kicauan dengan idKicau ada pada List
 boolean isInListKicauan(int idKicau, ListDinKicauan listKicauan);
+
+// Mengembalikan Kicauan dengan id yang diinginkan pada List
+Kicauan getKicauanById(ListDinKicauan listKicauan, int id);
+
 // End of Fungsi dan Prosedur List Dinamis Kicauan
 
-
-// void DebugListKicauan();
-
-Kicauan getKicauanById(ListDinKicauan listKicauan, int id);
 
 #endif
