@@ -13,8 +13,11 @@ boolean isLoginGlobal = false;
 ListDinKicauan globalListDinKicauan;
 ListStatikAkun globalListStatikAkun; 
 int banyakKicauanBerbalasan;
+int globalBanyakKicauanBerutas;
 TreeBalasanAddress globalTreeBalasan;
 int globalLastTreeBalasanId = 0;
+
+int globalBanyakPenggunaBerDraf = 0;
 
 void inisialisasiGlobal(){
     createListDinKicauan(&globalListDinKicauan,10);

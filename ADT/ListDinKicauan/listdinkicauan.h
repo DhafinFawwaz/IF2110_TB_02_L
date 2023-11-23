@@ -39,6 +39,7 @@ typedef struct listdinkicauan
     int cap;
 } ListDinKicauan;
 
+#define GET_KICAUAN_BY_ID(l,id) (l).contents[id-1]
 #define GET_ELMT_KICAUAN(l,idx) (l).contents[idx]
 #define CONTENTS_LIST_KICAUAN(l) (l).contents
 #define NEFF_LIST_KICAUAN(l) (l).nEff

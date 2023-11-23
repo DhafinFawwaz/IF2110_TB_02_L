@@ -12,6 +12,7 @@ extern GrafTeman globalGrafTeman;
 extern ListDinKicauan globalListDinKicauan;
 extern ListStatikAkun globalListStatikAkun; 
 extern int globalBanyakKicauanBerbalasan;
+extern int globalBanyakKicauanBerutas;
 extern TreeBalasanAddress globalTreeBalasan;
 extern int globalLastTreeBalasanId;
 
@@ -22,5 +23,7 @@ extern ListDinKicauan globalListDinKicauan;
 extern ListStatikAkun globalListStatikAkun; 
 extern int banyakKicauanBerbalasan;
 extern TreeBalasanAddress globalTreeBalasan;
+
+extern int globalBanyakPenggunaBerDraf;
 
 void inisialisasiGlobal();

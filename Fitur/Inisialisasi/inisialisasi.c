@@ -4,11 +4,11 @@
 #include "../Global/global.h"
 #include "../../ADT/MesinKata/wordmachine.h"
 #include "../../ADT/ListStatikAkun/liststatikAkun.h"
-#include "../../ADT/StackDinDraf/stackdindraf.h"
 #include "../../ADT/DateTime/datetime.h"
 #include "../../ADT/ListDinKicauan/listdinkicauan.h"
 #include "../../ADT/TreeBalasan/treebalasan.h"
 #include "../../ADT/GrafTeman/grafteman.h"
+#include "../../ADT/StackDinDraf/stackdindraf.h"
 #include "../Perintah/perintah.h"
 
 const char dataPath[] = "Config/";
@@ -116,68 +116,10 @@ void assignGlobalVariablesFromFiles(){
     tripleConcat(dataPath, currentWord.TabWord, "/pengguna.config", penggunaPath);
     tripleConcat(dataPath, currentWord.TabWord, "/utas.config", utasPath);
     int i = 0;
-/*
-    // Inisialisasi balasan
-    printf("\n[Balasan]\n");
-    STARTWORDFILE(balasanPath);
-    banyakKicauanBerbalasan = wordToInt(currentWord); // banyak kicauan yang memiliki balasan
-    printf("banyakKicauanBerbalasan: %d\n", banyakKicauanBerbalasan);
-    
-    for(i = 0; i < banyakKicauanBerbalasan; i++){
-        ADVWORD();
-        listBalasan[i].idParent = wordToInt(currentWord); // ID parent = 5
-
-        ADVWORD();
-        listBalasan[i].banyakBalasan = wordToInt(currentWord); // Memiliki 4 balasan
-
-        int j = 0;
-        for(j = 0; j < listBalasan[i].banyakBalasan; j++){
-            ADVWORD();
-            listBalasan[j].idParent = wordToInt(currentWord); // ID balasan = 1
-
-            ADVWORD();
-            listBalasan[j].id = wordToInt(currentWord); // ID balasan = 1
-
-            ADVLINE();// Ini Balasan dari Node Utama, yaitu Kicauan ke-5
-            listBalasan[j].text = cleanWord(currentWord);
-
-            ADVLINE();
-            listBalasan[j].nama = cleanWord(currentWord);
-            
-            ADVWORD();
-            SetDateFromWord(&listBalasan[i].dateTime, cleanWord(currentWord));
-
-            ADVWORD();
-            SetTimeFromWord(&listBalasan[i].dateTime, cleanWord(currentWord));
-        }
-    }
-
-*/
-    // =================================== Inisialisasi draf ===================================
-    // printf("\n[Draf]\n");
-    STARTWORDFILEREADER(drafPath);
-    banyakDraf = wordToInt(currentWord);// 5 # Banyak draf
-
-    for(i = 0; i < banyakDraf; i++){
-        
-        ADVWORD();
-        listDraftkicauan[i].id = wordToInt(currentWord); // 1 # draf dengan ID ke-1
-        
-        ADVLINE();
-        listDraftkicauan[i].text = cleanWord(currentWord); // Hehe
-        
-        ADVLINE();
-        listDraftkicauan[i].nama = cleanWord(currentWord); // Tuan Hak
-
-        ADVWORD();
-        SetDateFromWord(&listDraftkicauan[i].dateTime, cleanWord(currentWord)); // 14/10/2023
-
-        ADVWORD();
-        SetTimeFromWord(&listDraftkicauan[i].dateTime, cleanWord(currentWord)); // 11:09:18
-    }
 
 
- 
+
+
     // =================================== Inisialisasi pengguna ===================================
     STARTWORDFILEREADER(penggunaPath);
 
@@ -237,69 +179,185 @@ void assignGlobalVariablesFromFiles(){
     NEFF_LIST_KICAUAN(globalListDinKicauan) =  10;// wordToInt(currentWord); 2 # Banyak kicauan sebanyak 2
     
     for(i = 0; i < NEFF_LIST_KICAUAN(globalListDinKicauan); i++){
+        Kicauan newKicauan;
+        Word emptyWord;
+        setWord(&emptyWord, "");
+        createKicauan(&newKicauan, emptyWord);
+
+
         ADVWORD();
-        GET_ELMT_KICAUAN(globalListDinKicauan, i).id = wordToInt(currentWord); // 1 # ID kicauan 1
+        newKicauan.id = wordToInt(currentWord); // 1 # ID kicauan 1
 
         ADVLINE();
-        GET_ELMT_KICAUAN(globalListDinKicauan, i).text = cleanWord(currentWord); // Halooo
+        newKicauan.text = cleanWord(currentWord); // Halooo
 
         ADVWORD();
-        GET_ELMT_KICAUAN(globalListDinKicauan, i).likeCount = wordToInt(currentWord); // 12 # Like
+        newKicauan.likeCount = wordToInt(currentWord); // 12 # Like
 
         ADVLINE();
         // cari username di listStatikAkun
         Word username = cleanWord(currentWord);
         int idxAkun = findIdxByName(globalListStatikAkun, username);
-        GET_ELMT_KICAUAN(globalListDinKicauan, i).akunKicauan = &(CONTENT(globalListStatikAkun, idxAkun)); // Tuan Bus
+        newKicauan.akunKicauan = &(CONTENT(globalListStatikAkun, idxAkun)); // Tuan Bus
 
         ADVWORD();
-        SetDateFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, i).dateTime), cleanWord(currentWord)); // 14/10/2023
+        SetDateFromWord(&newKicauan.dateTime), cleanWord(currentWord); // 14/10/2023
 
         ADVWORD();
-        SetTimeFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, i).dateTime), cleanWord(currentWord)); // 11:09:18
+        SetTimeFromWord(&newKicauan.dateTime), cleanWord(currentWord); // 11:09:18
+
+        // insert at
+        insertKicauanById(&globalListDinKicauan, newKicauan, newKicauan.id);
     }
-    // DebugListKicauan();
 
 
-    // DebugListAkun();
-/*
-    // Inisialisasi pengguna
-    printf("\n[Utas]\n");
-    STARTWORDFILE(utasPath);
 
-    int banyakKicauanBerutas = wordToInt(currentWord); // 2 # Banyak kicauan yang memiliki utas
-    for(i = 0; i < banyakKicauanBerutas; i++) {
+
+
+    // =================================== Inisialisasi balasan ===================================
+    // printf("\n[Balasan]\n");
+    STARTWORDFILEREADER(balasanPath);
+    banyakKicauanBerbalasan = wordToInt(currentWord); // banyak kicauan yang memiliki balasan
+    // printf("banyakKicauanBerbalasan: %d\n", banyakKicauanBerbalasan);
+    
+    
+    for(i = 0; i < banyakKicauanBerbalasan; i++){
+
         ADVWORD();
-        printf("idKicauan: %d\n", wordToInt(currentWord)); // 1 # ID kicauan ke-2
+        int idKicauan = wordToInt(currentWord); // ID parent = 5
+
+        Word emptyText;
+        setWord(&emptyText, "");
+        createKicauan(&GET_KICAUAN_BY_ID(*globalListDinKicauan, i), emptyText);
+        kicauanToReply.id = idKicauan;
 
         ADVWORD();
-        int banyakUtas = wordToInt(currentWord); 
-        printf("banyakUtas: %d\n", wordToInt(currentWord)); // 3 # memiliki 3 utas
+        int banyakBalasan = wordToInt(currentWord); // Memiliki 4 balasan
 
         int j = 0;
-        for(j = 0; j < banyakUtas; j++){
+        for(j = 0; j < banyakBalasan; j++){
+            TreeBalasan newBalasan;
+
             ADVWORD();
-            printf("idUtas: %d\n", wordToInt(currentWord)); // 1 # ID utas ke-1
+            newBalasan.idParent = wordToInt(currentWord); // ID parent = -1
+
+            ADVWORD();
+            newBalasan.id = wordToInt(currentWord); // ID balasan = 1
+
+            ADVLINE();// Ini Balasan dari Node Utama, yaitu Kicauan ke-5
+            newBalasan.text = cleanWord(currentWord);
 
             ADVLINE();
-            printf("text: %s\n", cleanWord(currentWord).TabWord); // Nyonya Hil
+            newBalasan.akunPembuat->username = cleanWord(currentWord); // Tuan Bri
+            
+            ADVWORD();
+            SetDateFromWord(&newBalasan.dateTime, cleanWord(currentWord));
 
+            ADVWORD();
+            SetTimeFromWord(&newBalasan.dateTime, cleanWord(currentWord));
+            
+            if(newBalasan.idParent = -1){
+                GET_ELMT_KICAUAN(globalListDinKicauan, i).firstBalasan = newTreeBalasan(newBalasan);
+            }else{
+                replyTreeBalasan(GET_ELMT_KICAUAN(globalListDinKicauan, i).firstBalasan, newBalasan);
+            }
+        }
+
+        // masukin ke listdin
+    }
+
+
+    // =================================== Inisialisasi draf ===================================
+    // printf("\n[Draf]\n");
+    STARTWORDFILEREADER(drafPath);
+    globalBanyakPenggunaBerDraf = wordToInt(currentWord);// 2 # Banyak draf
+
+    for(i = 0; i < globalBanyakPenggunaBerDraf; i++){
+
+        // Tuan Hak 3 # username pengguna dan banyak draf
+        ADVLINE();
+        Word banyakDrafWord;
+        Word username;
+        int j = 0;
+        // split Tuan Hak 3 -> Tuan Hak ,3
+        for(j = currentWord.Length-1; j >= 0; j++){
+            banyakDrafWord.TabWord[currentWord.Length-1 - j] = currentWord.TabWord[j];
+            if(currentWord.TabWord[j] == ' '){
+                banyakDrafWord.TabWord[currentWord.Length-1 - j] = '\0';
+                banyakDrafWord.Length = currentWord.Length-1 - j;
+            }
+        }
+        // reverse word
+        for(j = 0; j < banyakDrafWord.Length/2; j++){
+            char temp = banyakDrafWord.TabWord[j];
+            banyakDrafWord.TabWord[j] = banyakDrafWord.TabWord[banyakDrafWord.Length-1-j];
+            banyakDrafWord.TabWord[banyakDrafWord.Length-1-j] = temp;
+        }
+        int banyakDraf = wordToInt(banyakDrafWord);
+        // assign username
+        username.Length = currentWord.Length - banyakDrafWord.Length - 1;
+        for(j = 0; j < username.Length; j++){
+            username.TabWord[j] = currentWord.TabWord[j];
+        }
+
+        for(j = 0; j < banyakDraf; j++){
+            DrafKicauan newDraf;
+            CreateDraftKicauan(&newDraf);
+            
             ADVLINE();
-            printf("nama: %s\n", cleanWord(currentWord).TabWord); // Nyonya Hil
+            newDraf.text = cleanWord(currentWord); // Hehe 3     # isi draf
 
             ADVWORD();
-            printf("date: %s\n", cleanWord(currentWord).TabWord); // 14/10/2023
+            SetDateFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, i).dateTime), cleanWord(currentWord)); // 14/10/2023
 
             ADVWORD();
-            printf("time: %s\n", cleanWord(currentWord).TabWord); // 11:09:18
+            SetTimeFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, i).dateTime), cleanWord(currentWord)); // 11:09:18
+            
+            int idxAkun = findIdxByName(globalListStatikAkun, username);
+            pushStackDinDraf(&(globalListStatikAkun.contents[idxAkun].draf_kicauan), newDraf);
         }
     }
 
-*/
+
+ 
+    
+    // =================================== Inisialisasi Utas ===================================
+    // printf("\n[Utas]\n");
+    STARTWORDFILE(utasPath);
+
+    globalBanyakKicauanBerutas = wordToInt(currentWord); // 2 # Banyak kicauan yang memiliki utas
+    for(i = 0; i < globalBanyakKicauanBerutas; i++) {
+        ADVWORD(); // 1 # ID kicauan ke-2
+        int idKicauan = wordToInt(currentWord);
+
+        ADVWORD();
+        int banyakUtas = wordToInt(currentWord); // 3 # memiliki 3 utas
+
+        // GET_KICAUAN_BY_ID(globalListDinKicauan, idKicauan);
+
+        int j = 0;
+        for(j = 0; j < banyakUtas; j++){
+            
+            Utas newUtas;
+            
+            ADVLINE();
+            newUtas->info_utas.text = cleanWord(currentWord); // Utas ke-1
+
+            ADVLINE(); // Nyonya Hil, ga guna
+
+            ADVWORD();
+            SetDateFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, idKicauan).dateTime), cleanWord(currentWord)); // 14/10/2023
+
+            ADVWORD();
+            SetTimeFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, idKicauan).dateTime), cleanWord(currentWord)); // 11:09:18
+
+            Utas_insertLast(&(GET_KICAUAN_BY_ID(globalListDinKicauan, idKicauan).firstUtas), newUtas);
+
+        }
+    }
+
 
     
-
-
 
     // freopen("/dev/tty", "r", stdin);
 

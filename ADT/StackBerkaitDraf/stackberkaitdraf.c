@@ -9,8 +9,16 @@
 #include "../../Fitur/Perintah/perintah.h"
 #include "../../Fitur/Kicauan/kicauan.h"
 
-int banyakDraf;
-DrafKicauan listDraftkicauan[100];
+
+void CreateDraftKicauan(DrafKicauan *drafkicauan){
+    drafkicauan->id = 1;
+    SetToCurrentDateTime(&(drafkicauan->dateTime));
+}
+
+void CreateDraftKicauan(DrafKicauan *drafkicauan){
+    drafkicauan->id = 1;
+    SetToCurrentDateTime(&(drafkicauan->dateTime));
+}
 
 AddressDraf newNodeStackBerkaitDraf(DrafKicauan x) {
 /* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x, 
@@ -63,27 +71,4 @@ void popStackBerkaitDraf(StackBerkaitDraf *s, DrafKicauan *x) {
     ADDR_TOP_DRAF(*s) = NEXT(ADDR_TOP_DRAF(*s));
     NEXT(p) = NIL;
     free(p);
-}
-
-void DebugDraftKicauan(DrafKicauan list){
-    printf("id: %d\n", list.id);
-    printf("text: ");
-    printf("%s", list.text.TabWord);
-    printf("\n");
-    printf("nama: ");
-    printf("%s", list.nama.TabWord);
-    printf("\n");
-    printf("dateTime: ");
-    DisplayDateTime(list.dateTime);
-    printf("\n");
-}
-
-void DebugListDraftKicauan(){
-    printf("======== [Debug listDraftkicauan] ========\n");
-    int i = 0;
-    for(i = 0; i < banyakDraf; i++){
-        printf("[Draf ke-%d]\n", i+1);
-        DebugDraftKicauan(listDraftkicauan[i]);
-    }
-    printf("======== [Debug listDraftkicauan End] ========\n");
 }
