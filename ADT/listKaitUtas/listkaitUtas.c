@@ -30,28 +30,6 @@ void Utas_setUtasFromWord(Utas *u, Word w){
 	*u = p;
 }
 
-isi_utas Utas_getElmt(Utas l, int idx){
-	int ctr = 0;
-	Utas p = l;
-	while (ctr<idx) {
-		ctr++;
-		p = NEXT_UTAS(p);
-	}
-
-	return INFO_UTAS(p);
-}
-
-void Utas_setElmt(Utas *l, int idx, isi_utas val){
-	int ctr = 0;
-	Utas p = *l;
-	while (ctr<idx) {
-		ctr++;
-		p = NEXT_UTAS(p);
-	}
-
-	INFO_UTAS(p) = val;
-}
-
 void Utas_insertFirst(Utas *l, isi_utas val){
 	Utas p;
 	p = newNode(val);
@@ -151,26 +129,6 @@ int Utas_length(Utas l){
 		p = NEXT_UTAS(p);
 	}
 	return ctr;
-}
-
-Utas Utas_concatUtas(Utas l1, Utas l2) {
-	Utas p;
-	Utas l3;
-
-	Utas_CreateUtas(&l3);
-	p = l1;
-	while (p != NULL) {
-		Utas_insertLast(&l3, INFO_UTAS(p));
-		p = NEXT_UTAS(p);
-	}
-
-	p = l2;
-	while (p != NULL) {
-		Utas_insertLast(&l3, INFO_UTAS(p));
-		p = NEXT_UTAS(p);
-	}
-
-	return l3;
 }
 
 void displayTestUtas(Utas u){

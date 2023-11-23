@@ -35,8 +35,6 @@ void Utas_CreateUtas(Utas *u);
 boolean Utas_isEmpty(Utas u);
 boolean Utas_compareUtas(Utas u1, Utas u2); 
 void Utas_setUtasFromWord(Utas *u, Word w);
-isi_utas Utas_getElmt(Utas u, int idUtas);
-void Utas_setElmt(Utas *u, int idUtas, isi_utas isiUtas);
 
 void Utas_insertFirst(Utas *u, isi_utas isiUtas);
 void Utas_insertLast(Utas *u, isi_utas isiUtas);
@@ -45,9 +43,8 @@ void Utas_deleteFirst(Utas *u, isi_utas *isiUtas);
 void Utas_deleteLast(Utas *u, isi_utas *isiUtas);
 void Utas_deleteAt(Utas *u, int idUtas, isi_utas *isiUtas);
 
-int length(Utas u);
+int Utas_length(Utas u);
 
-Utas Utas_concatUtas(Utas u1, Utas u2) ;
 void displayTestUtas(Utas u);
 
 #endif
