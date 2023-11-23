@@ -27,15 +27,21 @@ typedef struct node_utas {
 #define TEXT_UTAS(p) (p)->info_utas.text
 #define WAKTU_UTAS(p) (p)->info_utas.waktu
 
-Utas newNode(isi_utas isiUtas);
-
 #define IDX_UNDEF (-1)
 
+//Membuat node Utas baru; NULL jika memory penuh
+Utas newNode(isi_utas isiUtas);
+
+//Inisialisasi Utas
 void Utas_CreateUtas(Utas *u);
+//Cek apakah Utas NULL (kosong) atau bukan
 boolean Utas_isEmpty(Utas u);
-boolean Utas_compareUtas(Utas u1, Utas u2); 
+//Cek apakah isi kedua utas sama, tidak termasuk NEXT_UTAS
+boolean Utas_compareUtas(Utas u1, Utas u2);
+//Membuat Utas dari Word
 void Utas_setUtasFromWord(Utas *u, Word w);
 
+//Manipulasi Utas
 void Utas_insertFirst(Utas *u, isi_utas isiUtas);
 void Utas_insertLast(Utas *u, isi_utas isiUtas);
 void Utas_insertAt(Utas *u, isi_utas isiUtas, int idUtas);
@@ -43,8 +49,10 @@ void Utas_deleteFirst(Utas *u, isi_utas *isiUtas);
 void Utas_deleteLast(Utas *u, isi_utas *isiUtas);
 void Utas_deleteAt(Utas *u, int idUtas, isi_utas *isiUtas);
 
+//Mengeluarkan panjang Utas
 int Utas_length(Utas u);
 
+//Mengeluarkan sebagian isi utas untuk keperluan testing
 void displayTestUtas(Utas u);
 
 #endif
