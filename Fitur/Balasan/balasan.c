@@ -15,7 +15,7 @@ void balas(int idKicau, int idBalasan){
         return;
     }
     Akun* akunYangDibalas = getKicauanById(globalListDinKicauan, idKicau).akunKicauan;
-    if(!JenisAkun(Profil(akunYangDibalas)) && !isAkunBerteman(globalGrafTeman,*akunYangDibalas, *globalCurrentAddrAkun)){
+    if(!JenisAkun(Profil(*akunYangDibalas)) && !isAkunBerteman(globalGrafTeman,*akunYangDibalas, *globalCurrentAddrAkun)){
         printf("Wah, akun tersebut merupakan akun privat dan anda belum berteman akun tersebut!\n\n");
         return;
     }
@@ -67,7 +67,7 @@ void balasan(int idKicau){
     }
     Kicauan kicauan = getKicauanById(globalListDinKicauan, idKicau);
     Akun* akunYangBerkicau = kicauan.akunKicauan;
-    if(!JenisAkun(Profil(akunYangBerkicau))){
+    if(!JenisAkun(Profil(*akunYangBerkicau))){
         printf("Wah, kicauan tersebut dibuat oleh pengguna dengan akun privat!\n\n");
         return;
     }
