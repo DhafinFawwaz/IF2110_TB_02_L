@@ -184,6 +184,7 @@ void assignGlobalVariablesFromFiles(){
     NEFF(globalListStatikAkun) = wordToInt(currentWord); // 2 # Banyak pengguna
     for(i = 0; i < NEFF(globalListStatikAkun); i++){
         CreateAkun(&CONTENT(globalListStatikAkun, i));
+        CONTENT(globalListStatikAkun, i).id = i;
 
         ADVLINE();
         CONTENT(globalListStatikAkun, i).username = cleanWord(currentWord);
