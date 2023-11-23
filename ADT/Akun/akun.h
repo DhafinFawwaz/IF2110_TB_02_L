@@ -8,6 +8,7 @@
 #include "../MesinKata/wordmachine.h"
 #include "../StackBerkaitDraf/stackberkaitdraf.h"
 #include "../DaftarPermintaan/daftarpermintaan.h"
+#include "../StackBerkaitDraf/stackberkaitdraf.h"
 
 #define IDMax 20
 typedef struct akun

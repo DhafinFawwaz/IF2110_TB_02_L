@@ -4,6 +4,8 @@
 #include "../../ADT/GrafTeman/grafteman.h"
 #include "../../ADT/Akun/akun.h"
 #include "../Global/global.h"
+#include "../../ADT/MapDin/mapdin.h"
+
 // BELUM BERES : TINGGAL HASHING KL ADA TAGAR
 void kicau(){
     Word text_kicau, tagar;
@@ -25,12 +27,19 @@ void kicau(){
 
         printf("\n");
 
-        if(tagar.Length!=0){
-            //Hash map
-        }
+        
         Kicauan k;
         createKicauan(&k,text_kicau);
         setWord(&TAGAR(k),tagar.TabWord);
+
+        // HASH MAP
+        if(TAGAR(k).Length!=0){
+            if(isFullMapDin(globalMapTagarKicauan)){
+                rehashing(&globalMapTagarKicauan);
+            }
+            insertMapDin(&globalMapTagarKicauan,&k);
+        }
+
         IDKICAU(k) = NEFF_LIST_KICAUAN(globalListDinKicauan)+1;
         ADDR_AKUN_KICAUAN(k) = globalCurrentAddrAkun;
         insertKicauan(k, &globalListDinKicauan);

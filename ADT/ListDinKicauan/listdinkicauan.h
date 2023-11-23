@@ -39,6 +39,7 @@ typedef struct listdinkicauan
     int cap;
 } ListDinKicauan;
 
+#define GET_KICAUAN_BY_ID(l,id) (l).contents[id-1]
 #define GET_ELMT_KICAUAN(l,idx) (l).contents[idx]
 #define CONTENTS_LIST_KICAUAN(l) (l).contents
 #define NEFF_LIST_KICAUAN(l) (l).nEff
@@ -71,6 +72,9 @@ boolean isFullListKicauan(ListDinKicauan l);
 
 // Memasukkan Kicauan k pada indeks efektif terakhir List
 void insertKicauan(Kicauan k, ListDinKicauan * listKicauan);
+
+// Memasukkan Kicauan k pada indeks List sesuai ID
+void insertByIDKicauan(Kicauan k, ListDinKicauan * listKicauan, int idKicau);
 
 // Mengembalikan true jika List kosong
 boolean isListKicauanEmpty(ListDinKicauan listKicauan);

@@ -16,6 +16,10 @@ typedef struct DrafKicauan
     DateTime dateTime;
 } DrafKicauan;
 
+void CreateDraftKicauan(DrafKicauan *drafkicauan);
+
+void CreateDraftKicauan(DrafKicauan *drafkicauan);
+
 typedef struct nodedraf* AddressDraf;
 typedef struct nodedraf {
     DrafKicauan drafkicauan;
@@ -32,9 +36,6 @@ typedef struct stackBerkaitDraf {
 /* Selektor */
 #define ADDR_TOP_DRAF(s) (s).addrTopDraf
 #define      TOP_DRAF(s) (s).addrTopDraf->drafkicauan 
-
-extern int banyakDraf;
-extern DrafKicauan listDraftkicauan[100]; // sementara di array aja dulu
 
 AddressDraf newNodeStackBerkaitDraf(DrafKicauan x);
 

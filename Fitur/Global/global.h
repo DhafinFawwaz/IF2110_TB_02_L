@@ -5,22 +5,24 @@
 #include "../../ADT/ListStatikAkun/liststatikAkun.h"
 #include "../../ADT/TreeBalasan/treebalasan.h"
 #include "../../ADT/Boolean/boolean.h"
-
-extern Akun * globalCurrentAddrAkun;
-// extern DrafKicauan
-extern GrafTeman globalGrafTeman;
-extern ListDinKicauan globalListDinKicauan;
-extern ListStatikAkun globalListStatikAkun; 
-extern int globalBanyakKicauanBerbalasan;
-extern TreeBalasanAddress globalTreeBalasan;
-extern int globalLastTreeBalasanId;
+#include "../../ADT/DSUKelompokTeman/dsuKelompokTeman.h"
+#include "../../ADT/MapDin/mapdin.h"
 
 extern boolean globalIsRunning;
-extern boolean isLoginGlobal;
+extern boolean isLogin;
+
+extern Akun * globalCurrentAddrAkun;
 extern GrafTeman globalGrafTeman;
 extern ListDinKicauan globalListDinKicauan;
 extern ListStatikAkun globalListStatikAkun; 
-extern int banyakKicauanBerbalasan;
+extern MapDin globalMapTagarKicauan;
+// extern DrafKicauan
 extern TreeBalasanAddress globalTreeBalasan;
+extern kelompokTeman globalKelompokTeman;
+
+extern int globalBanyakKicauanBerbalasan;
+extern int globalBanyakKicauanBerutas;
+extern int globalLastTreeBalasanId;
+extern int globalBanyakPenggunaBerDraf;
 
 void inisialisasiGlobal();
