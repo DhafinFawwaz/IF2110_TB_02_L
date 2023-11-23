@@ -103,7 +103,7 @@ void cetakUtas(int IDUtas){
 	if (p == NULL){
 		printf("Utas tidak ditemukan!\n");
 	}
-	else if (!JenisAkun(Profil(*ADDR_AKUN_KICAUAN(kicauUtas)))) && !isAkunBerteman(globalGrafTeman, OP, *globalCurrentAddrAkun)){
+	else if (!JenisAkun(Profil(*ADDR_AKUN_KICAUAN(kicauUtas))) && !isAkunBerteman(globalGrafTeman, OP, *globalCurrentAddrAkun)){
 		printf("Akun yang membuat utas ini adalah akun privat! Ikuti dahulu akun ini untuk melihat utasnya!");
 	}
 	else{
