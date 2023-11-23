@@ -43,7 +43,7 @@ void lihat_profil_other(Word nama){
     else{
         Akun akunTujuan = CONTENT(globalListStatikAkun, othersID);
         if (isAkunPrivat(Profil(akunTujuan)) && !isAkunBerteman(globalGrafTeman, *globalCurrentAddrAkun, akunTujuan)){
-            printf("\nWah, akun %s diprivat nih. Ikuti dulu yuk untuk bisa melihat profil %s!\n", wordToString(nama));
+            printf("\nWah, akun %s diprivat nih. Ikuti dulu yuk untuk bisa melihat profil %s!\n\n", wordToString(nama));
         }
         else{
             printf("\n| Nama: ");
