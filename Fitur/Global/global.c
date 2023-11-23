@@ -15,6 +15,7 @@ ListStatikAkun globalListStatikAkun;
 int banyakKicauanBerbalasan;
 TreeBalasanAddress globalTreeBalasan;
 int globalLastTreeBalasanId = 0;
+kelompokTeman globalKelompokTeman;
 
 void inisialisasiGlobal(){
     createListDinKicauan(&globalListDinKicauan,10);

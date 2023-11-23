@@ -5,6 +5,7 @@
 #include "../../ADT/ListStatikAkun/liststatikAkun.h"
 #include "../../ADT/TreeBalasan/treebalasan.h"
 #include "../../ADT/Boolean/boolean.h"
+#include "../../ADT/DSUKelompokTeman/dsuKelompokTeman.h"
 
 extern Akun * globalCurrentAddrAkun;
 // extern DrafKicauan
@@ -14,6 +15,7 @@ extern ListStatikAkun globalListStatikAkun;
 extern int globalBanyakKicauanBerbalasan;
 extern TreeBalasanAddress globalTreeBalasan;
 extern int globalLastTreeBalasanId;
+extern kelompokTeman globalKelompokTeman;
 
 extern boolean globalIsRunning;
 extern boolean isLoginGlobal;
