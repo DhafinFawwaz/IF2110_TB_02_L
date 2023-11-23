@@ -25,12 +25,16 @@ void kicau(){
 
         printf("\n");
 
-        if(tagar.Length!=0){
-            //Hash map
-        }
+        
         Kicauan k;
         createKicauan(&k,text_kicau);
         setWord(&TAGAR(k),tagar.TabWord);
+
+        // HASH MAP
+        if(TAGAR(k).Length!=0){
+
+        }
+
         IDKICAU(k) = NEFF_LIST_KICAUAN(globalListDinKicauan)+1;
         ADDR_AKUN_KICAUAN(k) = globalCurrentAddrAkun;
         insertKicauan(k, &globalListDinKicauan);
