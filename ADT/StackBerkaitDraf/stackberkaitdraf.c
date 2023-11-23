@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "stackdindraf.h"
+#include "stackberkaitdraf.h"
 
 #include "../MesinKata/wordmachine.h"
 #include "../StackDin/stackdin.h"
@@ -12,7 +12,7 @@
 int banyakDraf;
 DrafKicauan listDraftkicauan[100];
 
-AddressDraf newNodeStackDinDraf(DrafKicauan x) {
+AddressDraf newNodeStackBerkaitDraf(DrafKicauan x) {
 /* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x, 
     atau NULL jika alokasi gagal */   
     AddressDraf new = malloc(sizeof(NodeDraf));
@@ -23,11 +23,11 @@ AddressDraf newNodeStackDinDraf(DrafKicauan x) {
     return new;
 }
 
-boolean isEmptyStackDinDraf(StackDinDraf s) {
+boolean isEmptyStackBerkaitDraf(StackBerkaitDraf s) {
     return ADDR_TOP_DRAF(s) == NIL;
 }
 
-int lengthStackDinDraf(StackDinDraf s) {
+int lengthStackBerkaitDraf(StackBerkaitDraf s) {
     int count = 0;
     AddressDraf current = ADDR_TOP_DRAF(s);
     while (current != NIL) {
@@ -37,23 +37,23 @@ int lengthStackDinDraf(StackDinDraf s) {
     return count;
 }
 
-void createStackDinDraf(StackDinDraf *s) {
+void createStackBerkaitDraf(StackBerkaitDraf *s) {
     ADDR_TOP_DRAF(*s) = NIL;
 }
 
-void pushStackDinDraf(StackDinDraf *s, DrafKicauan x) {
+void pushStackBerkaitDraf(StackBerkaitDraf *s, DrafKicauan x) {
     /* KAMUS LOKAL */
     AddressDraf p;
 
     /* ALGORITMA */
-    p = newNodeStackDinDraf(x);
+    p = newNodeStackBerkaitDraf(x);
     if (p != NIL) {
         NEXT(p) = ADDR_TOP_DRAF(*s);
         ADDR_TOP_DRAF(*s) = p;
     }
 }
 
-void popStackDinDraf(StackDinDraf *s, DrafKicauan *x) {
+void popStackBerkaitDraf(StackBerkaitDraf *s, DrafKicauan *x) {
     /* KAMUS LOKAL */
     AddressDraf p;
 

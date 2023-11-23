@@ -1,5 +1,5 @@
-#ifndef STACKDINDRAF_H
-#define STACKDINDRAF_H
+#ifndef STACKBerkaitDraf_H
+#define STACKBerkaitDraf_H
 
 #include "../MesinKata/wordmachine.h"
 #include "../DateTime/datetime.h"
@@ -25,9 +25,9 @@ typedef struct nodedraf {
 #define     NEXT_DRAF(p) (p)->next
 #define     INFO_DRAF(p) (p)->drafkicauan
 
-typedef struct stackDinDraf {
+typedef struct stackBerkaitDraf {
     AddressDraf addrTopDraf;
-} StackDinDraf;
+} StackBerkaitDraf;
 
 /* Selektor */
 #define ADDR_TOP_DRAF(s) (s).addrTopDraf
@@ -36,16 +36,16 @@ typedef struct stackDinDraf {
 extern int banyakDraf;
 extern DrafKicauan listDraftkicauan[100]; // sementara di array aja dulu
 
-AddressDraf newNodeStackDinDraf(DrafKicauan x);
+AddressDraf newNodeStackBerkaitDraf(DrafKicauan x);
 
-boolean isEmptyStackDinDraf(StackDinDraf s);
-int lengthStackDinDraf(StackDinDraf s);
+boolean isEmptyStackBerkaitDraf(StackBerkaitDraf s);
+int lengthStackBerkaitDraf(StackBerkaitDraf s);
 
-void createStackDinDraf(StackDinDraf *s);
-void displayStackDinDraf(StackDinDraf s);
+void createStackBerkaitDraf(StackBerkaitDraf *s);
+void displayStackBerkaitDraf(StackBerkaitDraf s);
 
-void pushStackDinDraf(StackDinDraf *s, DrafKicauan x);
-void popStackDinDraf(StackDinDraf *s, DrafKicauan *x);
+void pushStackBerkaitDraf(StackBerkaitDraf *s, DrafKicauan x);
+void popStackBerkaitDraf(StackBerkaitDraf *s, DrafKicauan *x);
 
 void DebugListDraftKicauan();
 

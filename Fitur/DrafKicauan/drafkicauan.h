@@ -1,17 +1,17 @@
 #ifndef DRAFKICAUAN_H
 #define DRAFKICAUAN_H
 
-#include "../../ADT/StackDinDraf/stackdindraf.h"
+#include "../../ADT/StackBerkaitDraf/stackberkaitdraf.h"
 
-void hapus_draf(StackDinDraf s);
-void simpan_draf(StackDinDraf s);
-void terbit_draf(StackDinDraf s);
+void hapus_draf(StackBerkaitDraf s);
+void simpan_draf(StackBerkaitDraf s);
+void terbit_draf(StackBerkaitDraf s);
 
-void ubah_draf(StackDinDraf *s);
-void kembali_draf(StackDinDraf *s);
+void ubah_draf(StackBerkaitDraf *s);
+void kembali_draf(StackBerkaitDraf *s);
 
-void buat_draf(StackDinDraf *s);
-void lihat_draf(StackDinDraf s);
+void buat_draf(StackBerkaitDraf *s);
+void lihat_draf(StackBerkaitDraf s);
 
 void DebugListDraftKicauan();
 
