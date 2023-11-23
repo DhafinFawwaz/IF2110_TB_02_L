@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../stackberkaitdraf"
+#include "../stackberkaitdraf.h"
 
 int main() {
     StackBerkaitDraf stackDraf;
