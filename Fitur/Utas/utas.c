@@ -26,7 +26,6 @@ void buatUtas(int IDKicau){
 	}	
 	else{
 		printf("Utas berhasil dibuat!");
-		globalBanyakKicauanBerutas++; // update global untuk config
 
 		do{
 			printf("\n\nMasukkan kicauan:\n");
@@ -35,7 +34,7 @@ void buatUtas(int IDKicau){
 			Utas_setUtasFromWord(&currentUtas, currentWord);
 			if (Utas_isEmpty(UtasInKicau(IDKicau))) {
 				UtasInKicau(IDKicau) = currentUtas;
-				globalBanyakKicauanBerutas++;
+				globalBanyakKicauanBerutas++; // update global untuk config
 			}
 			else {
 				p = UtasInKicau(IDKicau);

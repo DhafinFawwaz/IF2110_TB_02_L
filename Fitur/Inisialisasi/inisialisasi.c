@@ -244,6 +244,7 @@ void assignGlobalVariablesFromFiles(){
 
             ADVWORD();
             newBalasan.id = wordToInt(currentWord); // ID balasan = 1
+            globalLastTreeBalasanId = newBalasan.id; // update global untuk config
 
             ADVLINE();// Ini Balasan dari Node Utama, yaitu Kicauan ke-5
             newBalasan.text = cleanWord(currentWord);
