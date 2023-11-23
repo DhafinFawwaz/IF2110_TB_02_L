@@ -12,14 +12,14 @@ void CreateDaftar(DaftarPermintaan *D, int Max){
 /* Membuat daftar permintaan kosong */
 	(*D).P = (permintaan *) malloc (Max * sizeof(permintaan));
 	MaxPermintaan(*D) = Max;
-	Head(*D) = Nil;
-	Tail(*D) = Nil;
+	Head(*D) = NULL;
+	Tail(*D) = NULL;
 }
 
 /* *** PEMERIKSAAN NILAI *** */
 boolean isDaftarEmpty(DaftarPermintaan D){
 /* Mengirim true jika daftar permintaan kosong */
-	return (Head(D) == Nil && Tail(D) == Nil);
+	return (Head(D) == NULL && Tail(D) == NULL);
 }
 
 boolean isDaftarFull(DaftarPermintaan D){
@@ -61,7 +61,7 @@ void enqueuePermintaan(DaftarPermintaan *D, permintaan p){
 		}
 	}
     else{
-		Head(*D) =0;
+		Head(*D) = 0;
 		Tail(*D) = 0;
 		TailPermintaan(*D) = p;
     }
@@ -71,8 +71,8 @@ void dequeuePermintaan(DaftarPermintaan *D, permintaan *p){
 /* Menghapus permintaan teratas pada daftar permintaan */
 	*p = HeadPermintaan(*D);
 	if (panjangDaftar(*D) == 1){
-	        Head(*D) = Nil;
-	        Tail(*D) = Nil;
+	        Head(*D) = NULL;
+	        Tail(*D) = NULL;
     }
     else{
 	    if (Head(*D) == MaxPermintaan(*D) - 1){

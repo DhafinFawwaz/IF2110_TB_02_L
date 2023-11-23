@@ -9,9 +9,6 @@
 #include "../Boolean/boolean.h"
 #include "../MesinKata/wordmachine.h"
 
-/* Konstanta untuk mendefinisikan address tak terdefinisi */
-#define Nil -1
-
 /* *** DEFINISI TYPE DAFTAR PERMINTAAN *** */
 typedef struct {
     int jumlah_teman;
