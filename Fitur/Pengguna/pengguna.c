@@ -27,7 +27,7 @@ void daftar(){
     globalListStatikAkun.contents[effID].username = currentWord;
     globalListStatikAkun.contents[effID].id = effID;
     globalListStatikAkun.Neff++;
-    resizeGrafTeman(globalListStatikAkun.Neff);
+    resizeGrafTeman(&globalGrafTeman, globalListStatikAkun.Neff);
 
     /* INPUT PASSWORD */
     printf("\nMasukkan kata sandi: \n");
