@@ -5,18 +5,15 @@
 
 boolean globalIsRunning = true;
 boolean isLogin = false;
-Akun * globalCurrentAddrAkun;
-// DrafKicauan
-GrafTeman globalGrafTeman;
-boolean isLoginGlobal = false;
 
+Akun * globalCurrentAddrAkun;
+GrafTeman globalGrafTeman;
 ListDinKicauan globalListDinKicauan;
 ListStatikAkun globalListStatikAkun; 
-int banyakKicauanBerbalasan;
-int globalBanyakKicauanBerutas;
-TreeBalasanAddress globalTreeBalasan;
-int globalLastTreeBalasanId = 0;
 
+int globalBanyakKicauanBerbalasan = 0;
+int globalBanyakKicauanBerutas = 0; // jangan lupa increment 1
+int globalLastTreeBalasanId = 0; // jangan lupa set last id pas inisialisasi
 int globalBanyakPenggunaBerDraf = 0;
 
 void inisialisasiGlobal(){

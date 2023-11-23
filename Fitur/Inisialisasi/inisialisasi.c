@@ -219,11 +219,11 @@ void assignGlobalVariablesFromFiles(){
     // =================================== Inisialisasi balasan ===================================
     // printf("\n[Balasan]\n");
     STARTWORDFILEREADER(balasanPath);
-    banyakKicauanBerbalasan = wordToInt(currentWord); // banyak kicauan yang memiliki balasan
+    globalBanyakKicauanBerbalasan = wordToInt(currentWord); // banyak kicauan yang memiliki balasan
     // printf("banyakKicauanBerbalasan: %d\n", banyakKicauanBerbalasan);
     
     
-    for(i = 0; i < banyakKicauanBerbalasan; i++){
+    for(i = 0; i < globalBanyakKicauanBerbalasan; i++){
 
         ADVWORD();
         int idKicauan = wordToInt(currentWord); // ID parent = 5
@@ -360,7 +360,7 @@ void assignGlobalVariablesFromFiles(){
 
 
     // ============== Debug ================
-    
+
     // ============== End Debug ================
 
     // freopen("/dev/tty", "r", stdin);

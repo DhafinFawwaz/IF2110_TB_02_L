@@ -134,7 +134,7 @@ void displayTreeBalasan(TreeBalasan t, int leftMargin){
     for(i = 0; i < leftMargin; i++){
         printf(LEFT_MARGIN_BLANK);
     }
-    if(!JenisAkun(Profil(*t.akunPembuat)))
+    if(!JenisAkun(Profil(*t.akunPembuat)) )
         printf("| PRIVAT\n");
     else printf("| %s\n", t.akunPembuat->username.TabWord);
     
