@@ -19,4 +19,5 @@ int globalLastTreeBalasanId = 0;
 void inisialisasiGlobal(){
     createListDinKicauan(&globalListDinKicauan,10);
     listStatikAkun_Create(&globalListStatikAkun);
+    CreateAkun(globalCurrentAddrAkun);
 }
