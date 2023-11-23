@@ -17,7 +17,8 @@ typedef struct nodeValMap
     AddressNodeMap next;
 } NodeValMap;
 
-#define INFO_VAL_MAP(p) (p).address_kicauan
+#define INFO_VAL_MAP(p) (p)->address_kicauan
+#define NEXT_VAL_MAP(p) (p)->next
 
 typedef struct map_entry
 {
@@ -41,14 +42,20 @@ typedef struct mapdin
 #define CAP_MAPDIN(m) (m).capacity
 #define NEFF_MAPDIN(m) (m).nEff
 
+AddressNodeMap newNodeValMap(Kicauan * k);
+
+void insertFirstListValue(LinkedListValue * l, Kicauan * k);
+
 void createMapDin(MapDin * m, int cap);
 
 void expandMapDin(MapDin * m);
 
 int hash(Word tagW, int capMap);
 
-void insertMapDin();
+// MapDin pasti tidak kosong
+void insertMapDin(MapDin * m, Kicauan * k);
 
+// MapDin pasti tiak kosong
 void findIdx(MapDin m, Word tag, int key);
 
 void rehashing(MapDin * m);
