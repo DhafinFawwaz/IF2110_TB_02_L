@@ -5,6 +5,7 @@
 #include "../Pengguna/pengguna.h"
 #include "../Kicauan/kicauan.h"
 #include "../Utas/utas.h"
+#include "../Profil/profil.h"
 #include <stdio.h>
 
 #define MAX_ARGUMENT 3

@@ -117,7 +117,7 @@ void cetakUtas(int IDUtas){
 		printf("\n");
 		printf("| ");
 		printWord(TEXT_KICAU(kicauUtas));
-		printf("\n");
+		printf("\n\n");
 		while (p != NULL){
 			printf("   | INDEX = %d\n", idxUtas);
 			printf("   | "); printWord(pembuat); printf("\n");
