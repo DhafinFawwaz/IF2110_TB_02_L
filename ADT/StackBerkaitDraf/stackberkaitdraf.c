@@ -15,11 +15,6 @@ void CreateDraftKicauan(DrafKicauan *drafkicauan){
     SetToCurrentDateTime(&(drafkicauan->dateTime));
 }
 
-void CreateDraftKicauan(DrafKicauan *drafkicauan){
-    drafkicauan->id = 1;
-    SetToCurrentDateTime(&(drafkicauan->dateTime));
-}
-
 AddressDraf newNodeStackBerkaitDraf(DrafKicauan x) {
 /* Mengembalikan alamat sebuah Node hasil alokasi dengan info = x, 
     atau NULL jika alokasi gagal */   

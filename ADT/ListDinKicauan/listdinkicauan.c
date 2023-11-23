@@ -86,7 +86,8 @@ void insertByIDKicauan(Kicauan k, ListDinKicauan * listKicauan, int idKicau){
         *listKicauan = lNew;
     }
     GET_ELMT_KICAUAN((*listKicauan),idKicau-1) = k;
-    NEFF_LIST_KICAUAN(*listKicauan)++;
+    if(NEFF_LIST_KICAUAN(*listKicauan) < idKicau)
+        NEFF_LIST_KICAUAN(*listKicauan) = idKicau;
 }
 
 boolean isListKicauanEmpty(ListDinKicauan listKicauan){

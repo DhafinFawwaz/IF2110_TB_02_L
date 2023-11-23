@@ -16,7 +16,7 @@ void CreateAkun(Akun* akun){
     setWord(&(akun)->password, "");
 
     CreateDaftar(&DaftarPermintaan(*akun), 19);
-    createStackDinDraf(&(akun)->draf_kicauan);
+    createStackBerkaitDraf(&(akun)->draf_kicauan);
 }
 
 void DisplayAkun(Akun akun){

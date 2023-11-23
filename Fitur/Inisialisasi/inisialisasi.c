@@ -8,7 +8,7 @@
 #include "../../ADT/ListDinKicauan/listdinkicauan.h"
 #include "../../ADT/TreeBalasan/treebalasan.h"
 #include "../../ADT/GrafTeman/grafteman.h"
-#include "../../ADT/StackDinDraf/stackdindraf.h"
+#include "../../ADT/StackBerkaitDraf/stackberkaitdraf.h"
 #include "../Perintah/perintah.h"
 
 const char dataPath[] = "Config/";
@@ -171,14 +171,16 @@ void assignGlobalVariablesFromFiles(){
             else setGrafTeman(&globalGrafTeman, i, j, false);
         }
     }
+
     
     // =================================== Inisialisasi kicauan ===================================
     // Harus setelah inisialisasi globalListStatikAkun
     STARTWORDFILEREADER(kicauanPath); 
     
-    NEFF_LIST_KICAUAN(globalListDinKicauan) =  10;// wordToInt(currentWord); 2 # Banyak kicauan sebanyak 2
+    NEFF_LIST_KICAUAN(globalListDinKicauan) =  wordToInt(currentWord);// wordToInt(currentWord); 2 # Banyak kicauan sebanyak 2
+    int lengthList = NEFF_LIST_KICAUAN(globalListDinKicauan);
     
-    for(i = 0; i < NEFF_LIST_KICAUAN(globalListDinKicauan); i++){
+    for(i = 0; i < lengthList; i++){
         Kicauan newKicauan;
         Word emptyWord;
         setWord(&emptyWord, "");
@@ -201,13 +203,13 @@ void assignGlobalVariablesFromFiles(){
         newKicauan.akunKicauan = &(CONTENT(globalListStatikAkun, idxAkun)); // Tuan Bus
 
         ADVWORD();
-        SetDateFromWord(&newKicauan.dateTime), cleanWord(currentWord); // 14/10/2023
+        SetDateFromWord(&newKicauan.dateTime, cleanWord(currentWord)); // 14/10/2023
 
         ADVWORD();
-        SetTimeFromWord(&newKicauan.dateTime), cleanWord(currentWord); // 11:09:18
+        SetTimeFromWord(&newKicauan.dateTime, cleanWord(currentWord)); // 11:09:18
 
         // insert at
-        insertKicauanById(&globalListDinKicauan, newKicauan, newKicauan.id);
+        insertByIDKicauan(newKicauan, &globalListDinKicauan, newKicauan.id);
     }
 
 
@@ -228,8 +230,7 @@ void assignGlobalVariablesFromFiles(){
 
         Word emptyText;
         setWord(&emptyText, "");
-        createKicauan(&GET_KICAUAN_BY_ID(*globalListDinKicauan, i), emptyText);
-        kicauanToReply.id = idKicauan;
+        GET_KICAUAN_BY_ID(globalListDinKicauan, i).id = idKicauan;
 
         ADVWORD();
         int banyakBalasan = wordToInt(currentWord); // Memiliki 4 balasan
@@ -248,7 +249,8 @@ void assignGlobalVariablesFromFiles(){
             newBalasan.text = cleanWord(currentWord);
 
             ADVLINE();
-            newBalasan.akunPembuat->username = cleanWord(currentWord); // Tuan Bri
+            int idxAkun = findIdxByName(globalListStatikAkun, cleanWord(currentWord));
+            newBalasan.akunPembuat = &globalListStatikAkun.contents[idxAkun]; // Tuan Bri
             
             ADVWORD();
             SetDateFromWord(&newBalasan.dateTime, cleanWord(currentWord));
@@ -285,6 +287,7 @@ void assignGlobalVariablesFromFiles(){
             if(currentWord.TabWord[j] == ' '){
                 banyakDrafWord.TabWord[currentWord.Length-1 - j] = '\0';
                 banyakDrafWord.Length = currentWord.Length-1 - j;
+                break;
             }
         }
         // reverse word
@@ -314,16 +317,15 @@ void assignGlobalVariablesFromFiles(){
             SetTimeFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, i).dateTime), cleanWord(currentWord)); // 11:09:18
             
             int idxAkun = findIdxByName(globalListStatikAkun, username);
-            pushStackDinDraf(&(globalListStatikAkun.contents[idxAkun].draf_kicauan), newDraf);
+            pushStackBerkaitDraf(&(globalListStatikAkun.contents[idxAkun].draf_kicauan), newDraf);
         }
     }
-
 
  
     
     // =================================== Inisialisasi Utas ===================================
     // printf("\n[Utas]\n");
-    STARTWORDFILE(utasPath);
+    STARTWORDFILEREADER(utasPath);
 
     globalBanyakKicauanBerutas = wordToInt(currentWord); // 2 # Banyak kicauan yang memiliki utas
     for(i = 0; i < globalBanyakKicauanBerutas; i++) {
@@ -338,10 +340,10 @@ void assignGlobalVariablesFromFiles(){
         int j = 0;
         for(j = 0; j < banyakUtas; j++){
             
-            Utas newUtas;
+            isi_utas newUtas;
             
             ADVLINE();
-            newUtas->info_utas.text = cleanWord(currentWord); // Utas ke-1
+            newUtas.text = cleanWord(currentWord); // Utas ke-1
 
             ADVLINE(); // Nyonya Hil, ga guna
 
@@ -357,7 +359,9 @@ void assignGlobalVariablesFromFiles(){
     }
 
 
+    // ============== Debug ================
     
+    // ============== End Debug ================
 
     // freopen("/dev/tty", "r", stdin);
 
