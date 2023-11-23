@@ -34,6 +34,7 @@ void buatUtas(int IDKicau){
 			Utas_setUtasFromWord(&currentUtas, currentWord);
 			if (Utas_isEmpty(UtasInKicau(IDKicau))) {
 				UtasInKicau(IDKicau) = currentUtas;
+				globalBanyakKicauanBerutas++; // update global untuk config
 			}
 			else {
 				p = UtasInKicau(IDKicau);
@@ -103,7 +104,7 @@ void cetakUtas(int IDUtas){
 	if (p == NULL){
 		printf("Utas tidak ditemukan!\n");
 	}
-	else if (!(*ADDR_AKUN_KICAUAN(kicauUtas)).isPublic && !isAkunBerteman(globalGrafTeman, OP, *globalCurrentAddrAkun)){
+	else if (!JenisAkun(Profil(*ADDR_AKUN_KICAUAN(kicauUtas))) && !isAkunBerteman(globalGrafTeman, OP, *globalCurrentAddrAkun)){
 		printf("Akun yang membuat utas ini adalah akun privat! Ikuti dahulu akun ini untuk melihat utasnya!");
 	}
 	else{

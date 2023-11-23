@@ -8,6 +8,7 @@
 #include "../MesinKata/wordmachine.h"
 #include "../StackDin/stackdin.h"
 #include "../DaftarPermintaan/daftarpermintaan.h"
+#include "../StackBerkaitDraf/stackberkaitdraf.h"
 
 #define IDMax 20
 typedef struct akun
@@ -17,7 +18,6 @@ typedef struct akun
     Word username;
     Word password;
     DaftarPermintaan daftar_permintaan_pertemanan;
-    boolean isPublic;
     StackDin draf_kicauan;
 } Akun;
 

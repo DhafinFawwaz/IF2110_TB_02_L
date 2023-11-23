@@ -134,7 +134,7 @@ void displayTreeBalasan(TreeBalasan t, int leftMargin){
     for(i = 0; i < leftMargin; i++){
         printf(LEFT_MARGIN_BLANK);
     }
-    if(!t.akunPembuat->isPublic)
+    if(!JenisAkun(Profil(*t.akunPembuat)) )
         printf("| PRIVAT\n");
     else printf("| %s\n", t.akunPembuat->username.TabWord);
     
@@ -142,7 +142,7 @@ void displayTreeBalasan(TreeBalasan t, int leftMargin){
     for(i = 0; i < leftMargin; i++){
         printf(LEFT_MARGIN_BLANK);
     }
-    if(!t.akunPembuat->isPublic)
+    if(!JenisAkun(Profil(*t.akunPembuat)))
         printf("| PRIVAT\n");
     else printf("| "); DisplayDateTime(t.dateTime); printf("\n");
     
@@ -150,7 +150,7 @@ void displayTreeBalasan(TreeBalasan t, int leftMargin){
     for(i = 0; i < leftMargin; i++){
         printf(LEFT_MARGIN_BLANK);
     }
-    if(!t.akunPembuat->isPublic)
+    if(!JenisAkun(Profil(*t.akunPembuat)))
         printf("| PRIVAT\n");
     else printf("| %s\n", t.text.TabWord);
     printf("\n");

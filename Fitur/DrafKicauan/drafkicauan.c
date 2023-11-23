@@ -8,46 +8,46 @@
 #include "../Kicauan/kicauan.h"
 
 #include "../../ADT/MesinKata/wordmachine.h"
-#include "../../ADT/StackDinDraf/stackdindraf.h"
+#include "../../ADT/StackBerkaitDraf/stackBerkaitDraf.h"
 
 Word HAPUSDRAF = {.TabWord = "HAPUS", .Length = 5};
 Word SIMPANDRAF = {.TabWord = "SIMPAN", .Length = 6};
 Word TERBITDRAF= {.TabWord = "TERBIT", .Length = 6};
 
-void hapus_draf(StackDinDraf s) {
+void hapus_draf(StackBerkaitDraf s) {
     /* KAMUS LOKAL */
     DrafKicauan x;
 
     /* ALGORITMA */
-    if (!isEmptyStackDinDraf(s)) {
-        popStackDinDraf(&s, &x);
+    if (!isEmptyStackBerkaitDraf(s)) {
+        popStackBerkaitDraf(&s, &x);
         printf("Draf telah berhasil dihapus!\n");
     } else {
         printf("Anda tidak memiliki draf untuk dihapus.\n");
     }
 }
 
-void simpan_draf(StackDinDraf s) {
+void simpan_draf(StackBerkaitDraf s) {
     /* KAMUS LOKAL */
     DrafKicauan x;
 
     /* ALGORITMA */
-    if (!isEmptyStackDinDraf(s)) {
-        popStackDinDraf(&s, &x);
+    if (!isEmptyStackBerkaitDraf(s)) {
+        popStackBerkaitDraf(&s, &x);
         printf("Draf telah berhasil disimpan!\n");
     } else {
         printf("Anda tidak memiliki draf untuk disimpan.\n");
     }
 }
 
-void terbit_draf(StackDinDraf s) {
+void terbit_draf(StackBerkaitDraf s) {
     /* KAMUS LOKAL */
     DrafKicauan x;
     int currentID;
 
     /* ALGORITMA */
-    if (!isEmptyStackDinDraf(s)) {
-        popStackDinDraf(&s, &x);
+    if (!isEmptyStackBerkaitDraf(s)) {
+        popStackBerkaitDraf(&s, &x);
 
         printf("Selamat! Draf kicauan telah diterbitkan!\n");
         printf("Detil kicauan:\n");
@@ -62,7 +62,7 @@ void terbit_draf(StackDinDraf s) {
     }
 }
 
-void ubah_draf(StackDinDraf *s){
+void ubah_draf(StackBerkaitDraf *s){
     /* KAMUS LOKAL */
     Word isiDrafKicauan;
     boolean validChoice;
@@ -95,11 +95,11 @@ void ubah_draf(StackDinDraf *s){
     }
 }
 
-void kembali_draf(StackDinDraf *s){
+void kembali_draf(StackBerkaitDraf *s){
     printf("\n");
 }
 
-void buat_draf(StackDinDraf *s){
+void buat_draf(StackBerkaitDraf *s){
     /* KAMUS LOKAL */
     Word isiDrafKicauan;
     boolean validChoice;
@@ -132,9 +132,9 @@ void buat_draf(StackDinDraf *s){
     }
 }
 
-void lihat_draf(StackDinDraf s) {
-    if (!isEmptyStackDinDraf(s)) {
-        int lastIndex = lengthStackDinDraf(s) - 1;
+void lihat_draf(StackBerkaitDraf s) {
+    if (!isEmptyStackBerkaitDraf(s)) {
+        int lastIndex = lengthStackBerkaitDraf(s) - 1;
 
         printf("Ini draf terakhir anda:\n");
         printf("| SetToCurrentDateTime(dt)");

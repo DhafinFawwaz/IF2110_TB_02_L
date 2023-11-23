@@ -50,6 +50,7 @@ void expandListKicauan(ListDinKicauan *l){
     ListDinKicauan lNew;
     createListDinKicauan(&lNew, new_cap);
     copyContentListKicauan(l, &lNew);
+    free(l);
     *l = lNew;
 }
 
@@ -64,6 +65,30 @@ void insertKicauan(Kicauan k, ListDinKicauan * listKicauan){
     int idx = NEFF_LIST_KICAUAN(*listKicauan);
     GET_ELMT_KICAUAN((*listKicauan),idx) = k;
     NEFF_LIST_KICAUAN(*listKicauan)++;
+}
+
+int nearestTwoPower(int x){
+    int h = 0x7FFFFFFF;
+    x |= (x >> 1) & h;
+    x |= (x >> 2) & h;
+    x |= (x >> 4) & h;
+    x |= (x >> 8) & h;
+    x |= (x >> 16) & h;
+    return (((x + 1) >> 1) & h) << 1;
+}
+
+void insertByIDKicauan(Kicauan k, ListDinKicauan * listKicauan, int idKicau){
+    int new_cap;
+    if(idKicau > CAP_LIST_KICAUAN(*listKicauan)){
+        new_cap = nearestTwoPower(idKicau);
+        ListDinKicauan lNew;
+        createListDinKicauan(&lNew, new_cap);
+        copyContentListKicauan(listKicauan, &lNew);
+        *listKicauan = lNew;
+    }
+    GET_ELMT_KICAUAN((*listKicauan),idKicau-1) = k;
+    if(NEFF_LIST_KICAUAN(*listKicauan) < idKicau)
+        NEFF_LIST_KICAUAN(*listKicauan) = idKicau;
 }
 
 boolean isListKicauanEmpty(ListDinKicauan listKicauan){

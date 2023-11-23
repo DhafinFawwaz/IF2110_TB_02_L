@@ -10,24 +10,20 @@ int main(){
     {
     case 1: // Kicau kosong
         kicau();
-        kicauan();
-        sukaKicauan();
         break;
     
     case 2: // Kicauan saat List kosong
-        kicau();
-        kicauan();
+        sukaKicauan(0);
         break;
 
     case 3: // Kicau valid
-        kicau();
+        ubahKicauan(0);
         break;
 
     case 4: // Kicauan saat List tidak kosong
-        kicauan();
         break;
 
-    case :5
+    case 5:
         sukaKicauan(1);
         break;
     
@@ -35,13 +31,13 @@ int main(){
         sukaKicauan(2);
         break;
 
-    case 4:
-        sukaKicauan(2);
-        break;
+    // case 4:
+    //     sukaKicauan(2);
+    //     break;
 
-    case 4:
-        sukaKicauan(2);
-        break;
+    // case 4:
+    //     sukaKicauan(2);
+    //     break;
 
     
     }

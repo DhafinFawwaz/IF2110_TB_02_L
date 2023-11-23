@@ -14,5 +14,5 @@ void hapusUtas(int IDUtas, int index);
 void cetakUtas(int IDUtas);
 
 //Fungsi lain
-boolean isUtasIsInListKicauan(IDUtas);
+boolean isUtasIsInListKicauan(int IDUtas);
 Utas getUtasInListKicauan(int IDKicau);

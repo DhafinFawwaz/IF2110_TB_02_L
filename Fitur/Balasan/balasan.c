@@ -15,7 +15,7 @@ void balas(int idKicau, int idBalasan){
         return;
     }
     Akun* akunYangDibalas = getKicauanById(globalListDinKicauan, idKicau).akunKicauan;
-    if(!akunYangDibalas->isPublic && !isAkunBerteman(globalGrafTeman,*akunYangDibalas, *globalCurrentAddrAkun)){
+    if(!JenisAkun(Profil(*akunYangDibalas)) && !isAkunBerteman(globalGrafTeman,*akunYangDibalas, *globalCurrentAddrAkun)){
         printf("Wah, akun tersebut merupakan akun privat dan anda belum berteman akun tersebut!\n\n");
         return;
     }
@@ -35,6 +35,7 @@ void balas(int idKicau, int idBalasan){
         if(GET_ELMT_KICAUAN(globalListDinKicauan, idKicau-1).firstBalasan == NULL){
             TreeBalasanAddress currentTreeBalasan = newTreeBalasan(newBalasan);
             GET_ELMT_KICAUAN(globalListDinKicauan, idKicau-1).firstBalasan = currentTreeBalasan;
+            globalBanyakKicauanBerbalasan++; // update global untuk config
         }else{
             TreeBalasanAddress balasanToReply = GET_ELMT_KICAUAN(globalListDinKicauan, idKicau-1).firstBalasan;
             insertLastTreeBalasan(balasanToReply, newBalasan);
@@ -59,6 +60,58 @@ void balas(int idKicau, int idBalasan){
     displayTreeBalasan(newBalasan, 0);
 }
 
+
+
+
+// leftMargin nentuin seberapa maju textnya ke kanan.
+void displayTreeBalasanByAkun(TreeBalasan t, int leftMargin){
+
+    int i = 0;
+    for(i = 0; i < leftMargin; i++){
+        printf(LEFT_MARGIN_BLANK);
+    }
+    printf("| ID = %d\n", t.id);
+
+    boolean isBerteman = isAkunBerteman(globalGrafTeman, *globalCurrentAddrAkun, *t.akunPembuat);
+
+    
+    for(i = 0; i < leftMargin; i++){
+        printf(LEFT_MARGIN_BLANK);
+    }
+    if(!JenisAkun(Profil(*t.akunPembuat)) || !isBerteman)
+        printf("| PRIVAT\n");
+    else printf("| %s\n", t.akunPembuat->username.TabWord);
+    
+    
+    for(i = 0; i < leftMargin; i++){
+        printf(LEFT_MARGIN_BLANK);
+    }
+    if(!JenisAkun(Profil(*t.akunPembuat)) || !isBerteman)
+        printf("| PRIVAT\n");
+    else printf("| "); DisplayDateTime(t.dateTime); printf("\n");
+    
+    
+    for(i = 0; i < leftMargin; i++){
+        printf(LEFT_MARGIN_BLANK);
+    }
+    if(!JenisAkun(Profil(*t.akunPembuat)) || !isBerteman)
+        printf("| PRIVAT\n");
+    else printf("| %s\n", t.text.TabWord);
+    printf("\n");
+}
+void displayTreeBalasanRecursiveByAkun(TreeBalasanAddress t, int depth){
+    if(t == NULL) return;
+    else{
+        displayTreeBalasan(*t, depth);
+        displayTreeBalasanRecursive(t->child, depth+1);
+        displayTreeBalasanRecursive(t->nextSibling, depth);
+    }
+}
+void displayAllTreeBalasanByAkun(TreeBalasan t){
+    displayTreeBalasanRecursive(&t, 0);
+}
+
+
 // Tampilkan balasan dari kicauan dengan idKicau
 void balasan(int idKicau){
     if(!isInListKicauan(idKicau, globalListDinKicauan)){
@@ -67,7 +120,7 @@ void balasan(int idKicau){
     }
     Kicauan kicauan = getKicauanById(globalListDinKicauan, idKicau);
     Akun* akunYangBerkicau = kicauan.akunKicauan;
-    if(!akunYangBerkicau->isPublic){
+    if(!JenisAkun(Profil(*akunYangBerkicau))){
         printf("Wah, kicauan tersebut dibuat oleh pengguna dengan akun privat!\n\n");
         return;
     }
@@ -76,7 +129,7 @@ void balasan(int idKicau){
         printf("Belum terdapat balasan apapun pada kicauan tersebut. Yuk balas kicauan tersebut!\n\n");
         return;
     }
-    displayAllTreeBalasan(*kicauan.firstBalasan);
+    displayAllTreeBalasanByAkun(*kicauan.firstBalasan);
 }
 
 // Hapus balasan dengan idBalasan dari kicauan dengan idKicau

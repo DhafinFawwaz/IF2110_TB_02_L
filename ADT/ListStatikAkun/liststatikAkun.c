@@ -148,7 +148,7 @@ void debugAkun(Akun akun){
     printf("bio: %s\n", akun.profil.bio.TabWord);
     printf("noHp: %s\n", akun.profil.nomor_hp.TabWord);
     printf("weton: %s\n", akun.profil.weton.TabWord);
-    printf("isPublic: %s\n", jenisAkunToWord(akun.isPublic).TabWord);
+    printf("isPublic: %s\n", jenisAkunToWord(JenisAkun(Profil(akun))).TabWord);
     displayFotoProfil(akun.profil.foto);
 }
 // void DebugListAkun(){

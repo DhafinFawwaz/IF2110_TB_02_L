@@ -31,7 +31,10 @@
         "utas.h": "c",
         "listdinutas.h": "c",
         "listkaitutas.h": "c",
-        "global.h": "c"
+        "global.h": "c",
+        "daftarpermintaan.h": "c",
+        "stackdindraf.h": "c",
+        "stat.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

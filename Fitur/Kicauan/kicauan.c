@@ -4,6 +4,8 @@
 #include "../../ADT/GrafTeman/grafteman.h"
 #include "../../ADT/Akun/akun.h"
 #include "../Global/global.h"
+#include "../../ADT/MapDin/mapdin.h"
+
 // BELUM BERES : TINGGAL HASHING KL ADA TAGAR
 void kicau(){
     Word text_kicau, tagar;
@@ -25,12 +27,19 @@ void kicau(){
 
         printf("\n");
 
-        if(tagar.Length!=0){
-            //Hash map
-        }
+        
         Kicauan k;
         createKicauan(&k,text_kicau);
         setWord(&TAGAR(k),tagar.TabWord);
+
+        // HASH MAP
+        if(TAGAR(k).Length!=0){
+            if(isFullMapDin(globalMapTagarKicauan)){
+                rehashing(&globalMapTagarKicauan);
+            }
+            insertMapDin(&globalMapTagarKicauan,&k);
+        }
+
         IDKICAU(k) = NEFF_LIST_KICAUAN(globalListDinKicauan)+1;
         ADDR_AKUN_KICAUAN(k) = globalCurrentAddrAkun;
         insertKicauan(k, &globalListDinKicauan);
@@ -62,8 +71,8 @@ void sukaKicauan(int id_kicau){
     printf("\n");
     Kicauan* k = &(GET_ELMT_KICAUAN(globalListDinKicauan,(id_kicau-1)));
     if(!isInListKicauan(id_kicau, globalListDinKicauan)){
-        printf("Tidak ditemukan kicauan dengan ID = %d", id_kicau);   
-    }else if(!((*ADDR_AKUN_KICAUAN(*k)).isPublic) && !isAkunBerteman(globalGrafTeman,(*ADDR_AKUN_KICAUAN(*k)),*globalCurrentAddrAkun)){
+        printf("Tidak ditemukan kicauan dengan ID = %d", id_kicau); 
+    }else if(!JenisAkun(Profil(*ADDR_AKUN_KICAUAN(*k))) && !isAkunBerteman(globalGrafTeman,(*ADDR_AKUN_KICAUAN(*k)),*globalCurrentAddrAkun)){
         printf("Wah, kicauan tersebut dibuat oleh akun privat! Berteman dengan akun itu dulu ya!");
     }else{
         JUMLAH_LIKE(*k)++;
