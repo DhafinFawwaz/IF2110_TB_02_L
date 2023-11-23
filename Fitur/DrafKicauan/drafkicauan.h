@@ -10,8 +10,8 @@ void terbit_draf(StackBerkaitDraf s);
 void ubah_draf(StackBerkaitDraf *s);
 void kembali_draf(StackBerkaitDraf *s);
 
-void buat_draf(StackBerkaitDraf *s);
-void lihat_draf(StackBerkaitDraf s);
+void buat_draf();
+void lihat_draf();
 
 void DebugListDraftKicauan();
 

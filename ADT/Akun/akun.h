@@ -6,7 +6,7 @@
 #include "../Boolean/boolean.h"
 #include "../Profile/profile.h"
 #include "../MesinKata/wordmachine.h"
-#include "../StackDin/stackdin.h"
+#include "../StackBerkaitDraf/stackberkaitdraf.h"
 #include "../DaftarPermintaan/daftarpermintaan.h"
 
 #define IDMax 20
@@ -17,7 +17,7 @@ typedef struct akun
     Word username;
     Word password;
     DaftarPermintaan daftar_permintaan_pertemanan;
-    StackDin draf_kicauan;
+    StackBerkaitDraf draf_kicauan;
 } Akun;
 
 /* ********* AKSES (Selektor) ********* */

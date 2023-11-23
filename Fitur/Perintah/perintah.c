@@ -4,6 +4,7 @@
 #include "../Balasan/balasan.h"
 #include "../Pengguna/pengguna.h"
 #include "../Kicauan/kicauan.h"
+#include "../DrafKicauan/drafkicauan.h"
 #include "../Utas/utas.h"
 #include "../Profil/profil.h"
 #include <stdio.h>
@@ -256,11 +257,11 @@ void handlePerintah(){
 
     else if(compareWord(perintahArgumen[0], BUAT_DRAF)){
         if(!isLogin){ displayBelumLogin(); return; }
-
+        buat_draf(globalCurrentAddrAkun->draf_kicauan);
     }
     else if(compareWord(perintahArgumen[0], LIHAT_DRAF)){
         if(!isLogin){ displayBelumLogin(); return; }
-
+        lihat_draf();
     }
 
     else if(compareWord(perintahArgumen[0], UTAS)){ // UTAS <id kicauan>;
