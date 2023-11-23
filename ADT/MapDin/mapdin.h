@@ -56,7 +56,7 @@ int hash(Word tagW, int capMap);
 void insertMapDin(MapDin * m, Kicauan * k);
 
 // MapDin pasti tiak kosong
-void findIdx(MapDin m, Word tag, int key);
+int findIdx(MapDin m, Word tag, int key);
 
 void rehashing(MapDin * m);
 

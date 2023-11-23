@@ -4,12 +4,12 @@
 #include "../Boolean/boolean.h"
 
 AddressNodeMap newNodeValMap(Kicauan * k){
-    AddressNodeMap p = (NodeValMap*) malloc(sizeof(nodeValMap));
+    AddressNodeMap p = (NodeValMap*) malloc(sizeof(NodeValMap));
     if(p!=NULL){
         INFO_VAL_MAP(p) = k;
         NEXT_VAL_MAP(p) = NULL;
     }
-    return AddressNodeMap;
+    return p;
 }
 
 void insertFirstListValue(LinkedListValue * l, Kicauan * k){
@@ -28,7 +28,7 @@ void createMapDin(MapDin * m, int cap){
     for(i=0;i<NEFF_MAPDIN(*m);i++){
         ELMT_MAP_VALUE(*m,i) = NULL;
         ELMT_MAP_TAGAR(*m,i).Length = 0;
-        ELMT_MAP_KEY(*m) = -1;
+        ELMT_MAP_KEY(*m,i) = -1;
     }
 }
 
@@ -37,7 +37,7 @@ void rehashing(MapDin * m){
     expandMapDin(m);
     int i;
     for(i=0;i<CAP_MAPDIN(mOld);i++){
-        if(ELMT_MAP_KEY!=-1){
+        if(ELMT_MAP_KEY(*m,i)!=-1){
             insertMapDin(m,INFO_VAL_MAP(ELMT_MAP_VALUE(*m,i)));
         }
     }
@@ -59,7 +59,7 @@ int hash(Word tagW, int capMap){
 void insertMapDin(MapDin * m, Kicauan * k){
     int key = hash(TAGAR(*k), CAP_MAPDIN(*m));
     int idx = findIdx(*m, TAGAR(*k),key);
-    if(compareWord(ELMT_MAP_TAGAR(m,idx),TAGAR(*k))){
+    if(compareWord(ELMT_MAP_TAGAR(*m,idx),TAGAR(*k))){
         insertFirstListValue(&ELMT_MAP_VALUE(*m,idx),k);
     }else{
         ELMT_MAP_KEY(*m,idx) = key;
@@ -68,7 +68,7 @@ void insertMapDin(MapDin * m, Kicauan * k){
     }
 }
 
-void findIdx(MapDin m, Word tag, int key){
+int findIdx(MapDin m, Word tag, int key){
     int idx = key;
     boolean isFound = false;
     while(!isFound){
