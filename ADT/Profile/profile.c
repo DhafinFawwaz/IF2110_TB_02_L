@@ -78,7 +78,7 @@ void changeJenisAkun(Profile *P){
     if (JenisAkun(*P)){
         JenisAkun(*P) = false;
     }
-    else if (!JenisAkun(*P)){
+    else{
         JenisAkun(*P) = true;
     }
 }
