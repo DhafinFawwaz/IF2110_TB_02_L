@@ -112,9 +112,10 @@ Word QueueLinkedToWord(QueueLinked q){
     return result;
 }
 
-void WordToQueueLinked(Word w, QueueLinked *q){
+QueueLinked WordToQueueLinked(Word w, QueueLinked *q){
     // Mengubah setiap karakter dari Word menjadi elemen queue
     for (int i = 0; i < w.Length; i++) {
         queueLinked_enqueue(q, w.TabWord[i]);
     }
+    return *q;
 }

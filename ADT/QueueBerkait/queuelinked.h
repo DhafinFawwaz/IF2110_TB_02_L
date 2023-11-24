@@ -62,6 +62,6 @@ void queueLinked_dequeue(QueueLinked *q, char *x);
 /* Mengubah Queue berkait menjadi Word */
 Word QueueLinkedToWord(QueueLinked q);
 /* Mengubah Word menjadi Queue berkait */
-void WordToQueueLinked(Word w, QueueLinked *q);
+QueueLinked WordToQueueLinked(Word w, QueueLinked *q);
 
 #endif
