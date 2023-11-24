@@ -178,7 +178,8 @@ TreeBalasanAddress getTreeBalasanById(TreeBalasanAddress treebalasan, int id){
             if(res != NULL) return res;
             curr = curr->nextSibling;
         }
-        return NULL;
+
+        return getTreeBalasanById(treebalasan->nextSibling, id);
     }
 }
 
