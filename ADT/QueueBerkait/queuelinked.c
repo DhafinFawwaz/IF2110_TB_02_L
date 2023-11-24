@@ -52,7 +52,7 @@ void queueLinked_DisplayQueue(QueueLinked q){
         printf("");
     } 
     else{
-        Address p = ADDR_HEAD(q);
+        queueAddress p = ADDR_HEAD(q);
         while (p != ADDR_TAIL(q)){
             printf("%c", INFO(p));
             p = NEXT(p);
