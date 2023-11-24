@@ -28,12 +28,19 @@ typedef struct akun
 #define Profil(A) (A).profil
 #define DaftarPermintaan(A) (A).daftar_permintaan_pertemanan
 
+// Membuat atau menginisialisasi Akun baru
 void CreateAkun(Akun* akun);
+
+// Menampilkan informasi Akun ke layar
 void DisplayAkun(Akun akun);
+
+// Menampilkan informasi debug dari daftar Akun
 void DebugListAkun();
 
+// Mengonversi tipe data Word ke boolean, Word berisi informasi jenis Akun
 boolean jenisAkunToBoolean(Word w);
-Word jenisAkunToWord(boolean b);
 
+// Mengonversi boolean ke tipe data Word, boolean merepresentasikan jenis Akun
+Word jenisAkunToWord(boolean b);
 
 #endif
