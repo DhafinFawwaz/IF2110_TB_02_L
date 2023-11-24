@@ -9,7 +9,6 @@
 #define VAL_UNDEF NULL;
 #define INITIAL_CAP 3;
 typedef struct nodeValMap* AddressNodeMap;
-typedef AddressNodeMap LinkedListValue;
 
 typedef struct nodeValMap 
 {
@@ -24,7 +23,7 @@ typedef struct map_entry
 {
     int mapKey;
     Word tagar;
-    LinkedListValue value;
+    AddressNodeMap value;
 } MapEntry;
 
 
@@ -44,7 +43,7 @@ typedef struct mapdin
 
 AddressNodeMap newNodeValMap(Kicauan * k);
 
-void insertFirstListValue(LinkedListValue * l, Kicauan * k);
+void insertFirstListValue(AddressNodeMap * l, Kicauan * k);
 
 void createMapDin(MapDin * m, int cap);
 

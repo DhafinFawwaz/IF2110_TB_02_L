@@ -12,7 +12,7 @@ AddressNodeMap newNodeValMap(Kicauan * k){
     return p;
 }
 
-void insertFirstListValue(LinkedListValue * l, Kicauan * k){
+void insertFirstListValue(AddressNodeMap * l, Kicauan * k){
     AddressNodeMap pK = newNodeValMap(k);
     if(pK!=NULL){
         NEXT_VAL_MAP(pK) = *l;
@@ -24,10 +24,11 @@ void createMapDin(MapDin * m, int cap){
     NEFF_MAPDIN(*m) = 0;
     CAP_MAPDIN(*m) = cap;
     BUFFER_MAP(*m) = (MapEntry*) malloc (cap*sizeof(MapEntry));
+    Word EMPTYWORD = {.TabWord = "", .Length = 0};
     int i;
-    for(i=0;i<NEFF_MAPDIN(*m);i++){
+    for(i=0;i<CAP_MAPDIN(*m);i++){
         ELMT_MAP_VALUE(*m,i) = NULL;
-        ELMT_MAP_TAGAR(*m,i).Length = 0;
+        setWord(&ELMT_MAP_TAGAR(*m,i),EMPTYWORD.TabWord);
         ELMT_MAP_KEY(*m,i) = -1;
     }
 }
@@ -59,13 +60,11 @@ int hash(Word tagW, int capMap){
 void insertMapDin(MapDin * m, Kicauan * k){
     int key = hash(TAGAR(*k), CAP_MAPDIN(*m));
     int idx = findInsertIdx(*m, TAGAR(*k),key);
-    if(compareWord(ELMT_MAP_TAGAR(*m,idx),TAGAR(*k))){
-        insertFirstListValue(&ELMT_MAP_VALUE(*m,idx),k);
-    }else{
-        ELMT_MAP_KEY(*m,idx) = key;
-        setWord(&ELMT_MAP_TAGAR(*m,idx), TAGAR(*k).TabWord);
-        ELMT_MAP_VALUE(*m,idx) = newNodeValMap(k);
+    if(ELMT_MAP_KEY(*m,idx) == -1){
+        BUFFER_MAP(*m)[idx].mapKey = key;
+        setWord(&(BUFFER_MAP(*m)[idx].tagar), TAGAR(*k).TabWord);
     }
+    insertFirstListValue(&(BUFFER_MAP(*m)[idx].value),k);
 }
 
 int findInsertIdx(MapDin m, Word tag, int key){

@@ -4,6 +4,7 @@
 #include "../../ADT/GrafTeman/grafteman.h"
 #include "../../ADT/Akun/akun.h"
 #include "../Global/global.h"
+#include "../Tagar/tagar.h"
 #include "../../ADT/MapDin/mapdin.h"
 
 // BELUM BERES : TINGGAL HASHING KL ADA TAGAR
@@ -33,16 +34,25 @@ void kicau(){
         setWord(&TAGAR(k),tagar.TabWord);
 
         // HASH MAP
+
+        IDKICAU(k) = NEFF_LIST_KICAUAN(globalListDinKicauan)+1;
+        ADDR_AKUN_KICAUAN(k) = globalCurrentAddrAkun;
+        insertKicauan(k, &globalListDinKicauan);
         if(TAGAR(k).Length!=0){
             if(isFullMapDin(globalMapTagarKicauan)){
                 rehashing(&globalMapTagarKicauan);
             }
             insertMapDin(&globalMapTagarKicauan,&k);
+            int key = hash(TAGAR(k), CAP_MAPDIN(globalMapTagarKicauan));
+            printf("\nIDKICAU: %d\n",(ELMT_MAP_VALUE(globalMapTagarKicauan,key))->address_kicauan->id);
+            printWord((ELMT_MAP_VALUE(globalMapTagarKicauan,key))->address_kicauan->text);
+            printf("\nIDKICAU: %d\n",(ELMT_MAP_VALUE(globalMapTagarKicauan,key))->address_kicauan->id);
+            printWord((ELMT_MAP_VALUE(globalMapTagarKicauan,key))->address_kicauan->tagar);
+            displayKicauanTagar(ELMT_MAP_VALUE(globalMapTagarKicauan,key));
+            printf("\nCARI KICAUAN AAAAAAAAAA\n");
+            cariKicauan(TAGAR(k));
+            // printWord(ELMT_MAP_TAGAR(globalMapTagarKicauan,hash(TAGAR(k),CAP_MAPDIN(globalMapTagarKicauan))));
         }
-
-        IDKICAU(k) = NEFF_LIST_KICAUAN(globalListDinKicauan)+1;
-        ADDR_AKUN_KICAUAN(k) = globalCurrentAddrAkun;
-        insertKicauan(k, &globalListDinKicauan);
         printf("Selamat! kicauan telah diterbitkan!\nDetil kicauan:\n");
         printKicauan(k);
         printf("\n");

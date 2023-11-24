@@ -6,6 +6,6 @@
 
 void cariKicauan(Word tagar);
 
-void displayKicauanTagar(LinkedListValue l);
+void displayKicauanTagar(AddressNodeMap l);
 
 #endif
