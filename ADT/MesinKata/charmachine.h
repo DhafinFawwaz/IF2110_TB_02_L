@@ -35,4 +35,6 @@ void STARTFILEWRITER(char path[]);
 // Tulis char ke file
 void WRITECHAR(char c);
 
+// Tulis new line ke file
+void WRITENL();
 #endif

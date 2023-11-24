@@ -15,6 +15,7 @@ int globalBanyakKicauanBerbalasan = 0;
 int globalBanyakKicauanBerutas = 0; // jangan lupa increment 1
 int globalLastTreeBalasanId = 0; // jangan lupa set last id pas inisialisasi
 int globalBanyakPenggunaBerDraf = 0;
+int globalBanyakPermintaanPertemanan;
 
 void inisialisasiGlobal(){
     createListDinKicauan(&globalListDinKicauan,10);

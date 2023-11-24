@@ -57,3 +57,7 @@ void WRITECHAR(char c){
        fflush(pita);
        fprintf(pita, "%c", c);
 }
+void WRITENL(){
+       fflush(pita);
+       fprintf(pita, "\n");
+}

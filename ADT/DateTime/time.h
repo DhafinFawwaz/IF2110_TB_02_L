@@ -19,6 +19,6 @@ void AddTime();
 
 void SubtractTime();
 
-void DisplayTime();
+void DisplayTime(Time t);
 
 #endif

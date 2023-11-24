@@ -171,6 +171,8 @@ void assignGlobalVariablesFromFiles(){
             else setGrafTeman(&globalGrafTeman, i, j, false);
         }
     }
+    // Prio queue permintaan pertemanan
+
 
     
     // =================================== Inisialisasi kicauan ===================================
@@ -376,19 +378,248 @@ void writeGlobalVariablesToFiles(){
     tripleConcat(dataPath, currentWord.TabWord, "/pengguna.config", penggunaPath);
     tripleConcat(dataPath, currentWord.TabWord, "/utas.config", utasPath);
     int i = 0;
+
+
+    Word newLineWord;
+    setWord(&newLineWord, "\n");
     
+    // =================================== Save pengguna ===================================
+    STARTWORDFILEWRITER(penggunaPath);
+
+    WRITEINT(NEFF(globalListStatikAkun));
+    WRITENL();
+
+    for(i = 0; i < NEFF(globalListStatikAkun); i++){
+        WRITEWORD(CONTENT(globalListStatikAkun, i).username);
+        WRITENL();
+
+        WRITEWORD(CONTENT(globalListStatikAkun, i).password);
+        WRITENL();
+        
+        WRITEWORD(CONTENT(globalListStatikAkun, i).profil.bio);
+        WRITENL();
+        
+        WRITEWORD(CONTENT(globalListStatikAkun, i).profil.nomor_hp);
+        WRITENL();
+
+        WRITEWORD(CONTENT(globalListStatikAkun, i).profil.weton);
+        WRITENL();
+
+        WRITEWORD(jenisAkunToWord(CONTENT(globalListStatikAkun, i).profil.jenis_akun));
+        WRITENL();
+
+        int j = 0;
+        for(j = 0; j < FOTO_ROW_CAP; j++){
+            int k = 0;
+            for(k = 0; k < FOTO_COL_CAP; k++){
+                WRITECHAR(Warna(CONTENT(globalListStatikAkun, i).profil.foto, j, k));
+                WRITECHAR(' ');
+
+                WRITECHAR(Simbol(CONTENT(globalListStatikAkun, i).profil.foto, j, k));
+                if(k != FOTO_COL_CAP-1) // jangan print spasi di akhir
+                    WRITECHAR(' ');
+            }
+            WRITENL();
+        }
+    }
+
+    // Matriks Pertemanan
+    for(i = 0; i < NEFF(globalListStatikAkun); i++){
+        int j = 0;
+        for(j = 0; j < NEFF(globalListStatikAkun); j++){
+            WRITEINT(globalGrafTeman.buffer[i][j]);
+            
+            if(j != NEFF(globalListStatikAkun)-1)
+                WRITECHAR(' ');
+        }
+        WRITENL();
+    }
+
+    // prio queue daftar pertemanan
+
+    
+    // =================================== Save kicauan ===================================
+    // Harus setelah inisialisasi globalListStatikAkun
+    STARTWORDFILEWRITER(kicauanPath); 
+    
+    WRITEINT(NEFF_LIST_KICAUAN(globalListDinKicauan));
+    WRITENL();
+
+    int lengthList = NEFF_LIST_KICAUAN(globalListDinKicauan);
+    
+    for(i = 0; i < lengthList; i++){
+        Kicauan newKicauan = globalListDinKicauan.contents[i];
+
+        WRITEINT(newKicauan.id);
+        WRITENL();
+
+        WRITEWORD(newKicauan.text);
+        WRITENL();
+
+        WRITEINT(newKicauan.likeCount);
+        WRITENL();
+
+        WRITEWORD(newKicauan.akunKicauan->username);
+        WRITENL();
+
+        printWord(dateTimeToWord(newKicauan.dateTime));
+        WRITEWORD(dateTimeToWord(newKicauan.dateTime));
+        WRITENL();
+
+    }
+    WRITENL;
+
+
+    /*
+
+
+
+    // =================================== Save balasan ===================================
+    // printf("\n[Balasan]\n");
     STARTWORDFILEWRITER(balasanPath);
+    globalBanyakKicauanBerbalasan = wordToInt(currentWord); // banyak kicauan yang memiliki balasan
+    // printf("banyakKicauanBerbalasan: %d\n", banyakKicauanBerbalasan);
+    
+    
+    for(i = 0; i < globalBanyakKicauanBerbalasan; i++){
 
-    Word w;
-    setWord(&w, "a\nb\nc\n");
-    WRITEWORD(w);
+        ADVWORD();
+        int idKicauan = wordToInt(currentWord); // ID parent = 5
 
-    WRITEINT(1345);
+        Word emptyText;
+        setWord(&emptyText, "");
+        GET_KICAUAN_BY_ID(globalListDinKicauan, i).id = idKicauan;
 
-    // STARTWORDFILEWRITER(drafPath);
-    // STARTWORDFILEWRITER(kicauanPath);
-    // STARTWORDFILEWRITER(penggunaPath);
-    // STARTWORDFILEWRITER(utasPath);
+        ADVWORD();
+        int banyakBalasan = wordToInt(currentWord); // Memiliki 4 balasan
+
+        int j = 0;
+        for(j = 0; j < banyakBalasan; j++){
+            TreeBalasan newBalasan;
+
+            ADVWORD();
+            newBalasan.idParent = wordToInt(currentWord); // ID parent = -1
+
+            ADVWORD();
+            newBalasan.id = wordToInt(currentWord); // ID balasan = 1
+            globalLastTreeBalasanId = newBalasan.id; // update global untuk config
+
+            ADVLINE();// Ini Balasan dari Node Utama, yaitu Kicauan ke-5
+            newBalasan.text = cleanWord(currentWord);
+
+            ADVLINE();
+            int idxAkun = findIdxByName(globalListStatikAkun, cleanWord(currentWord));
+            newBalasan.akunPembuat = &globalListStatikAkun.contents[idxAkun]; // Tuan Bri
+            
+            ADVWORD();
+            SetDateFromWord(&newBalasan.dateTime, cleanWord(currentWord));
+
+            ADVWORD();
+            SetTimeFromWord(&newBalasan.dateTime, cleanWord(currentWord));
+            
+            if(newBalasan.idParent = -1){
+                GET_ELMT_KICAUAN(globalListDinKicauan, i).firstBalasan = newTreeBalasan(newBalasan);
+            }else{
+                replyTreeBalasan(GET_ELMT_KICAUAN(globalListDinKicauan, i).firstBalasan, newBalasan);
+            }
+        }
+
+        // masukin ke listdin
+    }
+
+
+    // =================================== Save draf ===================================
+    // printf("\n[Draf]\n");
+    STARTWORDFILEWRITER(drafPath);
+    globalBanyakPenggunaBerDraf = wordToInt(currentWord);// 2 # Banyak draf
+
+    for(i = 0; i < globalBanyakPenggunaBerDraf; i++){
+
+        // Tuan Hak 3 # username pengguna dan banyak draf
+        ADVLINE();
+        Word banyakDrafWord;
+        Word username;
+        int j = 0;
+        // split Tuan Hak 3 -> Tuan Hak ,3
+        for(j = currentWord.Length-1; j >= 0; j++){
+            banyakDrafWord.TabWord[currentWord.Length-1 - j] = currentWord.TabWord[j];
+            if(currentWord.TabWord[j] == ' '){
+                banyakDrafWord.TabWord[currentWord.Length-1 - j] = '\0';
+                banyakDrafWord.Length = currentWord.Length-1 - j;
+                break;
+            }
+        }
+        // reverse word
+        for(j = 0; j < banyakDrafWord.Length/2; j++){
+            char temp = banyakDrafWord.TabWord[j];
+            banyakDrafWord.TabWord[j] = banyakDrafWord.TabWord[banyakDrafWord.Length-1-j];
+            banyakDrafWord.TabWord[banyakDrafWord.Length-1-j] = temp;
+        }
+        int banyakDraf = wordToInt(banyakDrafWord);
+        // assign username
+        username.Length = currentWord.Length - banyakDrafWord.Length - 1;
+        for(j = 0; j < username.Length; j++){
+            username.TabWord[j] = currentWord.TabWord[j];
+        }
+
+        for(j = 0; j < banyakDraf; j++){
+            DrafKicauan newDraf;
+            CreateDraftKicauan(&newDraf);
+            
+            ADVLINE();
+            newDraf.text = cleanWord(currentWord); // Hehe 3     # isi draf
+
+            ADVWORD();
+            SetDateFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, i).dateTime), cleanWord(currentWord)); // 14/10/2023
+
+            ADVWORD();
+            SetTimeFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, i).dateTime), cleanWord(currentWord)); // 11:09:18
+            
+            int idxAkun = findIdxByName(globalListStatikAkun, username);
+            pushStackBerkaitDraf(&(globalListStatikAkun.contents[idxAkun].draf_kicauan), newDraf);
+        }
+    }
+
+ 
+    
+    // =================================== Save Utas ===================================
+    // printf("\n[Utas]\n");
+    STARTWORDFILEWRITER(utasPath);
+
+    globalBanyakKicauanBerutas = wordToInt(currentWord); // 2 # Banyak kicauan yang memiliki utas
+    for(i = 0; i < globalBanyakKicauanBerutas; i++) {
+        ADVWORD(); // 1 # ID kicauan ke-2
+        int idKicauan = wordToInt(currentWord);
+
+        ADVWORD();
+        int banyakUtas = wordToInt(currentWord); // 3 # memiliki 3 utas
+
+        // GET_KICAUAN_BY_ID(globalListDinKicauan, idKicauan);
+
+        int j = 0;
+        for(j = 0; j < banyakUtas; j++){
+            
+            isi_utas newUtas;
+            
+            ADVLINE();
+            newUtas.text = cleanWord(currentWord); // Utas ke-1
+
+            ADVLINE(); // Nyonya Hil, ga guna
+
+            ADVWORD();
+            SetDateFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, idKicauan).dateTime), cleanWord(currentWord)); // 14/10/2023
+
+            ADVWORD();
+            SetTimeFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, idKicauan).dateTime), cleanWord(currentWord)); // 11:09:18
+
+            Utas_insertLast(&(GET_KICAUAN_BY_ID(globalListDinKicauan, idKicauan).firstUtas), newUtas);
+
+        }
+    }
+
+    */
+
+
 
 }
 

@@ -28,6 +28,74 @@ void SetTimeFromWord(DateTime *dt, Word w){
     time_SetFromWord(&(dt->time), w);
 }
 
+Word dateTimeToWord(DateTime dt){
+    Word day = intToWord(dt.date.day);
+    Word month = intToWord(dt.date.month);
+    Word year = intToWord(dt.date.year);
+
+    Word hour = intToWord(dt.time.hour);
+    Word minute = intToWord(dt.time.minute);
+    Word second = intToWord(dt.time.second);
+
+    printf("\n");
+
+    Word result;
+
+    // concat day, month, year, space, hour, minute, second
+    int i = 0;
+    int currIndex = 0;
+
+    
+    for(i = 0; i < day.Length; i++){
+        result.TabWord[currIndex] = day.TabWord[i];
+        currIndex++;
+    }
+    result.TabWord[currIndex] = '/';
+    currIndex++;
+
+    
+    for(i = 0; i < month.Length; i++){
+        result.TabWord[currIndex] = month.TabWord[i];
+        currIndex++;
+    }
+    result.TabWord[currIndex] = '/';
+    currIndex++;
+
+    
+    for(i = 0; i < year.Length; i++){
+        result.TabWord[currIndex] = year.TabWord[i];
+        currIndex++;
+    }
+
+    //
+    result.TabWord[currIndex] = ' ';
+    currIndex++;
+    //
+
+    for(i = 0; i < hour.Length; i++){
+        result.TabWord[currIndex] = hour.TabWord[i];
+        currIndex++;
+    }
+    result.TabWord[currIndex] = ':';
+    currIndex++;
+
+    
+    for(i = 0; i < minute.Length; i++){
+        result.TabWord[currIndex] = minute.TabWord[i];
+        currIndex++;
+    }
+    result.TabWord[currIndex] = ':';
+    currIndex++;
+
+    
+    for(i = 0; i < second.Length; i++){
+        result.TabWord[currIndex] = second.TabWord[i];
+        currIndex++;
+    }
+    result.Length = currIndex;
+    return result;
+}
+
 boolean compareDateTime(DateTime dt1, DateTime dt2){
     return (
         (dt1).date.day == (dt2).date.day &&

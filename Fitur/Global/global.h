@@ -18,5 +18,6 @@ extern int globalBanyakKicauanBerbalasan;
 extern int globalBanyakKicauanBerutas;
 extern int globalLastTreeBalasanId;
 extern int globalBanyakPenggunaBerDraf;
+extern int globalBanyakPermintaanPertemanan;
 
 void inisialisasiGlobal();

@@ -17,6 +17,7 @@ void DisplayDateTime(DateTime dt);
 void SetToCurrentDateTime(DateTime *dt);
 void SetDateFromWord(DateTime *dt, Word w);
 void SetTimeFromWord(DateTime *dt, Word w);
+Word dateTimeToWord(DateTime dt);
 
 boolean compareDateTime(DateTime dt1, DateTime dt2);
 

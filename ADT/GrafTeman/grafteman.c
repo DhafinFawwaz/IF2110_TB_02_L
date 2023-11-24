@@ -80,7 +80,7 @@ int countSalingTeman(GrafTeman g, Akun akun){
     int i = 0;
     int count = 0;
     for(i = 0; i < GRAFTEMAN_SIZE(g); i++){
-        if(GRAFTEMAN_ELMT(g, akun.id-1, i) && GRAFTEMAN_ELMT(g, i, akun.id-1)){ // cek index akun.id 
+        if(GRAFTEMAN_ELMT(g, akun.id, i) && GRAFTEMAN_ELMT(g, i, akun.id)){ // cek index akun.id 
             count++;
         }
     }

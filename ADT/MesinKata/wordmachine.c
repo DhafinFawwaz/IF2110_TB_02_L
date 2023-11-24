@@ -115,7 +115,7 @@ void WRITEWORD(Word w){
     for(int i = 0; i < w.Length; i++){
         WRITECHAR(w.TabWord[i]);
     }
-    WRITECHAR(w.TabWord[w.Length-1]); // anehnya kalau gak ada ini, huruf terakhir gak ketulis
+    // WRITECHAR(w.TabWord[w.Length-1]); // anehnya kalau gak ada ini, huruf terakhir gak ketulis
 }
 
 // Tulis int ke file
@@ -137,7 +137,7 @@ void WRITEINT(int N){
         for(int j = n - 1; j >= 0; j--){
             WRITECHAR(digits[j] + '0');
         }
-        WRITECHAR(digits[0] + '0'); // anehnya kalau gak ada ini, huruf terakhir gak ketulis
+        // WRITECHAR(digits[0] + '0'); // anehnya kalau gak ada ini, huruf terakhir gak ketulis
     }
 }
 
@@ -201,6 +201,24 @@ int wordToInt(Word w){
         result = result * 10 + (w.TabWord[i] - '0');
     }
     return result;
+}
+
+// convert int ke word, termasuk jika negatif
+Word intToWord(int N){
+    Word numberWord;
+    int i = 0;
+    if(N < 0){
+        numberWord.TabWord[0] = '-';
+        N = -N;
+        i = 1;
+    }
+    while(N > 0){
+        numberWord.TabWord[i] = (N % 10) + '0';
+        N /= 10;
+        i++;
+    }
+    numberWord.Length = i;
+    return numberWord;
 }
 
 // Set stringnya word menjadi s
