@@ -477,12 +477,13 @@ void writeGlobalVariablesToFiles(){
     
 
     
-/*
+
     // =================================== Save balasan ===================================
     // printf("\n[Balasan]\n");
     STARTWORDFILEWRITER(balasanPath);
-    WRITEINT(globalBanyakKicauanBerbalasan);    
-    
+    WRITEINT(globalBanyakKicauanBerbalasan);
+    WRITENL();
+    /*
     // BFS
     for(i = 0; i < globalBanyakKicauanBerbalasan; i++){
 
@@ -671,6 +672,7 @@ void muat(){
         printf("Tidak ada folder yang dimaksud!\n\n");
     }else{
         printf("Anda akan melakukan pemuatan dari %s.\n\nMohon tunggu...\n1...\n2...\n3...", currentWord.TabWord);
+        inisialisasiGlobal();
         assignGlobalVariablesFromFiles();
         printf("\n\nPemuatan selesai!\n\n");
     }
