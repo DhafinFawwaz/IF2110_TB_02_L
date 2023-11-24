@@ -48,7 +48,7 @@ void expandMapDin(MapDin * m){
     int new_cap = 2 * CAP_MAPDIN(*m);
     MapDin mNew;
     createListDinKicauan(&mNew, new_cap);
-    free(m);
+    // free(*m);
     *m = mNew;
 }
 
@@ -58,9 +58,7 @@ int hash(Word tagW, int capMap){
 
 void insertMapDin(MapDin * m, Kicauan k){
     int key = hash(TAGAR(k), CAP_MAPDIN(*m));
-    printf("KEYY:%d\n",key);
     int idx = findInsertIdx(*m, TAGAR(k),key);
-    printf("IDXX:%d\n",idx);
     if(ELMT_MAP_KEY(*m,idx) == -1){
         BUFFER_MAP(*m)[idx].mapKey = key;
         setWord(&ELMT_MAP_TAGAR(*m,idx), TAGAR(k).TabWord);

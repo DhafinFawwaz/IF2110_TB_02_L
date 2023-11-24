@@ -24,7 +24,8 @@ void kicau(){
     else{
         printf("Masukkan tagar:\n");
         readInput();
-        setWord(&tagar, cleanWord(currentWord).TabWord);
+        capCurrentWord(currentWord.Length);
+        setWord(&tagar, (cleanWord(currentWord)).TabWord);
 
         printf("\n");
 
