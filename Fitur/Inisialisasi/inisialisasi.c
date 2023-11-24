@@ -10,6 +10,7 @@
 #include "../../ADT/TreeBalasan/treebalasan.h"
 #include "../../ADT/GrafTeman/grafteman.h"
 #include "../../ADT/StackBerkaitDraf/stackberkaitdraf.h"
+#include "../../ADT/listKaitUtas/listkaitUtas.h"
 #include "../Perintah/perintah.h"
 
 const char dataPath[] = "Config/";
@@ -312,10 +313,10 @@ void assignGlobalVariablesFromFiles(){
             ADVLINE(); // Nyonya Hil, ga guna
 
             ADVWORD();
-            SetDateFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, idKicauan).dateTime), cleanWord(currentWord)); // 14/10/2023
+            SetDateFromWord(&(newUtas.waktu), cleanWord(currentWord)); // 14/10/2023
 
             ADVWORD();
-            SetTimeFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, idKicauan).dateTime), cleanWord(currentWord)); // 11:09:18
+            SetTimeFromWord(&(newUtas.waktu), cleanWord(currentWord)); // 11:09:18
 
             Utas_insertLast(&(GET_KICAUAN_BY_ID(globalListDinKicauan, idKicauan).firstUtas), newUtas);
 
@@ -520,45 +521,52 @@ void writeGlobalVariablesToFiles(){
         }
     }
 
-    /*
+    
  
     
     // =================================== Save Utas ===================================
     // printf("\n[Utas]\n");
     STARTWORDFILEWRITER(utasPath);
+    WRITEINT(globalBanyakKicauanBerutas);
+    WRITENL();
 
-    globalBanyakKicauanBerutas = wordToInt(currentWord); // 2 # Banyak kicauan yang memiliki utas
-    for(i = 0; i < globalBanyakKicauanBerutas; i++) {
-        ADVWORD(); // 1 # ID kicauan ke-2
-        int idKicauan = wordToInt(currentWord);
+    Utas currentFirstUtas;
+    Word currentFirstUtasOwnerName;
+    Utas currentUtas;
+    int currentFirstUtas_length;
 
-        ADVWORD();
-        int banyakUtas = wordToInt(currentWord); // 3 # memiliki 3 utas
-
-        // GET_KICAUAN_BY_ID(globalListDinKicauan, idKicauan);
-
-        int j = 0;
-        for(j = 0; j < banyakUtas; j++){
+    for(i = 0; i < globalListDinKicauan.nEff; i++) {
+        if (!Utas_isEmpty(globalListDinKicauan.contents[i].firstUtas)){
+            currentFirstUtas = globalListDinKicauan.contents[i].firstUtas;
+            currentFirstUtas_length = Utas_length(currentFirstUtas);
+            currentFirstUtasOwnerName = globalListDinKicauan.contents[i].akunKicauan->username;
+            currentUtas = currentFirstUtas;
+            WRITEINT(i+1);
+            WRITENL();
             
-            isi_utas newUtas;
+            WRITEINT(currentFirstUtas_length);
+            WRITENL();
+            int j;
             
-            ADVLINE();
-            newUtas.text = cleanWord(currentWord); // Utas ke-1
+            for(j = 0; j < currentFirstUtas_length; j++){
+                
+                WRITEWORD(currentUtas->info_utas.text);
+                WRITENL();
+                WRITEWORD(currentFirstUtasOwnerName);
+                WRITENL();
+                WRITEWORD(dateTimeToWord(currentUtas->info_utas.waktu));
+                WRITENL();
+                currentUtas = NEXT_UTAS(currentUtas);
 
-            ADVLINE(); // Nyonya Hil, ga guna
-
-            ADVWORD();
-            SetDateFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, idKicauan).dateTime), cleanWord(currentWord)); // 14/10/2023
-
-            ADVWORD();
-            SetTimeFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, idKicauan).dateTime), cleanWord(currentWord)); // 11:09:18
-
-            Utas_insertLast(&(GET_KICAUAN_BY_ID(globalListDinKicauan, idKicauan).firstUtas), newUtas);
-
+            }
+            
+            
         }
+        
     }
+    WRITENL();
 
-    */
+    
 
 
 
