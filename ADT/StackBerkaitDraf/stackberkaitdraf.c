@@ -27,13 +27,13 @@ AddressDraf newNodeStackBerkaitDraf(DrafKicauan x) {
 }
 
 boolean isEmptyStackBerkaitDraf(StackBerkaitDraf s) {
-    return ADDR_TOP_DRAF(s) == NIL;
+    return ADDR_TOP_DRAF(s) == NULL;
 }
 
 int lengthStackBerkaitDraf(StackBerkaitDraf s) {
     int count = 0;
     AddressDraf current = ADDR_TOP_DRAF(s);
-    while (current != NIL) {
+    while (current != NULL) {
         count++;
         current = current->next;
     }
@@ -41,7 +41,7 @@ int lengthStackBerkaitDraf(StackBerkaitDraf s) {
 }
 
 void createStackBerkaitDraf(StackBerkaitDraf *s) {
-    ADDR_TOP_DRAF(*s) = NIL;
+    ADDR_TOP_DRAF(*s) = NULL;
 }
 
 void pushStackBerkaitDraf(StackBerkaitDraf *s, DrafKicauan x) {
@@ -50,7 +50,7 @@ void pushStackBerkaitDraf(StackBerkaitDraf *s, DrafKicauan x) {
 
     /* ALGORITMA */
     p = newNodeStackBerkaitDraf(x);
-    if (p != NIL) {
+    if (p != NULL) {
         NEXT(p) = ADDR_TOP_DRAF(*s);
         ADDR_TOP_DRAF(*s) = p;
     }
@@ -64,7 +64,7 @@ void popStackBerkaitDraf(StackBerkaitDraf *s, DrafKicauan *x) {
     *x = TOP_DRAF(*s);
     p = ADDR_TOP_DRAF(*s);
     ADDR_TOP_DRAF(*s) = NEXT(ADDR_TOP_DRAF(*s));
-    NEXT(p) = NIL;
+    NEXT(p) = NULL;
     free(p);
 }
 
@@ -76,7 +76,7 @@ void displayStackBerkaitDraf(StackBerkaitDraf *s) {
     if (isEmptyStackBerkaitDraf(*s)) {
         printf("Stack Berkait Draft kosong.\n");
     } else {
-        while (current != NIL) {
+        while (current != NULL) {
             // printf("| Date and Time: ");
             // DisplayDateTime(current->drafkicauan.dateTime);
             printf("| ");
@@ -87,7 +87,7 @@ void displayStackBerkaitDraf(StackBerkaitDraf *s) {
 
             current = current->next;
 
-            if (current != NIL) {
+            if (current != NULL) {
                 printf("\n---\n");
             }
         }

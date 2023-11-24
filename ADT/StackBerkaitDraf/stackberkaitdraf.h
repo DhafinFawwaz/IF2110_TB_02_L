@@ -5,7 +5,6 @@
 #include "../DateTime/datetime.h"
 #include "../StackDin/stackdin.h"
 
-
 #define NIL NULL
 
 typedef struct DrafKicauan
