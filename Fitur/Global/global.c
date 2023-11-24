@@ -25,4 +25,6 @@ void inisialisasiGlobal(){
     listStatikAkun_Create(&globalListStatikAkun);
     CreateAkun(globalCurrentAddrAkun);
     createMapDin(&globalMapTagarKicauan,7);
+    CreateGrafTeman(&globalGrafTeman, 0);
+    globalCurrentAddrAkun = NULL;
 }

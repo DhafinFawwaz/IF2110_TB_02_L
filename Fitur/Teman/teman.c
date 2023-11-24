@@ -12,10 +12,10 @@ void daftarTeman(){
         return;
     }
 
-    printf("\n%s memiliki %d teman\n", globalCurrentAddrAkun->username, banyakTeman);
+    printf("\n%s memiliki %d teman\n", globalCurrentAddrAkun->username.TabWord, banyakTeman);
     int i = 0;
     for(i = 0; i < GRAFTEMAN_SIZE(globalGrafTeman); i++){
-        if(GRAFTEMAN_ELMT(globalGrafTeman, globalCurrentAddrAkun->id-1, i) && GRAFTEMAN_ELMT(globalGrafTeman, i, globalCurrentAddrAkun->id-1)){ // cek index akun.id 
+        if(GRAFTEMAN_ELMT(globalGrafTeman, globalCurrentAddrAkun->id, i) && GRAFTEMAN_ELMT(globalGrafTeman, i, globalCurrentAddrAkun->id) && i!=globalCurrentAddrAkun->id){ // cek index akun.id 
             printf("| %s\n", globalListStatikAkun.contents[i].username.TabWord);
         }
     }
@@ -38,22 +38,27 @@ void hapusTeman(){
     }
 
     printf("Apakah anda yakin ingin menghapus Bob dari daftar teman anda?(YA/TIDAK) \n");
-    readInput();
     Word YA, TIDAK;
     setWord(&YA, "YA");
     setWord(&TIDAK, "TIDAK");
+    readInput();
     
-    boolean isMasukanValid = true;
+    boolean isMasukanValid = false;
     while (!isMasukanValid)
     {
         if(compareWord(currentWord, YA)){
+            GRAFTEMAN_ELMT(globalGrafTeman, globalCurrentAddrAkun->id, idxAkunTeman) = false;
             printf("Bob berhasil dihapus dari daftar teman Anda.\n");
             isMasukanValid = true;
         }else if(compareWord(currentWord, TIDAK)){
             printf("Penghapusan teman dibatalkan.\n");
             isMasukanValid = true;
         }
-        else isMasukanValid = false;
+        else {
+            isMasukanValid = false;
+            printf("(YA/TIDAK)\n");
+            readInput();
+        }
     }
     
 

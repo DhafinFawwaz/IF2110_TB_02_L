@@ -128,8 +128,35 @@ void assignGlobalVariablesFromFiles(){
             else setGrafTeman(&globalGrafTeman, i, j, false);
         }
     }
+    
+    /*
+    // ========================= Uncomment kalau savenya udah =========================
+    ADVLINE();
+    globalBanyakPermintaanPertemanan = wordToInt(currentWord);
     // Prio queue permintaan pertemanan
+    for(i = 0; i < NEFF(globalListStatikAkun); i++){
+        if(isDaftarEmpty(globalListStatikAkun.contents[i].daftar_permintaan_pertemanan)) continue;
 
+        permintaan newPermintaan;
+
+        ADVWORD(); // id yg minta
+        int idPeminta = wordToInt(currentWord);
+
+        int idxAkun = findIdxById(globalListStatikAkun, idPeminta);
+
+        ADVWORD(); // id yg diminta
+        int idDiminta = wordToInt(currentWord);
+
+        ADVWORD(); // jumlah teman
+        newPermintaan.jumlah_teman = wordToInt(currentWord);
+        newPermintaan.nama_minta = globalListStatikAkun.contents[idxAkun].username;
+
+        enqueuePermintaan(&globalListStatikAkun.contents[i].daftar_permintaan_pertemanan, newPermintaan);
+    }
+    //
+    */
+    
+    
     // debug
     // printf("%s\n", globalListStatikAkun.contents[0].username.TabWord);
     // printf("%s\n", globalListStatikAkun.contents[1].username.TabWord);
@@ -449,8 +476,8 @@ void writeGlobalVariablesToFiles(){
 
     
 
-    /*
-
+    
+/*
     // =================================== Save balasan ===================================
     // printf("\n[Balasan]\n");
     STARTWORDFILEWRITER(balasanPath);
@@ -503,8 +530,15 @@ void writeGlobalVariablesToFiles(){
         // masukin ke listdin
     }
 
-    */
+    for(i = 0; i < globalListDinKicauan.nEff; i++){
+        if(globalListDinKicauan.contents[i].firstBalasan == NULL) continue;
 
+        ADVLINE();
+        int idKicauan = 
+    }
+
+    // ==== end balasan
+    */
 
     // =================================== Save draf ===================================
     // printf("\n[Draf]\n");
