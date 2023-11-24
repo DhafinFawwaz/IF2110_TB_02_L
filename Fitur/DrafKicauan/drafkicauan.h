@@ -3,7 +3,7 @@
 
 #include "../../ADT/StackBerkaitDraf/stackberkaitdraf.h"
 
-void hapus_draf(StackBerkaitDraf s);
+void hapus_draf(StackBerkaitDraf *s);
 void simpan_draf(StackBerkaitDraf s);
 void terbit_draf(StackBerkaitDraf s);
 void ubah_draf(StackBerkaitDraf *s);
