@@ -11,6 +11,7 @@
 #include "../../ADT/GrafTeman/grafteman.h"
 #include "../../ADT/StackBerkaitDraf/stackberkaitdraf.h"
 #include "../Perintah/perintah.h"
+#include "../../ADT/QueueBerkait/queuelinked.h"
 
 const char dataPath[] = "Config/";
 
@@ -92,7 +93,8 @@ void assignGlobalVariablesFromFiles(){
         CONTENT(globalListStatikAkun, i).profil.bio = cleanWord(currentWord);
         
         ADVLINE();
-        // CONTENT(globalListStatikAkun, i).profil.nomor_hp = cleanWord(currentWord);
+        QueueLinked ql;
+        CONTENT(globalListStatikAkun, i).profil.nomor_hp = WordToQueueLinked(cleanWord(currentWord), &ql);
 
         ADVLINE();
         CONTENT(globalListStatikAkun, i).profil.weton = cleanWord(currentWord);
