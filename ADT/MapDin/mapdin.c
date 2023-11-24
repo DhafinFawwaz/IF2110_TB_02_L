@@ -3,7 +3,7 @@
 #include "../MesinKata/wordmachine.h"
 #include "../Boolean/boolean.h"
 
-AddressNodeMap newNodeValMap(Kicauan * k){
+AddressNodeMap newNodeValMap(Kicauan k){
     AddressNodeMap p = (NodeValMap*) malloc(sizeof(NodeValMap));
     if(p!=NULL){
         INFO_VAL_MAP(p) = k;
@@ -12,7 +12,7 @@ AddressNodeMap newNodeValMap(Kicauan * k){
     return p;
 }
 
-void insertFirstListValue(AddressNodeMap * l, Kicauan * k){
+void insertFirstListValue(AddressNodeMap * l, Kicauan k){
     AddressNodeMap pK = newNodeValMap(k);
     if(pK!=NULL){
         NEXT_VAL_MAP(pK) = *l;
@@ -56,13 +56,14 @@ int hash(Word tagW, int capMap){
     return (wordToInt(tagW))%capMap;
 }
 
-
-void insertMapDin(MapDin * m, Kicauan * k){
-    int key = hash(TAGAR(*k), CAP_MAPDIN(*m));
-    int idx = findInsertIdx(*m, TAGAR(*k),key);
+void insertMapDin(MapDin * m, Kicauan k){
+    int key = hash(TAGAR(k), CAP_MAPDIN(*m));
+    printf("KEYY:%d\n",key);
+    int idx = findInsertIdx(*m, TAGAR(k),key);
+    printf("IDXX:%d\n",idx);
     if(ELMT_MAP_KEY(*m,idx) == -1){
         BUFFER_MAP(*m)[idx].mapKey = key;
-        setWord(&(BUFFER_MAP(*m)[idx].tagar), TAGAR(*k).TabWord);
+        setWord(&ELMT_MAP_TAGAR(*m,idx), TAGAR(k).TabWord);
     }
     insertFirstListValue(&(BUFFER_MAP(*m)[idx].value),k);
 }
