@@ -9,8 +9,7 @@
 void CreateProfil(Profile *P){
     /* Mambuat profil kosong dengan nilai-nilai default */
     setWord(&Bio(*P), "");
-    QueueLinked nomorHP;
-    queueLinked_CreateQueue(&nomorHP);
+    queueLinked_CreateQueue(&NomorHP(*P));
     setWord(&Weton(*P), "");
     JenisAkun(*P) = true;
     CreateFotoProfil(&Foto(*P));
