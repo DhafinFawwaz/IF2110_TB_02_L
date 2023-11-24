@@ -12,6 +12,7 @@
 #include "../../ADT/StackBerkaitDraf/stackberkaitdraf.h"
 #include "../../ADT/listKaitUtas/listkaitUtas.h"
 #include "../Perintah/perintah.h"
+#include "../../ADT/QueueBerkait/queuelinked.h"
 
 const char dataPath[] = "Config/";
 
@@ -93,7 +94,8 @@ void assignGlobalVariablesFromFiles(){
         CONTENT(globalListStatikAkun, i).profil.bio = cleanWord(currentWord);
         
         ADVLINE();
-        // CONTENT(globalListStatikAkun, i).profil.nomor_hp = cleanWord(currentWord);
+        QueueLinked ql;
+        CONTENT(globalListStatikAkun, i).profil.nomor_hp = WordToQueueLinked(cleanWord(currentWord), &ql);
 
         ADVLINE();
         CONTENT(globalListStatikAkun, i).profil.weton = cleanWord(currentWord);
@@ -263,12 +265,24 @@ void assignGlobalVariablesFromFiles(){
             newDraf.text = cleanWord(currentWord); // Hehe 3     # isi draf
 
             ADVWORD();
-            SetDateFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, i).dateTime), cleanWord(currentWord)); // 14/10/2023
+            SetDateFromWord(&(newDraf.dateTime), cleanWord(currentWord)); // 14/10/2023
 
             ADVWORD();
-            SetTimeFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, i).dateTime), cleanWord(currentWord)); // 11:09:18
+            SetTimeFromWord(&(newDraf.dateTime), cleanWord(currentWord)); // 11:09:18
             
-            pushStackBerkaitDraf(&(globalListStatikAkun.contents[idxAkun].draf_kicauan), newDraf);
+            // pushStackBerkaitDraf(&(globalListStatikAkun.contents[idxAkun].draf_kicauan), newDraf);
+            // harus masukin dari belakang
+            if(globalListStatikAkun.contents[idxAkun].draf_kicauan.addrTopDraf == NULL){
+                pushStackBerkaitDraf(&globalListStatikAkun.contents[idxAkun].draf_kicauan, newDraf);
+            }else{
+                AddressDraf curr = globalListStatikAkun.contents[idxAkun].draf_kicauan.addrTopDraf;
+                AddressDraf p = newNodeStackBerkaitDraf(newDraf);
+                while (curr->next != NULL)
+                {
+                    curr = curr->next;
+                }
+                curr->next = p;
+            }
         }
     }
 
@@ -282,6 +296,8 @@ void assignGlobalVariablesFromFiles(){
     //         DrafKicauan tempDraf;
     //         popStackBerkaitDraf(&tempStack, &tempDraf);
     //         printf("%s\n", tempDraf.text.TabWord);
+    //         DisplayDateTime(tempDraf.dateTime);
+    //         printf("\n");
     //     }
     // }
     // End debug draf
@@ -494,6 +510,8 @@ void writeGlobalVariablesToFiles(){
     // printf("\n[Draf]\n");
     STARTWORDFILEWRITER(drafPath);
     WRITEINT(globalBanyakPenggunaBerDraf);
+    WRITENL();
+
 
     for(i = 0; i < globalListStatikAkun.Neff; i++){
 

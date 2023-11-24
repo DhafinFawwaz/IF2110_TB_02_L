@@ -14,7 +14,7 @@ void kicau(){
     printf("Masukkan kicauan:\n");
     readInput();
     capCurrentWord(280);
-    setWord(&text_kicau, currentWord.TabWord);
+    setWord(&text_kicau, cleanWord(currentWord).TabWord);
 
     printf("\n");
 
@@ -24,11 +24,10 @@ void kicau(){
     else{
         printf("Masukkan tagar:\n");
         readInput();
-        setWord(&tagar, currentWord.TabWord);
+        setWord(&tagar, cleanWord(currentWord).TabWord);
 
         printf("\n");
 
-        
         Kicauan k;
         createKicauan(&k,text_kicau);
         setWord(&TAGAR(k),tagar.TabWord);
@@ -38,20 +37,12 @@ void kicau(){
         IDKICAU(k) = NEFF_LIST_KICAUAN(globalListDinKicauan)+1;
         ADDR_AKUN_KICAUAN(k) = globalCurrentAddrAkun;
         insertKicauan(k, &globalListDinKicauan);
+
         if(TAGAR(k).Length!=0){
             if(isFullMapDin(globalMapTagarKicauan)){
                 rehashing(&globalMapTagarKicauan);
             }
-            insertMapDin(&globalMapTagarKicauan,&k);
-            int key = hash(TAGAR(k), CAP_MAPDIN(globalMapTagarKicauan));
-            printf("\nIDKICAU: %d\n",(ELMT_MAP_VALUE(globalMapTagarKicauan,key))->address_kicauan->id);
-            printWord((ELMT_MAP_VALUE(globalMapTagarKicauan,key))->address_kicauan->text);
-            printf("\nIDKICAU: %d\n",(ELMT_MAP_VALUE(globalMapTagarKicauan,key))->address_kicauan->id);
-            printWord((ELMT_MAP_VALUE(globalMapTagarKicauan,key))->address_kicauan->tagar);
-            displayKicauanTagar(ELMT_MAP_VALUE(globalMapTagarKicauan,key));
-            printf("\nCARI KICAUAN AAAAAAAAAA\n");
-            cariKicauan(TAGAR(k));
-            // printWord(ELMT_MAP_TAGAR(globalMapTagarKicauan,hash(TAGAR(k),CAP_MAPDIN(globalMapTagarKicauan))));
+            insertMapDin(&globalMapTagarKicauan,k);
         }
         printf("Selamat! kicauan telah diterbitkan!\nDetil kicauan:\n");
         printKicauan(k);

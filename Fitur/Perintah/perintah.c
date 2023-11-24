@@ -247,8 +247,7 @@ void handlePerintah(){
 
     else if(compareWord(perintahArgumen[0], CARI_KICAUAN)){
         if(!isLogin){displayBelumLogin();return;}
-        Word tagar;
-        setWord(&tagar,perintahArgumen[1].TabWord);
+        Word tagar = getWordAfterFirstSpace(cleanWord(currentWord));
         cariKicauan(tagar);
     }
 

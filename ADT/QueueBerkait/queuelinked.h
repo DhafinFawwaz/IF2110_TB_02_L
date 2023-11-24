@@ -3,6 +3,7 @@
 #ifndef QUEUELINKED_H
 #define QUEUELINKED_H
 #include "../Boolean/boolean.h"
+#include "../MesinKata/wordmachine.h"
 #include <stdlib.h>
 
 #define NIL NULL
@@ -57,5 +58,10 @@ void queueLinked_dequeue(QueueLinked *q, char *x);
 /* Pada dasarnya operasi deleteFirst */
 /* I.S. q tidak mungkin kosong */
 /* F.S. x = nilai elemen HEAD pd I.S., HEAD "mundur" */
+/* *** Fungsi berkaitan dengan Mesin Kata *** */
+/* Mengubah Queue berkait menjadi Word */
+Word QueueLinkedToWord(QueueLinked q);
+/* Mengubah Word menjadi Queue berkait */
+QueueLinked WordToQueueLinked(Word w, QueueLinked *q);
 
 #endif
