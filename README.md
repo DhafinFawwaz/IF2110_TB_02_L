@@ -1,7 +1,7 @@
 <h1 align="center">Tubes 1 Algoritma dan Struktur Data</h1>
 
 <h2 id="description">Deskripsi</h2>
-Tugas besar ini berisi
+Tugas besar ini berisi Penerapan berbagai ADT untuk mengimplementasi sebuah Simulasi Media Sosial Burbir.
 
 <h2 id="table-of-contents">Daftar Isi</h2>
 - <a href="#description">Deskripsi</a><br/>
