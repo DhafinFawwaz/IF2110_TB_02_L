@@ -180,11 +180,20 @@ void CopyLine()
 
 // Mengembalikan currentWord yang memastikan setelah currentWord.Length itu empty string semua
 Word cleanWord(Word w){
+    // int i = 0;
+    // for(i = w.Length; i < NMax; i++){
+    //     w.TabWord[i] = '\0';
+    // }
+    // return w;
+
+    Word newWord;
     int i = 0;
-    for(i = w.Length; i < NMax; i++){
-        w.TabWord[i] = '\0';
+    for(i = 0; i < w.Length; i++){
+        newWord.TabWord[i] = w.TabWord[i];
     }
-    return w;
+    newWord.TabWord[w.Length] = '\0';
+    newWord.Length = w.Length;
+    return newWord;
 }
 
 // convert word ke integer, termasuk jika negatif
@@ -243,6 +252,9 @@ void setWord(Word* w, char s[]){
 
 // Cek apakah stringnya w1 sama dengan w2
 boolean compareWord(Word w1, Word w2){
+    // debug
+    // printf("Comparing %s with %s\n", w1.TabWord, w2.TabWord);
+    //
     if(w1.Length != w2.Length) return false;
     else{
         int i = 0;
@@ -325,6 +337,42 @@ Word getWordAfterFirstSpace(Word inputWord){
     }
     result.TabWord[result.Length] = '\0';
     return result;
+}
+
+Word getReversedWord(Word w){
+    Word reversed;
+    int i = 0;
+    for(i = 0; i < w.Length; i++){
+        reversed.TabWord[i] = w.TabWord[w.Length-1-i];
+    }
+    reversed.Length = w.Length;
+    return reversed;
+}
+
+// wToSplit = "Tuan Hak 32" -> w = "Tuan Hak", N = 32
+void setWordIntAfterLatestSpace(Word wToSplit, Word* w, int * N){
+    Word reversedNumber;
+    int count = 0;
+
+    int i;
+    for(i = wToSplit.Length-1; i >= 0; i--){
+        if(wToSplit.TabWord[i] == ' '){
+            break;
+        }
+        reversedNumber.TabWord[count] = wToSplit.TabWord[i];
+        count++;
+    }
+    reversedNumber.Length = count;
+
+    // set *w
+    (*w).Length = wToSplit.Length - count - 1;
+    for(i = 0; i < (*w).Length; i++){
+        (*w).TabWord[i] = wToSplit.TabWord[i];
+    }
+    
+    Word numberWord = getReversedWord(reversedNumber);
+
+    *N = wordToInt(numberWord);
 }
 
 Word QueueLinkedToWord(QueueLinked q){

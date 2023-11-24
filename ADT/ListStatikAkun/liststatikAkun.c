@@ -118,8 +118,14 @@ int findIdxById(ListStatikAkun l, int id){
     return IDX_UNDEF;
 }
 int findIdxByName(ListStatikAkun l, Word name){
+    
     int i = 0;
     while (i < listStatikAkun_Length(l)){
+
+        // debug
+        // printf("Comparing %s with %s\n", name.TabWord, CONTENT(l,i).username.TabWord);
+        //
+
         if (compareWord(CONTENT(l,i).username, name)) {
             return i;
         }
@@ -142,15 +148,15 @@ int findIdxByPassword(ListStatikAkun l, Word password){
 }
 
 
-void debugAkun(Akun akun){
-    printf("nama: %s\n", akun.username.TabWord);
-    printf("password: %s\n", akun.password.TabWord);
-    printf("bio: %s\n", akun.profil.bio.TabWord);
-    printf("noHp: %s\n", akun.profil.nomor_hp.TabWord);
-    printf("weton: %s\n", akun.profil.weton.TabWord);
-    printf("isPublic: %s\n", jenisAkunToWord(JenisAkun(Profil(akun))).TabWord);
-    displayFotoProfil(akun.profil.foto);
-}
+// void debugAkun(Akun akun){
+//     printf("nama: %s\n", akun.username.TabWord);
+//     printf("password: %s\n", akun.password.TabWord);
+//     printf("bio: %s\n", akun.profil.bio.TabWord);
+//     printf("noHp: %s\n", akun.profil.nomor_hp.TabWord);
+//     printf("weton: %s\n", akun.profil.weton.TabWord);
+//     printf("isPublic: %s\n", jenisAkunToWord(JenisAkun(Profil(akun))).TabWord);
+//     displayFotoProfil(akun.profil.foto);
+// }
 // void DebugListAkun(){
 //     printf("======== [Debug listAkun] ========\n");
 //     printf("banyakAkun: %d\n", NEFF(listAkun));

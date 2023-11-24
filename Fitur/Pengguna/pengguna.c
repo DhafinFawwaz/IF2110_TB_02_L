@@ -39,7 +39,9 @@ void daftar(){
 void masuk(){
     if (isLogin == false){
         printf("\nMasukkan nama: \n");
+        
         readInput();
+
         int tempID = findIdxByName(globalListStatikAkun, currentWord);
         while (tempID == IDX_UNDEF){
             printf("\nNama tersebut belum terdaftar dalam database BurBir.\n");

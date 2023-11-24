@@ -79,4 +79,7 @@ Word getWordAfterFirstSpace(Word inputWord);
 Word QueueLinkedToWord(QueueLinked q);
 void WordToQueueLinked(Word w, QueueLinked *q);
 
+// Tuan Hak 32 -> w = Tuan Hak, N = 32
+void setWordIntAfterLatestSpace(Word wToSplit, Word* w, int * N);
+
 #endif
