@@ -2,9 +2,10 @@
 #define TAGAR_H
 
 #include "../../ADT/MesinKata/wordmachine.h"
+#include "../../ADT/MapDin/mapdin.h"
 
 void cariKicauan(Word tagar);
 
-void displayKicauanTagar(LinkedListValue);
+void displayKicauanTagar(LinkedListValue l);
 
 #endif

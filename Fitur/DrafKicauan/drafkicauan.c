@@ -35,7 +35,6 @@ void simpan_draf(StackBerkaitDraf s) {
 
     /* ALGORITMA */
     if (!isEmptyStackBerkaitDraf(s)) {
-        pushStackBerkaitDraf(&s, x);
         printf("Draf telah berhasil disimpan!\n");
     } else {
         printf("Anda tidak memiliki draf untuk disimpan.\n");
@@ -77,12 +76,13 @@ void ubah_draf(StackBerkaitDraf *s){
 
     /* ALGORITMA */
     popStackBerkaitDraf(s, &x);
-    printf("Masukkan draf yang baru:");
+    printf("Masukkan draf yang baru: \n");
     readInput();
     capCurrentWord(280);
     setWord(&(x.text),currentWord.TabWord);
-    
     SetToCurrentDateTime(&(x.dateTime));
+
+    pushStackBerkaitDraf(&globalCurrentAddrAkun->draf_kicauan, x);
 
     validChoice = false;
     while (!validChoice) {
@@ -102,12 +102,10 @@ void ubah_draf(StackBerkaitDraf *s){
         } else {
             printf("Pilihan tidak valid. Silakan coba lagi.\n");
         }
+        printf("\n");
     }
 }
 
-void kembali_draf(StackBerkaitDraf *s){
-    printf("\n");
-}
 
 void buat_draf(){
     /* KAMUS LOKAL */
@@ -116,7 +114,7 @@ void buat_draf(){
     Word isiDrafKicauan;
 
     /* ALGORITMA */
-    printf("Masukkan draf: ");
+    printf("Masukkan draf: \n");
     readInput();
     capCurrentWord(280);
 
@@ -143,15 +141,19 @@ void buat_draf(){
         } else {
             printf("Pilihan tidak valid. Silakan coba lagi.\n");
         }
+        printf("\n");
     }
 }
 
 void lihat_draf() {
+    /* KAMUS LOKAL */
     DrafKicauan data;
+    boolean validChoice;
 
-    popStackBerkaitDraf(&globalCurrentAddrAkun->draf_kicauan, &data);
-
+    /* ALGORITMA */
     if (!isEmptyStackBerkaitDraf(globalCurrentAddrAkun->draf_kicauan)) {
+        popStackBerkaitDraf(&globalCurrentAddrAkun->draf_kicauan, &data);
+
         printf("Ini draf terakhir anda:\n");
         printf("| ");
         DisplayDateTime((*globalCurrentAddrAkun).draf_kicauan.addrTopDraf->drafkicauan.dateTime);
@@ -160,6 +162,31 @@ void lihat_draf() {
         printf("\n\n");
     } else {
         printf("Yah, anda belum memiliki draf apapun! Buat dulu ya :D\n");
+    }
+
+    pushStackBerkaitDraf(&globalCurrentAddrAkun->draf_kicauan, data);
+
+    validChoice = false;
+    while (!validChoice) {
+        printf("Apakah anda ingin menghapus, menyimpan, atau menerbitkan draf ini? (KEMBALI jika ingin kembali)");
+        printf("\n");
+        readInput();
+
+        if (compareWord(HAPUSDRAF, currentWord)) {
+            hapus_draf(globalCurrentAddrAkun->draf_kicauan);
+            validChoice = true;
+        } else if (compareWord(SIMPANDRAF, currentWord)) {
+            simpan_draf(globalCurrentAddrAkun->draf_kicauan);
+            validChoice = true;
+        } else if (compareWord(TERBITDRAF, currentWord)) {
+            terbit_draf(globalCurrentAddrAkun->draf_kicauan);
+            validChoice = true;
+        } else if (compareWord(KEMBALIDRAF, currentWord)) {
+            validChoice = true; 
+        } else {
+            printf("Pilihan tidak valid. Silakan coba lagi.\n");
+        }
+        printf("\n");
     }
 }
 
