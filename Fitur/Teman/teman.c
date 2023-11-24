@@ -37,7 +37,7 @@ void hapusTeman(){
         return;
     }
 
-    printf("Apakah anda yakin ingin menghapus Bob dari daftar teman anda?(YA/TIDAK) \n");
+    printf("Apakah anda yakin ingin menghapus %s dari daftar teman anda?(YA/TIDAK) \n", globalListStatikAkun.contents[idxAkunTeman].username.TabWord);
     Word YA, TIDAK;
     setWord(&YA, "YA");
     setWord(&TIDAK, "TIDAK");

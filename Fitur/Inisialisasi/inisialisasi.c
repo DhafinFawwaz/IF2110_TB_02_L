@@ -97,11 +97,13 @@ void assignGlobalVariablesFromFiles(){
         QueueLinked ql;
         CONTENT(globalListStatikAkun, i).profil.nomor_hp = WordToQueueLinked(cleanWord(currentWord), &ql);
 
+
         ADVLINE();
         CONTENT(globalListStatikAkun, i).profil.weton = cleanWord(currentWord);
 
         ADVLINE();
         CONTENT(globalListStatikAkun, i).profil.jenis_akun = jenisAkunToBoolean(cleanWord(currentWord));
+
 
         Foto foto;
         CreateFotoProfil(&foto);
@@ -128,7 +130,6 @@ void assignGlobalVariablesFromFiles(){
             else setGrafTeman(&globalGrafTeman, i, j, false);
         }
     }
-    
     /*
     // ========================= Uncomment kalau savenya udah =========================
     ADVLINE();
@@ -672,7 +673,6 @@ void muat(){
         printf("Tidak ada folder yang dimaksud!\n\n");
     }else{
         printf("Anda akan melakukan pemuatan dari %s.\n\nMohon tunggu...\n1...\n2...\n3...", currentWord.TabWord);
-        inisialisasiGlobal();
         assignGlobalVariablesFromFiles();
         printf("\n\nPemuatan selesai!\n\n");
     }
