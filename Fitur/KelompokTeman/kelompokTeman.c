@@ -15,12 +15,13 @@ void KelompokTeman(){
 	int currentAkunId = currAkun.id;
 	int count = 0;
 	for (i=0; i<globalListStatikAkun.Neff; i++){
-		if (isAkunBerteman(globalGrafTeman, currAkun, globalListStatikAkun.contents[i])) {
-			kelompokTeman_union(&globalKelompokTeman,currentAkunId,i);
+		for (j=i; j<globalListStatikAkun.Neff; j++)
+		if (isAkunBerteman(globalGrafTeman, globalListStatikAkun.contents[i], globalListStatikAkun.contents[j])) {
+			kelompokTeman_union(&globalKelompokTeman,i, j);
 		}
 	}
-	for (j=0; j<globalListStatikAkun.Neff; j++){
-		if (kelompokTeman_find(globalKelompokTeman,j) == kelompokTeman_find(globalKelompokTeman,currentAkunId)){
+	for (i=0; i<globalListStatikAkun.Neff; i++){
+		if (kelompokTeman_find(globalKelompokTeman,i) == kelompokTeman_find(globalKelompokTeman,currentAkunId)){
 			count++;
 		}
 	}

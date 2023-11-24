@@ -67,3 +67,29 @@ void popStackBerkaitDraf(StackBerkaitDraf *s, DrafKicauan *x) {
     NEXT(p) = NIL;
     free(p);
 }
+
+void displayStackBerkaitDraf(StackBerkaitDraf *s) {
+    AddressDraf current = ADDR_TOP_DRAF(*s);
+
+    printf("Stack Berkait Draft:\n");
+
+    if (isEmptyStackBerkaitDraf(*s)) {
+        printf("Stack Berkait Draft kosong.\n");
+    } else {
+        while (current != NIL) {
+            // printf("| Date and Time: ");
+            // DisplayDateTime(current->drafkicauan.dateTime);
+            printf("| ");
+            printWord(current->drafkicauan.text);
+            printf("| ");
+            printWord(current->drafkicauan.nama);
+            printf("\n");
+
+            current = current->next;
+
+            if (current != NIL) {
+                printf("\n---\n");
+            }
+        }
+    }
+}
