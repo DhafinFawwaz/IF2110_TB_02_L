@@ -8,6 +8,7 @@
 #include "../Utas/utas.h"
 #include "../Profil/profil.h"
 #include "../KelompokTeman/kelompokTeman.h"
+#include "../Tagar/tagar.h"
 #include <stdio.h>
 
 #define MAX_ARGUMENT 3
@@ -33,6 +34,7 @@ Word KICAU = {.TabWord = "KICAU", .Length = 5};
 Word KICAUAN = {.TabWord = "KICAUAN", .Length = 7};
 Word SUKA_KICAUAN = {.TabWord = "SUKA_KICAUAN", .Length = 12}; // SUKA_KICAUAN <id kicauan>;
 Word UBAH_KICAUAN = {.TabWord = "UBAH_KICAUAN", .Length = 12}; // UBAH_KICAUAN <id kicauan>;
+Word CARI_KICAUAN = {.TabWord = "CARI_KICAUAN", .Length = 12}; // CARI_KICAUAN <tagar>;
 
 Word BALAS = {.TabWord = "BALAS", .Length = 5}; // BALAS <id kicauan> <id balasan>;
 Word BALASAN = {.TabWord = "BALASAN", .Length = 7}; // BALASAN <id kicauan>;
@@ -241,6 +243,13 @@ void handlePerintah(){
         if(!isLogin){ displayBelumLogin(); return; }
         int idKicauan = wordToInt(perintahArgumen[1]);
         ubahKicauan(idKicauan);
+    }
+
+    else if(compareWord(perintahArgumen[0], CARI_KICAUAN)){
+        if(!isLogin){displayBelumLogin();return;}
+        Word tagar;
+        setWord(&tagar,perintahArgumen[1].TabWord);
+        cariKicauan(tagar);
     }
 
     else if(compareWord(perintahArgumen[0], BALAS)){ // BALAS <id kicauan> <id balasan>;

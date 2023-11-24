@@ -58,7 +58,7 @@ int hash(Word tagW, int capMap){
 
 void insertMapDin(MapDin * m, Kicauan * k){
     int key = hash(TAGAR(*k), CAP_MAPDIN(*m));
-    int idx = findIdx(*m, TAGAR(*k),key);
+    int idx = findInsertIdx(*m, TAGAR(*k),key);
     if(compareWord(ELMT_MAP_TAGAR(*m,idx),TAGAR(*k))){
         insertFirstListValue(&ELMT_MAP_VALUE(*m,idx),k);
     }else{
@@ -68,7 +68,7 @@ void insertMapDin(MapDin * m, Kicauan * k){
     }
 }
 
-int findIdx(MapDin m, Word tag, int key){
+int findInsertIdx(MapDin m, Word tag, int key){
     int idx = key;
     boolean isFound = false;
     while(!isFound){
