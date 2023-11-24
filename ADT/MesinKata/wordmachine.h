@@ -7,7 +7,6 @@
 #include "../Boolean/boolean.h"
 #include "charmachine.h"
 #include <string.h>
-#include "../QueueBerkait/queuelinked.h"
 
 #define NMax 300
 #define BLANK ' '
@@ -76,8 +75,6 @@ Word stringToWord(const char* str);
 char* wordToString(Word w);
 char wordToChar(Word w);
 Word getWordAfterFirstSpace(Word inputWord);
-Word QueueLinkedToWord(QueueLinked q);
-void WordToQueueLinked(Word w, QueueLinked *q);
 
 // Tuan Hak 32 -> w = Tuan Hak, N = 32
 void setWordIntAfterLatestSpace(Word wToSplit, Word* w, int * N);
