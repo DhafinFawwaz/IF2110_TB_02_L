@@ -206,18 +206,28 @@ int wordToInt(Word w){
 // convert int ke word, termasuk jika negatif
 Word intToWord(int N){
     Word numberWord;
-    int i = 0;
+    numberWord.Length = 0;
     if(N < 0){
-        numberWord.TabWord[0] = '-';
+        numberWord.TabWord[numberWord.Length] = '-';
+        numberWord.Length++;
         N = -N;
-        i = 1;
     }
-    while(N > 0){
-        numberWord.TabWord[i] = (N % 10) + '0';
-        N /= 10;
-        i++;
+    if(N == 0){
+        numberWord.TabWord[numberWord.Length] = '0';
+        numberWord.Length++;
+    } else {
+        int digits[10];
+        int n = 0;
+        while(N > 0){
+            digits[n] = N % 10;
+            N /= 10;
+            n++;
+        }
+        for(int j = n - 1; j >= 0; j--){
+            numberWord.TabWord[numberWord.Length] = digits[j] + '0';
+            numberWord.Length++;
+        }
     }
-    numberWord.Length = i;
     return numberWord;
 }
 

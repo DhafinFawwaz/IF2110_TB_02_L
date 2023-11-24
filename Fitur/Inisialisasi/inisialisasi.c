@@ -247,18 +247,25 @@ void assignGlobalVariablesFromFiles(){
                 break;
             }
         }
+        printf("\n");
+
         // reverse word
         for(j = 0; j < banyakDrafWord.Length/2; j++){
             char temp = banyakDrafWord.TabWord[j];
             banyakDrafWord.TabWord[j] = banyakDrafWord.TabWord[banyakDrafWord.Length-1-j];
             banyakDrafWord.TabWord[banyakDrafWord.Length-1-j] = temp;
         }
+        
+        
         int banyakDraf = wordToInt(banyakDrafWord);
         // assign username
         username.Length = currentWord.Length - banyakDrafWord.Length - 1;
         for(j = 0; j < username.Length; j++){
             username.TabWord[j] = currentWord.TabWord[j];
         }
+        
+        printWord(username);
+        printf("| %d\n", banyakDraf);
 
         for(j = 0; j < banyakDraf; j++){
             DrafKicauan newDraf;
@@ -278,7 +285,19 @@ void assignGlobalVariablesFromFiles(){
         }
     }
 
- 
+    // Debug draf
+    for(i = 0; i < globalListStatikAkun.Neff; i++){
+        printf("Username: %s\n", globalListStatikAkun.contents[i].username.TabWord);
+        printf("Banyak draf: %d\n", lengthStackBerkaitDraf(globalListStatikAkun.contents[i].draf_kicauan));
+        printf("Isi draf: \n");
+        StackBerkaitDraf tempStack = globalListStatikAkun.contents[i].draf_kicauan;
+        while(!isEmptyStackBerkaitDraf(tempStack)){
+            DrafKicauan tempDraf;
+            popStackBerkaitDraf(&tempStack, &tempDraf);
+            printf("%s\n", tempDraf.text.TabWord);
+        }
+    }
+    // End debug draf
     
     // =================================== Inisialisasi Utas ===================================
     // printf("\n[Utas]\n");
@@ -392,6 +411,7 @@ void writeGlobalVariablesToFiles(){
     // prio queue daftar pertemanan
 
     
+    
     // =================================== Save kicauan ===================================
     // Harus setelah inisialisasi globalListStatikAkun
     STARTWORDFILEWRITER(kicauanPath); 
@@ -416,25 +436,22 @@ void writeGlobalVariablesToFiles(){
         WRITEWORD(newKicauan.akunKicauan->username);
         WRITENL();
 
-        printWord(dateTimeToWord(newKicauan.dateTime));
         WRITEWORD(dateTimeToWord(newKicauan.dateTime));
         WRITENL();
 
     }
     WRITENL();
 
+    
+
     /*
-
-
-
 
     // =================================== Save balasan ===================================
     // printf("\n[Balasan]\n");
     STARTWORDFILEWRITER(balasanPath);
-    globalBanyakKicauanBerbalasan = wordToInt(currentWord); // banyak kicauan yang memiliki balasan
-    // printf("banyakKicauanBerbalasan: %d\n", banyakKicauanBerbalasan);
+    WRITEINT(globalBanyakKicauanBerbalasan);    
     
-    
+    // BFS
     for(i = 0; i < globalBanyakKicauanBerbalasan; i++){
 
         ADVWORD();
@@ -481,59 +498,41 @@ void writeGlobalVariablesToFiles(){
         // masukin ke listdin
     }
 
+    */
+
 
     // =================================== Save draf ===================================
     // printf("\n[Draf]\n");
     STARTWORDFILEWRITER(drafPath);
-    globalBanyakPenggunaBerDraf = wordToInt(currentWord);// 2 # Banyak draf
+    WRITEINT(globalBanyakPenggunaBerDraf);
 
-    for(i = 0; i < globalBanyakPenggunaBerDraf; i++){
+    for(i = 0; i < globalListStatikAkun.Neff; i++){
+
+        if(globalListStatikAkun.contents[i].draf_kicauan.addrTopDraf == NULL) continue;
 
         // Tuan Hak 3 # username pengguna dan banyak draf
-        ADVLINE();
-        Word banyakDrafWord;
-        Word username;
-        int j = 0;
-        // split Tuan Hak 3 -> Tuan Hak ,3
-        for(j = currentWord.Length-1; j >= 0; j++){
-            banyakDrafWord.TabWord[currentWord.Length-1 - j] = currentWord.TabWord[j];
-            if(currentWord.TabWord[j] == ' '){
-                banyakDrafWord.TabWord[currentWord.Length-1 - j] = '\0';
-                banyakDrafWord.Length = currentWord.Length-1 - j;
-                break;
-            }
-        }
-        // reverse word
-        for(j = 0; j < banyakDrafWord.Length/2; j++){
-            char temp = banyakDrafWord.TabWord[j];
-            banyakDrafWord.TabWord[j] = banyakDrafWord.TabWord[banyakDrafWord.Length-1-j];
-            banyakDrafWord.TabWord[banyakDrafWord.Length-1-j] = temp;
-        }
-        int banyakDraf = wordToInt(banyakDrafWord);
-        // assign username
-        username.Length = currentWord.Length - banyakDrafWord.Length - 1;
-        for(j = 0; j < username.Length; j++){
-            username.TabWord[j] = currentWord.TabWord[j];
-        }
+        WRITEWORD(globalListStatikAkun.contents[i].username);
+        WRITECHAR(' ');
+        int banyakDraf = lengthStackBerkaitDraf(globalListStatikAkun.contents[i].draf_kicauan);
+        WRITEINT(banyakDraf);
+        WRITENL();
 
+        int j = 0;
         for(j = 0; j < banyakDraf; j++){
             DrafKicauan newDraf;
-            CreateDraftKicauan(&newDraf);
+            // CreateDraftKicauan(&newDraf);
+            popStackBerkaitDraf(&(globalListStatikAkun.contents[i].draf_kicauan), &newDraf);
             
-            ADVLINE();
-            newDraf.text = cleanWord(currentWord); // Hehe 3     # isi draf
+            // Hehe 3     # isi draf
+            WRITEWORD(newDraf.text);
+            WRITENL();
 
-            ADVWORD();
-            SetDateFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, i).dateTime), cleanWord(currentWord)); // 14/10/2023
-
-            ADVWORD();
-            SetTimeFromWord(&(GET_ELMT_KICAUAN(globalListDinKicauan, i).dateTime), cleanWord(currentWord)); // 11:09:18
-            
-            int idxAkun = findIdxByName(globalListStatikAkun, username);
-            pushStackBerkaitDraf(&(globalListStatikAkun.contents[idxAkun].draf_kicauan), newDraf);
+            WRITEWORD(dateTimeToWord(newDraf.dateTime));
+            WRITENL();
         }
     }
 
+    /*
  
     
     // =================================== Save Utas ===================================

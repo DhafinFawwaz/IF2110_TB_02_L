@@ -37,7 +37,21 @@ Word dateTimeToWord(DateTime dt){
     Word minute = intToWord(dt.time.minute);
     Word second = intToWord(dt.time.second);
 
-    printf("\n");
+    if(hour.Length == 1){
+        hour.TabWord[1] = hour.TabWord[0];
+        hour.TabWord[0] = '0';
+        hour.Length = 2;
+    }
+    if(minute.Length == 1){
+        minute.TabWord[1] = minute.TabWord[0];
+        minute.TabWord[0] = '0';
+        minute.Length = 2;
+    }
+    if(second.Length == 1){
+        second.TabWord[1] = second.TabWord[0];
+        second.TabWord[0] = '0';
+        second.Length = 2;
+    }
 
     Word result;
 
