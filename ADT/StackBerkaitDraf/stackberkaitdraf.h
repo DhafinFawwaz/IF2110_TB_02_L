@@ -41,7 +41,7 @@ boolean isEmptyStackBerkaitDraf(StackBerkaitDraf s);
 int lengthStackBerkaitDraf(StackBerkaitDraf s);
 
 void createStackBerkaitDraf(StackBerkaitDraf *s);
-void displayStackBerkaitDraf(StackBerkaitDraf s);
+void displayStackBerkaitDraf(StackBerkaitDraf *s);
 
 void pushStackBerkaitDraf(StackBerkaitDraf *s, DrafKicauan x);
 void popStackBerkaitDraf(StackBerkaitDraf *s, DrafKicauan *x);
