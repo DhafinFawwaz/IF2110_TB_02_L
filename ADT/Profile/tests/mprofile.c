@@ -40,8 +40,14 @@ int main() {
         case 4:
             // Test changeNomorHP()
             printf("Enter new phone number: ");
-            readInput();
-            changeNomorHP(&P, currentWord);
+            char nomor;
+            do{
+                scanf(" %c", &nomor);
+                if (nomor != ';'){
+                    queueLinked_enqueue(&NomorHP(P), nomor);
+                }
+            } while (nomor != ';');
+            changeNomorHP(&P, NomorHP(P));
             displayProfil(P, username);
             break;
 
