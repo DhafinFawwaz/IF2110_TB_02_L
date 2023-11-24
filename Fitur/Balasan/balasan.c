@@ -88,7 +88,7 @@ void displayTreeBalasanByAkun(TreeBalasan t, int leftMargin){
     }
     if(!JenisAkun(Profil(*t.akunPembuat)) || !isBerteman)
         printf("| PRIVAT\n");
-    else printf("| "); DisplayDateTime(t.dateTime); printf("\n");
+    else {printf("| "); DisplayDateTime(t.dateTime); printf("\n");}
     
     
     for(i = 0; i < leftMargin; i++){

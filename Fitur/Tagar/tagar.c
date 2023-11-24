@@ -12,9 +12,11 @@ void cariKicauan(Word tagar){
         isFound = true;
     }else{
         do{
-            printf("\nIN DO\n");
-            printf("%d\n",idx);
-            printWord(ELMT_MAP_TAGAR(globalMapTagarKicauan,idx));
+            // printf("\nIN DO\n");
+            // printf("%d\n",idx);
+            // printWord(ELMT_MAP_TAGAR(globalMapTagarKicauan,idx));
+            // printf("\nLEN tagar:%d\n", tagar.Length);
+            // printf("LEN tag:%d\n", ELMT_MAP_TAGAR(globalMapTagarKicauan,idx).Length);
             idx = (idx+1)%CAP_MAPDIN(globalMapTagarKicauan);
             if(compareWord(ELMT_MAP_TAGAR(globalMapTagarKicauan,idx),tagar)){
                 isFound = true;

@@ -32,7 +32,7 @@ void tambah_teman(){
                     GRAFTEMAN_ELMT(globalGrafTeman, globalCurrentAddrAkun->id, akunTujuan.id) = true;
                     permintaan currPermintaan;
                     NamaMinta(currPermintaan) = Username(*globalCurrentAddrAkun);
-                    JumlahTeman(currPermintaan) = countTeman(globalGrafTeman, *globalCurrentAddrAkun);
+                    JumlahTeman(currPermintaan) = countSalingTeman(globalGrafTeman, *globalCurrentAddrAkun);
                     enqueuePermintaan(&DaftarPermintaan(akunTujuan), currPermintaan);
                     printf("\nPermintaan pertemanan kepada %s telah dikirim. Tunggu beberapa saat hingga permintaan Anda disetujui.\n", wordToString(nama));
                 }
