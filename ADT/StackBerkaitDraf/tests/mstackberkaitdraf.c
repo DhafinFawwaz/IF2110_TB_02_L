@@ -2,38 +2,58 @@
 #include "../stackberkaitdraf.h"
 
 int main() {
-    StackBerkaitDraf stackDraf;
-    createStackBerkaitDraf(&stackDraf);
+    StackBerkaitDraf stack;
+    DrafKicauan draf;
+    int type;
 
-    DateTime dateTime1, dateTime2;
-    CreateDateTime(&dateTime1);
-    CreateDateTime(&dateTime2);
+    createStackBerkaitDraf(&stack);
 
-    SetToCurrentDateTime(&dateTime1);
-    SetToCurrentDateTime(&dateTime2);
+    printf("Masukkan jenis uji (1-5): ");
+    scanf("%d", &type);
 
-    printf("DateTime 1: ");
-    DisplayDateTime(dateTime1);
-    printf("\nDateTime 2: ");
-    DisplayDateTime(dateTime2);
+    switch (type) {
+        case 1:
+            // Test isEmptyStackBerkaitDraf
+            if (isEmptyStackBerkaitDraf(stack)) {
+                printf("Stack Berkait Draf kosong.\n");
+            } else {
+                printf("Stack Berkait Draf tidak kosong.\n");
+            }
+            break;
 
-    DrafKicauan draf1 = {1, {"Hello, World!"}, {"Sunshine"}, dateTime1};
-    DrafKicauan draf2 = {2, {"Ini adalah draf kicauan."}, {"Alstruk"}, dateTime2};
+        case 2:
+            // Test pushStackBerkaitDraf 
+            CreateDraftKicauan(&draf);
+            pushStackBerkaitDraf(&stack, draf);
+            printf("Stack Berkait Draf setelah Push:\n");
+            displayStackBerkaitDraf(stack);
+            break;
 
-    pushStackBerkaitDraf(&stackDraf, draf1);
-    pushStackBerkaitDraf(&stackDraf, draf2);
+        case 3:
+            // Test popStackBerkaitDraf
+            popStackBerkaitDraf(&stack, &draf);
+            printf("Stack Berkait Draf setelah Pop:\n");
+            displayStackBerkaitDraf(stack);
+            break;
 
-    printf("\nDraf kicauan di dalam tumpukan:\n");
-    displayStackBerkaitDraf(stackDraf);
+        case 4:
+            // Test isEmptyStackBerkaitDraf() setelah popStackBerkaitDraf
+            if (isEmptyStackBerkaitDraf(stack)) {
+                printf("Stack Berkait Draf kosong setelah Pop.\n");
+            } else {
+                printf("Stack Berkait Draf tidak kosong setelah Pop.\n");
+            }
+            break;
 
-    DrafKicauan drafKeluar;
-    popStackBerkaitDraf(&stackDraf, &drafKeluar);
-    printf("\nDraf kicauan teratas yang dieluarkan:\n");
-    printf("ID: %d\n", drafKeluar.id);
-    printf("Teks: %s\n", drafKeluar.text.TabWord);
-    printf("Nama: %s\n", drafKeluar.nama.TabWord);
-    printf("Tanggal dan Waktu: ");
-    DisplayDateTime(drafKeluar.dateTime);
+        case 5:
+            // Test lengthStackBerkaitDraf
+            printf("Panjang Stack Berkait Draf: %d\n", lengthStackBerkaitDraf(stack));
+            break;
+
+        default:
+            printf("Jenis uji tidak valid.\n");
+            break;
+    }
 
     return 0;
 }

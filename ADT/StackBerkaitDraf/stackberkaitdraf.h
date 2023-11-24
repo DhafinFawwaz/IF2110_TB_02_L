@@ -18,8 +18,6 @@ typedef struct DrafKicauan
 
 void CreateDraftKicauan(DrafKicauan *drafkicauan);
 
-void CreateDraftKicauan(DrafKicauan *drafkicauan);
-
 typedef struct nodedraf* AddressDraf;
 typedef struct nodedraf {
     DrafKicauan drafkicauan;
