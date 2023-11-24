@@ -4,8 +4,11 @@
 #include "../Balasan/balasan.h"
 #include "../Pengguna/pengguna.h"
 #include "../Kicauan/kicauan.h"
+#include "../DrafKicauan/drafkicauan.h"
 #include "../Utas/utas.h"
 #include "../Profil/profil.h"
+#include "../KelompokTeman/kelompokTeman.h"
+#include "../Tagar/tagar.h"
 #include <stdio.h>
 
 #define MAX_ARGUMENT 3
@@ -31,6 +34,7 @@ Word KICAU = {.TabWord = "KICAU", .Length = 5};
 Word KICAUAN = {.TabWord = "KICAUAN", .Length = 7};
 Word SUKA_KICAUAN = {.TabWord = "SUKA_KICAUAN", .Length = 12}; // SUKA_KICAUAN <id kicauan>;
 Word UBAH_KICAUAN = {.TabWord = "UBAH_KICAUAN", .Length = 12}; // UBAH_KICAUAN <id kicauan>;
+Word CARI_KICAUAN = {.TabWord = "CARI_KICAUAN", .Length = 12}; // CARI_KICAUAN <tagar>;
 
 Word BALAS = {.TabWord = "BALAS", .Length = 5}; // BALAS <id kicauan> <id balasan>;
 Word BALASAN = {.TabWord = "BALASAN", .Length = 7}; // BALASAN <id kicauan>;
@@ -48,6 +52,8 @@ Word UTAS = {.TabWord = "UTAS", .Length = 4}; // UTAS <id kicauan>;
 Word SAMBUNG_UTAS = {.TabWord = "SAMBUNG_UTAS", .Length = 12}; // SAMBUNG_UTAS <id utas> <index>;
 Word HAPUS_UTAS = {.TabWord = "HAPUS_UTAS", .Length = 10}; // HAPUS_UTAS <id utas> <index>;
 Word CETAK_UTAS = {.TabWord = "CETAK_UTAS", .Length = 10}; // CETAK_UTAS <id utas>;
+
+Word KELOMPOK_TEMAN = {.TabWord = "KELOMPOK_TEMAN", .Length = 14}; // KELOMPOK_TEMAN;
 
 Word SIMPAN = {.TabWord = "SIMPAN", .Length = 6};
 Word MUAT = {.TabWord = "MUAT", .Length = 4};
@@ -151,6 +157,9 @@ void displayListPerintah(){
     printf("| CETAK_UTAS <id utas>\n");
     printf("\n");
 
+    printf("| KELOMPOK_TEMAN\n");
+    printf("\n");
+
     printf("| SIMPAN\n");
     printf("| MUAT\n");
     printf("\n");
@@ -236,6 +245,13 @@ void handlePerintah(){
         ubahKicauan(idKicauan);
     }
 
+    else if(compareWord(perintahArgumen[0], CARI_KICAUAN)){
+        if(!isLogin){displayBelumLogin();return;}
+        Word tagar;
+        setWord(&tagar,perintahArgumen[1].TabWord);
+        cariKicauan(tagar);
+    }
+
     else if(compareWord(perintahArgumen[0], BALAS)){ // BALAS <id kicauan> <id balasan>;
         if(!isLogin){ displayBelumLogin(); return; }
         int idKicauan = wordToInt(perintahArgumen[1]);
@@ -256,11 +272,11 @@ void handlePerintah(){
 
     else if(compareWord(perintahArgumen[0], BUAT_DRAF)){
         if(!isLogin){ displayBelumLogin(); return; }
-
+        buat_draf(globalCurrentAddrAkun->draf_kicauan);
     }
     else if(compareWord(perintahArgumen[0], LIHAT_DRAF)){
         if(!isLogin){ displayBelumLogin(); return; }
-
+        lihat_draf();
     }
 
     else if(compareWord(perintahArgumen[0], UTAS)){ // UTAS <id kicauan>;
@@ -284,6 +300,11 @@ void handlePerintah(){
         if(!isLogin){ displayBelumLogin(); return; }
         int idUtas = wordToInt(perintahArgumen[1]);
         cetakUtas(idUtas);
+    }
+
+    else if(compareWord(perintahArgumen[0], KELOMPOK_TEMAN)) { // KELOMPOK_TEMAN
+        if(!isLogin){ displayBelumLogin(); return; }
+        KelompokTeman();
     }
 
     else if(compareWord(perintahArgumen[0], SIMPAN)){

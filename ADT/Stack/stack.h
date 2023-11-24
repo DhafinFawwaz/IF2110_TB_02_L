@@ -56,4 +56,8 @@ void Pop(Stack * S, infotype* X);
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 
+/* ************ Menampilkan semua elemen Stack ************ */
+void stack_displayStack(Stack S);
+/* Menampilkan semua elemen Stack S */
+
 #endif

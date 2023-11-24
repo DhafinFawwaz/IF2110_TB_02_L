@@ -42,3 +42,20 @@ void stack_Pop(Stack * S, infotype* X){
     *X = InfoTop(*S);
     Top(*S)--;
 }
+
+void stack_displayStack(Stack S){
+/* Menampilkan semua elemen Stack S */
+    if (stack_IsEmpty(S)){
+        printf("[]\n");
+    } 
+    else{
+        printf("[");
+        for (int i = 0; i <= Top(S); i++){
+            printf("%d", S.T[i]);
+            if (i < Top(S)) {
+                printf(", ");
+            }
+        }
+        printf("]\n");
+    }
+}

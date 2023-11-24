@@ -4,6 +4,7 @@
 #include "../Global/global.h"
 #include "../../ADT/MesinKata/wordmachine.h"
 #include "../../ADT/ListStatikAkun/liststatikAkun.h"
+#include "../../ADT/StackBerkaitDraf/stackberkaitdraf.h"
 #include "../../ADT/DateTime/datetime.h"
 #include "../../ADT/ListDinKicauan/listdinkicauan.h"
 #include "../../ADT/TreeBalasan/treebalasan.h"
@@ -12,6 +13,11 @@
 #include "../Perintah/perintah.h"
 
 const char dataPath[] = "Config/";
+
+void createDirectory(char folderPath[NMax]){
+    mkdir(folderPath, 0777);
+    
+}
 
 void tripleConcat(char *s1, char *s2, char *s3, char *result){
     int i = 0, j = 0;
@@ -31,6 +37,30 @@ void tripleConcat(char *s1, char *s2, char *s3, char *result){
         j++;
     }
     result[i] = '\0';
+}
+
+void writeGlobalVariablesToFiles(){
+    char balasanPath[NMax], drafPath[NMax], kicauanPath[NMax], penggunaPath[NMax], utasPath[NMax] = "";
+    tripleConcat(dataPath, currentWord.TabWord, "/balasan.config", balasanPath);
+    tripleConcat(dataPath, currentWord.TabWord, "/draf.config", drafPath);
+    tripleConcat(dataPath, currentWord.TabWord, "/kicauan.config", kicauanPath);
+    tripleConcat(dataPath, currentWord.TabWord, "/pengguna.config", penggunaPath);
+    tripleConcat(dataPath, currentWord.TabWord, "/utas.config", utasPath);
+    int i = 0;
+    
+    STARTWORDFILEWRITER(balasanPath);
+
+    Word w;
+    setWord(&w, "a\nb\nc\n");
+    WRITEWORD(w);
+
+    WRITEINT(1345);
+
+    // STARTWORDFILEWRITER(drafPath);
+    // STARTWORDFILEWRITER(kicauanPath);
+    // STARTWORDFILEWRITER(penggunaPath);
+    // STARTWORDFILEWRITER(utasPath);
+
 }
 
 void displayInisialisasi(){
@@ -54,58 +84,6 @@ boolean isDirectoryExists(const char *path)
     if (S_ISDIR(stats.st_mode))
         return true;
     return false;
-}
-
-void inisialisasiConfig(){
-    char folderPath[NMax] = "";
-    
-    readInput(); // currentWord.TabWord = nama folder
-    tripleConcat(dataPath, currentWord.TabWord, "/", folderPath);
-    
-    while(!isDirectoryExists(folderPath)){
-        printf("Tidak ada folder yang dimaksud!\n\n");
-        printf("Silahkan masukan folder konfigurasi untuk dimuat: ");
-    
-        readInput();
-        tripleConcat(dataPath, currentWord.TabWord, "/", folderPath);
-    }
-    assignGlobalVariablesFromFiles();
-    printf("File konfigurasi berhasil dimuat! Selamat berkicau!\n");
-}
-
-void simpan(){
-    printf("\nMasukkan nama folder penyimpanan.\n");
-    char folderPath[NMax] = "";
-    
-    readInput(); // currentWord.TabWord = nama folder
-    tripleConcat(dataPath, currentWord.TabWord, "/", folderPath);
-    
-    if(!isDirectoryExists(folderPath)){
-        printf("Belum terdapat %s. Akan dilakukan pembuatan %s terlebih dahulu.\n\nMohon tunggu...\n1...\n2...\n3...", currentWord.TabWord, currentWord.TabWord);
-        createDirectory(folderPath);
-        printf("\n\n%s sudah berhasil dibuat.\n\n", currentWord.TabWord);
-    }
-
-    printf("Anda akan melakukan penyimpanan di %s.\n\nMohon tunggu...\n1...\n2...\n3...", currentWord.TabWord);
-    writeGlobalVariablesToFiles();
-    printf("\n\nPenyimpanan telah berhasil dilakukan!\n\n");
-}
-
-void muat(){
-    printf("Masukkan nama folder yang hendak dimuat.\n");
-    char folderPath[NMax] = "";
-    
-    readInput(); // currentWord.TabWord = nama folder
-    tripleConcat(dataPath, currentWord.TabWord, "/", folderPath);
-    
-    if(!isDirectoryExists(folderPath)){
-        printf("Tidak ada folder yang dimaksud!\n\n");
-    }else{
-        printf("Anda akan melakukan pemuatan dari %s.\n\nMohon tunggu...\n1...\n2...\n3...", currentWord.TabWord);
-        assignGlobalVariablesFromFiles();
-        printf("\n\nPemuatan selesai!\n\n");
-    }
-    
 }
 
 void assignGlobalVariablesFromFiles(){
@@ -621,9 +599,9 @@ void writeGlobalVariablesToFiles(){
 
 
 
-}
+// }
 
-void createDirectory(char folderPath[NMax]){
-    mkdir(folderPath, 0777);
+// void createDirectory(char folderPath[NMax]){
+//     mkdir(folderPath, 0777);
     
-}
+// }

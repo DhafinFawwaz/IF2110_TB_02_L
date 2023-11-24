@@ -50,6 +50,7 @@ void expandListKicauan(ListDinKicauan *l){
     ListDinKicauan lNew;
     createListDinKicauan(&lNew, new_cap);
     copyContentListKicauan(l, &lNew);
+    free(l);
     *l = lNew;
 }
 

@@ -1,0 +1,3 @@
+Dequeued element: 10
+Queue after dequeue:
+[20,30,40,50]
