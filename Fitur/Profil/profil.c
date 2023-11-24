@@ -15,13 +15,24 @@ void ganti_profil(){
     changeBio(&Profil(*globalCurrentAddrAkun), currentWord);
     printf("\n");
     printf("Masukkan No HP:\n");
-    readInput();
-    while (!isNomorHPValid(currentWord)){
+    char nomor;
+    do{
+        scanf(" %c", &nomor);
+        if (nomor != ';'){
+            queueLinked_enqueue(&NomorHP(Profil(*globalCurrentAddrAkun)), nomor);
+        }
+    } while (nomor != ';');
+    while (!isNomorHPValid(NomorHP(Profil(*globalCurrentAddrAkun)))){
         printf("\nNo HP tidak valid. Masukkan lagi yuk!\n");
         printf("\nMasukkan No HP:\n");
-        readInput();
+        do{
+            scanf(" %c", &nomor);
+            if (nomor != ';'){
+                queueLinked_enqueue(&NomorHP(Profil(*globalCurrentAddrAkun)), nomor);
+            }
+        } while (nomor != ';');
     }
-    changeNomorHP(&Profil(*globalCurrentAddrAkun), currentWord);
+    changeNomorHP(&Profil(*globalCurrentAddrAkun), NomorHP(Profil(*globalCurrentAddrAkun)));
     printf("\n");
     printf("Masukkan Weton:\n");
     readInput();
@@ -51,7 +62,7 @@ void lihat_profil_other(Word nama){
             printf("\n| Bio Akun: ");
             printWord(Bio(Profil(akunTujuan)));
             printf("\n| No HP: ");
-            printWord(NomorHP(Profil(akunTujuan)));
+            queueLinked_DisplayQueue(NomorHP(Profil(akunTujuan)));
             printf("\n| Weton: ");
             printWord(Weton(Profil(akunTujuan)));
             printf("\n\nFoto profil akun ");

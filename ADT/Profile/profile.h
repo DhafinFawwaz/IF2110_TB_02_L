@@ -8,11 +8,12 @@
 #include "../Foto/foto.h"
 #include "../Boolean/boolean.h"
 #include "../MesinKata/wordmachine.h"
+#include "../QueueBerkait/queuelinked.h"
 
 /* *** DEFINISI TYPE PROFILE *** */
 typedef struct profile {
     Word bio;
-    Word nomor_hp;
+    QueueLinked nomor_hp;
     Word weton;
     boolean jenis_akun;
     Foto foto;
@@ -34,7 +35,7 @@ void CreateProfil(Profile *P);
 /* Memeriksa apakah weton valid */
 boolean isWetonValid(Word weton);
 /* Memeriksa apakah nomor HP valid */
-boolean isNomorHPValid(Word nomor_hp);
+boolean isNomorHPValid(QueueLinked nomor_hp);
 /* Memeriksa apakah jenis akun privat */
 boolean isAkunPrivat(Profile P);
 /* Memeriksa apakah jenis akun publik */
@@ -43,7 +44,7 @@ boolean isAkunPublik(Profile P);
 /* Mengubah bio berdasarkan masukan pengguna */
 void changeBio(Profile *P, Word w);
 /* Mengubah nomor HP berdasarkan masukan pengguna */
-void changeNomorHP(Profile *P, Word w);
+void changeNomorHP(Profile *P, QueueLinked q);
 /* Mengubah weton berdasarkan masukan pengguna */
 void changeWeton(Profile *P, Word w);
 /* Mengubah jenis akun pengguna */

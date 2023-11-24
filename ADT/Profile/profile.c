@@ -9,7 +9,8 @@
 void CreateProfil(Profile *P){
     /* Mambuat profil kosong dengan nilai-nilai default */
     setWord(&Bio(*P), "");
-    setWord(&NomorHP(*P), "");
+    QueueLinked nomorHP;
+    queueLinked_CreateQueue(&nomorHP);
     setWord(&Weton(*P), "");
     JenisAkun(*P) = true;
     CreateFotoProfil(&Foto(*P));
@@ -33,12 +34,14 @@ boolean isWetonValid(Word weton){
             compareWord(weton, stringToWord("")));
 }
 
-boolean isNomorHPValid(Word nomor_hp){
+boolean isNomorHPValid(QueueLinked nomor_hp){
     /* Memeriksa apakah nomor HP valid */
-    for (int i = 0; i < nomor_hp.Length; i++){
-        if (!(nomor_hp.TabWord[i] >= '0' && nomor_hp.TabWord[i] <= '9')){
+    queueAddress p = ADDR_HEAD(nomor_hp);
+    while (p != NIL){
+        if (!(INFO(p) >= '0' && INFO(p) <= '9')){
             return false;
         }
+        p = NEXT(p);
     }
     return true;
 }
@@ -63,9 +66,9 @@ void changeBio(Profile *P, Word w){
     Bio(*P) = w;
 }
 
-void changeNomorHP(Profile *P, Word w){
+void changeNomorHP(Profile *P, QueueLinked q){
     /* Mengubah nomor HP berdasarkan masukan pengguna */
-    NomorHP(*P) = w;
+    NomorHP(*P) = q;
 }
 
 void changeWeton(Profile *P, Word w){
@@ -91,7 +94,7 @@ void displayProfil(Profile P, Word username){
     printf("\n| Bio Akun: ");
     printWord(Bio(P));
     printf("\n| No HP: ");
-    printWord(NomorHP(P));
+    queueLinked_DisplayQueue(NomorHP(P));
     printf("\n| Weton: ");
     printWord(Weton(P));
 }
@@ -103,7 +106,7 @@ void lihatProfil(Profile P, Word username){
     printf("\n| Bio Akun: ");
     printWord(Bio(P));
     printf("\n| No HP: ");
-    printWord(NomorHP(P));
+    queueLinked_DisplayQueue(NomorHP(P));
     printf("\n| Weton: ");
     printWord(Weton(P));
     printf("\n\nFoto profil akun ");
