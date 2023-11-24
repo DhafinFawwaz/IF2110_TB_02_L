@@ -7,6 +7,7 @@
 #include "../Boolean/boolean.h"
 #include "charmachine.h"
 #include <string.h>
+#include "../QueueBerkait/queuelinked.h"
 
 #define NMax 300
 #define BLANK ' '
@@ -75,5 +76,7 @@ Word stringToWord(const char* str);
 char* wordToString(Word w);
 char wordToChar(Word w);
 Word getWordAfterFirstSpace(Word inputWord);
+Word QueueLinkedToWord(QueueLinked q);
+void WordToQueueLinked(Word w, QueueLinked *q);
 
 #endif

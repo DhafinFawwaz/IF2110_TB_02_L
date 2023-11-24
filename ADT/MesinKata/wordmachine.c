@@ -326,3 +326,25 @@ Word getWordAfterFirstSpace(Word inputWord){
     result.TabWord[result.Length] = '\0';
     return result;
 }
+
+Word QueueLinkedToWord(QueueLinked q){
+    Word result;
+    int i = 0;
+    result.Length = 0;
+    queueAddress P = ADDR_HEAD(q);
+    while (P != NIL) {
+        result.TabWord[i] = INFO(P);
+        i++;
+        P = NEXT(P);
+    }
+    result.TabWord[i] = '\0';
+    result.Length = i;
+    return result;
+}
+
+void WordToQueueLinked(Word w, QueueLinked *q){
+    // Mengubah setiap karakter dari Word menjadi elemen queue
+    for (int i = 0; i < w.Length; i++) {
+        queueLinked_enqueue(q, w.TabWord[i]);
+    }
+}
